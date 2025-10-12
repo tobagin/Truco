@@ -1,0 +1,37 @@
+app-id: io.github.tobagin.Truco.Devel
+runtime: org.gnome.Platform
+runtime-version: '49'
+sdk: org.gnome.Sdk
+command: truco
+
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+  - --socket=pulseaudio
+  - --share=network
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /lib/cmake
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - /share/vala
+  - /share/aclocal
+  - /share/devhelp
+  - '*.la'
+  - '*.a'
+
+modules:
+  - name: truco
+    buildsystem: meson
+    config-opts:
+      - --buildtype=debugoptimized
+    sources:
+      - type: dir
+        path: ..

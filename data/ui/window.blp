@@ -1,0 +1,71 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoWindow : Adw.ApplicationWindow {
+  default-width: 800;
+  default-height: 600;
+  width-request: 360;
+  height-request: 294;
+
+  Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar header_bar {
+      [title]
+      Adw.WindowTitle title_widget {
+        title: "Truco";
+      }
+
+      [end]
+      Gtk.MenuButton menu_button {
+        icon-name: "open-menu-symbolic";
+        menu-model: primary_menu;
+        tooltip-text: "Main Menu";
+        primary: true;
+      }
+    }
+
+    content: Gtk.Box {
+      orientation: vertical;
+      spacing: 12;
+      margin-top: 48;
+      margin-bottom: 48;
+      margin-start: 12;
+      margin-end: 12;
+      valign: center;
+      halign: center;
+
+      Gtk.Label welcome_label {
+        label: "Welcome to Truco!";
+        styles [
+          "title-1"
+        ]
+      }
+
+      Gtk.Label subtitle_label {
+        label: "The traditional card game";
+        styles [
+          "dim-label"
+        ]
+      }
+    };
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: _("_About Truco");
+      action: "app.about";
+    }
+  }
+}
