@@ -13,6 +13,19 @@
   <launchable type="desktop-id">@APPLICATION_ID@.desktop</launchable>
   <screenshots>
   </screenshots>
+  <releases>
+    <release version="0.1.0" date="2025-12-15">
+      <description>
+        <p>Initial release features:</p>
+        <ul>
+          <li>Play multiple variants: Mineiro, Paulista, Uruguayo, Venezolano, Argentino</li>
+          <li>Smart CPU opponents</li>
+          <li>Customizable table felt and card decks</li>
+          <li>Match statistics and game history tracking</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
   <url type="homepage">https://github.com/tobagin/Truco</url>
   <url type="bugtracker">https://github.com/tobagin/Truco/issues</url>
   <url type="help">https://github.com/tobagin/Truco#readme</url>
