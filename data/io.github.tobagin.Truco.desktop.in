@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Truco
+Name=@APP_NAME@
 Comment=A card game application
 Exec=truco
 Icon=@APPLICATION_ID@

@@ -9,9 +9,11 @@ gnome = import('gnome')
 if get_option('profile') == 'development'
   application_id = 'io.github.tobagin.Truco.Devel'
   profile_name = 'Devel'
+  app_name = 'Truco (Devel)'
 else
   application_id = 'io.github.tobagin.Truco'
   profile_name = 'Default'
+  app_name = 'Truco'
 endif
 
 add_project_arguments('-DGETTEXT_PACKAGE="@0@"'.format(application_id), language: 'c')
@@ -25,7 +27,8 @@ conf_data.set_quoted('GETTEXT_PACKAGE', application_id)
 conf_data.set_quoted('VERSION', meson.project_version())
 conf_data.set('RESOURCE_PATH', '/io/github/tobagin/Truco')
 conf_data.set_quoted('RESOURCE_PATH_QUOTED', '/io/github/tobagin/Truco')
-conf_data.set_quoted('NAME', 'Truco')
+conf_data.set_quoted('NAME', app_name)
+conf_data.set('APP_NAME', app_name)
 conf_data.set_quoted('PROFILE', profile_name)
 conf_data.set_quoted('LOCALEDIR', get_option('prefix') / get_option('localedir'))
 
