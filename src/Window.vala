@@ -346,9 +346,9 @@ namespace Truco {
                 btn_truco.sensitive = (game.current_player_index == 0);
                 
                 string lbl = _("TRUCO!");
-                if (game.stake == 3) lbl = _("SEIS!");
-                else if (game.stake == 6) lbl = _("NOVE!");
-                else if (game.stake == 9) lbl = _("DOZE!");
+                if (game.stake == 3) lbl = _("SIX!");
+                else if (game.stake == 6) lbl = _("NINE!");
+                else if (game.stake == 9) lbl = _("TWELVE!");
                 
                 if (game.score_team_0 == 11 || game.score_team_1 == 11) {
                     btn_truco.sensitive = false;
@@ -482,9 +482,9 @@ namespace Truco {
             split_view.show_sidebar = false; // Ensure dialog is seen
 
             string call_name = _("Truco!");
-            if (new_stake == 6) call_name = _("SEIS!");
-            else if (new_stake == 9) call_name = _("NOVE!");
-            else if (new_stake == 12) call_name = _("DOZE!");
+            if (new_stake == 6) call_name = _("SIX!");
+            else if (new_stake == 9) call_name = _("NINE!");
+            else if (new_stake == 12) call_name = _("TWELVE!");
             
             var dialog = new Adw.AlertDialog (
                 call_name,

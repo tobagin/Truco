@@ -41,15 +41,15 @@ msgid "TRUCO!"
 msgstr "TRUCO!"
 
 #: src/Window.vala:286
-msgid "SEIS!"
+msgid "SIX!"
 msgstr "SEIS!"
 
 #: src/Window.vala:287
-msgid "NOVE!"
+msgid "NINE!"
 msgstr "NOVE!"
 
 #: src/Window.vala:288
-msgid "DOZE!"
+msgid "TWELVE!"
 msgstr "DOZE!"
 
 #: src/Window.vala:292
