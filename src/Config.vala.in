@@ -19,4 +19,6 @@ namespace Config {
     public const string PROFILE = @PROFILE@;
     public const string GETTEXT_PACKAGE = @GETTEXT_PACKAGE@;
     public const string LOCALEDIR = @LOCALEDIR@;
+    public const string RESOURCE_PATH = @RESOURCE_PATH_QUOTED@;
+    public const string SCHEMA_ID = APP_ID;
 }

@@ -1,0 +1,132 @@
+.felt-green {
+    background-color: #2e8b57;
+    color: white;
+}
+
+.felt-red {
+    background-color: #8b2e2e;
+    color: white;
+}
+
+.felt-blue {
+    background-color: #2e4a8b;
+    color: white;
+}
+
+.scoreboard {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+.score-text {
+    font-size: 24px;
+}
+
+/* Card Rotation */
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.rotate-270 {
+    transform: rotate(270deg);
+}
+
+/* Player Card Styling */
+button.player-card {
+    background: none;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    margin: 0 -10px;
+    /* Slight overlap */
+    transition: transform 0.2s ease-out;
+}
+
+button.player-card:hover {
+    transform: scale(1.1);
+    z-index: 100;
+    /* Ensure hovered card is on top */
+}
+
+button.player-card:active {
+    transform: scale(0.95);
+}
+
+/* Opponent Cards */
+.opponent-card {
+    min-width: 60px;
+    min-height: 90px;
+    margin: 0 -10px;
+    /* Slight overlap */
+}
+
+/* Vertical Stacks (Left/Right Players) */
+.opponent-card.rotate-90,
+.opponent-card.rotate-270 {
+    margin: -15px 0;
+    /* Slight vertical overlap */
+}
+
+.card-on-table {
+    margin: 0 -5px;
+}
+
+/* Vira Frame */
+.card-frame {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar */
+.sidebar-background {
+    background-color: @theme_bg_color;
+}
+
+/* History List */
+.history-row {
+    padding: 6px;
+    border-bottom: 1px solid alpha(currentColor, 0.1);
+}
+
+.caption {
+    font-size: small;
+    opacity: 0.8;
+}
+
+.dim-label {
+    opacity: 0.6;
+}
+
+.history-user {
+    background-color: alpha(@accent_color, 0.15);
+    color: @accent_color;
+    border-radius: 6px;
+}
+
+.history-partner {
+    background-color: alpha(@accent_blue, 0.15);
+    /* Assuming accent_blue or similar exists, or hardcode */
+    /* Let's try to use valid color mod */
+    background-color: alpha(#3584e4, 0.15);
+    color: #3584e4;
+    border-radius: 6px;
+}
+
+#btn_truco {
+    background-color: #3d3d3d;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 10px 20px;
+}

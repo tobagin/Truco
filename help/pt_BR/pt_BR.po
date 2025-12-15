@@ -1,0 +1,84 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Truco Help\n"
+"POT-Creation-Date: 2025-12-14 20:04+0000\n"
+"PO-Revision-Date: 2025-12-14 20:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: help/C/index.page:10
+msgid "Truco Help"
+msgstr "Ajuda do Truco"
+
+#: help/C/index.page:14
+msgid "How to Play"
+msgstr "Como Jogar"
+
+#: help/C/index.page:37
+msgid "Game Variants"
+msgstr "Variantes do Jogo"
+
+#: help/C/index.page:25
+msgid "Calling Truco"
+msgstr "Pedindo Truco"
+
+#: help/C/index.page:11
+msgid "Truco is a popular card game played with a Spanish deck (or specific subset of French deck). The goal is to reach 12 points."
+msgstr "O Truco é um jogo de cartas popular jogado com baralho espanhol (ou subconjunto do francês). O objetivo é alcançar 12 pontos."
+
+#: help/C/index.page:15
+#: help/C/index.page:18
+msgid "<strong>Dealing:</strong> Each player receives 3 cards."
+msgstr "<strong>Distribuição:</strong> Cada jogador recebe 3 cartas."
+
+#: help/C/index.page:19
+msgid "<strong>Play:</strong> Players play one card per trick. The highest card wins."
+msgstr "<strong>Jogo:</strong> Os jogadores jogam uma carta por vaza. A carta mais alta vence."
+
+#: help/C/index.page:20
+msgid "<strong>Ties:</strong> If the first trick is tied, the winner of the second trick wins the round. If the second is also tied, the winner of the third wins. If all 3 are tied, no points are awarded (or rules vary)."
+msgstr "<strong>Empates:</strong> Se a primeira vaza empatar, o vencedor da segunda vaza vence a mão. Se a segunda também empatar, o vencedor da terceira vence. Se todas as 3 empatarem, nenhum ponto é concedido (ou as regras variam)."
+
+#: help/C/index.page:26
+msgid "At any player's turn, they can call \"Truco!\" to raise the stakes of the round."
+msgstr "Na vez de qualquer jogador, ele pode pedir \"Truco!\" para aumentar a aposta da mão."
+
+#: help/C/index.page:28
+msgid "<strong>Truco</strong>: Raises value to 3 points."
+msgstr "<strong>Truco</strong>: Aumenta o valor para 3 pontos."
+
+#: help/C/index.page:29
+msgid "<strong>Seis (6)</strong>: Respondent can raise to 6."
+msgstr "<strong>Seis (6)</strong>: O adversário pode aumentar para 6."
+
+#: help/C/index.page:30
+msgid "<strong>Nove (9)</strong>: Re-raise to 9."
+msgstr "<strong>Nove (9)</strong>: Aumentar novamente para 9."
+
+#: help/C/index.page:31
+msgid "<strong>Doze (12)</strong>: Maximum value."
+msgstr "<strong>Doze (12)</strong>: Valor máximo."
+
+#: help/C/index.page:33
+msgid "If a team refuses a Truco challenge, they lose the current round, and the opposing team scores the points at the previous stake level."
+msgstr "Se uma equipe recusar um pedido de Truco, ela perde a mão atual e a equipe adversária ganha os pontos no nível de aposta anterior."
+
+# Variants
+msgid "Truco Mineiro"
+msgstr "Truco Mineiro"
+
+msgid "Truco Paulista"
+msgstr "Truco Paulista"
+
+msgid "Truco Uruguayo"
+msgstr "Truco Uruguaio"
+
+msgid "Truco Venezolano"
+msgstr "Truco Venezuelano"
+
+msgid "Truco Argentino"
+msgstr "Truco Argentino"

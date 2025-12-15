@@ -1,0 +1,10 @@
+src/Window.vala
+src/Application.vala
+src/dialogs/NewGameDialog.vala
+src/dialogs/MatchEndDialog.vala
+data/ui/window.blp
+data/ui/shortcuts.blp
+data/ui/new_game_dialog.blp
+data/ui/match_end_dialog.blp
+data/io.github.tobagin.Truco.desktop.in
+data/io.github.tobagin.Truco.metainfo.xml.in

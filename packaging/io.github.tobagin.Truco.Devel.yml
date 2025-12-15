@@ -3,7 +3,6 @@ runtime: org.gnome.Platform
 runtime-version: '49'
 sdk: org.gnome.Sdk
 command: truco
-
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -12,26 +11,13 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
 
-cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /lib/cmake
-  - /man
-  - /share/doc
-  - /share/gtk-doc
-  - /share/man
-  - /share/pkgconfig
-  - /share/vala
-  - /share/aclocal
-  - /share/devhelp
-  - '*.la'
-  - '*.a'
-
 modules:
   - name: truco
     buildsystem: meson
     config-opts:
-      - --buildtype=debugoptimized
+      - -Dprofile=development
     sources:
       - type: dir
         path: ..
+    post-install:
+      - glib-compile-schemas /app/share/glib-2.0/schemas

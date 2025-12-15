@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="@RESOURCE_PATH@">
+    <file preprocess="xml-stripblanks" alias="window.ui">window.ui</file>
+    <file preprocess="xml-stripblanks" alias="new_game_dialog.ui">new_game_dialog.ui</file>
+    <file preprocess="xml-stripblanks" alias="match_end_dialog.ui">match_end_dialog.ui</file>
+    <file preprocess="xml-stripblanks" alias="shortcuts.ui">shortcuts.ui</file>
+    <file preprocess="xml-stripblanks" alias="preferences_dialog.ui">preferences_dialog.ui</file>
+    <file preprocess="xml-stripblanks" alias="avatar_selector.ui">avatar_selector.ui</file>
+      <file>cards/10_of_clubs.svg</file>
+    <file>cards/10_of_diamonds.svg</file>
+    <file>cards/10_of_hearts.svg</file>
+    <file>cards/10_of_spades.svg</file>
+    <file>cards/2_of_clubs.svg</file>
+    <file>cards/2_of_diamonds.svg</file>
+    <file>cards/2_of_hearts.svg</file>
+    <file>cards/2_of_spades.svg</file>
+    <file>cards/3_of_clubs.svg</file>
+    <file>cards/3_of_diamonds.svg</file>
+    <file>cards/3_of_hearts.svg</file>
+    <file>cards/3_of_spades.svg</file>
+    <file>cards/4_of_clubs.svg</file>
+    <file>cards/4_of_diamonds.svg</file>
+    <file>cards/4_of_hearts.svg</file>
+    <file>cards/4_of_spades.svg</file>
+    <file>cards/5_of_clubs.svg</file>
+    <file>cards/5_of_diamonds.svg</file>
+    <file>cards/5_of_hearts.svg</file>
+    <file>cards/5_of_spades.svg</file>
+    <file>cards/6_of_clubs.svg</file>
+    <file>cards/6_of_diamonds.svg</file>
+    <file>cards/6_of_hearts.svg</file>
+    <file>cards/6_of_spades.svg</file>
+    <file>cards/7_of_clubs.svg</file>
+    <file>cards/7_of_diamonds.svg</file>
+    <file>cards/7_of_hearts.svg</file>
+    <file>cards/7_of_spades.svg</file>
+    <file>cards/8_of_clubs.svg</file>
+    <file>cards/8_of_diamonds.svg</file>
+    <file>cards/8_of_hearts.svg</file>
+    <file>cards/8_of_spades.svg</file>
+    <file>cards/9_of_clubs.svg</file>
+    <file>cards/9_of_diamonds.svg</file>
+    <file>cards/9_of_hearts.svg</file>
+    <file>cards/9_of_spades.svg</file>
+    <file>cards/ace_of_clubs.svg</file>
+    <file>cards/ace_of_diamonds.svg</file>
+    <file>cards/ace_of_hearts.svg</file>
+    <file>cards/ace_of_spades.svg</file>
+    <file>cards/ace_of_spades2.svg</file>
+    <file>cards/black_joker.svg</file>
+    <file>cards/jack_of_clubs.svg</file>
+    <file>cards/jack_of_clubs2.svg</file>
+    <file>cards/jack_of_diamonds.svg</file>
+    <file>cards/jack_of_diamonds2.svg</file>
+    <file>cards/jack_of_hearts.svg</file>
+    <file>cards/jack_of_hearts2.svg</file>
+    <file>cards/jack_of_spades.svg</file>
+    <file>cards/jack_of_spades2.svg</file>
+    <file>cards/king_of_clubs.svg</file>
+    <file>cards/king_of_clubs2.svg</file>
+    <file>cards/king_of_diamonds.svg</file>
+    <file>cards/king_of_diamonds2.svg</file>
+    <file>cards/king_of_hearts.svg</file>
+    <file>cards/king_of_hearts2.svg</file>
+    <file>cards/king_of_spades.svg</file>
+    <file>cards/king_of_spades2.svg</file>
+    <file>cards/queen_of_clubs.svg</file>
+    <file>cards/queen_of_clubs2.svg</file>
+    <file>cards/queen_of_diamonds.svg</file>
+    <file>cards/queen_of_diamonds2.svg</file>
+    <file>cards/queen_of_hearts.svg</file>
+    <file>cards/queen_of_hearts2.svg</file>
+    <file>cards/queen_of_spades.svg</file>
+    <file>cards/queen_of_spades2.svg</file>
+    <file>cards/red_joker.svg</file>
+    <file>cards/backs/player_card_back_design_1_black.svg</file>
+    <file>cards/backs/player_card_back_design_1_blue.svg</file>
+    <file>cards/backs/player_card_back_design_1_green.svg</file>
+    <file>cards/backs/player_card_back_design_1_lightblue.svg</file>
+    <file>cards/backs/player_card_back_design_1_red.svg</file>
+    <file>cards/backs/player_card_back_design_2_black.svg</file>
+    <file>cards/backs/player_card_back_design_2_blue.svg</file>
+    <file>cards/backs/player_card_back_design_2_green.svg</file>
+    <file>cards/backs/player_card_back_design_2_lightblue.svg</file>
+    <file alias="cards/backs/player_card_back_design_2_red.svg">cards/backs/player_card_back_design_2_red.svg</file>
+    <file>cards/backs/player_card_back_design_3_black.svg</file>
+    <file>cards/backs/player_card_back_design_3_blue.svg</file>
+    <file alias="cards/backs/player_card_back_design_3_green.svg">cards/backs/player_card_back_design_3_green.svg</file>
+    <file alias="avatars/avatar1.svg">avatars/avatar1.svg</file>
+    <file alias="avatars/avatar2.svg">avatars/avatar2.svg</file>
+    <file alias="avatars/avatar3.svg">avatars/avatar3.svg</file>
+    <file alias="avatars/avatar4.svg">avatars/avatar4.svg</file>
+    <file alias="avatars/avatar5.svg">avatars/avatar5.svg</file>
+    <file alias="avatars/avatar6.svg">avatars/avatar6.svg</file>
+    <file alias="avatars/avatar7.svg">avatars/avatar7.svg</file>
+    <file alias="avatars/avatar8.svg">avatars/avatar8.svg</file>
+    <file alias="avatars/avatar9.svg">avatars/avatar9.svg</file>
+    <file alias="avatars/avatar10.svg">avatars/avatar10.svg</file>
+    <file alias="avatars/avatar11.svg">avatars/avatar11.svg</file>
+    <file alias="avatars/avatar12.svg">avatars/avatar12.svg</file>
+    <file alias="avatars/avatar13.svg">avatars/avatar13.svg</file>
+    <file alias="avatars/avatar14.svg">avatars/avatar14.svg</file>
+    <file alias="avatars/avatar15.svg">avatars/avatar15.svg</file>
+    <file alias="avatars/avatar16.svg">avatars/avatar16.svg</file>
+    <file alias="avatars/avatar17.svg">avatars/avatar17.svg</file>
+    <file alias="avatars/avatar18.svg">avatars/avatar18.svg</file>
+    <file alias="avatars/avatar19.svg">avatars/avatar19.svg</file>
+    <file alias="avatars/avatar20.svg">avatars/avatar20.svg</file>
+    <file alias="avatars/avatar21.svg">avatars/avatar21.svg</file>
+    <file alias="avatars/avatar22.svg">avatars/avatar22.svg</file>
+    <file alias="avatars/avatar23.svg">avatars/avatar23.svg</file>
+    <file alias="avatars/avatar24.svg">avatars/avatar24.svg</file>
+    <file alias="avatars/avatar25.svg">avatars/avatar25.svg</file>
+    <file alias="avatars/avatar26.svg">avatars/avatar26.svg</file>
+    <file alias="avatars/avatar27.svg">avatars/avatar27.svg</file>
+    <file alias="avatars/avatar28.svg">avatars/avatar28.svg</file>
+    <file alias="avatars/avatar29.svg">avatars/avatar29.svg</file>
+    <file alias="avatars/avatar30.svg">avatars/avatar30.svg</file>
+    <file alias="avatars/avatar31.svg">avatars/avatar31.svg</file>
+    <file alias="avatars/avatar32.svg">avatars/avatar32.svg</file>
+    <file alias="avatars/avatar33.svg">avatars/avatar33.svg</file>
+    <file alias="avatars/avatar34.svg">avatars/avatar34.svg</file>
+    <file alias="avatars/avatar35.svg">avatars/avatar35.svg</file>
+    <file alias="avatars/avatar36.svg">avatars/avatar36.svg</file>
+    <file alias="avatars/avatar37.svg">avatars/avatar37.svg</file>
+    <file alias="avatars/avatar38.svg">avatars/avatar38.svg</file>
+    <file alias="avatars/avatar39.svg">avatars/avatar39.svg</file>
+    <file alias="avatars/avatar40.svg">avatars/avatar40.svg</file>
+    <file alias="avatars/avatar41.svg">avatars/avatar41.svg</file>
+    <file alias="avatars/avatar42.svg">avatars/avatar42.svg</file>
+    <file alias="avatars/avatar43.svg">avatars/avatar43.svg</file>
+    <file alias="avatars/avatar44.svg">avatars/avatar44.svg</file>
+    <file alias="avatars/avatar45.svg">avatars/avatar45.svg</file>
+    <file alias="avatars/avatar46.svg">avatars/avatar46.svg</file>
+    <file alias="avatars/avatar47.svg">avatars/avatar47.svg</file>
+    <file alias="avatars/avatar48.svg">avatars/avatar48.svg</file>
+    <file alias="avatars/avatar49.svg">avatars/avatar49.svg</file>
+    <file alias="avatars/avatar50.svg">avatars/avatar50.svg</file>
+    <file alias="avatars/avatar51.svg">avatars/avatar51.svg</file>
+    <file alias="avatars/avatar52.svg">avatars/avatar52.svg</file>
+    <file alias="avatars/avatar53.svg">avatars/avatar53.svg</file>
+    <file alias="avatars/avatar54.svg">avatars/avatar54.svg</file>
+    <file alias="avatars/avatar55.svg">avatars/avatar55.svg</file>
+    <file alias="avatars/avatar56.svg">avatars/avatar56.svg</file>
+    <file alias="avatars/avatar57.svg">avatars/avatar57.svg</file>
+    <file alias="avatars/avatar58.svg">avatars/avatar58.svg</file>
+    
+    <file>cards/backs/player_card_back_design_3_lightblue.svg</file>
+    <file>cards/backs/player_card_back_design_3_red.svg</file>
+    <file>style.css</file>
+  </gresource>
+</gresources>

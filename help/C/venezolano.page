@@ -1,0 +1,20 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="venezolano">
+  <info>
+    <link type="guide" xref="index#variants"/>
+    <title type="link">Truco Venezolano</title>
+  </info>
+  <title>Truco Venezolano</title>
+  <p>Truco Venezolano uses a Vira card to determine the "Perico" and "Perica".</p>
+  
+  <section id="pericos">
+    <title>Perico and Perica</title>
+    <p>The top two cards are:</p>
+    <list>
+        <item><p><strong>Perico</strong>: The 11 (Knight) of the Vira suit.</p></item>
+        <item><p><strong>Perica</strong>: The 10 (Page) of the Vira suit.</p></item>
+    </list>
+    <p>Following them are the standard hierarchy: Espadilla (A♠), Bastillo (A♣), 7♠, 7♦, etc.</p>
+  </section>
+</page>

@@ -1,0 +1,22 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="mineiro">
+  <info>
+    <link type="guide" xref="index#variants"/>
+    <title type="link">Truco Mineiro</title>
+  </info>
+  <title>Truco Mineiro</title>
+  <p>In Truco Mineiro, there are <strong>fixed Manilhas</strong> (the strongest cards in the game). No "Vira" card is dealt.</p>
+  
+  <section id="hierarchy">
+    <title>Card Hierarchy</title>
+    <p>The hierarchy is fixed as follows (strongest to weakest):</p>
+    <list>
+        <item><p><media type="image" src="figures/4_of_clubs.svg" width="80"/> <strong>4 of Clubs (Zap)</strong> - The strongest card.</p></item>
+        <item><p><media type="image" src="figures/7_of_hearts.svg" width="80"/> <strong>7 of Hearts (Copas)</strong></p></item>
+        <item><p><media type="image" src="figures/ace_of_spades.svg" width="80"/> <strong>Ace of Spades (Espadilha)</strong></p></item>
+        <item><p><media type="image" src="figures/7_of_diamonds.svg" width="80"/> <strong>7 of Diamonds (Pica-fumo)</strong></p></item>
+    </list>
+    <p>Followed by standard cards: 3 > 2 > 1 (except A♠) > 12 > 11 > 10 > 7 (except 7♥, 7♦) > 6 > 5 > 4 (except 4♣).</p>
+  </section>
+</page>

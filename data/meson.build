@@ -1,73 +1,15 @@
-i18n = import('i18n')
-
-# Find blueprint-compiler
-blueprint_compiler = find_program('blueprint-compiler', required: true)
-
-# Compile Blueprint files to UI
-blueprints = custom_target('blueprints',
-  input: files('ui/window.blp'),
-  output: 'window.ui',
-  command: [blueprint_compiler, 'compile', '--output', '@OUTPUT@', '@INPUT@'],
-  install: false,
-)
-
-# Configure desktop file from template with dynamic app ID
-desktop_file_in = configure_file(
-    input: 'io.github.tobagin.Truco.desktop.in',
-    output: application_id + '.desktop.in',
+# Configure schema
+gschema_xml = configure_file(
+    input: 'io.github.tobagin.Truco.gschema.xml.in',
+    output: 'io.github.tobagin.Truco.gschema.xml',
     configuration: conf_data
 )
 
-desktop_file = i18n.merge_file(
-    input: desktop_file_in,
-    output: application_id + '.desktop',
-    type: 'desktop',
-    po_dir: '../po',
-    install: true,
-    install_dir: get_option('datadir') / 'applications',
-)
+# Compile schemas in this directory
+gnome.compile_schemas()
 
-desktop_utils = find_program('desktop-file-validate', required: false)
-if desktop_utils.found()
-    test('Validate desktop file', desktop_utils,
-        args: [desktop_file],
-    )
-endif
-
-# Configure metainfo file from template with dynamic app ID
-metainfo_file_in = configure_file(
-    input: 'io.github.tobagin.Truco.metainfo.xml.in',
-    output: application_id + '.metainfo.xml.in',
-    configuration: conf_data
-)
-
-appstream_file = i18n.merge_file(
-    input: metainfo_file_in,
-    output: application_id + '.metainfo.xml',
-    po_dir: '../po',
-    install: true,
-    install_dir: get_option('datadir') / 'metainfo',
-)
-
-appstream_util = find_program('appstream-util', required: false)
-if appstream_util.found()
-    test('Validate appstream file', appstream_util,
-        args: [appstream_file],
-    )
-endif
-
-# Install icon with correct name based on application_id
-icon_source = 'icons/hicolor/scalable/apps/' + application_id + '.svg'
-install_data(
-    icon_source,
-    install_dir: get_option('datadir') / 'icons' / 'hicolor' / 'scalable' / 'apps'
-)
-
-# Compile GResource bundle (will be linked into executable)
-gresource_bundle = gnome.compile_resources(
-    'io.github.tobagin.Truco',
-    'io.github.tobagin.Truco.gresource.xml',
-    c_name: 'resources',
-    dependencies: blueprints,
-    source_dir: meson.current_build_dir()
+# Install schema
+install_data(gschema_xml,
+    install_dir: get_option('datadir') / 'glib-2.0' / 'schemas',
+    rename: application_id + '.gschema.xml'
 )

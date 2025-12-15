@@ -1,0 +1,39 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="guide"
+      id="index">
+  <info>
+    <title type="link">Truco</title>
+    <credit type="author">
+      <name>Tobagin</name>
+    </credit>
+  </info>
+  <title>Truco Help</title>
+  <p>Truco is a popular card game played with a Spanish deck (or specific subset of French deck). The goal is to reach 12 points.</p>
+  
+  <section id="basics">
+    <title>How to Play</title>
+    <p>Each game consists of "rounds" (Mãos), worth 1 point by default. To win a round, a team must win 2 out of 3 "tricks" (Vazas).</p>
+    
+    <steps>
+        <item><p><strong>Dealing:</strong> Each player receives 3 cards.</p></item>
+        <item><p><strong>Play:</strong> Players play one card per trick. The highest card wins.</p></item>
+        <item><p><strong>Ties:</strong> If the first trick is tied, the winner of the second trick wins the round. If the second is also tied, the winner of the third wins. If all 3 are tied, no points are awarded (or rules vary).</p></item>
+    </steps>
+  </section>
+
+  <section id="truco">
+    <title>Calling Truco</title>
+    <p>At any player's turn, they can call "Truco!" to raise the stakes of the round.</p>
+    <list>
+        <item><p><strong>Truco</strong>: Raises value to 3 points.</p></item>
+        <item><p><strong>Seis (6)</strong>: Respondent can raise to 6.</p></item>
+        <item><p><strong>Nove (9)</strong>: Re-raise to 9.</p></item>
+        <item><p><strong>Doze (12)</strong>: Maximum value.</p></item>
+    </list>
+    <p>If a team refuses a Truco challenge, they lose the current round, and the opposing team scores the points at the previous stake level.</p>
+  </section>
+
+  <section id="variants" style="2column">
+    <title>Game Variants</title>
+  </section>
+</page>

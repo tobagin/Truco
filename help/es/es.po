@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Truco Help\n"
+"POT-Creation-Date: 2025-12-14 20:04+0000\n"
+"PO-Revision-Date: 2025-12-14 20:10+0000\n"
+"Last-Translator: \n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: help/C/index.page:10
+msgid "Truco Help"
+msgstr "Ayuda de Truco"
+
+#: help/C/index.page:14
+msgid "How to Play"
+msgstr "Cómo Jugar"
+
+#: help/C/index.page:37
+msgid "Game Variants"
+msgstr "Variantes del Juego"
+
+#: help/C/index.page:25
+msgid "Calling Truco"
+msgstr "Cantando Truco"
+
+#: help/C/index.page:11
+msgid "Truco is a popular card game played with a Spanish deck (or specific subset of French deck). The goal is to reach 12 points."
+msgstr "Truco es un juego de cartas popular jugado con baraje española. El objetivo es llegar a 12 puntos."
+
+#: help/C/index.page:15
+msgid "Each game consists of \"rounds\" (Mãos), worth 1 point by default. To win a round, a team must win 2 out of 3 \"tricks\" (Vazas)."
+msgstr "Cada juego consiste en \"Rondas\" (Manos), que valen 1 punto por defecto. Para ganar una ronda, un equipo debe ganar 2 de 3 \"Bazas\"."

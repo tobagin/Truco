@@ -1,0 +1,466 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-12-14 20:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/argentino.page:6
+msgctxt "link"
+msgid "Truco Argentino"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/argentino.page:8
+msgid "Truco Argentino / Gaudério"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/argentino.page:9
+msgid "Truco Argentino (and Gaudério) uses the classic \"old world\" hierarchy with no Vira card."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/argentino.page:12
+msgid "Cartas Bravas (The Wild Cards)"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/argentino.page:13
+msgid "The hierarchy is fixed:"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/argentino.page:15
+#: help/C/mineiro.page:17
+msgctxt "_"
+msgid "external ref='figures/ace_of_spades.svg' md5='b9f81c2d91ad1ec3e349b5cc012ea516'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/argentino.page:15
+msgid "<media type=\"image\" src=\"figures/ace_of_spades.svg\" width=\"80\"/> <strong>Ace of Spades (Espadilla)</strong>"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/argentino.page:16
+msgctxt "_"
+msgid "external ref='figures/ace_of_clubs.svg' md5='9ee19a01f3b58dbf7d41bdc0eedf853b'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/argentino.page:16
+msgid "<media type=\"image\" src=\"figures/ace_of_clubs.svg\" width=\"80\"/> <strong>Ace of Clubs (Bastillo)</strong>"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/argentino.page:17
+msgctxt "_"
+msgid "external ref='figures/7_of_spades.svg' md5='00b5eed0e617c1754f2a002d8d000504'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/argentino.page:17
+msgid "<media type=\"image\" src=\"figures/7_of_spades.svg\" width=\"80\"/> <strong>7 of Spades</strong>"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/argentino.page:18
+#: help/C/mineiro.page:18
+msgctxt "_"
+msgid "external ref='figures/7_of_diamonds.svg' md5='d00ed5bcb5b70ef0aee9566bedea6077'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/argentino.page:18
+msgid "<media type=\"image\" src=\"figures/7_of_diamonds.svg\" width=\"80\"/> <strong>7 of Golds/Diamonds</strong>"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/argentino.page:20
+msgid "Followed by 3s &gt; 2s &gt; 1s (false aces) &gt; 12s &gt; 11s &gt; 10s &gt; 7s (false) &gt; 6s &gt; 5s &gt; 4s."
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/index.page:5
+msgctxt "link"
+msgid "Truco"
+msgstr ""
+
+#. (itstool) path: credit/name
+#: help/C/index.page:7
+msgid "Tobagin"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/index.page:10
+msgid "Truco Help"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/index.page:11
+msgid "Truco is a popular card game played with a Spanish deck (or specific subset of French deck). The goal is to reach 12 points."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/index.page:14
+msgid "How to Play"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/index.page:15
+msgid "Each game consists of \"rounds\" (Mãos), worth 1 point by default. To win a round, a team must win 2 out of 3 \"tricks\" (Vazas)."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:18
+msgid "<strong>Dealing:</strong> Each player receives 3 cards."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:19
+msgid "<strong>Play:</strong> Players play one card per trick. The highest card wins."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:20
+msgid "<strong>Ties:</strong> If the first trick is tied, the winner of the second trick wins the round. If the second is also tied, the winner of the third wins. If all 3 are tied, no points are awarded (or rules vary)."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/index.page:25
+msgid "Calling Truco"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/index.page:26
+msgid "At any player's turn, they can call \"Truco!\" to raise the stakes of the round."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:28
+msgid "<strong>Truco</strong>: Raises value to 3 points."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:29
+msgid "<strong>Seis (6)</strong>: Respondent can raise to 6."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:30
+msgid "<strong>Nove (9)</strong>: Re-raise to 9."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/index.page:31
+msgid "<strong>Doze (12)</strong>: Maximum value."
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/index.page:33
+msgid "If a team refuses a Truco challenge, they lose the current round, and the opposing team scores the points at the previous stake level."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/index.page:37
+msgid "Game Variants"
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/mineiro.page:6
+msgctxt "link"
+msgid "Truco Mineiro"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/mineiro.page:8
+msgid "Truco Mineiro"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/mineiro.page:9
+msgid "In Truco Mineiro, there are <strong>fixed Manilhas</strong> (the strongest cards in the game). No \"Vira\" card is dealt."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/mineiro.page:12
+msgid "Card Hierarchy"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/mineiro.page:13
+msgid "The hierarchy is fixed as follows (strongest to weakest):"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/mineiro.page:15
+#: help/C/paulista.page:31
+msgctxt "_"
+msgid "external ref='figures/4_of_clubs.svg' md5='037d8c2373b81694a9519c060d0951a3'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/mineiro.page:15
+msgid "<media type=\"image\" src=\"figures/4_of_clubs.svg\" width=\"80\"/> <strong>4 of Clubs (Zap)</strong> - The strongest card."
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/mineiro.page:16
+msgctxt "_"
+msgid "external ref='figures/7_of_hearts.svg' md5='51aa35bf8fa6e3aa60e8215d642e4f83'"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/mineiro.page:16
+msgid "<media type=\"image\" src=\"figures/7_of_hearts.svg\" width=\"80\"/> <strong>7 of Hearts (Copas)</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/mineiro.page:17
+msgid "<media type=\"image\" src=\"figures/ace_of_spades.svg\" width=\"80\"/> <strong>Ace of Spades (Espadilha)</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/mineiro.page:18
+msgid "<media type=\"image\" src=\"figures/7_of_diamonds.svg\" width=\"80\"/> <strong>7 of Diamonds (Pica-fumo)</strong>"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/mineiro.page:20
+msgid "Followed by standard cards: 3 &gt; 2 &gt; 1 (except A♠) &gt; 12 &gt; 11 &gt; 10 &gt; 7 (except 7♥, 7♦) &gt; 6 &gt; 5 &gt; 4 (except 4♣)."
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/paulista.page:6
+msgctxt "link"
+msgid "Truco Paulista"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/paulista.page:8
+msgid "Truco Paulista"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/paulista.page:9
+msgid "In Truco Paulista, the Manilhas are <strong>variable</strong>. A \"Vira\" card is dealt at the start of the round."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/paulista.page:12
+msgid "Determining Manilhas"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/paulista.page:13
+msgid "The Manilha is the rank immediately above the Vira card. For example, if the Vira is a 3, the Manilhas are the 4s."
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/paulista.page:14
+msgid "The suits determine the strength of the Manilhas in this order (strongest to weakest):"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/paulista.page:16
+msgid "<strong>Clubs (Zap)</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/paulista.page:17
+msgid "<strong>Hearts (Copas)</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/paulista.page:18
+msgid "<strong>Spades (Espadilha)</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/paulista.page:19
+msgid "<strong>Diamonds (Pica-fumo)</strong>"
+msgstr ""
+
+#. (itstool) path: note/p
+#: help/C/paulista.page:22
+msgid "Cyclic Order: If Vira is 3, Manilha is 4. If Vira is 7, Manilha is Q (12)... If Vira is 7 (Clean deck?) No, standard rank. 3 &gt; 2 &gt; 1 &gt; 12 &gt; 11 &gt; 10 &gt; 7 &gt; 6 &gt; 5 &gt; 4. So Vira 7 -&gt; Manilha 10? No, usually next rank in deck."
+msgstr ""
+
+#. (itstool) path: note/p
+#: help/C/paulista.page:23
+msgid "Specifically: 4, 5, 6, 7, Q, J, K, A, 2, 3."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/paulista.page:27
+msgid "Example"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/paulista.page:28
+msgid "If the Vira is the 3 of Clubs:"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/paulista.page:30
+msgctxt "_"
+msgid "external ref='figures/3_of_clubs.svg' md5='4281c3d1982ca4e277ae289a56f7fda1'"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/paulista.page:29
+msgid "<media type=\"image\" src=\"figures/3_of_clubs.svg\" width=\"60\"/> <gui>Vira</gui> ➔ <media type=\"image\" src=\"figures/4_of_clubs.svg\" width=\"60\"/> <gui>Manilha (Zap)</gui>"
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/uruguayo.page:6
+msgctxt "link"
+msgid "Truco Uruguayo"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/uruguayo.page:8
+msgid "Truco Uruguayo"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/uruguayo.page:9
+msgid "Truco Uruguayo uses a \"Muestra\" (similar to Vira). The logic for the strongest cards (Piezas) depends on the Muestra's suit."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/uruguayo.page:12
+msgid "The Piezas"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/uruguayo.page:13
+msgid "The strongest cards are the Piezas of the Muestra suit (if they exist). They are ranked:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/uruguayo.page:15
+msgid "<strong>2 of the Muestra Suit</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/uruguayo.page:16
+msgid "<strong>4 of the Muestra Suit</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/uruguayo.page:17
+msgid "<strong>5 of the Muestra Suit</strong>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/uruguayo.page:18
+msgid "<strong>11 (Jack) of the Muestra Suit</strong> (Perico)"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/uruguayo.page:19
+msgid "<strong>10 (King) of the Muestra Suit</strong> (Perica)"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/uruguayo.page:21
+msgid "Example: If Muestra is 2 of Spades:"
+msgstr ""
+
+#. (itstool) path: p/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: help/C/uruguayo.page:23
+#: help/C/uruguayo.page:24
+msgctxt "_"
+msgid "external ref='figures/2_of_spades.svg' md5='b821dcd9a79616c0f95f935af2d623eb'"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/uruguayo.page:22
+msgid "<media type=\"image\" src=\"figures/2_of_spades.svg\" width=\"60\"/> <gui>Muestra</gui> ➔ <media type=\"image\" src=\"figures/2_of_spades.svg\" width=\"60\"/> <gui>Highest Pieza</gui>"
+msgstr ""
+
+#. (itstool) path: info/title
+#: help/C/venezolano.page:6
+msgctxt "link"
+msgid "Truco Venezolano"
+msgstr ""
+
+#. (itstool) path: page/title
+#: help/C/venezolano.page:8
+msgid "Truco Venezolano"
+msgstr ""
+
+#. (itstool) path: page/p
+#: help/C/venezolano.page:9
+msgid "Truco Venezolano uses a Vira card to determine the \"Perico\" and \"Perica\"."
+msgstr ""
+
+#. (itstool) path: section/title
+#: help/C/venezolano.page:12
+msgid "Perico and Perica"
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/venezolano.page:13
+msgid "The top two cards are:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/venezolano.page:15
+msgid "<strong>Perico</strong>: The 11 (Knight) of the Vira suit."
+msgstr ""
+
+#. (itstool) path: item/p
+#: help/C/venezolano.page:16
+msgid "<strong>Perica</strong>: The 10 (Page) of the Vira suit."
+msgstr ""
+
+#. (itstool) path: section/p
+#: help/C/venezolano.page:18
+msgid "Following them are the standard hierarchy: Espadilla (A♠), Bastillo (A♣), 7♠, 7♦, etc."
+msgstr ""
+

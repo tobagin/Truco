@@ -1,0 +1,37 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoAvatarSelector : Adw.Window {
+  modal: true;
+  width-request: 600;
+  height-request: 500;
+  title: _("Choose an Avatar");
+  
+  content: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+    }
+    
+    content: ScrolledWindow {
+        Box {
+            orientation: vertical;
+            halign: center;
+            margin-top: 20;
+            margin-bottom: 20;
+            margin-start: 20;
+            margin-end: 20;
+            
+            FlowBox flowbox {
+                selection-mode: none;
+                max-children-per-line: 5;
+                min-children-per-line: 3;
+                column-spacing: 12;
+                row-spacing: 12;
+                homogeneous: true;
+                halign: center;
+                valign: start;
+            }
+        }
+    };
+  };
+}

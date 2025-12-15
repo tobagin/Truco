@@ -1,0 +1,22 @@
+gnome.yelp(application_id,
+  sources: [
+    'index.page',
+    'mineiro.page',
+    'paulista.page',
+    'uruguayo.page',
+    'venezolano.page',
+    'argentino.page',
+  ],
+  media: [
+    'figures/4_of_clubs.svg',
+    'figures/7_of_hearts.svg',
+    'figures/ace_of_spades.svg',
+    'figures/7_of_diamonds.svg',
+    'figures/ace_of_clubs.svg',
+    'figures/7_of_spades.svg',
+    'figures/3_of_clubs.svg',
+    'figures/2_of_spades.svg',
+    'figures/4_of_spades.svg',
+  ],
+  symlink_media: true,
+)

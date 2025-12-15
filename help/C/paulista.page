@@ -1,0 +1,34 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="paulista">
+  <info>
+    <link type="guide" xref="index#variants"/>
+    <title type="link">Truco Paulista</title>
+  </info>
+  <title>Truco Paulista</title>
+  <p>In Truco Paulista, the Manilhas are <strong>variable</strong>. A "Vira" card is dealt at the start of the round.</p>
+  
+  <section id="manilhas">
+    <title>Determining Manilhas</title>
+    <p>The Manilha is the rank immediately above the Vira card. For example, if the Vira is a 3, the Manilhas are the 4s.</p>
+    <p>The suits determine the strength of the Manilhas in this order (strongest to weakest):</p>
+    <list>
+      <item><p><strong>Clubs (Zap)</strong></p></item>
+      <item><p><strong>Hearts (Copas)</strong></p></item>
+      <item><p><strong>Spades (Espadilha)</strong></p></item>
+      <item><p><strong>Diamonds (Pica-fumo)</strong></p></item>
+    </list>
+    
+    <note><p>Cyclic Order: If Vira is 3, Manilha is 4. If Vira is 7, Manilha is Q (12)... If Vira is 7 (Clean deck?) No, standard rank. 3 > 2 > 1 > 12 > 11 > 10 > 7 > 6 > 5 > 4. So Vira 7 -> Manilha 10? No, usually next rank in deck.</p>
+    <p>Specifically: 4, 5, 6, 7, Q, J, K, A, 2, 3.</p></note>
+  </section>
+  
+  <section id="example">
+    <title>Example</title>
+    <p>If the Vira is the 3 of Clubs:</p>
+    <p>
+        <media type="image" src="figures/3_of_clubs.svg" width="60"/> <gui>Vira</gui> ➔ 
+        <media type="image" src="figures/4_of_clubs.svg" width="60"/> <gui>Manilha (Zap)</gui>
+    </p>
+  </section>
+</page>

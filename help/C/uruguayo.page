@@ -1,0 +1,27 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic"
+      id="uruguayo">
+  <info>
+    <link type="guide" xref="index#variants"/>
+    <title type="link">Truco Uruguayo</title>
+  </info>
+  <title>Truco Uruguayo</title>
+  <p>Truco Uruguayo uses a "Muestra" (similar to Vira). The logic for the strongest cards (Piezas) depends on the Muestra's suit.</p>
+  
+  <section id="piezas">
+    <title>The Piezas</title>
+    <p>The strongest cards are the Piezas of the Muestra suit (if they exist). They are ranked:</p>
+    <list type="numbered">
+        <item><p><strong>2 of the Muestra Suit</strong></p></item>
+        <item><p><strong>4 of the Muestra Suit</strong></p></item>
+        <item><p><strong>5 of the Muestra Suit</strong></p></item>
+        <item><p><strong>11 (Jack) of the Muestra Suit</strong> (Perico)</p></item>
+        <item><p><strong>10 (King) of the Muestra Suit</strong> (Perica)</p></item>
+    </list>
+    <p>Example: If Muestra is 2 of Spades:</p>
+    <p>
+        <media type="image" src="figures/2_of_spades.svg" width="60"/> <gui>Muestra</gui> ➔ 
+        <media type="image" src="figures/2_of_spades.svg" width="60"/> <gui>Highest Pieza</gui>
+    </p>
+  </section>
+</page>

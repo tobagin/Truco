@@ -1,0 +1,522 @@
+Building development version...
+Using manifest: packaging/io.github.tobagin.Truco.Devel.yml
+Build directory: build
+Running flatpak-builder (build and install)...
+Dependency Sdk: org.gnome.Sdk 49
+Updating org.gnome.Sdk/x86_64/49
+
+Nothing to do.
+Dependency Runtime: org.gnome.Platform 49
+Updating org.gnome.Platform/x86_64/49
+
+Nothing to do.
+Emptying app dir 'build'
+Downloading sources
+Starting build of io.github.tobagin.Truco.Devel
+Cache miss, checking out last cache hit
+========================================================================
+Building module truco in /home/tobagin/Projects/Truco/.flatpak-builder/build/truco-27
+========================================================================
+The Meson build system
+Version: 1.9.1
+Source dir: /run/build/truco
+Build dir: /run/build/truco/_flatpak_build
+Build type: native build
+Project name: io.github.tobagin.Truco
+Project version: 0.1.0
+C compiler for the host machine: ccache cc (gcc 15.2.0 "cc (GCC) 15.2.0")
+C linker for the host machine: cc ld.bfd 2.45.1
+Vala compiler for the host machine: valac (valac 0.56.18)
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Program blueprint-compiler found: YES (/usr/bin/blueprint-compiler)
+Configuring io.github.tobagin.Truco.Devel.desktop.in using configuration
+Program msgfmt found: YES (/usr/bin/msgfmt)
+Program desktop-file-validate found: YES (/usr/bin/desktop-file-validate)
+Configuring io.github.tobagin.Truco.Devel.metainfo.xml.in using configuration
+Program appstream-util found: NO
+Configuring io.github.tobagin.Truco.gresource.xml using configuration
+Found pkg-config: YES (/usr/bin/pkg-config) 2.5.1
+Build-time dependency gio-2.0 found: YES 2.86.2
+Program /usr/bin/glib-compile-resources found: YES (/usr/bin/glib-compile-resources)
+Configuring Config.vala using configuration
+Run-time dependency gtk4 found: YES 4.20.3
+Run-time dependency libadwaita-1 found: YES 1.8.2
+Run-time dependency gee-0.8 found: YES 0.20.8
+Could not find file LINGUAS in /run/build/truco/help
+Program itstool found: YES (/usr/bin/itstool)
+Program msgmerge found: YES (/usr/bin/msgmerge)
+Program msgfmt found: YES (/usr/bin/msgfmt)
+Program msginit found: YES (/usr/bin/msginit)
+Program msgmerge found: YES (/usr/bin/msgmerge)
+Program xgettext found: YES (/usr/bin/xgettext)
+Build targets in project: 16
+
+io.github.tobagin.Truco 0.1.0
+
+  User defined options
+    libdir   : /app/lib
+    prefix   : /app
+    profile  : development
+    wrap_mode: nodownload
+
+Found ninja-1.13.2 at /usr/bin/ninja
+[1/21] Building translation po/pt/LC_MESSAGES/io.github.tobagin.Truco.Devel-pt.mo
+[2/21] Building translation po/es/LC_MESSAGES/io.github.tobagin.Truco.Devel-es.mo
+[3/21] Merging translations for io.github.tobagin.Truco.Devel.metainfo.xml
+/usr/bin/msgfmt: ../../po/LINGUAS does not exist
+[4/21] Merging translations for io.github.tobagin.Truco.Devel.desktop
+/usr/bin/msgfmt: ../../po/LINGUAS does not exist
+[5/21] Generating compile-window with a custom command
+[6/21] Generating compile-new-game with a custom command
+warning: Adw.MessageDialog is deprecated
+at ../data/ui/new_game_dialog.blp line 4 column 32:
+   4 |template $TrucoNewGameDialog : Adw.MessageDialog {
+     |                               ^^^^^^^^^^^^^^^^^
+hint: Use [class@AlertDialog].
+
+[7/21] Generating compile-preferences with a custom command
+warning: Adw.PreferencesWindow is deprecated
+at ../data/ui/preferences_dialog.blp line 4 column 36:
+   4 |template $TrucoPreferencesDialog : Adw.PreferencesWindow {
+     |                                   ^^^^^^^^^^^^^^^^^^^^^
+hint: Use [class@PreferencesDialog].
+
+[8/21] Generating compile-shortcuts with a custom command
+warning: Gtk.ShortcutsSection is deprecated
+at ../data/ui/shortcuts.blp line 6 column 3:
+   6 |  ShortcutsSection {
+     |  ^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsGroup is deprecated
+at ../data/ui/shortcuts.blp line 10 column 5:
+  10 |    ShortcutsGroup {
+     |    ^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 13 column 7:
+  13 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 18 column 7:
+  18 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 23 column 7:
+  23 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 28 column 7:
+  28 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsGroup is deprecated
+at ../data/ui/shortcuts.blp line 34 column 5:
+  34 |    ShortcutsGroup {
+     |    ^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 37 column 7:
+  37 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+warning: Gtk.ShortcutsShortcut is deprecated
+at ../data/ui/shortcuts.blp line 42 column 7:
+  42 |      ShortcutsShortcut {
+     |      ^^^^^^^^^^^^^^^^^
+hint: This widget will be removed in GTK 5
+
+[9/21] Generating io.github.tobagin.Truco_h with a custom command
+[10/21] Generating io.github.tobagin.Truco_c with a custom command
+[11/21] Compiling Vala source ../src/Main.vala ../src/Application.vala ../src/Window.vala ../src/Game.vala ../src/dialogs/NewGameDialog.vala ../src/dialogs/PreferencesDialog.vala ../src/dialogs/About.vala src/Config.vala
+../src/Application.vala:27.13-27.28: warning: `Gtk.StyleContext' has been deprecated since 4.10
+   27 |             Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+      |             ^~~~~~~~~~~~~~~~                                                                                                            
+../src/Application.vala:104.34-104.50: warning: `Adw.MessageDialog' has been deprecated since 1.6
+  104 |                 var dialog = new Adw.MessageDialog(win, title, "This feature is coming soon!");
+      |                                  ^~~~~~~~~~~~~~~~~                                             
+../src/Application.vala:104.21-104.26: warning: `Adw.MessageDialog' has been deprecated since 1.6
+  104 |                 var dialog = new Adw.MessageDialog(win, title, "This feature is coming soon!");
+      |                     ^~~~~~                                                                     
+Compilation succeeded - 3 warning(s)
+[12/21] Compiling C object src/truco.p/meson-generated_Config.c.o
+[13/21] Compiling C object src/truco.p/meson-generated_.._.._io.github.tobagin.Truco.c.o
+[14/21] Compiling C object src/truco.p/meson-generated_Main.c.o
+[15/21] Compiling C object src/truco.p/meson-generated_Window.c.o
+FAILED: [code=1] src/truco.p/meson-generated_Window.c.o 
+ccache cc -Isrc/truco.p -Isrc -I../src -I. -I/usr/include/gtk-4.0 -I/usr/include/pango-1.0 -I/usr/include/fribidi -I/usr/include/harfbuzz -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/glycin-2 -I/usr/include/cairo -I/usr/include/freetype2 -I/usr/include/libpng16 -I/usr/include/pixman-1 -I/usr/include/graphene-1.0 -I/usr/lib/x86_64-linux-gnu/graphene-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/sysprof-6 -I/usr/include/libadwaita-1 -I/usr/include/appstream -I/usr/include/gee-0.8 -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -O0 -g -O2 -pipe -g -Wp,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -pthread -mfpmath=sse -msse -msse2 -mfpmath=sse -msse -msse2 -MD -MQ src/truco.p/meson-generated_Window.c.o -MF src/truco.p/meson-generated_Window.c.o.d -o src/truco.p/meson-generated_Window.c.o -c src/truco.p/Window.c
+In file included from src/truco.p/Window.c:12:
+/usr/include/glib-2.0/glib/gi18n-lib.h:29:2: error: #error You must define GETTEXT_PACKAGE before including gi18n-lib.h. Did you forget to include config.h?
+   29 | #error You must define GETTEXT_PACKAGE before including gi18n-lib.h.  Did you forget to include config.h?
+      |  ^~~~~
+../src/Window.vala: In function ‘truco_window_update_ui’:
+/usr/include/glib-2.0/glib/gi18n-lib.h:32:42: error: ‘GETTEXT_PACKAGE’ undeclared (first use in this function)
+   32 | #define  _(String) ((char *) g_dgettext (GETTEXT_PACKAGE, String))
+      |                                          ^~~~~~~~~~~~~~~
+../src/Window.vala:128:28: note: in expansion of macro ‘_’
+  128 |             window_title.subtitle = _("US: %d (%d wins) | THEM: %d (%d wins)").printf(game.score_team_0, game.vaza_wins_team_0, game.score_team_1, game.vaza_wins_team_1);
+      |                            ^
+/usr/include/glib-2.0/glib/gi18n-lib.h:32:42: note: each undeclared identifier is reported only once for each function it appears in
+   32 | #define  _(String) ((char *) g_dgettext (GETTEXT_PACKAGE, String))
+      |                                          ^~~~~~~~~~~~~~~
+../src/Window.vala:128:28: note: in expansion of macro ‘_’
+  128 |             window_title.subtitle = _("US: %d (%d wins) | THEM: %d (%d wins)").printf(game.score_team_0, game.vaza_wins_team_0, game.score_team_1, game.vaza_wins_team_1);
+      |                            ^
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:29,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:29,
+                 from /usr/include/libadwaita-1/adwaita.h:9,
+                 from src/truco.p/Window.c:4:
+Window.c: In function ‘truco_window_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+Window.c:1657:6: note: in expansion of macro ‘g_once_init_enter’
+src/truco.p/Window.c: At top level:
+src/truco.p/Window.c:57:20: warning: ‘truco_window_properties’ defined but not used [-Wunused-variable]
+   57 | static GParamSpec* truco_window_properties[TRUCO_WINDOW_NUM_PROPERTIES];
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~
+[16/21] Compiling C object src/truco.p/meson-generated_dialogs_NewGameDialog.c.o
+../src/dialogs/NewGameDialog.vala: In function ‘truco_new_game_dialog_construct’:
+../src/dialogs/NewGameDialog.vala:17:2: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+   17 |             this.add_response("cancel", "Cancel");
+      |  ^          ~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/libadwaita-1/adwaita.h:63,
+                 from src/truco.p/dialogs/NewGameDialog.c:4:
+/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/dialogs/NewGameDialog.vala:18:2: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+   18 |             this.add_response("start", "Start Game");
+      |  ^          ~~~~~~~~~~~~~~~~~~~~
+/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/dialogs/NewGameDialog.vala:20:2: warning: ‘adw_message_dialog_set_response_appearance’ is deprecated: Use 'adw_alert_dialog_set_response_appearance' instead [-Wdeprecated-declarations]
+   20 |             this.set_response_appearance("start", Adw.ResponseAppearance.SUGGESTED);
+      |  ^          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/libadwaita-1/adw-message-dialog.h:120:23: note: declared here
+  120 | void                  adw_message_dialog_set_response_appearance (AdwMessageDialog      *self,
+      |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/dialogs/NewGameDialog.vala: In function ‘truco_new_game_dialog_set_selected_variant’:
+../src/dialogs/NewGameDialog.vala:12:12: warning: assignment discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   12 |         public string? selected_variant { get; private set; }
+      |            ^
+NewGameDialog.c: In function ‘truco_new_game_dialog_get_type_once’:
+NewGameDialog.c:316:2: warning: ‘adw_message_dialog_get_type’ is deprecated: Use 'AdwAlertDialog' instead [-Wdeprecated-declarations]
+In file included from /usr/include/glib-2.0/gobject/gobject.h:26,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:31,
+                 from /usr/include/glib-2.0/glib-object.h:24,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcssenumtypes.h:11,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:33,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:29,
+                 from /usr/include/libadwaita-1/adwaita.h:9:
+/usr/include/libadwaita-1/adw-message-dialog.h:26:45: note: declared here
+   26 | G_DECLARE_DERIVABLE_TYPE (AdwMessageDialog, adw_message_dialog, ADW, MESSAGE_DIALOG, GtkWindow)
+      |                                             ^~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:1712:9: note: in definition of macro ‘G_DECLARE_DERIVABLE_TYPE’
+ 1712 |   GType module_obj_name##_get_type (void);                                                               \
+      |         ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:29:
+NewGameDialog.c: In function ‘truco_new_game_dialog_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+NewGameDialog.c:325:6: note: in expansion of macro ‘g_once_init_enter’
+[17/21] Compiling C object src/truco.p/meson-generated_dialogs_PreferencesDialog.c.o
+PreferencesDialog.c: In function ‘truco_preferences_dialog_get_type_once’:
+PreferencesDialog.c:263:2: warning: ‘adw_preferences_window_get_type’ is deprecated: Use 'AdwPreferencesDialog' instead [-Wdeprecated-declarations]
+In file included from /usr/include/glib-2.0/gobject/gobject.h:26,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:31,
+                 from /usr/include/glib-2.0/glib-object.h:24,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcssenumtypes.h:11,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:33,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:29,
+                 from /usr/include/libadwaita-1/adwaita.h:9,
+                 from src/truco.p/dialogs/PreferencesDialog.c:4:
+/usr/include/libadwaita-1/adw-preferences-window.h:26:49: note: declared here
+   26 | G_DECLARE_DERIVABLE_TYPE (AdwPreferencesWindow, adw_preferences_window, ADW, PREFERENCES_WINDOW, AdwWindow)
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~
+/usr/include/glib-2.0/gobject/gtype.h:1712:9: note: in definition of macro ‘G_DECLARE_DERIVABLE_TYPE’
+ 1712 |   GType module_obj_name##_get_type (void);                                                               \
+      |         ^~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:29:
+PreferencesDialog.c: In function ‘truco_preferences_dialog_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+PreferencesDialog.c:272:6: note: in expansion of macro ‘g_once_init_enter’
+src/truco.p/dialogs/PreferencesDialog.c: At top level:
+src/truco.p/dialogs/PreferencesDialog.c:53:20: warning: ‘truco_preferences_dialog_properties’ defined but not used [-Wunused-variable]
+   53 | static GParamSpec* truco_preferences_dialog_properties[TRUCO_PREFERENCES_DIALOG_NUM_PROPERTIES];
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[18/21] Compiling C object src/truco.p/meson-generated_Application.c.o
+../src/Application.vala: In function ‘truco_application_real_startup’:
+../src/Application.vala:57:84: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   57 |             set_accels_for_action ("app.preferences", {"<Control>comma"});
+      |                                                                                    ^      
+      |                                                                                    |
+      |                                                                                    gchar ** {aka char **}
+In file included from /usr/include/gtk-4.0/gtk/gtkwindow.h:32,
+                 from /usr/include/gtk-4.0/gtk/gtkaboutdialog.h:29,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:33,
+                 from src/truco.p/Application.c:4:
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala:58:77: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   58 |             set_accels_for_action ("app.quit", {"<Control>q"});
+      |                                                                             ^      
+      |                                                                             |
+      |                                                                             gchar ** {aka char **}
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala:59:82: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   59 |             set_accels_for_action ("app.shortcuts", {"<Control>question"});
+      |                                                                                  ^      
+      |                                                                                  |
+      |                                                                                  gchar ** {aka char **}
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala:60:77: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   60 |             set_accels_for_action ("app.help", {"F1"});
+      |                                                                             ^      
+      |                                                                             |
+      |                                                                             gchar ** {aka char **}
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala:61:78: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   61 |             set_accels_for_action ("app.about", {"<Control>F1"});
+      |                                                                              ^      
+      |                                                                              |
+      |                                                                              gchar ** {aka char **}
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala:62:81: warning: passing argument 3 of ‘gtk_application_set_accels_for_action’ from incompatible pointer type [-Wincompatible-pointer-types]
+   62 |             set_accels_for_action ("win.new-game", {"<Control>n"});
+      |                                                                                 ^      
+      |                                                                                 |
+      |                                                                                 gchar ** {aka char **}
+/usr/include/gtk-4.0/gtk/gtkapplication.h:131:88: note: expected ‘const char * const*’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  131 |                                                                   const char * const  *accels);
+      |                                                                   ~~~~~~~~~~~~~~~~~~~~~^~~~~~
+../src/Application.vala: In function ‘truco_application_show_help’:
+../src/Application.vala:77:2: warning: ‘gtk_show_uri’ is deprecated: Use 'gtk_uri_launcher_launch' instead [-Wdeprecated-declarations]
+   77 |             Workaround.gtk_show_uri(win, "help:" + Config.APP_ID, Gdk.CURRENT_TIME);
+      |  ^          ~
+In file included from /usr/include/gtk-4.0/gtk/gtk.h:250:
+/usr/include/gtk-4.0/gtk/deprecated/gtkshow.h:45:6: note: declared here
+   45 | void gtk_show_uri (GtkWindow  *parent,
+      |      ^~~~~~~~~~~~
+../src/Application.vala: In function ‘truco_application_show_not_implemented’:
+../src/Application.vala:104:3: warning: ‘adw_message_dialog_new’ is deprecated: Use 'adw_alert_dialog_new' instead [-Wdeprecated-declarations]
+  104 |                 var dialog = new Adw.MessageDialog(win, title, "This feature is coming soon!");
+      |   ^     
+In file included from /usr/include/libadwaita-1/adwaita.h:63,
+                 from src/truco.p/Application.c:8:
+/usr/include/libadwaita-1/adw-message-dialog.h:40:12: note: declared here
+   40 | GtkWidget *adw_message_dialog_new (GtkWindow  *parent,
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+../src/Application.vala:105:3: warning: ‘adw_message_dialog_add_response’ is deprecated: Use 'adw_alert_dialog_add_response' instead [-Wdeprecated-declarations]
+  105 |                 dialog.add_response("ok", "OK");
+      |   ^             ~~~~~~~~~~~~~~~~~
+/usr/include/libadwaita-1/adw-message-dialog.h:95:6: note: declared here
+   95 | void adw_message_dialog_add_response (AdwMessageDialog *self,
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:29,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:29:
+Application.c: In function ‘truco_application_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+Application.c:736:6: note: in expansion of macro ‘g_once_init_enter’
+src/truco.p/Application.c: At top level:
+src/truco.p/Application.c:47:20: warning: ‘truco_application_properties’ defined but not used [-Wunused-variable]
+   47 | static GParamSpec* truco_application_properties[TRUCO_APPLICATION_NUM_PROPERTIES];
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[19/21] Compiling C object src/truco.p/meson-generated_dialogs_About.c.o
+../src/dialogs/About.vala: In function ‘truco_about_dialog_show’:
+../src/dialogs/About.vala:27:44: warning: passing argument 2 of ‘adw_about_dialog_set_developers’ from incompatible pointer type [-Wincompatible-pointer-types]
+   27 |         var about = new Adw.AboutDialog() {
+      |                                            ^      
+      |                                            |
+      |                                            gchar ** {aka char **}
+In file included from /usr/include/libadwaita-1/adwaita.h:24,
+                 from src/truco.p/dialogs/About.c:23:
+/usr/include/libadwaita-1/adw-about-dialog.h:115:71: note: expected ‘const char **’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  115 |                                                      const char     **developers);
+      |                                                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~
+../src/dialogs/About.vala:27:43: warning: passing argument 2 of ‘adw_about_dialog_set_designers’ from incompatible pointer type [-Wincompatible-pointer-types]
+   27 |         var about = new Adw.AboutDialog() {
+      |                                           ^      
+      |                                           |
+      |                                           gchar ** {aka char **}
+/usr/include/libadwaita-1/adw-about-dialog.h:121:70: note: expected ‘const char **’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  121 |                                                     const char     **designers);
+      |                                                     ~~~~~~~~~~~~~~~~~^~~~~~~~~
+../src/dialogs/About.vala:27:41: warning: passing argument 2 of ‘adw_about_dialog_set_artists’ from incompatible pointer type [-Wincompatible-pointer-types]
+   27 |         var about = new Adw.AboutDialog() {
+      |                                         ^~~    
+      |                                         |
+      |                                         gchar ** {aka char **}
+/usr/include/libadwaita-1/adw-about-dialog.h:127:68: note: expected ‘const char **’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  127 |                                                   const char     **artists);
+      |                                                   ~~~~~~~~~~~~~~~~~^~~~~~~
+../src/dialogs/About.vala:55:75: warning: passing argument 3 of ‘adw_about_dialog_add_acknowledgement_section’ from incompatible pointer type [-Wincompatible-pointer-types]
+   55 |         about.add_acknowledgement_section("Special Thanks", acknowledgements);
+      |                                                                           ^~~~   
+      |                                                                           |
+      |                                                                           gchar ** {aka char **}
+/usr/include/libadwaita-1/adw-about-dialog.h:149:69: note: expected ‘const char **’ but argument is of type ‘gchar **’ {aka ‘char **’}
+  149 |                                                    const char     **people);
+      |                                                    ~~~~~~~~~~~~~~~~~^~~~~~
+About.c:270:7: warning: variable ‘_tmp32__length1’ set but not used [-Wunused-but-set-variable]
+About.c:267:7: warning: variable ‘_acknowledgements_size_’ set but not used [-Wunused-but-set-variable]
+About.c:233:7: warning: variable ‘_artists_size_’ set but not used [-Wunused-but-set-variable]
+About.c:228:7: warning: variable ‘_designers_size_’ set but not used [-Wunused-but-set-variable]
+About.c:223:7: warning: variable ‘_developers_size_’ set but not used [-Wunused-but-set-variable]
+../src/dialogs/About.vala: In function ‘truco_about_dialog_load_release_notes’:
+../src/dialogs/About.vala:99:44: warning: passing argument 3 of ‘g_file_load_contents’ from incompatible pointer type [-Wincompatible-pointer-types]
+   99 |                     file.load_contents(null, out contents, out etag_out);
+      |                                            ^~~~~~~~
+      |                                            |
+      |                                            guint8 ** {aka unsigned char **}
+In file included from /usr/include/glib-2.0/gio/gio.h:81,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcsssection.h:24,
+                 from /usr/include/gtk-4.0/gtk/css/gtkcss.h:36,
+                 from /usr/include/gtk-4.0/gtk/gtk.h:29,
+                 from src/truco.p/dialogs/About.c:19:
+/usr/include/glib-2.0/gio/gfile.h:1284:71: note: expected ‘char **’ but argument is of type ‘guint8 **’ {aka ‘unsigned char **’}
+ 1284 |                                               char                  **contents,
+      |                                               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+About.c:731:12: warning: variable ‘_tmp24__length1’ set but not used [-Wunused-but-set-variable]
+About.c:723:12: warning: variable ‘_contents_size_’ set but not used [-Wunused-but-set-variable]
+About.c:689:9: warning: unused variable ‘_metainfo_path_collection_size_’ [-Wunused-variable]
+About.c:628:8: warning: variable ‘_possible_paths_size_’ set but not used [-Wunused-but-set-variable]
+../src/dialogs/About.vala: In function ‘truco_about_dialog_get_current_release_notes’:
+../src/dialogs/About.vala:144:44: warning: passing argument 3 of ‘g_file_load_contents’ from incompatible pointer type [-Wincompatible-pointer-types]
+  144 |                     file.load_contents(null, out contents, out etag_out);
+      |                                            ^~~~~~~~
+      |                                            |
+      |                                            guint8 ** {aka unsigned char **}
+/usr/include/glib-2.0/gio/gfile.h:1284:71: note: expected ‘char **’ but argument is of type ‘guint8 **’ {aka ‘unsigned char **’}
+ 1284 |                                               char                  **contents,
+      |                                               ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~
+About.c:1258:12: warning: variable ‘_tmp24__length1’ set but not used [-Wunused-but-set-variable]
+About.c:1250:12: warning: variable ‘_contents_size_’ set but not used [-Wunused-but-set-variable]
+About.c:1216:9: warning: unused variable ‘_metainfo_path_collection_size_’ [-Wunused-variable]
+About.c:1155:8: warning: variable ‘_possible_paths_size_’ set but not used [-Wunused-but-set-variable]
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:30,
+                 from /usr/include/glib-2.0/glib-object.h:24,
+                 from src/truco.p/dialogs/About.c:18:
+About.c: In function ‘truco_about_dialog_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+About.c:1850:6: note: in expansion of macro ‘g_once_init_enter’
+src/truco.p/dialogs/About.c: At top level:
+src/truco.p/dialogs/About.c:61:20: warning: ‘truco_about_dialog_properties’ defined but not used [-Wunused-variable]
+   61 | static GParamSpec* truco_about_dialog_properties[TRUCO_ABOUT_DIALOG_NUM_PROPERTIES];
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[20/21] Compiling C object src/truco.p/meson-generated_Game.c.o
+In file included from /usr/include/glib-2.0/glib/gthread.h:34,
+                 from /usr/include/glib-2.0/glib/gasyncqueue.h:34,
+                 from /usr/include/glib-2.0/glib.h:34,
+                 from /usr/include/glib-2.0/gobject/gbinding.h:30,
+                 from /usr/include/glib-2.0/glib-object.h:24,
+                 from src/truco.p/Game.c:4:
+src/truco.p/Game.c: In function ‘truco_suit_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+src/truco.p/Game.c:273:13: note: in expansion of macro ‘g_once_init_enter’
+  273 |         if (g_once_init_enter (&truco_suit_type_id__once)) {
+      |             ^~~~~~~~~~~~~~~~~
+Game.c: In function ‘truco_card_finalize’:
+Game.c:708:14: warning: variable ‘self’ set but not used [-Wunused-but-set-variable]
+Game.c: In function ‘truco_card_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+Game.c:730:6: note: in expansion of macro ‘g_once_init_enter’
+../src/Game.vala: In function ‘truco_player_set_name’:
+../src/Game.vala:81:12: warning: assignment discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   81 |         public string name { get; set; }
+      |            ^
+Game.c: In function ‘truco_player_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+Game.c:1117:6: note: in expansion of macro ‘g_once_init_enter’
+Game.c: In function ‘truco_game_state_create_deck’:
+Game.c:1774:11: warning: unused variable ‘_v_collection_size_’ [-Wunused-variable]
+Game.c:1750:8: warning: unused variable ‘_s_collection_size_’ [-Wunused-variable]
+Game.c:1688:7: warning: variable ‘_values_size_’ set but not used [-Wunused-but-set-variable]
+Game.c:1684:7: warning: variable ‘_suits_size_’ set but not used [-Wunused-but-set-variable]
+Game.c: In function ‘truco_game_state_get_type’:
+/usr/include/glib-2.0/glib/gatomic.h:131:5: warning: argument 2 of ‘__atomic_load’ discards ‘volatile’ qualifier [-Wdiscarded-qualifiers]
+  131 |     __atomic_load (gapg_temp_atomic, &gapg_temp_newval, __ATOMIC_SEQ_CST); \
+      |     ^~~~~~~~~~~~~
+/usr/include/glib-2.0/glib/gthread.h:274:7: note: in expansion of macro ‘g_atomic_pointer_get’
+  274 |     (!g_atomic_pointer_get (location) &&                             \
+      |       ^~~~~~~~~~~~~~~~~~~~
+Game.c:3683:6: note: in expansion of macro ‘g_once_init_enter’
+src/truco.p/Game.c: At top level:
+src/truco.p/Game.c:93:20: warning: ‘truco_game_state_properties’ defined but not used [-Wunused-variable]
+   93 | static GParamSpec* truco_game_state_properties[TRUCO_GAME_STATE_NUM_PROPERTIES];
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.
+Error: module truco: Child process exited with code 1

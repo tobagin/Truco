@@ -1,0 +1,261 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Truco 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-15 18:33+0000\n"
+"PO-Revision-Date: 2025-12-14 19:15+0000\n"
+"Last-Translator: \n"
+"Language-Team: Portuguese <pt@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Window.vala:229
+#, c-format
+msgid "%s Variant"
+msgstr "Variante %s"
+
+#. Status & Buttons
+#: src/Window.vala:241
+#, c-format
+msgid "Stake: %d"
+msgstr "Valor: %d"
+
+#: src/Window.vala:245
+#, c-format
+msgid "Truco! %d proposed by Team %d."
+msgstr "Truco! %d proposto pelo Time %d."
+
+#: src/Window.vala:272
+msgid "Waiting for response..."
+msgstr "Aguardando resposta..."
+
+#: src/Window.vala:278
+#, c-format
+msgid "Turn: Player %d | %s"
+msgstr "Vez: Jogador %d | %s"
+
+#: src/Window.vala:285
+msgid "TRUCO!"
+msgstr "TRUCO!"
+
+#: src/Window.vala:286
+msgid "SEIS!"
+msgstr "SEIS!"
+
+#: src/Window.vala:287
+msgid "NOVE!"
+msgstr "NOVE!"
+
+#: src/Window.vala:288
+msgid "DOZE!"
+msgstr "DOZE!"
+
+#: src/Window.vala:292
+#, c-format
+msgid "Turn: Player %d | MÃO DE 11"
+msgstr "Vez: Jogador %d | MÃO DE 11"
+
+msgid "MATCH SCORE"
+msgstr "PLACAR DA PARTIDA"
+
+msgid "GAME SCORE"
+msgstr "PONTOS DO JOGO"
+
+#: src/dialogs/NewGameDialog.vala:17
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/dialogs/NewGameDialog.vala:18
+msgid "Start Game"
+msgstr "Iniciar Jogo"
+
+# Avatar Selector
+msgid "Choose an Avatar"
+msgstr "Escolha um Avatar"
+
+# New Game Dialog
+msgid "Select the game variant."
+msgstr "Selecione a variante do jogo."
+
+msgid "Variant"
+msgstr "Variante"
+
+msgid "Truco Mineiro"
+msgstr "Truco Mineiro"
+
+msgid "Truco Paulista"
+msgstr "Truco Paulista"
+
+msgid "Truco Uruguayo"
+msgstr "Truco Uruguaio"
+
+msgid "Truco Venezolano"
+msgstr "Truco Venezuelano"
+
+msgid "Truco Argentino"
+msgstr "Truco Argentino"
+
+# Preferences
+msgid "Appearance"
+msgstr "Aparência"
+
+msgid "Table"
+msgstr "Mesa"
+
+msgid "Default Game Variant"
+msgstr "Variante Padrão"
+
+msgid "Felt Color"
+msgstr "Cor do Feltro"
+
+msgid "Cards"
+msgstr "Cartas"
+
+msgid "Back Design"
+msgstr "Desenho do Verso"
+
+msgid "Design 1 (Classic)"
+msgstr "Design 1 (Clássico)"
+
+msgid "Design 2 (Modern)"
+msgstr "Design 2 (Moderno)"
+
+msgid "Design 3 (Pattern)"
+msgstr "Design 3 (Padrão)"
+
+msgid "Back Color"
+msgstr "Cor do Verso"
+
+msgid "Black"
+msgstr "Preto"
+
+msgid "Blue"
+msgstr "Azul"
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "Light Blue"
+msgstr "Azul Claro"
+
+msgid "Red"
+msgstr "Vermelho"
+
+msgid "Player"
+msgstr "Jogador"
+
+msgid "Your Avatar"
+msgstr "Seu Avatar"
+
+# Shortcuts & General
+#: data/ui/shortcuts.blp:6
+msgid "General"
+msgstr "Geral"
+
+#: data/ui/shortcuts.blp:9
+msgid "Preferences"
+msgstr "Preferências"
+
+#: data/ui/shortcuts.blp:14
+msgid "Keyboard Shortcuts"
+msgstr "Atalhos de Teclado"
+
+#: data/ui/shortcuts.blp:19
+msgid "About"
+msgstr "Sobre"
+
+#: data/ui/shortcuts.blp:24
+msgid "Quit"
+msgstr "Sair"
+
+#: data/ui/shortcuts.blp:30
+#, fuzzy
+msgid "Game"
+msgstr "Jogo"
+
+#: data/ui/shortcuts.blp:33
+msgid "New Game"
+msgstr "Novo Jogo"
+
+#: data/ui/shortcuts.blp:38
+msgid "Help"
+msgstr "Ajuda"
+
+#: data/io.github.tobagin.Truco.desktop.in:2
+#: data/io.github.tobagin.Truco.metainfo.xml.in:6
+msgid "Truco"
+msgstr "Truco"
+
+#: data/io.github.tobagin.Truco.desktop.in:3
+#: data/io.github.tobagin.Truco.metainfo.xml.in:7
+msgid "A card game application"
+msgstr "Um jogo de cartas"
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:9
+msgid "Play the traditional Truco card game."
+msgstr "Jogue o tradicional jogo de cartas Truco."
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:19
+msgid "Tobagin"
+msgstr "Tobagin"
+
+
+#: data/ui/shortcuts.blp:6
+msgid "General"
+msgstr ""
+
+#: data/ui/shortcuts.blp:9
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/shortcuts.blp:14
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/shortcuts.blp:19
+msgid "About"
+msgstr ""
+
+#: data/ui/shortcuts.blp:24
+msgid "Quit"
+msgstr ""
+
+#: data/ui/shortcuts.blp:30
+#, fuzzy
+msgid "Game"
+msgstr "Novo Jogo"
+
+#: data/ui/shortcuts.blp:33
+msgid "New Game"
+msgstr "Novo Jogo"
+
+#: data/ui/shortcuts.blp:38
+msgid "Help"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.desktop.in:2
+#: data/io.github.tobagin.Truco.metainfo.xml.in:6
+msgid "Truco"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.desktop.in:3
+#: data/io.github.tobagin.Truco.metainfo.xml.in:7
+msgid "A card game application"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:9
+msgid "Play the traditional Truco card game."
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:19
+msgid "Tobagin"
+msgstr ""
+
+#, c-format
+#~ msgid "US: %d (%d wins) | THEM: %d (%d wins)"
+#~ msgstr "NÓS: %d (%d vitórias) | ELES: %d (%d vitórias)"
+
+#~ msgid "Select Game Variant"
+#~ msgstr "Selecione a Variante"

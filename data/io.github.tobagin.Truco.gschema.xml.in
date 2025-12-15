@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain=@GETTEXT_PACKAGE@>
+  <schema id=@APP_ID@ path="/io/github/tobagin/Truco/">
+    <key name="felt-color" type="s">
+      <default>'felt-green'</default>
+      <summary>Felt Color</summary>
+      <description>The CSS class for the table felt color.</description>
+    </key>
+    <key name="felt-color-index" type="i">
+      <default>0</default>
+      <summary>Felt Color Index</summary>
+    </key>
+    <key name="card-back" type="s">
+      <default>'cards/backs/player_card_back_design_1_blue.svg'</default>
+      <summary>Card Back Design</summary>
+      <description>Path to the card back SVG.</description>
+    </key>
+    <key name="card-back-design" type="i">
+      <default>0</default>
+      <summary>Card Back Design Index</summary>
+    </key>
+    <key name="card-back-color" type="i">
+      <default>1</default>
+      <summary>Card Back Color Index</summary>
+    </key>
+    <key name="avatar" type="s">
+      <default>'avatars/avatar1.svg'</default>
+      <summary>User Avatar</summary>
+      <description>Path to the user's avatar SVG.</description>
+    </key>
+    <key name="avatar-index" type="i">
+      <default>0</default>
+      <summary>User Avatar Index</summary>
+    </key>
+    <key name="default-game-variant" type="i">
+      <default>0</default>
+      <summary>Default Game Variant</summary>
+      <description>0=Mineiro, 1=Paulista, 2=Uruguayo, 3=Venezolano, 4=Argentino</description>
+    </key>
+  </schema>
+</schemalist>

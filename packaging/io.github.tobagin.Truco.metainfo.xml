@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.tobagin.Truco</id>
+  <launchable type="desktop-id">io.github.tobagin.Truco.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Truco</name>
+  <summary>A card game application</summary>
+  <description>
+    <p>
+      Play the traditional Truco card game.
+    </p>
+  </description>
+  <launchable type="desktop-id">@APPLICATION_ID@.desktop</launchable>
+  <screenshots>
+  </screenshots>
+  <url type="homepage">https://github.com/tobagin/Truco</url>
+  <url type="bugtracker">https://github.com/tobagin/Truco/issues</url>
+  <url type="help">https://github.com/tobagin/Truco#readme</url>
+  <developer_name>Tobagin</developer_name>
+  <update_contact>tobagin@example.com</update_contact>
+</component>

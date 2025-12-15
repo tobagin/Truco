@@ -1,0 +1,70 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoMatchEndDialog : Adw.Window {
+  modal: true;
+  default-width: 400;
+  default-height: 500;
+  width-request: 360;
+  height-request: 400;
+
+  content: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-title: false;
+    }
+
+    content: Adw.StatusPage status_page {
+      title: _("Match Over");
+      icon-name: "trophy-symbolic"; // Or a relevant icon
+
+      child: Box {
+        orientation: vertical;
+        spacing: 24;
+        halign: center;
+
+        Box {
+          orientation: vertical;
+          spacing: 12;
+
+          Label result_label {
+            styles ["title-2"]
+            label: _("You Won!"); 
+            justify: center;
+          }
+
+          Label stats_label {
+            styles ["body"]
+            label: "Stats here";
+            justify: center;
+            wrap: true;
+            max-width-chars: 40;
+          }
+        }
+
+        Box {
+          orientation: vertical;
+          spacing: 12;
+
+          Button btn_play_again {
+            label: _("Play Again");
+            styles ["suggested-action", "pill"]
+            action-name: "dialog.play-again";
+          }
+
+          Button btn_ok {
+            label: _("OK");
+            styles ["pill"]
+            action-name: "dialog.ok";
+          }
+          
+          Button btn_quit {
+             label: _("Quit Game");
+             styles ["destructive-action", "pill"]
+             action-name: "dialog.quit";
+          }
+        }
+      };
+    };
+  };
+}

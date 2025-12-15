@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.github.tobagin.Truco package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: io.github.tobagin.Truco\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-15 18:33+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Window.vala:229
+#, c-format
+msgid "%s Variant"
+msgstr ""
+
+#. Status & Buttons
+#: src/Window.vala:241
+#, c-format
+msgid "Stake: %d"
+msgstr ""
+
+#: src/Window.vala:245
+#, c-format
+msgid "Truco! %d proposed by Team %d."
+msgstr ""
+
+#: src/Window.vala:272
+msgid "Waiting for response..."
+msgstr ""
+
+#: src/Window.vala:278
+#, c-format
+msgid "Turn: Player %d | %s"
+msgstr ""
+
+#: src/Window.vala:285
+msgid "TRUCO!"
+msgstr ""
+
+#: src/Window.vala:286
+msgid "SEIS!"
+msgstr ""
+
+#: src/Window.vala:287
+msgid "NOVE!"
+msgstr ""
+
+#: src/Window.vala:288
+msgid "DOZE!"
+msgstr ""
+
+#: src/Window.vala:292
+#, c-format
+msgid "Turn: Player %d | MÃO DE 11"
+msgstr ""
+
+#: src/dialogs/NewGameDialog.vala:17
+msgid "Cancel"
+msgstr ""
+
+#: src/dialogs/NewGameDialog.vala:18
+msgid "Start Game"
+msgstr ""
+
+#: data/ui/shortcuts.blp:6
+msgid "General"
+msgstr ""
+
+#: data/ui/shortcuts.blp:9
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/shortcuts.blp:14
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/shortcuts.blp:19
+msgid "About"
+msgstr ""
+
+#: data/ui/shortcuts.blp:24
+msgid "Quit"
+msgstr ""
+
+#: data/ui/shortcuts.blp:30
+msgid "Game"
+msgstr ""
+
+#: data/ui/shortcuts.blp:33
+msgid "New Game"
+msgstr ""
+
+#: data/ui/shortcuts.blp:38
+msgid "Help"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.desktop.in:2
+#: data/io.github.tobagin.Truco.metainfo.xml.in:6
+msgid "Truco"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.desktop.in:3
+#: data/io.github.tobagin.Truco.metainfo.xml.in:7
+msgid "A card game application"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:9
+msgid "Play the traditional Truco card game."
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:19
+msgid "Tobagin"
+msgstr ""

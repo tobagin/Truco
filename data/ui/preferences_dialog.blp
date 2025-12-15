@@ -1,0 +1,71 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoPreferencesDialog : Adw.PreferencesDialog {
+  search-enabled: false; // Dialog doesn't always need search
+
+  Adw.PreferencesPage {
+    title: _("Appearance");
+    icon-name: "preferences-desktop-appearance-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Table");
+      
+      Adw.ComboRow default_variant_row {
+        title: _("Default Game Variant");
+        model: StringList {
+            strings [_("Mineiro"), _("Paulista"), _("Uruguayo"), _("Venezolano"), _("Argentino")]
+        };
+      }
+
+      Adw.ComboRow felt_color_row {
+        title: _("Felt Color");
+
+        model: StringList {
+          strings [_("Green"), _("Red"), _("Blue")]
+        };
+      }
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Cards");
+
+      Adw.ComboRow card_design_row {
+        title: _("Back Design");
+        model: StringList {
+          strings [_("Design 1 (Classic)"), _("Design 2 (Modern)"), _("Design 3 (Pattern)")]
+        };
+      }
+
+      Adw.ComboRow card_color_row {
+        title: _("Back Color");
+        model: StringList {
+            // black, blue, green, lightblue, red
+            strings [_("Black"), _("Blue"), _("Green"), _("Light Blue"), _("Red")]
+        };
+      }
+    }
+    Adw.PreferencesGroup {
+      title: _("Player");
+      
+      Adw.ActionRow avatar_row {
+        title: _("Your Avatar");
+        activatable: true;
+        
+        [suffix]
+        Adw.Avatar avatar_image {
+            size: 48;
+            valign: center;
+            text: "";
+            show-initials: false;
+        }
+        
+        [suffix]
+        Image {
+            icon-name: "go-next-symbolic";
+            valign: center;
+        }
+      }
+    }
+  }
+}
