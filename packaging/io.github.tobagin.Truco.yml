@@ -25,20 +25,10 @@ build-options:
 
 modules:
   - name: truco
-    buildsystem: simple
-    build-commands:
-      # Install npm dependencies
-      - npm install
-      # Build the application
-      - npm run tauri build -- --target release
-      # Install binary
-      - install -D src-tauri/target/release/truco /app/bin/truco
-      # Install resources
-      - install -D packaging/io.github.tobagin.Truco.desktop /app/share/applications/io.github.tobagin.Truco.desktop
-      - install -D packaging/io.github.tobagin.Truco.metainfo.xml /app/share/metainfo/io.github.tobagin.Truco.metainfo.xml
-      - install -D data/icons/hicolor/scalable/apps/io.github.tobagin.Truco.svg /app/share/icons/hicolor/scalable/apps/io.github.tobagin.Truco.svg
-      - install -D data/icons/hicolor/symbolic/apps/io.github.tobagin.Truco-symbolic.svg /app/share/icons/hicolor/symbolic/apps/io.github.tobagin.Truco-symbolic.svg
+    buildsystem: meson
     sources:
-      - type: git
-        url: https://github.com/tobagin/Truco.git
-        branch: main
+      - type: dir
+        path: ../
+    build-options:
+      env:
+        GST_PLUGIN_SYSTEM_PATH: /app/lib/gstreamer-1.0

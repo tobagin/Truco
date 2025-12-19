@@ -62,35 +62,65 @@ template $TrucoWindow : Adw.ApplicationWindow {
             hexpand: true;
             vexpand: true;
   
-            // Top: Partner (CPU 2)
+            // Top: Partners (CPU 2 & CPU 4)
             Box player_top_box {
               layout {
-                column: 1;
+                column: 0;
                 row: 0;
+                column-span: 3;
               }
-              orientation: vertical;
+              orientation: horizontal;
               halign: center;
               valign: center;
-              spacing: 5;
+              spacing: 8;
               
-              Box top_cards {
-                 orientation: horizontal;
-                 spacing: 0;
+              Box part1_container {
+                orientation: vertical;
+                spacing: 4;
+                halign: center;
+                Adw.Avatar avatar_top {
+                    size: 48;
+                    text: "";
+                    show-initials: false;
+                    styles ["avatar"]
+                }
+                Label label_top {
+                  label: _("Partner 1");
+                  opacity: 0.6;
+                  halign: center;
+                }
+                Box top_cards {
+                   orientation: horizontal;
+                   spacing: 0;
+                   halign: center;
+                }
               }
 
-              Adw.Avatar avatar_top {
-                  size: 64;
-                  text: "";
-                  show-initials: false;
-                  styles ["avatar"]
-              }
-              Label {
-                label: _("CPU 2 (Partner)");
-                opacity: 0.6;
+              Box part2_container {
+                visible: false;
+                orientation: vertical;
+                spacing: 4;
+                halign: center;
+                Adw.Avatar avatar_top2 {
+                    size: 48;
+                    text: "";
+                    show-initials: false;
+                    styles ["avatar"]
+                }
+                Label label_top2 {
+                  label: _("Partner 2");
+                  opacity: 0.6;
+                  halign: center;
+                }
+                Box top2_cards {
+                   orientation: horizontal;
+                   spacing: 0;
+                   halign: center;
+                }
               }
             }
   
-            // Left: CPU 3
+            // Left: Opponent
             Box player_left_box {
               layout {
                 column: 0;
@@ -101,60 +131,95 @@ template $TrucoWindow : Adw.ApplicationWindow {
               valign: center;
               spacing: 5;
               
-              Box left_cards {
-                 orientation: vertical;
-                 spacing: 0;
-              }
-
               Box {
                   orientation: vertical;
-                  spacing: 5;
+                  spacing: 4;
                   valign: center;
+                  halign: center;
                   
                   Adw.Avatar avatar_left {
-                      size: 64;
+                      size: 48;
                       text: "";
                       show-initials: false;
                       styles ["avatar"]
                   }
-                  Label {
-                    label: _("CPU 3");
+                  Label label_left {
+                    label: _("Opponent");
                     opacity: 0.6;
+                    halign: center;
                   }
+              }
+
+              Box left_cards {
+                 orientation: vertical;
+                 spacing: 8;
+                 valign: center;
               }
             }
   
-            // Right: CPU 1
+            // Right: Opponent
             Box player_right_box {
               layout {
                 column: 2;
                 row: 1;
               }
-              orientation: horizontal;
+              orientation: vertical;
               halign: center;
               valign: center;
-              spacing: 5;
+              spacing: 8;
               
-              Box {
-                  orientation: vertical;
-                  spacing: 5;
-                  valign: center;
-                  
-                  Adw.Avatar avatar_right {
-                      size: 64;
-                      text: "";
-                      show-initials: false;
-                      styles ["avatar"]
-                  }
-                  Label {
-                    label: _("CPU 1");
-                    opacity: 0.6;
-                  }
+              Box opp1_container {
+                orientation: horizontal;
+                spacing: 5;
+                valign: center;
+                Box right_cards {
+                   orientation: vertical;
+                   spacing: 8;
+                   valign: center;
+                }
+                Box {
+                    orientation: vertical;
+                    spacing: 4;
+                    valign: center;
+                    halign: center;
+                    Adw.Avatar avatar_right {
+                        size: 48;
+                        text: "";
+                        show-initials: false;
+                        styles ["avatar"]
+                    }
+                    Label label_right {
+                      label: _("Opponent");
+                      opacity: 0.6;
+                      halign: center;
+                    }
+                }
               }
 
-              Box right_cards {
-                 orientation: vertical;
-                 spacing: 0;
+              Box opp3_container {
+                visible: false;
+                orientation: horizontal;
+                spacing: 5;
+                Box {
+                    orientation: vertical;
+                    spacing: 4;
+                    valign: center;
+                    Adw.Avatar avatar_right2 {
+                        size: 48;
+                        text: "";
+                        show-initials: false;
+                        styles ["avatar"]
+                    }
+                    Label label_right2 {
+                      label: _("Opponent");
+                      opacity: 0.6;
+                    }
+                }
+                Box right2_cards {
+                   orientation: vertical;
+                   spacing: 8;
+                   valign: center;
+                }
               }
             }
   
@@ -169,8 +234,9 @@ template $TrucoWindow : Adw.ApplicationWindow {
               valign: center;
               
               Box table_cards_box {
-                orientation: horizontal;
+                orientation: vertical;
                 spacing: 5;
+                halign: center;
               }
             }
   
@@ -183,32 +249,90 @@ template $TrucoWindow : Adw.ApplicationWindow {
               }
               orientation: vertical;
               valign: end;
-              margin-bottom: 10;
-              spacing: 10;
+              spacing: 2;
   
-              Adw.Avatar avatar_user {
-                  size: 64;
-                  halign: center;
-                  text: "";
-                  show-initials: false;
-                  styles ["avatar"]
-              }
-              Label status_label {
-                label: _("Welcome");
-                styles ["title-3"]
-              }
-  
-              Box player_hand_box {
+              Box user_container {
                 orientation: horizontal;
+                spacing: 8;
                 halign: center;
-                spacing: 0;
+
+                Box {
+                  orientation: vertical;
+                  spacing: 2;
+                  halign: center;
+                  Box player_hand_box {
+                    orientation: horizontal;
+                    halign: center;
+                    spacing: 0;
+                  }
+                  Adw.Avatar avatar_user {
+                    size: 48;
+                    text: "";
+                    show-initials: false;
+                    styles ["avatar"]
+                  }
+                  Label status_label {
+                    label: _("You");
+                    styles ["caption"]
+                    opacity: 0.6;
+                    halign: center;
+                  }
+                }
+
+                Box part3_container {
+                  visible: false;
+                  orientation: vertical;
+                  spacing: 2;
+                  halign: center;
+                  Box bottom2_cards {
+                    orientation: horizontal;
+                    halign: center;
+                    spacing: 0;
+                  }
+                  Adw.Avatar avatar_bottom2 {
+                    size: 48;
+                    text: "";
+                    show-initials: false;
+                    styles ["avatar"]
+                  }
+                  Label label_bottom2 {
+                    label: _("Partner");
+                    styles ["caption"]
+                    opacity: 0.6;
+                    halign: center;
+                  }
+                }
               }
+  
+              
   
               Box actions_box {
                 orientation: horizontal;
                 halign: center;
                 spacing: 10;
+                margin-bottom: 10;
   
+                MenuButton btn_envido {
+                  label: "Envido";
+                  visible: false;
+                  popover: Popover {
+                      Box {
+                          orientation: vertical;
+                          spacing: 6;
+                          margin-top: 6; margin-bottom: 6; margin-start: 6; margin-end: 6;
+                          
+                          Button btn_call_envido { label: "Envido"; }
+                          Button btn_call_real_envido { label: "Real Envido"; }
+                          Button btn_call_falta_envido { label: "Falta Envido"; }
+                      }
+                  };
+                }
+
+                Button btn_call_flor {
+                  label: "Flor";
+                  visible: false;
+                }
+
                 Button btn_truco {
                   label: "TRUCO!";
                   
@@ -234,10 +358,10 @@ template $TrucoWindow : Adw.ApplicationWindow {
         Box score_box {
            halign: start;
            valign: start;
-           margin-top: 10;
-           margin-start: 10;
+           margin-top: 5;
+           margin-start: 5;
            orientation: vertical;
-           spacing: 2;
+           spacing: 1;
            width-request: 220;
            
            styles ["card-frame", "scoreboard"] // Reusing card-frame basics, adding custom flair if needed
@@ -317,22 +441,23 @@ template $TrucoWindow : Adw.ApplicationWindow {
         Box vira_box {
            halign: end;
            valign: start;
-           margin-top: 10;
-           margin-end: 10;
+           margin-top: 5;
+           margin-end: 5;
            orientation: vertical;
-           spacing: 5;
+           spacing: 2;
+           width-request: 110;
            
            styles ["card-frame"]
            
-           Image vira_image {
-               pixel-size: 120;
-               icon-name: "image-missing";
-           }
-           
            Label {
-              label: _("Turn Card");
+              label: _("TURN CARD");
               styles ["caption"]
               halign: center;
+           }
+
+           Image vira_image {
+               pixel-size: 150;
+               icon-name: "image-missing";
            }
         }
       };

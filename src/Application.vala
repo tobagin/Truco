@@ -60,6 +60,7 @@ namespace Truco {
             set_accels_for_action ("app.help", {"F1"});
             set_accels_for_action ("app.about", {"<Control>F1"});
             set_accels_for_action ("win.new-game", {"<Control>n"});
+            set_accels_for_action ("win.new-game-quick", {"F5"});
         }
 
         protected override void activate () {

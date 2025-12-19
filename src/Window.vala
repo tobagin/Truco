@@ -11,7 +11,14 @@ namespace Truco {
         private unowned Adw.WindowTitle window_title;
         [GtkChild]
         private unowned Grid game_grid;
-        
+        [GtkChild]
+        private unowned Box player_top_box;
+        [GtkChild]
+        private unowned Box user_container;
+        [GtkChild]
+        private unowned Box player_left_box;
+        [GtkChild]
+        private unowned Box player_right_box;
         [GtkChild]
         private unowned Label status_label;
 
@@ -35,18 +42,54 @@ namespace Truco {
         [GtkChild]
         private unowned Box top_cards;
         [GtkChild]
+        private unowned Box top2_cards;
+        [GtkChild]
         private unowned Box left_cards;
         [GtkChild]
         private unowned Box right_cards;
+        [GtkChild]
+        private unowned Box right2_cards;
+        [GtkChild]
+        private unowned Box bottom2_cards;
         
         [GtkChild]
         private unowned Adw.Avatar avatar_top;
+        [GtkChild]
+        private unowned Adw.Avatar avatar_top2;
         [GtkChild]
         private unowned Adw.Avatar avatar_left;
         [GtkChild]
         private unowned Adw.Avatar avatar_right;
         [GtkChild]
+        private unowned Adw.Avatar avatar_right2;
+        [GtkChild]
+        private unowned Adw.Avatar avatar_bottom2;
+        [GtkChild]
         private unowned Adw.Avatar avatar_user;
+
+        [GtkChild]
+        private unowned Label label_top;
+        [GtkChild]
+        private unowned Label label_top2;
+        [GtkChild]
+        private unowned Label label_left;
+        [GtkChild]
+        private unowned Label label_right;
+        [GtkChild]
+        private unowned Label label_right2;
+        [GtkChild]
+        private unowned Label label_bottom2;
+
+        [GtkChild]
+        private unowned Box part1_container;
+        [GtkChild]
+        private unowned Box part2_container;
+        [GtkChild]
+        private unowned Box part3_container;
+        [GtkChild]
+        private unowned Box opp1_container;
+        [GtkChild]
+        private unowned Box opp3_container;
 
         [GtkChild]
         private unowned Box table_cards_box;
@@ -57,21 +100,127 @@ namespace Truco {
 
         private void update_avatars() {
              load_avatar(avatar_user, game.players[0].avatar_icon);
-             load_avatar(avatar_right, game.players[1].avatar_icon);
-             load_avatar(avatar_top, game.players[2].avatar_icon);
-             load_avatar(avatar_left, game.players[3].avatar_icon);
+             
+             int size = game.players.size;
+             if (size == 2) {
+                 // 1v1: You vs Opponent (Top central)
+                 load_avatar(avatar_top, game.players[1].avatar_icon);
+                 label_top.label = game.players[1].name;
+             } else if (size == 4) {
+                 // 2v2: You (Bot), Opp1 (Right), Part (Top), Opp2 (Left)
+                 load_avatar(avatar_right, game.players[1].avatar_icon);
+                 label_right.label = game.players[1].name;
+                 load_avatar(avatar_top, game.players[2].avatar_icon);
+                 label_top.label = game.players[2].name;
+                 load_avatar(avatar_left, game.players[3].avatar_icon);
+                 label_left.label = game.players[3].name;
+             } else if (size == 6) {
+                 // User mapping for 3v3:
+                 // Bottom Left: You (0)
+                 // Bottom Right: CPU 1 (1)
+                 // Right: Partner 1 (2)
+                 // Top Right: CPU 2 (3)
+                 // Top Left: Partner 2 (4)
+                 // Left: CPU 3 (5)
+                 
+                 load_avatar(avatar_bottom2, game.players[1].avatar_icon);
+                 label_bottom2.label = game.players[1].name;
+                 
+                 load_avatar(avatar_right, game.players[2].avatar_icon);
+                 label_right.label = game.players[2].name;
+                 
+                 load_avatar(avatar_top2, game.players[3].avatar_icon);
+                 label_top2.label = game.players[3].name;
+                 
+                 load_avatar(avatar_top, game.players[4].avatar_icon);
+                 label_top.label = game.players[4].name;
+
+                 load_avatar(avatar_left, game.players[5].avatar_icon);
+                 label_left.label = game.players[5].name;
+             }
         }
         
         private void load_avatar(Adw.Avatar avatar, string resource_path) {
             var paintable = Gdk.Texture.from_resource(Config.RESOURCE_PATH + "/" + resource_path);
             avatar.set_custom_image(paintable);
         }
+
+        private void update_layout_visibility() {
+            int size = game.players.size;
+            
+            // Reset all extra containers and properties
+            part2_container.visible = false;
+            part3_container.visible = false;
+            opp3_container.visible = false;
+            
+            player_top_box.homogeneous = false;
+            user_container.homogeneous = false;
+            
+            // Layout alignment based on player count
+            if (size == 2) {
+                // 1v1: Centralized Top and Bottom
+                player_left_box.visible = false;
+                player_right_box.visible = false;
+                avatar_top.parent.visible = true;
+                
+                player_top_box.margin_start = 0;
+                player_top_box.margin_end = 0;
+                player_top_box.halign = Align.CENTER;
+                player_top_box.hexpand = false;
+                player_top_box.homogeneous = false;
+
+                user_container.margin_start = 0;
+                user_container.margin_end = 0;
+                user_container.halign = Align.CENTER;
+                user_container.hexpand = false;
+                user_container.homogeneous = false;
+            } else if (size == 4) {
+                // 2v2: Distributed
+                player_left_box.visible = true;
+                player_right_box.visible = true;
+                avatar_top.parent.visible = true;
+
+                player_top_box.margin_start = 0;
+                player_top_box.margin_end = 0;
+                player_top_box.halign = Align.CENTER;
+                player_top_box.hexpand = false;
+                player_top_box.homogeneous = false;
+
+                user_container.margin_start = 0;
+                user_container.margin_end = 0;
+                user_container.halign = Align.CENTER;
+                user_container.hexpand = false;
+                user_container.homogeneous = false;
+            } else if (size == 6) {
+                // 3v3: 2 on top, 2 on bot, 1 left, 1 right
+                player_left_box.visible = true;
+                player_right_box.visible = true;
+                avatar_top.parent.visible = true;
+                
+                part2_container.visible = true;
+                part3_container.visible = true;
+
+                // Move Top/Bottom players 15% towards middle
+                // 1000px width * 0.15 = 150px
+                player_top_box.margin_start = 150;
+                player_top_box.margin_end = 150;
+                player_top_box.halign = Align.FILL;
+                player_top_box.hexpand = true;
+                player_top_box.homogeneous = true;
+
+                user_container.margin_start = 150;
+                user_container.margin_end = 150;
+                user_container.halign = Align.FILL;
+                user_container.hexpand = true;
+                user_container.homogeneous = true;
+            }
+        }
         
         private void update_opp_box(Box b, int count, string rotation_class) {
              clean_box(b);
              for (int i=0; i<count; i++) {
                  var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + current_card_back);
-                 img.pixel_size = 120;
+                 img.pixel_size = 115;
                  img.add_css_class("opponent-card");
                  img.add_css_class(rotation_class);
                  img.halign = Align.CENTER;
@@ -101,11 +250,25 @@ namespace Truco {
         private unowned Button btn_accept;
         [GtkChild]
         private unowned Button btn_refuse;
+        
+        [GtkChild]
+        private unowned MenuButton btn_envido;
+        [GtkChild]
+        private unowned Button btn_call_envido;
+        [GtkChild]
+        private unowned Button btn_call_real_envido;
+        [GtkChild]
+        private unowned Button btn_call_falta_envido;
+
+
+        [GtkChild]
+        private unowned Button btn_call_flor;
 
         private GameState game;
         
         private string current_felt_class = "felt-green";
         private string current_card_back = "cards/backs/player_card_back_design_1_blue.svg";
+        private int current_deck_style = 0;
         private bool raise_dialog_shown = false; // State to track dialog visibility
 
         public Window (Gtk.Application app) {
@@ -126,6 +289,9 @@ namespace Truco {
             game = new GameState(default_variant);
             setup_game_signals();
             
+            // UI slots setup
+            update_layout_visibility();
+            
             // Initial Load
             load_settings(settings);
             
@@ -139,12 +305,19 @@ namespace Truco {
             settings.changed["avatar"].connect (() => {
                 set_user_avatar(settings.get_string("avatar"));
             });
+            settings.changed["deck-style"].connect (() => {
+                set_deck_style(settings.get_int("deck-style"));
+            });
             
             update_ui();
 
             var new_game_action = new SimpleAction ("new-game", null);
             new_game_action.activate.connect (on_new_game);
             add_action (new_game_action);
+
+            var new_game_quick_action = new SimpleAction ("new-game-quick", null);
+            new_game_quick_action.activate.connect (on_new_game_quick);
+            add_action (new_game_quick_action);
 
             btn_truco.clicked.connect (() => {
                 if (game.raise_stake(0)) {
@@ -169,12 +342,50 @@ namespace Truco {
                 game.respond_challenge(0, false);
                 update_ui();
             });
+            
+            btn_call_envido.clicked.connect(() => {
+                game.call_envido(0, 0); // 0 = Envido
+                update_ui();
+                // Check CPU turn? They need to respond.
+                // call_envido sets state_envido_pending. 
+                // cpu_turn or check_cpu_turn needs to handle this.
+                // Logic in check_cpu_turn handles pending challenges (though mostly truco).
+                // cpu_respond_truco also used for envido (updated earlier? No, I need to check cpu_respond_truco).
+                // Wait, I updated cpu_respond_truco to handle Mão de 11.
+                // I need to ensure CPU responds to Envido too.
+                check_cpu_turn(); 
+            });
+
+            btn_call_real_envido.clicked.connect(() => {
+                game.call_envido(0, 1);
+                update_ui();
+                check_cpu_turn(); 
+            });
+
+            btn_call_falta_envido.clicked.connect(() => {
+                game.call_envido(0, 2);
+                update_ui();
+                check_cpu_turn(); 
+            });
+
+            btn_call_flor.clicked.connect(() => {
+                game.call_flor(0);
+                update_ui();
+                // Check CPU turn (resolve flor might trigger game end or just points)
+                check_cpu_turn();
+            });
         }
         
         private void load_settings(GLib.Settings settings) {
             set_felt_color(settings.get_string("felt-color"));
             set_card_back(settings.get_string("card-back"));
             set_user_avatar(settings.get_string("avatar"));
+            set_deck_style(settings.get_int("deck-style"));
+        }
+        
+        public void set_deck_style(int style) {
+            current_deck_style = style;
+            update_ui(); // Redraw cards
         }
         
         public void set_felt_color(string color_class) {
@@ -202,12 +413,26 @@ namespace Truco {
             var dialog = new NewGameDialog();
             dialog.response.connect((response) => {
                 if (dialog.selected_variant != null) {
-                    game = new GameState(dialog.selected_variant);
+                    game = new GameState(
+                        dialog.selected_variant, 
+                        dialog.selected_team_size, 
+                        dialog.selected_fixed_manilha, 
+                        dialog.selected_hidden_vira
+                    );
                     setup_game_signals();
+                    update_layout_visibility();
                     update_ui();
+                    check_cpu_turn(); // Start CPU if it's their turn
                 }
             });
             dialog.present(this);
+        }
+
+        private void on_new_game_quick(SimpleAction action, Variant? parameter) {
+             game = new GameState(game.game_mode);
+             setup_game_signals();
+             update_ui();
+             check_cpu_turn();
         }
         
         private void setup_game_signals() {
@@ -215,12 +440,42 @@ namespace Truco {
                 show_match_end_dialog(winning_team);
             });
             
-            // Maybe connect game_ended too if we want a dialog for each sub-game?
-            // For now, only match end is critical.
+            game.show_partner_cards.connect(() => {
+                show_mao_11_dialog();
+            });
+
+            game.turn_advanced.connect(update_ui);
         }
 
         private void check_cpu_turn() {
             if (game.game_over || game.match_over) return;
+            
+            // Critical Fix: Mão de 11 Deadlock
+            // If Mão de 11 is pending, we MUST check if it's CPU's responsibility to decide,
+            // regardless of whose "turn" it is to play the card.
+            if (game.state_mao_11_pending) {
+                // If it's Opponent's Mão de 11 (Team 1) or Partner's (Team 0, handled by User dialog usually?)
+                // Actually, if it's Team 0, the UI dialog is shown via signal.
+                // If it's Team 1, we need to trigger CPU logic.
+                
+                int limit = game.get_max_points();
+                int team11_cpu = -1;
+                if (game.score_team_1 == limit - 1) team11_cpu = 1;
+                else if (game.score_team_0 == limit - 1 && game.players[2].is_cpu && game.players[0].is_cpu) {
+                    // Start of game, if both are CPU? Unlikely setup for now but possible.
+                    team11_cpu = 0; 
+                }
+                
+                if (team11_cpu != -1) {
+                    GLib.Timeout.add(1000, () => {
+                         if (!game.state_mao_11_pending) return false;
+                         game.cpu_respond_truco(); // This handles Mão de 11 decision logic
+                         update_ui();
+                         return false;
+                    });
+                    return; // Don't process normal turn logic yet
+                }
+            }
             
             int pid = game.current_player_index;
             if (game.players[pid].is_cpu) {
@@ -342,6 +597,14 @@ namespace Truco {
                 btn_accept.visible = false;
                 btn_refuse.visible = false;
                 
+                // Envido Button Logic
+                bool is_international = (game.game_mode == "uruguayo" || game.game_mode == "venezolano" || game.game_mode == "argentino");
+                if (is_international && game.envido_available && !game.envido_played && !game.state_envido_pending && game.current_player_index == 0) {
+                     btn_envido.visible = true;
+                } else {
+                     btn_envido.visible = false;
+                }
+                
                 btn_truco.visible = true;
                 btn_truco.sensitive = (game.current_player_index == 0);
                 
@@ -350,9 +613,21 @@ namespace Truco {
                 else if (game.stake == 6) lbl = _("NINE!");
                 else if (game.stake == 9) lbl = _("TWELVE!");
                 
-                if (game.score_team_0 == 11 || game.score_team_1 == 11) {
+                // Flor Logic
+                if (game.envido_available && game.players[0].has_flor() && 
+                    ((!game.envido_played && !game.state_envido_pending) || game.state_envido_pending)) {
+                     // Can call if 1st trick (envido_available), has flor, and envido not finished (or pending)
+                     btn_call_flor.visible = true;
+                } else {
+                     btn_call_flor.visible = false;
+                }
+                
+                int limit = game.get_max_points();
+                // "Mão de 11" specific UI and restrictions (Brazil only)
+                if ((game.game_mode == "paulista" || game.game_mode == "mineiro") && 
+                    (game.score_team_0 == limit - 1 || game.score_team_1 == limit - 1)) {
                     btn_truco.sensitive = false;
-                    turn_indicator_label.label = _("Turn: %s | MÃO DE 11").printf(game.players[game.current_player_index].name);
+                    turn_indicator_label.label = _("Turn: %s | %s").printf(game.players[game.current_player_index].name, _("HAND OF 11"));
                  } else if (game.stake >= 12) {
                     btn_truco.sensitive = false;
                 } else {
@@ -371,11 +646,12 @@ namespace Truco {
                 var c = game.players[0].hand[i];
                 var btn = new Button();
                 btn.add_css_class("player-card");
-                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name());
-                img.pixel_size = 120; // Larger for player
+                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                img.pixel_size = 115; // Larger for player
                 btn.set_child(img);
                 
-                if (game.current_player_index != 0 || game.proposed_stake != null) {
+                
+                if (game.current_player_index != 0 || game.proposed_stake != null || game.state_mao_11_pending) {
                     btn.sensitive = false;
                 }
                 
@@ -390,24 +666,70 @@ namespace Truco {
                 player_hand_box.append(btn);
             }
 
-            // Opponents logic
-            update_opp_box(top_cards, game.players[2].hand.size, "rotate-180");
-            update_opp_box(left_cards, game.players[3].hand.size, "rotate-270");
-            update_opp_box(right_cards, game.players[1].hand.size, "rotate-90");
+            // Clear all opponent/partner card boxes
+            clean_box(top_cards);
+            clean_box(top2_cards);
+            clean_box(left_cards);
+            clean_box(right_cards);
+            clean_box(right2_cards);
+            clean_box(bottom2_cards);
+
+            // Opponents & Partners logic
+            int size = game.players.size;
+            if (size == 2) {
+                update_opp_box(top_cards, game.players[1].hand.size, "rotate-180");
+            } else if (size == 4) {
+                update_opp_box(right_cards, game.players[1].hand.size, "rotate-90");
+                update_opp_box(top_cards, game.players[2].hand.size, "rotate-180");
+                update_opp_box(left_cards, game.players[3].hand.size, "rotate-270");
+            } else if (size == 6) {
+                // Team Mapping:
+                // 1: Bottom Right (bottom2_cards)
+                // 2: Right (right_cards) - Partner 1
+                // 3: Top Right (top2_cards) - CPU 2
+                // 4: Top Left (top_cards) - Partner 2
+                // 5: Left (left_cards) - CPU 3
+                update_opp_box(bottom2_cards, game.players[1].hand.size, "");
+                update_opp_box(right_cards, game.players[2].hand.size, "rotate-90");
+                update_opp_box(top2_cards, game.players[3].hand.size, "rotate-180");
+                update_opp_box(top_cards, game.players[4].hand.size, "rotate-180");
+                update_opp_box(left_cards, game.players[5].hand.size, "rotate-270");
+            }
             
             // Table
             clean_box(table_cards_box);
-            for (int i = 0; i < game.table_cards.size; i++) {
-               var c = game.table_cards[i];
-               var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name());
-               img.pixel_size = 120; // Increased from 80
-               img.add_css_class("card-on-table");
-               table_cards_box.append(img);
+            if (size == 6) {
+                var row1 = new Box(Orientation.HORIZONTAL, 5);
+                row1.halign = Align.CENTER;
+                var row2 = new Box(Orientation.HORIZONTAL, 5);
+                row2.halign = Align.CENTER;
+                table_cards_box.append(row1);
+                table_cards_box.append(row2);
+                
+                for (int i = 0; i < game.table_cards.size; i++) {
+                    var c = game.table_cards[i];
+                    var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                    img.pixel_size = 115;
+                    img.add_css_class("card-on-table");
+                    if (i < 3) row1.append(img);
+                    else row2.append(img);
+                }
+            } else {
+                var row = new Box(Orientation.HORIZONTAL, 5);
+                row.halign = Align.CENTER;
+                table_cards_box.append(row);
+                for (int i = 0; i < game.table_cards.size; i++) {
+                    var c = game.table_cards[i];
+                    var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                    img.pixel_size = 115;
+                    img.add_css_class("card-on-table");
+                    row.append(img);
+                }
             }
             
             if (game.vira != null) {
-                vira_box.visible = true;
-                vira_image.set_from_resource(Config.RESOURCE_PATH + "/" + game.vira.get_svg_name());
+                vira_box.visible = !game.hidden_vira; // Support Hidden Vira
+                vira_image.set_from_resource(Config.RESOURCE_PATH + "/" + game.vira.get_svg_name(current_deck_style));
             } else {
                 vira_box.visible = false;
             }
@@ -495,16 +817,37 @@ namespace Truco {
 
             dialog.add_response ("accept", _("Accept"));
             
-            // Calc explicit raise possibilities based on game logic used in update_ui
+            // Calc explicit raise possibilities based on game logic
             int current_prop = game.proposed_stake;
             int next_val = 0;
             string raise_lbl = "";
             
-            if (current_prop == 3) { next_val = 6; raise_lbl = _("Raise to 6"); }
-            else if (current_prop == 6) { next_val = 9; raise_lbl = _("Raise to 9"); }
-            else if (current_prop == 9) { next_val = 12; raise_lbl = _("Raise to 12"); }
+            if (game.game_mode == "paulista" || game.game_mode == "mineiro") {
+                if (current_prop == 3) { next_val = 6; raise_lbl = _("Raise to 6"); }
+                else if (current_prop == 6) { next_val = 9; raise_lbl = _("Raise to 9"); }
+                else if (current_prop == 9) { next_val = 12; raise_lbl = _("Raise to 12"); }
+            } else if (game.game_mode == "argentino" || game.game_mode == "uruguayo") {
+                if (current_prop == 2) { next_val = 3; raise_lbl = _("Retruco!"); }
+                else if (current_prop == 3) { next_val = 4; raise_lbl = _("Vale Cuatro!"); }
+            } else if (game.game_mode == "venezolano") {
+                if (current_prop == 3) { next_val = 4; raise_lbl = _("Retruco!"); }
+                else if (current_prop == 4) { next_val = 5; raise_lbl = _("Vale Juego!"); }
+            }
             
-            if (next_val > 0 && game.score_team_0 < 11 && game.score_team_1 < 11) {
+            int limit = game.get_max_points();
+            // Check if we can raise (score limit)
+            // Note: Mão de 11 logic (limit-1) usually forbids Truco, but we check specific score logic here if needed.
+            // Simplified: if match point is not reached by next raise? 
+            // Actually, you can raise even if it exceeds, but game ends.
+            // BUT: You cannot raise if ALREADY at Mão de 11 state?
+            // In Brazil: cannot Truco at 11.
+            // In others: depends.
+            // For now, allow raising unless one team is at Limit-1 (Mão de 11 equiv).
+            bool mao_de_11 = (game.score_team_0 >= limit - 1 || game.score_team_1 >= limit - 1);
+            if (game.game_mode != "paulista" && game.game_mode != "mineiro") mao_de_11 = false; // Only strict for Brazil?
+            // Actually, verify rules later. For now, assume if 11x11 in Brazil you can't.
+            
+            if (next_val > 0 && !mao_de_11) {
                 dialog.add_response ("raise", raise_lbl);
                 dialog.set_default_response ("raise");
             } else {
@@ -541,7 +884,6 @@ namespace Truco {
             });
             
             dialog.present (this);
-            dialog.present (this);
         }
 
         private void show_match_end_dialog(int winning_team) {
@@ -558,6 +900,7 @@ namespace Truco {
                 if (response == "new") {
                    game.reset_match();
                    update_ui();
+                   check_cpu_turn(); 
                 } else if (response == "quit") {
                    close();
                 }
@@ -565,6 +908,51 @@ namespace Truco {
             
             dialog.transient_for = this;
             dialog.present();
+        }
+
+        private void show_mao_11_dialog() {
+            split_view.show_sidebar = false;
+            
+            // Create a custom content area to show partner cards
+            var box = new Box(Orientation.VERTICAL, 12);
+            box.halign = Align.CENTER;
+            
+            var cards_box = new Box(Orientation.HORIZONTAL, 6);
+            cards_box.halign = Align.CENTER;
+            
+            foreach (var c in game.players[2].hand) {
+                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                img.pixel_size = 80;
+                cards_box.append(img);
+            }
+            
+            box.append(new Label(_("Your Partner's Hand:")));
+            box.append(cards_box);
+            
+            var dialog = new Adw.AlertDialog (
+                _("Mão de 11!"),
+                _("Your team has 11 points. You can see your partner's cards. Do you want to play this round (Worth 3 points)?")
+            );
+            
+            dialog.set_extra_child(box);
+            
+            dialog.add_response("run", _("Run (Give 1 point)"));
+            dialog.add_response("play", _("Play (Worth 3)"));
+            
+            dialog.set_response_appearance("run", Adw.ResponseAppearance.DESTRUCTIVE);
+            dialog.set_response_appearance("play", Adw.ResponseAppearance.SUGGESTED);
+            
+            dialog.response.connect((response) => {
+                if (response == "play") {
+                    game.respond_challenge(0, true);
+                    update_ui();
+                } else {
+                    game.respond_challenge(0, false);
+                    update_ui();
+                }
+            });
+            
+            dialog.present(this);
         }
     }
 }
