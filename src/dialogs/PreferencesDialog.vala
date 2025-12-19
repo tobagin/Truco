@@ -11,6 +11,8 @@ namespace Truco {
         [GtkChild]
         private unowned Adw.ComboRow felt_color_row;
         [GtkChild]
+        private unowned Adw.ComboRow deck_style_row;
+        [GtkChild]
         private unowned Adw.ComboRow card_design_row;
         [GtkChild]
         private unowned Adw.ComboRow card_color_row;
@@ -18,6 +20,8 @@ namespace Truco {
         private unowned Adw.ActionRow avatar_row;
         [GtkChild]
         private unowned Adw.Avatar avatar_image;
+        [GtkChild]
+        private unowned Adw.SwitchRow sound_row;
 
         private weak Truco.Window main_window;
 
@@ -41,8 +45,10 @@ namespace Truco {
             
             settings.bind ("default-game-variant", default_variant_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("felt-color-index", felt_color_row, "selected", SettingsBindFlags.DEFAULT);
+            settings.bind ("deck-style", deck_style_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("card-back-design", card_design_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("card-back-color", card_color_row, "selected", SettingsBindFlags.DEFAULT);
+            settings.bind ("sound-enabled", sound_row, "active", SettingsBindFlags.DEFAULT);
             // Removed bind for avatar-index to combo row, handled manually via click
             
             // Sync Indices to String Keys

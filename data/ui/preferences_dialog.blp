@@ -30,6 +30,13 @@ template $TrucoPreferencesDialog : Adw.PreferencesDialog {
     Adw.PreferencesGroup {
       title: _("Cards");
 
+      Adw.ComboRow deck_style_row {
+        title: _("Deck Style");
+        model: StringList {
+            strings [_("Modern Simple"), _("Modern Faces"), _("Traditional Spanish"), _("French")]
+        };
+      }
+
       Adw.ComboRow card_design_row {
         title: _("Back Design");
         model: StringList {
@@ -65,6 +72,13 @@ template $TrucoPreferencesDialog : Adw.PreferencesDialog {
             icon-name: "go-next-symbolic";
             valign: center;
         }
+      }
+    }
+    Adw.PreferencesGroup {
+      title: _("Audio");
+      
+      Adw.SwitchRow sound_row {
+        title: _("Enable Sound Effects");
       }
     }
   }
