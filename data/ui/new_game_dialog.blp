@@ -14,9 +14,27 @@ template $TrucoNewGameDialog : Adw.AlertDialog {
           _("Truco Paulista"), 
           _("Truco Uruguayo"), 
           _("Truco Venezolano"), 
-          _("Truco Argentino")
+          _("Truco Argentino"),
+          _("Truco de Reis")
         ]
       };
+    }
+
+    Adw.ComboRow team_size_row {
+      title: _("Team Size");
+      model: StringList {
+        strings [
+          _("1v1 (Mano a Mano)"),
+          _("2v2 (Duplas)"),
+          _("3v3 (Trio)")
+        ]
+      };
+      selected: 1; // Default 2v2
+    }
+
+    Adw.SwitchRow hidden_vira_row {
+      title: _("Hidden Vira");
+      subtitle: _("Play without knowing the vira until the end");
     }
   };
   

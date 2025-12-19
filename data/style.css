@@ -16,8 +16,6 @@
 .scoreboard {
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 12px;
-    padding: 12px;
-    margin: 12px;
     color: white;
     font-weight: bold;
 }

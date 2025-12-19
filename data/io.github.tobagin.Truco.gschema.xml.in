@@ -23,6 +23,11 @@
       <default>1</default>
       <summary>Card Back Color Index</summary>
     </key>
+    <key name="deck-style" type="i">
+        <default>0</default>
+        <summary>Deck Style</summary>
+        <description>0=Modern Simple, 1=Modern Faces, 2=Spanish, 3=French</description>
+    </key>
     <key name="avatar" type="s">
       <default>'avatars/avatar1.svg'</default>
       <summary>User Avatar</summary>
@@ -36,6 +41,25 @@
       <default>0</default>
       <summary>Default Game Variant</summary>
       <description>0=Mineiro, 1=Paulista, 2=Uruguayo, 3=Venezolano, 4=Argentino</description>
+    </key>
+    <key name="sound-enabled" type="b">
+      <default>true</default>
+      <summary>Enable Sound Effects</summary>
+    </key>
+    <key name="team-size" type="i">
+      <default>2</default>
+      <summary>Team Size</summary>
+      <description>1=1v1, 2=2v2, 3=3v3</description>
+    </key>
+    <key name="hidden-vira" type="b">
+      <default>false</default>
+      <summary>Hidden Vira</summary>
+      <description>Whether the vira card is hidden.</description>
+    </key>
+    <key name="manilha-fixed" type="b">
+      <default>false</default>
+      <summary>Fixed Manilhas</summary>
+      <description>Whether manilhas are fixed (Truco de Reis).</description>
     </key>
   </schema>
 </schemalist>
