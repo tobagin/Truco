@@ -11,7 +11,7 @@
 - [x] Task: Update AI decision making to use the new `RulesEngine` for card throwing value. (0de4866)
 - [x] Task: Integrate `Envido` calling logic into the AI's turn evaluation. (3428bec)
 - [x] Task: Integrate `Truco/Retruco` response logic into the AI. (0f29be3)
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: AI & Gameplay Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: AI & Gameplay Integration' (Protocol in workflow.md) [checkpoint: 90c679b]
 
 ## Phase 3: UI & Validation
 - [ ] Task: Update the Scoreboard UI to display "Malas" and "Buenas" indicators.
