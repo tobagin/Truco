@@ -1,7 +1,7 @@
 # Track Plan: Truco Argentino Logic & Scoring
 
 ## Phase 1: Core Logic Implementation
-- [ ] Task: Create or Refine `RulesEngine` class to encapsulate Truco Argentino card hierarchy and point values.
+- [x] Task: Create or Refine `RulesEngine` class to encapsulate Truco Argentino card hierarchy and point values. (7a1343a)
 - [ ] Task: Implement `ScoreManager` logic for 30-point game structure (15 Malas / 15 Buenas).
 - [ ] Task: Implement `Envido` calculation logic (20 + sum of same-suit cards).
 - [ ] Task: Implement basic `Flor` detection logic (3 cards of same suit).
