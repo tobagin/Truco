@@ -149,47 +149,9 @@ namespace Truco {
             }
         }
 
-        public int get_envido_score() {
-            int max_score = 0;
-            
-            // Check all pairs for 20 + sum
-            for (int i = 0; i < hand.size; i++) {
-                for (int j = i + 1; j < hand.size; j++) {
-                    if (hand[i].suit == hand[j].suit) {
-                        int val1 = (hand[i].value >= 10) ? 0 : hand[i].value;
-                        int val2 = (hand[j].value >= 10) ? 0 : hand[j].value;
-                        int score = 20 + val1 + val2;
-                        if (score > max_score) max_score = score;
-                    }
-                }
-            }
-            
-            // If < 20, it means no pair was found (or a very weird pair of two 0s? 20+0+0=20).
-            // Actually, if we found a pair, max_score is at least 20.
-            if (max_score < 20) {
-                 for (int i = 0; i < hand.size; i++) {
-                      int val = (hand[i].value >= 10) ? 0 : hand[i].value;
-                      if (val > max_score) max_score = val;
-                 }
-            }
-            
-            return max_score;
-            return max_score;
-        }
-
-        public bool has_flor() {
-            if (hand.size != 3) return false;
-            return (hand[0].suit == hand[1].suit && hand[1].suit == hand[2].suit);
-        }
-
-        public int get_flor_score() {
-            if (!has_flor()) return 0;
-            int sum = 0;
-            foreach (var c in hand) {
-                int val = (c.value >= 10) ? 0 : c.value;
-                sum += val;
-            }
-            return 20 + sum;
+        public int get_winner_team(ArrayList<Card> cards) {
+             // To be implemented or handled in resolve
+             return -1;
         }
     }
 
@@ -653,7 +615,7 @@ namespace Truco {
              
              for (int i = 0; i < players.size; i++) {
                  int pid = (start_idx + i) % players.size;
-                 int s = players[pid].get_envido_score();
+                 int s = rules_engine.get_envido_score(players[pid].hand);
                  summary += "%s: %d  ".printf(players[pid].name, s);
                  
                  if (players[pid].team == 0) {
@@ -696,7 +658,7 @@ namespace Truco {
             if (vaza_wins_team_0 > 0 || vaza_wins_team_1 > 0) return false;
             
             // Check if player actually has Flor
-            if (!players[player_id].has_flor()) return false;
+            if (!rules_engine.has_flor(players[player_id].hand)) return false;
             
             // Disable Envido/Truco pending?
              state_envido_pending = false;
@@ -713,8 +675,8 @@ namespace Truco {
              
              foreach(var p in players) {
                  if (p.team == opponent_team) {
-                     if (p.has_flor()) {
-                         int s = p.get_flor_score();
+                     if (rules_engine.has_flor(p.hand)) {
+                         int s = rules_engine.get_flor_score(p.hand);
                          if (s > s_opp_best) {
                              s_opp_best = s;
                              best_opp_flor = p.id;
@@ -733,8 +695,8 @@ namespace Truco {
                  int s_my_best = -1;
                  foreach(var p in players) {
                      if (p.team == players[player_id].team) {
-                         if (p.has_flor()) {
-                             int s = p.get_flor_score();
+                         if (rules_engine.has_flor(p.hand)) {
+                             int s = rules_engine.get_flor_score(p.hand);
                              if (s > s_my_best) {
                                  s_my_best = s;
                                  best_my_flor = p.id;
@@ -787,7 +749,7 @@ namespace Truco {
             
             if (cpu_pid != -1) {
                   var cpu = players[cpu_pid];
-                  int s = cpu.get_envido_score();
+                  int s = rules_engine.get_envido_score(cpu.hand);
                   
                   bool accept = false;
                   int threshold = 27;
@@ -933,7 +895,7 @@ namespace Truco {
 
              // Flor Check
              if ((vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) && envido_available && !state_envido_pending && !envido_played) {
-                 if (cpu.has_flor()) {
+                 if (rules_engine.has_flor(cpu.hand)) {
                       call_flor(pid);
                       if (game_over || match_over) return;
                  }
@@ -1002,7 +964,7 @@ namespace Truco {
 
             // Envido Calling Logic (only if first trick)
             if (envido_available && !envido_played && !state_envido_pending && vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) {
-                 int s = cpu.get_envido_score();
+                 int s = rules_engine.get_envido_score(cpu.hand);
                  double p_envido = 0.0;
                  if (s >= 30) p_envido = 0.8;
                  else if (s >= 27) p_envido = 0.5;
@@ -1059,12 +1021,12 @@ namespace Truco {
 
             // Check for Flor (if applicable)
             if ((vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) && envido_available && !state_envido_pending && !envido_played) {
-                if (p.has_flor()) return _("Hint: You have a Flor! You should call it.");
+                if (rules_engine.has_flor(p.hand)) return _("Hint: You have a Flor! You should call it.");
             }
 
             // Check for Envido
             if (envido_available && !envido_played && !state_envido_pending && vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) {
-                 int s = p.get_envido_score();
+                 int s = rules_engine.get_envido_score(p.hand);
                  if (s >= 27) return _("Hint: You have a good Envido score (%d). Consider calling it.").printf(s);
             }
 

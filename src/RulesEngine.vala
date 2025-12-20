@@ -103,5 +103,46 @@ namespace Truco {
                 default: return 0;
             }
         }
+
+        public int get_envido_score(ArrayList<Card> hand) {
+            int max_score = 0;
+            
+            // Check all pairs for 20 + sum
+            for (int i = 0; i < hand.size; i++) {
+                for (int j = i + 1; j < hand.size; j++) {
+                    if (hand[i].suit == hand[j].suit) {
+                        int val1 = (hand[i].value >= 10) ? 0 : hand[i].value;
+                        int val2 = (hand[j].value >= 10) ? 0 : hand[j].value;
+                        int score = 20 + val1 + val2;
+                        if (score > max_score) max_score = score;
+                    }
+                }
+            }
+            
+            // If < 20, it means no pair was found
+            if (max_score < 20) {
+                 for (int i = 0; i < hand.size; i++) {
+                      int val = (hand[i].value >= 10) ? 0 : hand[i].value;
+                      if (val > max_score) max_score = val;
+                 }
+            }
+            
+            return max_score;
+        }
+
+        public bool has_flor(ArrayList<Card> hand) {
+            if (hand.size != 3) return false;
+            return (hand[0].suit == hand[1].suit && hand[1].suit == hand[2].suit);
+        }
+
+        public int get_flor_score(ArrayList<Card> hand) {
+            if (!has_flor(hand)) return 0;
+            int sum = 0;
+            foreach (var c in hand) {
+                int val = (c.value >= 10) ? 0 : c.value;
+                sum += val;
+            }
+            return 20 + sum;
+        }
     }
 }
