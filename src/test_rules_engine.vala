@@ -73,5 +73,62 @@ void main (string[] args) {
         assert (engine.get_envido_score (hand4) == 3);
     });
 
+    Test.add_func ("/RulesEngine/Argentino/Flor", () => {
+        var engine = new RulesEngine ();
+        
+        // 3 of same suit
+        var hand1 = new ArrayList<Card> ();
+        hand1.add (new Card (Suit.SWORDS, 7));
+        hand1.add (new Card (Suit.SWORDS, 1));
+        hand1.add (new Card (Suit.SWORDS, 2));
+        
+        assert (engine.has_flor (hand1));
+        // Score: 20 + 7 + 1 + 2 = 30
+        assert (engine.get_flor_score (hand1) == 30);
+        
+        // 3 figures of same suit
+        var hand2 = new ArrayList<Card> ();
+        hand2.add (new Card (Suit.CUPS, 10));
+        hand2.add (new Card (Suit.CUPS, 11));
+        hand2.add (new Card (Suit.CUPS, 12));
+        
+        assert (engine.has_flor (hand2));
+        // Score: 20 + 0 + 0 + 0 = 20
+        assert (engine.get_flor_score (hand2) == 20);
+        
+        // Not a flor
+        var hand3 = new ArrayList<Card> ();
+        hand3.add (new Card (Suit.SWORDS, 1));
+        hand3.add (new Card (Suit.SWORDS, 2));
+        hand3.add (new Card (Suit.CLUBS, 3));
+        
+        assert (!engine.has_flor (hand3));
+        assert (engine.get_flor_score (hand3) == 0);
+    });
+
+    Test.add_func ("/RulesEngine/Argentino/FullHierarchy", () => {
+        var engine = new RulesEngine ();
+        
+        Suit s = Suit.SWORDS;
+        
+        // 1S (19) > 1C (18) > 7S (17) > 7G (16)
+        assert (engine.get_power (new Card(Suit.SWORDS, 1), "argentino") == 19);
+        assert (engine.get_power (new Card(Suit.CLUBS, 1), "argentino") == 18);
+        assert (engine.get_power (new Card(Suit.SWORDS, 7), "argentino") == 17);
+        assert (engine.get_power (new Card(Suit.GOLDS, 7), "argentino") == 16);
+        
+        // > 3 (10) > 2 (9) > 1FG (8) > 12 (7) > 11 (6) > 10 (5) > 7CC (4) > 6 (3) > 5 (2) > 4 (1)
+        assert (engine.get_power (new Card(s, 3), "argentino") == 10);
+        assert (engine.get_power (new Card(s, 2), "argentino") == 9);
+        assert (engine.get_power (new Card(Suit.CUPS, 1), "argentino") == 8);
+        assert (engine.get_power (new Card(s, 12), "argentino") == 7);
+        assert (engine.get_power (new Card(s, 11), "argentino") == 6);
+        assert (engine.get_power (new Card(s, 10), "argentino") == 5);
+        assert (engine.get_power (new Card(Suit.CUPS, 7), "argentino") == 4);
+        assert (engine.get_power (new Card(s, 6), "argentino") == 3);
+        assert (engine.get_power (new Card(s, 5), "argentino") == 2);
+        assert (engine.get_power (new Card(s, 4), "argentino") == 1);
+    });
+
     Test.run ();
 }
