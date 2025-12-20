@@ -4,7 +4,7 @@
 - [x] Task: Create or Refine `RulesEngine` class to encapsulate Truco Argentino card hierarchy and point values. (7a1343a)
 - [x] Task: Implement `ScoreManager` logic for 30-point game structure (15 Malas / 15 Buenas). (52b97e0)
 - [x] Task: Implement `Envido` calculation logic (20 + sum of same-suit cards). (03c346d)
-- [ ] Task: Implement basic `Flor` detection logic (3 cards of same suit).
+- [x] Task: Implement basic `Flor` detection logic (3 cards of same suit). (03c346d)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Core Logic Implementation' (Protocol in workflow.md)
 
 ## Phase 2: AI & Gameplay Integration
