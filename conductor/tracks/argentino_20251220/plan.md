@@ -8,7 +8,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Core Logic Implementation' (Protocol in workflow.md) [checkpoint: c76587c]
 
 ## Phase 2: AI & Gameplay Integration
-- [ ] Task: Update AI decision making to use the new `RulesEngine` for card throwing value.
+- [x] Task: Update AI decision making to use the new `RulesEngine` for card throwing value. (0de4866)
 - [ ] Task: Integrate `Envido` calling logic into the AI's turn evaluation.
 - [ ] Task: Integrate `Truco/Retruco` response logic into the AI.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: AI & Gameplay Integration' (Protocol in workflow.md)
