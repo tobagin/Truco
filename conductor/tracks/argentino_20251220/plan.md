@@ -9,7 +9,7 @@
 
 ## Phase 2: AI & Gameplay Integration
 - [x] Task: Update AI decision making to use the new `RulesEngine` for card throwing value. (0de4866)
-- [ ] Task: Integrate `Envido` calling logic into the AI's turn evaluation.
+- [x] Task: Integrate `Envido` calling logic into the AI's turn evaluation. (3428bec)
 - [ ] Task: Integrate `Truco/Retruco` response logic into the AI.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: AI & Gameplay Integration' (Protocol in workflow.md)
 
