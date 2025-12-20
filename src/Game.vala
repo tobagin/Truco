@@ -219,7 +219,7 @@ namespace Truco {
         // Custom House Rules
         public bool manilha_fixed = false; // Truco de Reis
         public bool hidden_vira = false;
-        private RulesEngine rules_engine;
+        public RulesEngine rules_engine;
 
         public GameState(string mode, int team_size = 2, bool fixed_manilha = false, bool hide_vira = false) {
             this.game_mode = mode;

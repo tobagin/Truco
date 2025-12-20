@@ -627,7 +627,7 @@ namespace Truco {
                 else if (game.stake == 9) lbl = _("TWELVE!");
                 
                 // Flor Logic
-                if (game.envido_available && game.players[0].has_flor() && 
+                if (game.envido_available && game.rules_engine.has_flor(game.players[0].hand) && 
                     ((!game.envido_played && !game.state_envido_pending) || game.state_envido_pending)) {
                      // Can call if 1st trick (envido_available), has flor, and envido not finished (or pending)
                      btn_call_flor.visible = true;
