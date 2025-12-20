@@ -333,6 +333,12 @@ template $TrucoWindow : Adw.ApplicationWindow {
                   visible: false;
                 }
 
+                Button btn_hint {
+                  label: _("Hint");
+                  tooltip-text: _("Get a move suggestion");
+                  icon-name: "dialog-question-symbolic";
+                }
+
                 Button btn_truco {
                   label: "TRUCO!";
                   
@@ -460,6 +466,49 @@ template $TrucoWindow : Adw.ApplicationWindow {
                icon-name: "image-missing";
            }
         }
+
+        [overlay]
+        Box tutorial_dimmer {
+          styles ["tutorial-dim"]
+          visible: false;
+          hexpand: true;
+          vexpand: true;
+        }
+
+        [overlay]
+        Box tutorial_overlay {
+          halign: center;
+          valign: center;
+          orientation: vertical;
+          spacing: 12;
+          styles ["tutorial-card"]
+          visible: false;
+          hexpand: false;
+          vexpand: false;
+          width-request: 350;
+          margin-top: 20;
+
+          Label tutorial_title {
+            styles ["title-3"]
+          }
+          Label tutorial_text {
+            wrap: true;
+            justify: center;
+          }
+          Box {
+            orientation: horizontal;
+            halign: center;
+            spacing: 6;
+            margin-top: 6;
+            Button btn_tutorial_next {
+              label: _("Next");
+              styles ["suggested-action"]
+            }
+            Button btn_tutorial_close {
+              label: _("Close");
+            }
+          }
+        }
       };
     }
   };
@@ -468,6 +517,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
 menu main_menu {
   section {
     item (_("New Game"), "win.new-game")
+    item (_("Tutorial"), "win.tutorial")
     item (_("Play Online"), "app.play-online")
     item (_("Leaderboard"), "app.leaderboard")
   }

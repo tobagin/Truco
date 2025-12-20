@@ -128,3 +128,37 @@ button.player-card:active {
     border-radius: 6px;
     padding: 10px 20px;
 }
+
+/* Tutorial Styles */
+.tutorial-dim {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.tutorial-card {
+    background-color: @window_bg_color;
+    border: 1px solid @borders;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes pulse-highlight {
+    0% {
+        outline-color: rgba(53, 132, 228, 0.4);
+    }
+
+    50% {
+        outline-color: rgba(53, 132, 228, 1.0);
+    }
+
+    100% {
+        outline-color: rgba(53, 132, 228, 0.4);
+    }
+}
+
+.tutorial-highlight {
+    outline: 4px solid #3584e4;
+    outline-offset: 4px;
+    animation: pulse-highlight 1.5s infinite;
+    z-index: 1000;
+}

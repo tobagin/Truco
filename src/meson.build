@@ -12,6 +12,7 @@ sources = [
     'Window.vala',
     'Game.vala',
     'SoundManager.vala',
+    'TutorialManager.vala',
     'dialogs/NewGameDialog.vala',
     'dialogs/MatchEndDialog.vala',
     'dialogs/PreferencesDialog.vala',

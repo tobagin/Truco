@@ -986,7 +986,17 @@ namespace Truco {
                           break;
                   }
                   
-                  if (strength >= high_threshold) accept = true; 
+                  if (strength >= high_threshold) {
+                      // Chance to re-raise instead of just accepting
+                      double p_raise = 0.3;
+                      if (cpu.personality == Personality.AGGRESSIVE) p_raise = 0.5;
+                      if (cpu.personality == Personality.GAMBLER) p_raise = 0.6;
+                      
+                      if (Random.double_range(0.0, 1.0) < p_raise) {
+                          if (raise_stake(cpu_pid)) return; // Re-raised successfully
+                      }
+                      accept = true;
+                  } 
                   else if (strength >= med_threshold && stake < 6) accept = true;
                   else if (strength >= 5 && stake == 1) accept = true;
                   else if (Random.double_range(0.0, 1.0) < bluff_accept) accept = true;
@@ -1115,13 +1125,47 @@ namespace Truco {
             
             // Use MCTS for strategic personalities if hand size > 1
             if (cpu.hand.size > 1 && (cpu.personality == Personality.BALANCED || cpu.personality == Personality.CONSERVATIVE)) {
-                return yield get_mcts_best_move_async(pid);
+                return get_mcts_best_move(pid);
             }
 
             return get_best_card_index(pid);
         }
-        
-        private int get_best_card_index(int pid) {
+
+        /**
+         * Returns a localized hint for the player.
+         */
+        public string? get_hint(int pid) {
+            if (game_over || match_over) return null;
+            if (current_player_index != pid) return _("Wait for your turn.");
+
+            var p = players[pid];
+            if (p.hand.size == 0) return null;
+
+            // Check for Flor (if applicable)
+            if ((vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) && envido_available && !state_envido_pending && !envido_played) {
+                if (p.has_flor()) return _("Hint: You have a Flor! You should call it.");
+            }
+
+            // Check for Envido
+            if (envido_available && !envido_played && !state_envido_pending && vaza_wins_team_0 == 0 && vaza_wins_team_1 == 0) {
+                 int s = p.get_envido_score();
+                 if (s >= 27) return _("Hint: You have a good Envido score (%d). Consider calling it.").printf(s);
+            }
+
+            // Check for Truco (simplified)
+            int hand_strength = 0;
+            foreach (var c in p.hand) hand_strength += c.power;
+            if (hand_strength > 24 && proposed_stake == null) {
+                return _("Hint: You have strong cards. Consider calling Truco!");
+            }
+
+            // Suggest best card
+            int best_idx = get_best_card_index(pid);
+            var best_card = p.hand[best_idx];
+            return _("Hint: I suggest playing the %s.").printf(best_card.to_string());
+        }
+
+        public int get_best_card_index(int pid) {
             var hand = players[pid].hand;
             var cpu = players[pid];
             
@@ -1404,7 +1448,7 @@ namespace Truco {
             // For now, we use the history log.
         }
 
-        private async int get_mcts_best_move_async(int pid) {
+        private int get_mcts_best_move(int pid) {
             var cpu = players[pid];
             if (cpu.hand.size <= 1) return 0;
 
@@ -1415,30 +1459,16 @@ namespace Truco {
 
             int num_sims = 100; // Fairly low for performance
             
-            // To run in background, we need to capture state and avoid sharing GameState
-            // but for simplicity in Vala/GLib, we'll try Task.run and be careful.
-            SourceFunc callback = get_mcts_best_move_async.callback;
-            
-            new Thread<void*>("mcts-sim", () => {
-                // Simplified Determinization:
-                // For each card, we simulate random games.
-                foreach (var node in nodes) {
-                    for (int s = 0; s < num_sims; s++) {
-                        if (simulate_game(pid, node.card_index)) {
-                            node.wins++;
-                        }
-                        node.visits++;
+            // Simplified Determinization:
+            // For each card, we simulate random games.
+            foreach (var node in nodes) {
+                for (int s = 0; s < num_sims; s++) {
+                    if (simulate_game(pid, node.card_index)) {
+                        node.wins++;
                     }
+                    node.visits++;
                 }
-                
-                Idle.add(() => {
-                    callback();
-                    return false;
-                });
-                return null;
-            });
-
-            yield;
+            }
 
             int best_idx = 0;
             double best_score = -1.0;

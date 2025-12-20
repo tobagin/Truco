@@ -264,7 +264,24 @@ namespace Truco {
         [GtkChild]
         private unowned Button btn_call_flor;
 
+        [GtkChild]
+        private unowned Button btn_hint;
+
+        [GtkChild]
+        private unowned Box tutorial_dimmer;
+        [GtkChild]
+        private unowned Box tutorial_overlay;
+        [GtkChild]
+        private unowned Label tutorial_title;
+        [GtkChild]
+        private unowned Label tutorial_text;
+        [GtkChild]
+        private unowned Button btn_tutorial_next;
+        [GtkChild]
+        private unowned Button btn_tutorial_close;
+
         private GameState game;
+        private TutorialManager tutorial_manager;
         
         private string current_felt_class = "felt-green";
         private string current_card_back = "cards/backs/player_card_back_design_1_blue.svg";
@@ -374,6 +391,24 @@ namespace Truco {
                 // Check CPU turn (resolve flor might trigger game end or just points)
                 check_cpu_turn();
             });
+
+            btn_hint.clicked.connect(() => {
+                on_hint_clicked();
+            });
+
+            var tutorial_action = new SimpleAction ("tutorial", null);
+            tutorial_action.activate.connect (on_tutorial_activated);
+            add_action (tutorial_action);
+
+            tutorial_manager = new TutorialManager(this);
+
+            btn_tutorial_next.clicked.connect(() => {
+                tutorial_manager.next();
+            });
+
+            btn_tutorial_close.clicked.connect(() => {
+                tutorial_manager.finish();
+            });
         }
         
         private void load_settings(GLib.Settings settings) {
@@ -450,93 +485,72 @@ namespace Truco {
         private void check_cpu_turn() {
             if (game.game_over || game.match_over) return;
             
-            // Critical Fix: Mão de 11 Deadlock
-            // If Mão de 11 is pending, we MUST check if it's CPU's responsibility to decide,
-            // regardless of whose "turn" it is to play the card.
-            if (game.state_mao_11_pending) {
-                // If it's Opponent's Mão de 11 (Team 1) or Partner's (Team 0, handled by User dialog usually?)
-                // Actually, if it's Team 0, the UI dialog is shown via signal.
-                // If it's Team 1, we need to trigger CPU logic.
+            // 1. Handle Pending Challenges (Truco/Envido)
+            if (game.proposed_stake != null) {
+                int responding_team = (game.challenger_team == 0) ? 1 : 0;
                 
+                if (responding_team == 0) {
+                    // Human team needs to respond
+                    string challenger_name = (game.challenger_team == 1) ? _("Opponent") : _("Partner"); 
+                    show_raise_dialog(challenger_name, game.proposed_stake);
+                    return; // Stop until user responds
+                } else {
+                    // CPU team needs to respond
+                    GLib.Timeout.add(1000, () => {
+                        if (game.proposed_stake != null && (game.challenger_team == 0)) {
+                            game.cpu_respond_truco();
+                            update_ui();
+                            check_cpu_turn();
+                        }
+                        return false;
+                    });
+                    return;
+                }
+            }
+
+            // 2. Handle Mão de 11
+            if (game.state_mao_11_pending) {
                 int limit = game.get_max_points();
                 int team11_cpu = -1;
                 if (game.score_team_1 == limit - 1) team11_cpu = 1;
                 else if (game.score_team_0 == limit - 1 && game.players[2].is_cpu && game.players[0].is_cpu) {
-                    // Start of game, if both are CPU? Unlikely setup for now but possible.
                     team11_cpu = 0; 
                 }
                 
                 if (team11_cpu != -1) {
                     GLib.Timeout.add(1000, () => {
                          if (!game.state_mao_11_pending) return false;
-                         game.cpu_respond_truco(); // This handles Mão de 11 decision logic
+                         game.cpu_respond_truco(); 
                          update_ui();
+                         check_cpu_turn();
                          return false;
                     });
-                    return; // Don't process normal turn logic yet
+                    return;
                 }
+                // If team _cpu == -1, it means human team 0 at limit-1, signal handler handles it
+                return;
             }
-            
+
+            // 3. Normal Turn Logic
             int pid = game.current_player_index;
             if (game.players[pid].is_cpu) {
                  GLib.Timeout.add(1000, () => {
-                     if (game.game_over || game.match_over) return false;
+                     if (game.game_over || game.match_over || game.proposed_stake != null || game.state_mao_11_pending) return false;
                      
-                     // If there is a pending challenge from a CPU (e.g. Partner raised), we need response
-                     if (game.proposed_stake != null && game.challenger_team != null) {
-                        // If challenger is Team 0 (Partner/User) and responding team is 1 (Cpu 1/3)
-                        if (game.challenger_team == 0) {
-                            game.cpu_respond_truco();
-                            update_ui();
-                            // Logic continues to Next Turn? cpu_respond_truco acts instantly.
-                            // If they accept, the game state changes (stake updated).
-                            // If they refuse, round ends.
-                            // We should re-check turn or return?
-                            // cpu_respond_truco calls start_round if Fold.
-                            
-                            // If accepted, the turn remains with the same player usually?
-                            // Or does the turn pass?
-                            // Standard Truco: Raise interrupts. If accepted, game continues with current player.
-                            if (game.proposed_stake == null && !game.game_over) {
-                                // Accepted or Refused (but refused starts new round).
-                                // If accepted, we continue the logic for CURRENT CPU to play a card?
-                                // Yes, if Partner raised, they still need to play their card.
-                                // BUT: cpu_turn includes logic "If challenged...".
-                                // We need to be careful not to infinite loop.
-                                check_cpu_turn(); 
-                            }
-                            return false; 
-                        }
-                     }
-
                      game.cpu_turn();
-                     
-                     // If CPU raised (Partner), we need to trigger response logic for Opponents NEXT.
-                     // cpu_turn() returns after raising.
-                     if (game.proposed_stake != null && game.challenger_team == 0) {
-                         // Partner raised! Schedule response validation next loop
-                         update_ui();
-                         
-                         // Re-trigger check to hit the block above?
-                         check_cpu_turn();
-                         return false;
-                     }
-
                      update_ui();
                      
-                     // Recursively check next if it's still CPU turn (e.g. turn advanced)
-                     int next_pid = game.current_player_index;
-                     if (game.players[next_pid].is_cpu && !game.game_over) {
+                     if (game.proposed_stake == null && !game.game_over) {
+                         int next_pid = game.current_player_index;
+                         if (game.players[next_pid].is_cpu) {
+                             check_cpu_turn();
+                         }
+                     } else {
+                         // CPU might have raised, or game ended
                          check_cpu_turn();
                      }
                      return false;
                  });
-            } else {
-                // If it's User Turn, but there is a challenge from CPU:
-                if (game.proposed_stake != null && game.players[pid].team != game.challenger_team) {
-                    string challenger_name = (game.challenger_team == 1) ? _("Opponent") : _("Partner"); 
-                    show_raise_dialog(challenger_name, game.proposed_stake);
-                }
             }
         }
         
@@ -953,6 +967,59 @@ namespace Truco {
             });
             
             dialog.present(this);
+        }
+
+        private void on_hint_clicked() {
+            string? hint = game.get_hint(0);
+            if (hint != null) {
+                status_label.label = hint;
+            }
+        }
+
+        private void on_tutorial_activated(SimpleAction action, Variant? parameter) {
+            tutorial_manager.start();
+        }
+
+        public void show_tutorial_step(string title, string instruction, string? highlight_id) {
+            tutorial_title.label = title;
+            tutorial_text.label = instruction;
+            
+            tutorial_dimmer.visible = true;
+            tutorial_overlay.visible = true;
+
+            clear_tutorial_highlights();
+
+            if (highlight_id != null) {
+                var widget = get_widget_by_id(highlight_id);
+                if (widget != null) {
+                    widget.add_css_class("tutorial-highlight");
+                }
+            }
+        }
+
+        private Gtk.Widget? get_widget_by_id(string id) {
+            switch (id) {
+                case "avatar_user": return avatar_user;
+                case "vira_box": return vira_box;
+                case "score_box": return score_box;
+                case "btn_truco": return btn_truco;
+                case "btn_hint": return btn_hint;
+                default: return null;
+            }
+        }
+
+        private void clear_tutorial_highlights() {
+            avatar_user.remove_css_class("tutorial-highlight");
+            vira_box.remove_css_class("tutorial-highlight");
+            score_box.remove_css_class("tutorial-highlight");
+            btn_truco.remove_css_class("tutorial-highlight");
+            btn_hint.remove_css_class("tutorial-highlight");
+        }
+
+        public void hide_tutorial() {
+            tutorial_dimmer.visible = false;
+            tutorial_overlay.visible = false;
+            clear_tutorial_highlights();
         }
     }
 }
