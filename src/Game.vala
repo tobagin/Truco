@@ -206,8 +206,7 @@ namespace Truco {
     public class GameState : Object {
         public ArrayList<Player> players;
         public int current_player_index;
-        public int score_team_0;
-        public int score_team_1;
+        public ScoreManager score_manager;
         public int matches_won_team_0;
         public int matches_won_team_1;
         public bool match_over = false;
@@ -265,6 +264,7 @@ namespace Truco {
             this.manilha_fixed = fixed_manilha;
             this.hidden_vira = hide_vira;
             this.rules_engine = new RulesEngine();
+            this.score_manager = new ScoreManager(get_max_points());
             this.players = new ArrayList<Player>();
             this.history = new ArrayList<HistoryItem?>();
             this.table_cards = new ArrayList<Card?>();
@@ -304,8 +304,7 @@ namespace Truco {
         }
 
         public void reset_game_score() {
-            score_team_0 = 0;
-            score_team_1 = 0;
+            score_manager.reset();
             history.add(HistoryItem(-1, _("New Game Started. Score 0-0.")));
             game_over = false;
             round_count = 0; // Reset round count for a new game
@@ -353,18 +352,18 @@ namespace Truco {
             
             // Mão de Ferro: Both 11. Usually played "in the dark" (blind).
             int limit = get_max_points();
-            if (score_team_0 == limit - 1 && score_team_1 == limit - 1) {
+            if (score_manager.score_team_0 == limit - 1 && score_manager.score_team_1 == limit - 1) {
                  history.add(HistoryItem(-1, _("Mão de Ferro! Players plays blind!")));
                  // Logic to hide cards? For now just allow play, but no Truco.
                  // We don't need pending state for Ferro, just Truco disabled (handled in raise_stake)
             } 
-            else if (score_team_0 == limit - 1 || score_team_1 == limit - 1) {
+            else if (score_manager.score_team_0 == limit - 1 || score_manager.score_team_1 == limit - 1) {
                 // One team is at limit - 1.
                 // Only standard Mão de 11 for Brazilian variants
                 if (game_mode == "paulista" || game_mode == "mineiro") {
                     state_mao_11_pending = true;
                     
-                    int team_critical = (score_team_0 == limit - 1) ? 0 : 1;
+                    int team_critical = (score_manager.score_team_0 == limit - 1) ? 0 : 1;
                     string t_name = (team_critical == 0) ? _("YOUR TEAM") : _("OPPONENT TEAM");
                     history.add(HistoryItem(-1, _("Mão de 11 for %s! Deciding...").printf(t_name)));
                     
@@ -473,7 +472,7 @@ namespace Truco {
                 if (stake >= 5 && proposed_stake == null) return false;
             }
 
-            if (score_team_0 == get_max_points() - 1 || score_team_1 == get_max_points() - 1) return false; // Mão de 11/Ferro forbidden (generic -1)
+            if (score_manager.score_team_0 == get_max_points() - 1 || score_manager.score_team_1 == get_max_points() - 1) return false; // Mão de 11/Ferro forbidden (generic -1)
             
             // Calculate next stake
             int next = 0;
@@ -546,8 +545,8 @@ namespace Truco {
                 } else {
                     history.add(HistoryItem(player_id, _("Refused Mão de 11!")));
                     // Opponent gets 1 point
-                    if (players[player_id].team == 0) score_team_1 += 1;
-                    else score_team_0 += 1;
+                    if (players[player_id].team == 0) score_manager.add_points(1, 1);
+                    else score_manager.add_points(0, 1);
                     
                     check_game_end_conditions();
                     if (!game_over && !match_over) start_round();
@@ -572,8 +571,8 @@ namespace Truco {
                 string win_msg = (winner == 0) ? _("Your team won the round!") : _("Opponent team won the round!");
                 history.add(HistoryItem(-1, win_msg));
                  // Points awarded is PREVIOUS stake
-                if (winner == 0) score_team_0 += stake;
-                else score_team_1 += stake;
+                if (winner == 0) score_manager.add_points(0, stake);
+                else score_manager.add_points(1, stake);
                 
                 check_game_end_conditions(); // Check if this wins the game
                 if (!game_over && !match_over) start_round(); // New round
@@ -639,8 +638,8 @@ namespace Truco {
                  SoundManager.get_default().play("run");
                  int winner_team = (envido_challenger_team == 0) ? 0 : 1; // Original caller's team
                  // Opponent refused, so challenger wins 1 point (or more if raised, but keeping simple)
-                 if (winner_team == 0) score_team_0 += 1;
-                 else score_team_1 += 1;
+                 if (winner_team == 0) score_manager.add_points(0, 1);
+                 else score_manager.add_points(1, 1);
                  
                  check_game_end_conditions();
              }
@@ -685,8 +684,8 @@ namespace Truco {
              
              history.add(HistoryItem(-1, (winner_team == 0) ? _("Your team wins Envido!") : _("Opponent team wins Envido!")));
              
-             if (winner_team == 0) score_team_0 += envido_stake;
-             else score_team_1 += envido_stake;
+             if (winner_team == 0) score_manager.add_points(0, envido_stake);
+             else score_manager.add_points(1, envido_stake);
              
              check_game_end_conditions();
         }
@@ -757,14 +756,14 @@ namespace Truco {
                  history.add(HistoryItem(-1, _("Flor Showdown: Us %d vs Them %d").printf(s_my_best, s_opp_best)));
                  history.add(HistoryItem(-1, (winner_team == 0) ? _("Your team wins Flor!") : _("Opponent team wins Flor!")));
                  
-                 if (winner_team == 0) score_team_0 += 6;
-                 else score_team_1 += 6;
+                 if (winner_team == 0) score_manager.add_points(0, 6);
+                 else score_manager.add_points(1, 6);
                  
              } else {
                  // No Flor for opponents
                  history.add(HistoryItem(-1, _("Opponents have no Flor. 3 points awarded.")));
-                 if (players[player_id].team == 0) score_team_0 += 3;
-                 else score_team_1 += 3;
+                 if (players[player_id].team == 0) score_manager.add_points(0, 3);
+                 else score_manager.add_points(1, 3);
              }
              
              check_game_end_conditions();
@@ -828,7 +827,7 @@ namespace Truco {
             // Check Mão de 11 first
             if (state_mao_11_pending) {
                  // Should only be called if it's CPU's team that is at limit-1
-                 int team_at_limit = (score_team_1 == limit - 1) ? 1 : 0;
+                 int team_at_limit = (score_manager.score_team_1 == limit - 1) ? 1 : 0;
                  if (team_at_limit == 1) { // It is CPU team
                       // Decide to play or run
                       int combined_strength = 0;
@@ -954,7 +953,7 @@ namespace Truco {
 
             // Truco Calling Logic
              int limit = get_max_points();
-             bool can_call_truco = (score_team_0 != limit - 1 && score_team_1 != limit - 1 && proposed_stake == null);
+             bool can_call_truco = (score_manager.score_team_0 != limit - 1 && score_manager.score_team_1 != limit - 1 && proposed_stake == null);
              
              // Check max stake based on variant to ensure we don't try to call past max
              if (game_mode == "paulista" || game_mode == "mineiro") { if (stake >= 12) can_call_truco = false; }
@@ -1274,10 +1273,10 @@ namespace Truco {
             if (vaza_wins_team_0 >= 2 || vaza_wins_team_1 >= 2) {
                 total_rounds_played++;
                 if (vaza_wins_team_0 >= 2) {
-                    score_team_0 += stake;
+                    score_manager.add_points(0, stake);
                     rounds_won_team_0++;
                 } else {
-                    score_team_1 += stake;
+                    score_manager.add_points(1, stake);
                     rounds_won_team_1++;
                 }
                 
@@ -1286,13 +1285,8 @@ namespace Truco {
         }
         
         private void check_game_end_conditions() {
-             int limit = get_max_points();
-             if (score_team_0 >= limit || score_team_1 >= limit) {
-                 // Cap score for display beauty
-                 if (score_team_0 > limit) score_team_0 = limit;
-                 if (score_team_1 > limit) score_team_1 = limit;
-                 
-                 int winner_team = (score_team_0 >= limit) ? 0 : 1;
+             if (score_manager.is_game_over()) {
+                 int winner_team = score_manager.get_winner();
                  
                  if (winner_team == 0) matches_won_team_0++;
                  else matches_won_team_1++;
@@ -1302,11 +1296,6 @@ namespace Truco {
                  game_ended(winner_team); // Signal
                  
                  // Check Match Win
-                 // For now, let's treat 1 game as match for simplicity or keep logic
-                 // If GAMES_TO_WIN_MATCH is used, we check that.
-                 // Assuming user wants simple "Match Over" when someone reaches 12 for this session
-                 
-                 // If we strictly follow "Points do Jogo" as match score:
                   if (matches_won_team_0 >= GAMES_TO_WIN_MATCH || matches_won_team_1 >= GAMES_TO_WIN_MATCH) {
                       history.add(HistoryItem(-1, (winner_team == 0) ? _("Team US wins the Match!") : _("Team THEM wins the Match!")));
                       match_over = true;
@@ -1315,8 +1304,6 @@ namespace Truco {
                   } else {
                       // Prepare for next game in match
                       // User Request: Winner starts the new game.
-                      // If T0 won, we want P0 to start. So dealer should be 2 (next->3->0).
-                      // If T1 won, we want P1 to start. So dealer should be 3 (next->0->1).
                       if (winner_team == 0) dealer_index = players.size - 2;
                       else dealer_index = players.size - 1;
                       

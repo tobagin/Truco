@@ -512,8 +512,8 @@ namespace Truco {
             if (game.state_mao_11_pending) {
                 int limit = game.get_max_points();
                 int team11_cpu = -1;
-                if (game.score_team_1 == limit - 1) team11_cpu = 1;
-                else if (game.score_team_0 == limit - 1 && game.players[2].is_cpu && game.players[0].is_cpu) {
+                if (game.score_manager.score_team_1 == limit - 1) team11_cpu = 1;
+                else if (game.score_manager.score_team_0 == limit - 1 && game.players[2].is_cpu && game.players[0].is_cpu) {
                     team11_cpu = 0; 
                 }
                 
@@ -565,9 +565,8 @@ namespace Truco {
             score_box.visible = true; // Ensure it's visible
             match_score_us_label.label = game.matches_won_team_0.to_string();
             match_score_them_label.label = game.matches_won_team_1.to_string();
-            game_score_us_label.label = game.score_team_0.to_string();
-            game_score_us_label.label = game.score_team_0.to_string();
-            game_score_them_label.label = game.score_team_1.to_string();
+            game_score_us_label.label = game.score_manager.get_score_label(game.score_manager.score_team_0);
+            game_score_them_label.label = game.score_manager.get_score_label(game.score_manager.score_team_1);
             
             // turn_indicator_label update moved to status logic block below
 
@@ -639,7 +638,7 @@ namespace Truco {
                 int limit = game.get_max_points();
                 // "Mão de 11" specific UI and restrictions (Brazil only)
                 if ((game.game_mode == "paulista" || game.game_mode == "mineiro") && 
-                    (game.score_team_0 == limit - 1 || game.score_team_1 == limit - 1)) {
+                    (game.score_manager.score_team_0 == limit - 1 || game.score_manager.score_team_1 == limit - 1)) {
                     btn_truco.sensitive = false;
                     turn_indicator_label.label = _("Turn: %s | %s").printf(game.players[game.current_player_index].name, _("HAND OF 11"));
                  } else if (game.stake >= 12) {
@@ -857,7 +856,7 @@ namespace Truco {
             // In Brazil: cannot Truco at 11.
             // In others: depends.
             // For now, allow raising unless one team is at Limit-1 (Mão de 11 equiv).
-            bool mao_de_11 = (game.score_team_0 >= limit - 1 || game.score_team_1 >= limit - 1);
+            bool mao_de_11 = (game.score_manager.score_team_0 >= limit - 1 || game.score_manager.score_team_1 >= limit - 1);
             if (game.game_mode != "paulista" && game.game_mode != "mineiro") mao_de_11 = false; // Only strict for Brazil?
             // Actually, verify rules later. For now, assume if 11x11 in Brazil you can't.
             
@@ -905,7 +904,7 @@ namespace Truco {
 
             var dialog = new MatchEndDialog(
                 winning_team,
-                game.score_team_0, game.score_team_1,
+                game.score_manager.score_team_0, game.score_manager.score_team_1,
                 game.matches_won_team_0, game.matches_won_team_1,
                 game.rounds_won_team_0, game.total_rounds_played
             );

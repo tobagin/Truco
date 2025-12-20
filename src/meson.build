@@ -12,6 +12,7 @@ sources = [
     'Window.vala',
     'Game.vala',
     'RulesEngine.vala',
+    'ScoreManager.vala',
     'SoundManager.vala',
     'TutorialManager.vala',
     'dialogs/NewGameDialog.vala',
@@ -36,6 +37,7 @@ executable('truco', sources,
 test_sources = [
     'test_rules_engine.vala',
     'RulesEngine.vala',
+    'ScoreManager.vala',
     'Game.vala',
     'SoundManager.vala',
     config_vala,
@@ -55,3 +57,55 @@ rules_test = executable('test_rules', test_sources,
 )
 
 test('Rules Engine Tests', rules_test)
+
+
+
+score_test_sources = [
+
+    'test_score_manager.vala',
+
+    'ScoreManager.vala',
+
+    config_vala,
+
+]
+
+
+
+score_test = executable('test_score', score_test_sources,
+
+
+
+    dependencies: [
+
+
+
+        dependency('glib-2.0'),
+
+
+
+        dependency('gobject-2.0'),
+
+
+
+        dependency('gee-0.8'),
+
+
+
+    ],
+
+
+
+    install: false,
+
+
+
+)
+
+
+
+
+
+
+
+test('Score Manager Tests', score_test)
