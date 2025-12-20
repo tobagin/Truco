@@ -1,5 +1,8 @@
 src/Window.vala
 src/Application.vala
+src/Game.vala
+src/RulesEngine.vala
+src/ScoreManager.vala
 src/dialogs/NewGameDialog.vala
 src/dialogs/MatchEndDialog.vala
 data/ui/window.blp
