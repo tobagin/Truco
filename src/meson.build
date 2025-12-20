@@ -109,3 +109,27 @@ score_test = executable('test_score', score_test_sources,
 
 
 test('Score Manager Tests', score_test)
+
+ai_test_sources = [
+    'test_ai_integration.vala',
+    'RulesEngine.vala',
+    'ScoreManager.vala',
+    'Game.vala',
+    'SoundManager.vala',
+    config_vala,
+    gresource_bundle,
+]
+
+ai_test = executable('test_ai', ai_test_sources,
+    dependencies: [
+        dependency('glib-2.0'),
+        dependency('gobject-2.0'),
+        dependency('gee-0.8'),
+        dependency('gstreamer-1.0'),
+        dependency('gtk4'),
+        dependency('libadwaita-1'),
+    ],
+    install: false,
+)
+
+test('AI Integration Tests', ai_test)
