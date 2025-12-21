@@ -895,9 +895,9 @@ namespace Truco {
             string raise_lbl = "";
             
             if (game.game_mode == "paulista" || game.game_mode == "mineiro") {
-                if (current_prop == 3) { next_val = 6; raise_lbl = _("Raise to 6"); }
-                else if (current_prop == 6) { next_val = 9; raise_lbl = _("Raise to 9"); }
-                else if (current_prop == 9) { next_val = 12; raise_lbl = _("Raise to 12"); }
+                if (current_prop == 3) { next_val = 6; raise_lbl = _("Six!"); }
+                else if (current_prop == 6) { next_val = 9; raise_lbl = _("Nine!"); }
+                else if (current_prop == 9) { next_val = 12; raise_lbl = _("Twelve!"); }
             } else if (game.game_mode == "argentino" || game.game_mode == "uruguayo") {
                 if (current_prop == 2) { next_val = 3; raise_lbl = _("Retruco!"); }
                 else if (current_prop == 3) { next_val = 4; raise_lbl = _("Vale Cuatro!"); }
