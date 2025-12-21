@@ -1,8 +1,8 @@
 # Track Plan: UI Consistency for Game Dialogs
 
-## Phase 1: Foundation & Base Dialog Refactoring
+## Phase 1: Foundation & Base Dialog Refactoring [checkpoint: 77c3c95]
 - [x] Task: Create a base utility or extension method for `Adw.AlertDialog` to enforce uniform styling (Suggested for Accept, Destructive for Refuse). (8af4922)
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Base Dialog Refactoring' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Base Dialog Refactoring' (Protocol in workflow.md) (77c3c95)
 
 ## Phase 2: Dialog Implementation & Standardization
 - [ ] Task: Refactor `show_raise_dialog` in `Window.vala` to strictly use the new base styling and ensure responsive button layout.
