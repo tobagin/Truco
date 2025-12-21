@@ -53,14 +53,16 @@ rules_test = executable('test_rules', test_sources,
         dependency('gtk4'),
         dependency('libadwaita-1'),
     ],
-    install: false,
-)
-
-test('Rules Engine Tests', rules_test)
-
-
-
-score_test_sources = [
+        install: false,
+    )
+    
+    test_env = environment()
+    test_env.set('GSETTINGS_SCHEMA_DIR', join_paths(meson.project_build_root(), 'data'))
+    
+    test('Rules Engine Tests', rules_test, env: test_env)
+    
+    score_test_sources = [
+    
 
     'test_score_manager.vala',
 
@@ -96,21 +98,31 @@ score_test = executable('test_score', score_test_sources,
 
 
 
-    install: false,
+        install: false,
 
 
 
-)
+    )
 
 
 
+    
 
 
 
+    test('Score Manager Tests', score_test, env: test_env)
 
-test('Score Manager Tests', score_test)
 
-ai_test_sources = [
+
+    
+
+
+
+    ai_test_sources = [
+
+
+
+    
     'test_ai_integration.vala',
     'RulesEngine.vala',
     'ScoreManager.vala',
@@ -132,4 +144,24 @@ ai_test = executable('test_ai', ai_test_sources,
     install: false,
 )
 
-test('AI Integration Tests', ai_test)
+test('AI Integration Tests', ai_test, env: test_env)
+
+ui_test_sources = [
+    'test_ui_consistency.vala',
+    'DialogFactory.vala',
+    config_vala,
+    gresource_bundle,
+]
+
+ui_test = executable('test_ui', ui_test_sources,
+    dependencies: [
+        dependency('glib-2.0'),
+        dependency('gobject-2.0'),
+        dependency('gee-0.8'),
+        dependency('gtk4'),
+        dependency('libadwaita-1'),
+    ],
+    install: false,
+)
+
+test('UI Consistency Tests', ui_test, env: test_env)
