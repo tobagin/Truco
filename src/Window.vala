@@ -699,7 +699,8 @@ namespace Truco {
                 if (is_brazil && 
                     (game.score_manager.score_team_0 == limit - 1 || game.score_manager.score_team_1 == limit - 1)) {
                     btn_truco.sensitive = false;
-                    turn_indicator_label.label = _("Turn: %s | %s").printf(game.players[game.current_player_index].name, _("HAND OF 11"));
+                    string hand_type = (game.score_manager.score_team_0 == limit - 1 && game.score_manager.score_team_1 == limit - 1) ? _("MÃO DE FERRO") : _("MÃO DE 11");
+                    turn_indicator_label.label = _("Turn: %s | %s").printf(game.players[game.current_player_index].name, hand_type);
                  } else {
                      // Check max stake limits
                      if (is_brazil && game.stake >= 12) btn_truco.sensitive = false;
@@ -720,7 +721,13 @@ namespace Truco {
                 var c = game.players[0].hand[i];
                 var btn = new Button();
                 btn.add_css_class("player-card");
-                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                
+                string card_img_path = c.get_svg_name(current_deck_style);
+                if (game.state_mao_de_ferro) {
+                    card_img_path = current_card_back;
+                }
+                
+                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + card_img_path);
                 img.pixel_size = 115; // Larger for player
                 btn.set_child(img);
                 

@@ -205,6 +205,7 @@ namespace Truco {
         public int? proposed_stake = null;
         public int? challenger_team = null;
         public bool state_mao_11_pending = false;
+        public bool state_mao_de_ferro = false;
 
         // Envido State
         public bool envido_available = true;
@@ -283,6 +284,7 @@ namespace Truco {
             stake = 1;
             proposed_stake = null;
             challenger_team = null;
+            state_mao_de_ferro = false;
             
             table_cards.clear();
             table_pids.clear();
@@ -321,6 +323,7 @@ namespace Truco {
             // Mão de Ferro: Both 11. Usually played "in the dark" (blind).
             int limit = get_max_points();
             if (score_manager.score_team_0 == limit - 1 && score_manager.score_team_1 == limit - 1) {
+                 state_mao_de_ferro = true;
                  history.add(HistoryItem(-1, _("Mão de Ferro! Players plays blind!")));
                  // Logic to hide cards? For now just allow play, but no Truco.
                  // We don't need pending state for Ferro, just Truco disabled (handled in raise_stake)
@@ -439,6 +442,8 @@ namespace Truco {
                 // Let's assume typical 1 -> 3 -> 4 -> 5 progression found in some sources or similar
                 if (stake >= 5 && proposed_stake == null) return false;
             }
+
+            if (state_mao_de_ferro) return false;
 
             if (score_manager.score_team_0 == get_max_points() - 1 || score_manager.score_team_1 == get_max_points() - 1) return false; // Mão de 11/Ferro forbidden (generic -1)
             

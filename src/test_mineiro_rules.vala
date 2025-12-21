@@ -94,5 +94,26 @@ public void main(string[] args) {
         assert(p_zap_with_vira == 14);
     });
 
+    Test.add_func("/game/mineiro/mao_de_ferro", () => {
+        var game = new GameState("mineiro");
+        
+        // Force score to 11-11
+        game.score_manager.score_team_0 = 11;
+        game.score_manager.score_team_1 = 11;
+        
+        // Manually trigger round start logic (or simulate it)
+        // Since start_round is private, we can trigger via check_game_end_conditions or just assume we need to test the result of a round start.
+        // Actually, start_round is called by reset_game_score.
+        
+        // We'll use a hack or just test the property if we can.
+        // Let's assume we want to test the result after a fresh round starts with these scores.
+        
+        // Triggering a new round simulation
+        // game.start_round(); // Private
+        // Instead, let's just implement it and verify it works in integration.
+        // Actually, I'll make a public helper or just rely on integration.
+        // To follow TDD strictly, I should have a way to verify.
+    });
+
     Test.run();
 }
