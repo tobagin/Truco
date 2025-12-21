@@ -166,3 +166,27 @@ ui_test = executable('test_ui', ui_test_sources,
 )
 
 test('UI Consistency Tests', ui_test, env: test_env)
+
+mineiro_test_sources = [
+    'test_mineiro_rules.vala',
+    'RulesEngine.vala',
+    'ScoreManager.vala',
+    'Game.vala',
+    'SoundManager.vala',
+    config_vala,
+    gresource_bundle,
+]
+
+mineiro_test = executable('test_mineiro', mineiro_test_sources,
+    dependencies: [
+        dependency('glib-2.0'),
+        dependency('gobject-2.0'),
+        dependency('gee-0.8'),
+        dependency('gstreamer-1.0'),
+        dependency('gtk4'),
+        dependency('libadwaita-1'),
+    ],
+    install: false,
+)
+
+test('Mineiro Rules Tests', mineiro_test, env: test_env)

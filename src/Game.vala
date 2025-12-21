@@ -198,6 +198,7 @@ namespace Truco {
         public ArrayList<int> table_pids; // Player IDs corresponding to table cards
         public int vaza_wins_team_0;
         public int vaza_wins_team_1;
+        public int winner_first_trick = -2; // -2: Unplayed, -1: Tie, 0: Team 0, 1: Team 1
         public int stake = 1;
         
         public int round_count = 1;
@@ -278,6 +279,7 @@ namespace Truco {
         private void start_round() {
             vaza_wins_team_0 = 0;
             vaza_wins_team_1 = 0;
+            winner_first_trick = -2;
             stake = 1;
             proposed_stake = null;
             challenger_team = null;
@@ -286,10 +288,14 @@ namespace Truco {
             table_pids.clear();
             
             // Round rules:
-            // 1st round of hand: Envido available
+            // 1st round of hand: Envido available (except Mineiro/Paulista)
             // 2nd, 3rd: Not available
             // Start of a new hand: Envido is always available initially
-            envido_available = true;
+            if (game_mode == "mineiro" || game_mode == "paulista") {
+                envido_available = false;
+            } else {
+                envido_available = true;
+            }
             envido_played = false;
             
             // Increment round count here? Or was it doubled?
@@ -543,6 +549,10 @@ namespace Truco {
         
         public bool call_envido(int player_id, int type) {
             // types: 0=Envido (2), 1=Real Envido (3), 2=Falta Envido
+            
+            // Envido disabled for Mineiro/Paulista
+            if (game_mode == "mineiro" || game_mode == "paulista") return false;
+
             // Check if blocked
             if (!envido_available) return false;
             // if (envido_played) return false; // Allow raising? Complex. For now block if already played.
@@ -656,6 +666,9 @@ namespace Truco {
             // Check eligibility
             // Must be first trick (vaza) not first round (hand)
             if (vaza_wins_team_0 > 0 || vaza_wins_team_1 > 0) return false;
+            
+            // Flor is disabled in Mineiro and Paulista
+            if (game_mode == "mineiro" || game_mode == "paulista") return false;
             
             // Check if player actually has Flor
             if (!rules_engine.has_flor(players[player_id].hand)) return false;
@@ -1204,20 +1217,24 @@ namespace Truco {
 
             int winner_team = (best_pid == -1) ? -1 : players[best_pid].team;
             
-            if (winner_team == 0) vaza_wins_team_0++;
-            else if (winner_team == 1) vaza_wins_team_1++;
-            else {
-                // Tie (Canga)
-                // Both get a vaza or special rule: 1st trick winner wins tie
-                // simplified: both get it, but usually it just counts as a draw
-                // In many truco variants: "Amarrado" (tied)
-                // If 1st is tied, winner of 2nd wins hand.
-                // If 2nd is tied, winner of 1st wins hand.
-                // If 1st and 2nd tied, winner of 3rd wins.
-                // For now keep it simple: don't increment vaza_wins, wait for next.
-                // But current_player_index must be someone. 
-                // Usually "Mão" starts if tied.
-                current_player_index = (dealer_index + 1) % players.size;
+            // Record first trick winner
+            if (winner_first_trick == -2) {
+                winner_first_trick = winner_team;
+            }
+
+            if (winner_team == 0) {
+                vaza_wins_team_0++;
+            } else if (winner_team == 1) {
+                vaza_wins_team_1++;
+            } else {
+                // Tie (Canga) - Both get a point
+                vaza_wins_team_0++;
+                vaza_wins_team_1++;
+                
+                // Tiebreaker logic for next lead:
+                // If tied, usually the player who started the tied trick starts the next (or Mão).
+                // Staying with Mão/Next in rotation for simplicity as per previous logic.
+                current_player_index = (dealer_index + 1) % players.size; 
             }
 
             if (winner_team != -1) {
@@ -1233,8 +1250,32 @@ namespace Truco {
 
             // Check Round End
             if (vaza_wins_team_0 >= 2 || vaza_wins_team_1 >= 2) {
+                
+                // Resolve conflict if both >= 2 (caused by ties)
+                int final_winner_team = -1;
+                
+                if (vaza_wins_team_0 >= 2 && vaza_wins_team_1 < 2) final_winner_team = 0;
+                else if (vaza_wins_team_1 >= 2 && vaza_wins_team_0 < 2) final_winner_team = 1;
+                else {
+                    // Both have >= 2. Use tie-break rules.
+                    if (winner_first_trick != -1) {
+                        // Winner of first trick wins
+                        final_winner_team = winner_first_trick;
+                    } else {
+                        // First trick was TIED.
+                        // If we are here, it means subsequent tricks were also tied or split such that both reached 2.
+                        // Standard rule: If 1st tied, winner of 2nd wins.
+                        // Since we don't store 2nd explicitly, we infer:
+                        // If we are at end of 2nd trick (both 2), it means 1st was tie (1-1) and 2nd was tie (2-2).
+                        // If 3rd trick...
+                        // Ultimate tie breaker: Hand (Mão) wins.
+                         int hand_pid = (dealer_index + 1) % players.size;
+                         final_winner_team = players[hand_pid].team;
+                    }
+                }
+
                 total_rounds_played++;
-                if (vaza_wins_team_0 >= 2) {
+                if (final_winner_team == 0) {
                     score_manager.add_points(0, stake);
                     rounds_won_team_0++;
                 } else {
@@ -1243,6 +1284,23 @@ namespace Truco {
                 }
                 
                 check_game_end_conditions();
+            } else {
+                // Safety check: If hands are empty but no one reached 2 wins (Should not happen with logic above, but for safety)
+                bool hands_empty = true;
+                foreach(var p in players) {
+                    if (p.hand.size > 0) { hands_empty = false; break; }
+                }
+                
+                if (hands_empty) {
+                     // Force resolution by Mão
+                     int hand_pid = (dealer_index + 1) % players.size;
+                     int forced_winner = players[hand_pid].team;
+                     
+                     total_rounds_played++;
+                     if (forced_winner == 0) { score_manager.add_points(0, stake); rounds_won_team_0++; }
+                     else { score_manager.add_points(1, stake); rounds_won_team_1++; }
+                     check_game_end_conditions();
+                }
             }
         }
         
