@@ -2,7 +2,7 @@
 
 ## Phase 1: Core Rules & Logic
 - [x] Task: Disable "Flor" mechanism in `RulesEngine` and `Game.vala` when playing `mineiro` or `paulista` variants. (61d6df8)
-- [ ] Task: Create `test_mineiro_rules.vala` to verify Flor is disabled and fixed Manilhas (Zap) are correctly identified.
+- [x] Task: Create `test_mineiro_rules.vala` to verify Flor is disabled and fixed Manilhas (Zap) are correctly identified. (b368dfe)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Core Rules & Logic' (Protocol in workflow.md)
 
 ## Phase 2: Mão de Ferro (Iron Hand)
