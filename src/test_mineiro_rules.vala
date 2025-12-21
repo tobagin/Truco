@@ -65,5 +65,34 @@ public void main(string[] args) {
         assert(success == true);
     });
 
+    Test.add_func("/rules/mineiro/fixed_manilhas", () => {
+        var engine = new RulesEngine();
+        
+        // 4 of Clubs (Zap) - Should be strongest
+        var zap = new Card(Suit.CLUBS, 4);
+        int p_zap = engine.get_power(zap, "mineiro");
+        assert(p_zap == 14); 
+        
+        // 7 of Hearts (Copas)
+        var copas = new Card(Suit.CUPS, 7);
+        int p_copas = engine.get_power(copas, "mineiro");
+        assert(p_copas == 13);
+        
+        // Ace of Spades (Espadilha)
+        var espadilha = new Card(Suit.SWORDS, 1);
+        int p_espadilha = engine.get_power(espadilha, "mineiro");
+        assert(p_espadilha == 12);
+        
+        // 7 of Diamonds (Ouros)
+        var ouros = new Card(Suit.GOLDS, 7);
+        int p_ouros = engine.get_power(ouros, "mineiro");
+        assert(p_ouros == 11);
+        
+        // Verify Vira doesn't change it
+        var vira_dummy = new Card(Suit.GOLDS, 1); // If paulista, Manilha would be 2.
+        int p_zap_with_vira = engine.get_power(zap, "mineiro", vira_dummy);
+        assert(p_zap_with_vira == 14);
+    });
+
     Test.run();
 }
