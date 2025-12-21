@@ -11,6 +11,7 @@ sources = [
     'Application.vala',
     'Window.vala',
     'Game.vala',
+    'DialogFactory.vala',
     'RulesEngine.vala',
     'ScoreManager.vala',
     'SoundManager.vala',

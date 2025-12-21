@@ -491,14 +491,40 @@ namespace Truco {
                 
                 if (responding_team == 0) {
                     // Human team needs to respond
-                    string challenger_name = (game.challenger_team == 1) ? _("Opponent") : _("Partner"); 
-                    show_raise_dialog(challenger_name, game.proposed_stake);
+                    // Dialog shown by update_ui
                     return; // Stop until user responds
                 } else {
                     // CPU team needs to respond
                     GLib.Timeout.add(1000, () => {
                         if (game.proposed_stake != null && (game.challenger_team == 0)) {
                             game.cpu_respond_truco();
+                            update_ui();
+                            check_cpu_turn();
+                        }
+                        return false;
+                    });
+                    return;
+                }
+            }
+            
+            // Handle Envido Pending
+            if (game.state_envido_pending) {
+                int responding_team = (game.envido_challenger_team == 0) ? 1 : 0;
+                if (responding_team == 0) {
+                    // Human team needs to respond
+                    // Show dialog or buttons.
+                    // We handle this in update_ui by showing a dialog since buttons are hidden.
+                    if (!raise_dialog_shown) {
+                        string challenger_name = (game.envido_challenger_team == 1) ? _("Opponent") : _("Partner");
+                        show_envido_dialog(challenger_name, game.envido_stake);
+                        raise_dialog_shown = true;
+                    }
+                    return;
+                } else {
+                    // CPU responds
+                    GLib.Timeout.add(1000, () => {
+                        if (game.state_envido_pending && game.envido_challenger_team != null && game.envido_challenger_team == 0) {
+                            game.cpu_respond_envido();
                             update_ui();
                             check_cpu_turn();
                         }
@@ -535,12 +561,12 @@ namespace Truco {
             int pid = game.current_player_index;
             if (game.players[pid].is_cpu) {
                  GLib.Timeout.add(1000, () => {
-                     if (game.game_over || game.match_over || game.proposed_stake != null || game.state_mao_11_pending) return false;
+                     if (game.game_over || game.match_over || game.proposed_stake != null || game.state_mao_11_pending || game.state_envido_pending) return false;
                      
                      game.cpu_turn();
                      update_ui();
                      
-                     if (game.proposed_stake == null && !game.game_over) {
+                     if (game.proposed_stake == null && !game.state_envido_pending && !game.game_over) {
                          int next_pid = game.current_player_index;
                          if (game.players[next_pid].is_cpu) {
                              check_cpu_turn();
@@ -597,6 +623,27 @@ namespace Truco {
                     btn_accept.visible = false;
                     btn_refuse.visible = false;
                     btn_truco.visible = false;
+                    raise_dialog_shown = false;
+                }
+            } else if (game.state_envido_pending) {
+                int challenger = game.envido_challenger_team;
+                status_label.label = _("Envido! Points proposed by Team %d.").printf(challenger);
+                
+                if (challenger != 0) {
+                    btn_accept.visible = false;
+                    btn_refuse.visible = false;
+                    
+                    if (!raise_dialog_shown) {
+                         show_envido_dialog(game.players[game.current_player_index].name, game.envido_stake);
+                         raise_dialog_shown = true;
+                    }
+                    btn_truco.visible = false;
+                } else {
+                    status_label.label = _("Waiting for Envido response...");
+                    btn_accept.visible = false;
+                    btn_refuse.visible = false;
+                    btn_truco.visible = false;
+                    raise_dialog_shown = false;
                 }
             } else {
                 raise_dialog_shown = false; // Reset state
@@ -622,9 +669,21 @@ namespace Truco {
                 btn_truco.sensitive = (game.current_player_index == 0);
                 
                 string lbl = _("TRUCO!");
-                if (game.stake == 3) lbl = _("SIX!");
-                else if (game.stake == 6) lbl = _("NINE!");
-                else if (game.stake == 9) lbl = _("TWELVE!");
+                bool is_brazil = (game.game_mode == "paulista" || game.game_mode == "mineiro");
+                bool is_venezuela = (game.game_mode == "venezolano");
+                
+                if (is_brazil) {
+                    if (game.stake == 3) lbl = _("SIX!");
+                    else if (game.stake == 6) lbl = _("NINE!");
+                    else if (game.stake == 9) lbl = _("TWELVE!");
+                } else if (is_venezuela) {
+                     if (game.stake == 3) lbl = _("RETRUCO!");
+                     else if (game.stake == 4) lbl = _("VALE JUEGO!");
+                } else {
+                    // Argentino / Uruguayo
+                    if (game.stake == 2) lbl = _("RETRUCO!");
+                    else if (game.stake == 3) lbl = _("VALE CUATRO!");
+                }
                 
                 // Flor Logic
                 if (game.envido_available && game.rules_engine.has_flor(game.players[0].hand) && 
@@ -637,15 +696,17 @@ namespace Truco {
                 
                 int limit = game.get_max_points();
                 // "Mão de 11" specific UI and restrictions (Brazil only)
-                if ((game.game_mode == "paulista" || game.game_mode == "mineiro") && 
+                if (is_brazil && 
                     (game.score_manager.score_team_0 == limit - 1 || game.score_manager.score_team_1 == limit - 1)) {
                     btn_truco.sensitive = false;
                     turn_indicator_label.label = _("Turn: %s | %s").printf(game.players[game.current_player_index].name, _("HAND OF 11"));
-                 } else if (game.stake >= 12) {
-                    btn_truco.sensitive = false;
-                } else {
-                    btn_truco.label = lbl;
-                }
+                 } else {
+                     // Check max stake limits
+                     if (is_brazil && game.stake >= 12) btn_truco.sensitive = false;
+                     else if (is_venezuela && game.stake >= 5) btn_truco.sensitive = false;
+                     else if (!is_brazil && !is_venezuela && game.stake >= 4) btn_truco.sensitive = false;
+                     else btn_truco.label = lbl;
+                 }
             }
 
             // Status status_label updated above in logic blocks
@@ -821,14 +882,12 @@ namespace Truco {
             else if (new_stake == 9) call_name = _("NINE!");
             else if (new_stake == 12) call_name = _("TWELVE!");
             
-            var dialog = new Adw.AlertDialog (
+            var dialog = DialogFactory.create_game_dialog(
                 call_name,
-                _("%s proposed %s (Stake: %d)").printf(challenger_name, call_name, new_stake)
+                _("%s proposed %s (Stake: %d)").printf(challenger_name, call_name, new_stake),
+                _("Accept"),
+                _("Run")
             );
-
-            dialog.add_response ("refuse", _("Run"));
-
-            dialog.add_response ("accept", _("Accept"));
             
             // Calc explicit raise possibilities based on game logic
             int current_prop = game.proposed_stake;
@@ -849,26 +908,15 @@ namespace Truco {
             
             int limit = game.get_max_points();
             // Check if we can raise (score limit)
-            // Note: Mão de 11 logic (limit-1) usually forbids Truco, but we check specific score logic here if needed.
-            // Simplified: if match point is not reached by next raise? 
-            // Actually, you can raise even if it exceeds, but game ends.
-            // BUT: You cannot raise if ALREADY at Mão de 11 state?
-            // In Brazil: cannot Truco at 11.
-            // In others: depends.
-            // For now, allow raising unless one team is at Limit-1 (Mão de 11 equiv).
             bool mao_de_11 = (game.score_manager.score_team_0 >= limit - 1 || game.score_manager.score_team_1 >= limit - 1);
-            if (game.game_mode != "paulista" && game.game_mode != "mineiro") mao_de_11 = false; // Only strict for Brazil?
-            // Actually, verify rules later. For now, assume if 11x11 in Brazil you can't.
+            if (game.game_mode != "paulista" && game.game_mode != "mineiro") mao_de_11 = false; 
             
             if (next_val > 0 && !mao_de_11) {
                 dialog.add_response ("raise", raise_lbl);
                 dialog.set_default_response ("raise");
             } else {
-                dialog.set_default_response ("accept"); // Default if can't raise
+                dialog.set_default_response ("accept"); 
             }
-            
-            dialog.set_response_appearance ("refuse", Adw.ResponseAppearance.DESTRUCTIVE);
-            dialog.set_response_appearance ("accept", Adw.ResponseAppearance.SUGGESTED);
             
             dialog.response.connect ((response) => {
                  if (response == "accept") {
@@ -879,7 +927,6 @@ namespace Truco {
                      game.respond_challenge(0, false);
                      update_ui();
                  } else if (response == "raise") {
-                     // Check if btn_truco logic is reusable or just call raise logic
                      bool success = game.raise_stake(0);
                      if (success) {
                         update_ui();
@@ -893,6 +940,41 @@ namespace Truco {
                      } else {
                         print("DEBUG: raise_stake(0) failed!\n");
                      }
+                 }
+            });
+            
+            dialog.present (this);
+        }
+
+        private void show_envido_dialog(string challenger_name, int points) {
+            split_view.show_sidebar = false;
+
+            string call_name = _("Envido!");
+            if (points == 3) call_name = _("Real Envido!");
+            else if (points > 3) call_name = _("Falta Envido!");
+            
+            var dialog = new Adw.AlertDialog (
+                call_name,
+                _("%s proposed %s").printf(challenger_name, call_name)
+            );
+
+            dialog.add_response ("refuse", _("No Quiero (Run)"));
+            dialog.add_response ("accept", _("Quiero (Accept)"));
+            
+            // TODO: Add Raise options if needed logic allows it
+            
+            dialog.set_response_appearance ("refuse", Adw.ResponseAppearance.DESTRUCTIVE);
+            dialog.set_response_appearance ("accept", Adw.ResponseAppearance.SUGGESTED);
+            
+            dialog.response.connect ((response) => {
+                 if (response == "accept") {
+                     game.respond_envido(0, true);
+                     update_ui();
+                     check_cpu_turn();
+                 } else if (response == "refuse") {
+                     game.respond_envido(0, false);
+                     update_ui();
+                     check_cpu_turn();
                  }
             });
             
