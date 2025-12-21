@@ -953,18 +953,14 @@ namespace Truco {
             if (points == 3) call_name = _("Real Envido!");
             else if (points > 3) call_name = _("Falta Envido!");
             
-            var dialog = new Adw.AlertDialog (
+            var dialog = DialogFactory.create_game_dialog(
                 call_name,
-                _("%s proposed %s").printf(challenger_name, call_name)
+                _("%s proposed %s").printf(challenger_name, call_name),
+                _("Quiero (Accept)"),
+                _("No Quiero (Run)")
             );
-
-            dialog.add_response ("refuse", _("No Quiero (Run)"));
-            dialog.add_response ("accept", _("Quiero (Accept)"));
             
             // TODO: Add Raise options if needed logic allows it
-            
-            dialog.set_response_appearance ("refuse", Adw.ResponseAppearance.DESTRUCTIVE);
-            dialog.set_response_appearance ("accept", Adw.ResponseAppearance.SUGGESTED);
             
             dialog.response.connect ((response) => {
                  if (response == "accept") {
