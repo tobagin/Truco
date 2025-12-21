@@ -13,12 +13,12 @@ namespace Truco {
             );
             
             // Actions
-            add_response("new", _("Play Again"));
+            add_response("new", _("Replay"));
             set_response_appearance("new", Adw.ResponseAppearance.SUGGESTED);
             
             add_response("ok", _("OK"));
             
-            add_response("quit", _("Quit Game"));
+            add_response("quit", _("Quit"));
             set_response_appearance("quit", Adw.ResponseAppearance.DESTRUCTIVE);
             
             set_default_response("new");
