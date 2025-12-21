@@ -1020,21 +1020,17 @@ namespace Truco {
             box.append(new Label(_("Your Partner's Hand:")));
             box.append(cards_box);
             
-            var dialog = new Adw.AlertDialog (
+            var dialog = DialogFactory.create_game_dialog(
                 _("Mão de 11!"),
-                _("Your team has 11 points. You can see your partner's cards. Do you want to play this round (Worth 3 points)?")
+                _("Your team has 11 points. You can see your partner's cards. Do you want to play this round (Worth 3 points)?"),
+                _("Play (Worth 3)"),
+                _("Run (Give 1 point)")
             );
             
             dialog.set_extra_child(box);
             
-            dialog.add_response("run", _("Run (Give 1 point)"));
-            dialog.add_response("play", _("Play (Worth 3)"));
-            
-            dialog.set_response_appearance("run", Adw.ResponseAppearance.DESTRUCTIVE);
-            dialog.set_response_appearance("play", Adw.ResponseAppearance.SUGGESTED);
-            
             dialog.response.connect((response) => {
-                if (response == "play") {
+                if (response == "accept") {
                     game.respond_challenge(0, true);
                     update_ui();
                 } else {
