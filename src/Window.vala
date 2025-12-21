@@ -987,7 +987,7 @@ namespace Truco {
                 game.rounds_won_team_0, game.total_rounds_played
             );
             
-            dialog.response.connect((response) => {
+            dialog.match_response.connect((response) => {
                 if (response == "new") {
                    game.reset_match();
                    update_ui();
@@ -997,8 +997,7 @@ namespace Truco {
                 }
             });
             
-            dialog.transient_for = this;
-            dialog.present();
+            dialog.present(this);
         }
 
         private void show_mao_11_dialog() {
