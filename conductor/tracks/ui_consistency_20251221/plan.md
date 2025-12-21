@@ -11,7 +11,7 @@
 - [x] Task: Update `MatchEndDialog.vala` (or its invocation) to ensure visual consistency with gameplay dialogs. (3d38de6)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Dialog Implementation & Standardization' (Protocol in workflow.md) (4ebc7fe)
 
-## Phase 3: Validation & Mobile Testing
-- [ ] Task: Verify dialog responsiveness by testing with narrow window widths (stacked buttons).
-- [ ] Task: Verify dialog styling across all game modes (Argentino, Paulista, etc.) to ensure variant-specific labels are correct.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Validation & Mobile Testing' (Protocol in workflow.md)
+## Phase 3: Validation & Mobile Testing [checkpoint: a296a25]
+- [x] Task: Verify dialog responsiveness by testing with narrow window widths (stacked buttons). (cff50c7)
+- [x] Task: Verify dialog styling across all game modes (Argentino, Paulista, etc.) to ensure variant-specific labels are correct. (cff50c7)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Validation & Mobile Testing' (Protocol in workflow.md) (a296a25)
