@@ -6,9 +6,9 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Core Rules & Logic' (Protocol in workflow.md) (2ccb7c0)
 
 ## Phase 2: Mão de Ferro (Iron Hand)
-- [ ] Task: Implement "Blind Play" state in `GameState` when score is 11-11 (Mão de Ferro).
-- [ ] Task: Update `Window.vala` to render player cards face-down during Mão de Ferro.
-- [ ] Task: Modify `Game.vala` to automate the turn progression (no Truco calls allowed) during Mão de Ferro.
+- [x] Task: Implement "Blind Play" state in `GameState` when score is 11-11 (Mão de Ferro). (2ccb7c0)
+- [x] Task: Update `Window.vala` to render player cards face-down during Mão de Ferro. (d2c4816)
+- [x] Task: Modify `Game.vala` to automate the turn progression (no Truco calls allowed) during Mão de Ferro. (d2c4816)
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Mão de Ferro (Iron Hand)' (Protocol in workflow.md)
 
 ## Phase 3: UI Polish & AI
