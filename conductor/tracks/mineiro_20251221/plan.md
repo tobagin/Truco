@@ -1,9 +1,9 @@
 # Track Plan: Truco Mineiro Completion
 
-## Phase 1: Core Rules & Logic
+## Phase 1: Core Rules & Logic [checkpoint: 2ccb7c0]
 - [x] Task: Disable "Flor" mechanism in `RulesEngine` and `Game.vala` when playing `mineiro` or `paulista` variants. (61d6df8)
 - [x] Task: Create `test_mineiro_rules.vala` to verify Flor is disabled and fixed Manilhas (Zap) are correctly identified. (b368dfe)
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Core Rules & Logic' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Core Rules & Logic' (Protocol in workflow.md) (2ccb7c0)
 
 ## Phase 2: Mão de Ferro (Iron Hand)
 - [ ] Task: Implement "Blind Play" state in `GameState` when score is 11-11 (Mão de Ferro).
