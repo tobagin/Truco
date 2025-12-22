@@ -11,7 +11,7 @@
 - [x] Task: Modify `Game.vala` to automate the turn progression (no Truco calls allowed) during Mão de Ferro. (d2c4816)
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Mão de Ferro (Iron Hand)' (Protocol in workflow.md) (d449cc4)
 
-## Phase 3: UI Polish & AI
-- [ ] Task: Update `Game.vala` signal logic to use "Zap" and other Mineiro-specific terms in history/logs.
-- [ ] Task: Refine AI in `Game.vala` to play aggressively when holding the Zap (4 of Clubs) in Mineiro mode.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Polish & AI' (Protocol in workflow.md)
+## Phase 3: UI Polish & AI [checkpoint: 115f4de]
+- [x] Task: Update `Game.vala` signal logic to use "Zap" and other Mineiro-specific terms in history/logs. (61d6df8)
+- [x] Task: Refine AI in `Game.vala` to play aggressively when holding the Zap (4 of Clubs) in Mineiro mode. (c04780a)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Polish & AI' (Protocol in workflow.md) (115f4de)
