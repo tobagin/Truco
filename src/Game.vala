@@ -410,8 +410,9 @@ namespace Truco {
             table_cards.add(card);
             table_pids.add(player_id);
 
-            // History: Just the card name, Avatar provides context
-            history.add(HistoryItem(player_id, card.to_string()));
+            // History: Use regional name if available
+            string c_name = rules_engine.get_card_name(card, game_mode, vira);
+            history.add(HistoryItem(player_id, c_name));
             
             SoundManager.get_default().play("card_snap");
 
@@ -969,6 +970,12 @@ namespace Truco {
                           break;
                   }
 
+                  bool has_zap = false;
+                  foreach (var c in cpu.hand) {
+                      if (c.power >= 14) has_zap = true;
+                  }
+                  if (has_zap) p_strong = 1.0; // Always aggressive with Zap
+
                   bool call = false;
                   if (hand_strength > 28 && Random.double_range(0.0, 1.0) < p_strong) call = true; // Very Strong
                   else if (hand_strength > 20 && stake < 3 && Random.double_range(0.0, 1.0) < p_med) call = true; // Strong
@@ -1436,10 +1443,18 @@ namespace Truco {
             // If table has cards, check if we beat them
             if (table_cards.size > 0) {
                 int best_on_table = -1;
-                foreach (var tc in table_cards) {
-                    if (tc != null && tc.power > best_on_table) best_on_table = tc.power;
+                int best_pid = -1;
+                
+                for(int i=0; i<table_cards.size; i++) {
+                     if (table_cards[i].power > best_on_table) {
+                         best_on_table = table_cards[i].power;
+                         best_pid = table_pids[i];
+                     }
                 }
-                if (my_power < best_on_table) {
+                
+                bool partner_winning = (best_pid != -1 && players[best_pid].team == team);
+                
+                if (!partner_winning && my_power < best_on_table) {
                     // We lose this trick unless partner wins it later (not modeled here)
                     return false; 
                 }
