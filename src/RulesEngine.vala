@@ -144,5 +144,27 @@ namespace Truco {
             }
             return 20 + sum;
         }
+
+        public string get_card_name(Card c, string mode, Card? vira = null) {
+            if (mode == "mineiro") {
+                if (c.suit == Suit.CLUBS && c.value == 4) return _("Zap");
+                if (c.suit == Suit.CUPS && c.value == 7) return _("Copas");
+                if (c.suit == Suit.SWORDS && c.value == 1) return _("Espadilha");
+                if (c.suit == Suit.GOLDS && c.value == 7) return _("Ouros");
+            } else if (mode == "paulista" && vira != null) {
+                int manilha_val = vira.value + 1;
+                if (manilha_val > 12) manilha_val = 1;
+                if (manilha_val == 8) manilha_val = 10;
+                
+                if (c.value == manilha_val) return _("Manilha");
+            } else if (mode == "argentino" || mode == "uruguayo" || mode == "venezolano") {
+                if (c.suit == Suit.SWORDS && c.value == 1) return _("Espadilla");
+                if (c.suit == Suit.CLUBS && c.value == 1) return _("Bastardillo");
+                if (c.suit == Suit.SWORDS && c.value == 7) return _("Siete de Espadas");
+                if (c.suit == Suit.GOLDS && c.value == 7) return _("Siete de Oro");
+            }
+            
+            return c.to_string();
+        }
     }
 }

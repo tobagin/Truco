@@ -1,0 +1,8 @@
+{
+  "track_id": "ui_consistency_20251221",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2025-12-21T12:00:00Z",
+  "updated_at": "2025-12-21T12:00:00Z",
+  "description": "Standardize all in-game decision dialogs (Truco, Envido, Flor, Mão de 11, Match End) to use a consistent Adw.AlertDialog implementation."
+}

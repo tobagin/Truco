@@ -16,5 +16,5 @@
 ## Phase 3: UI & Validation
 - [x] Task: Update the Scoreboard UI to display "Malas" and "Buenas" indicators. (52b97e0)
 - [x] Task: Create a comprehensive test suite (unit tests) for the `RulesEngine` to verify hierarchy and point calculations. (b68f0f7)
-- [ ] Task: Playtest a full game loop to 30 points to verify state transitions.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI & Validation' (Protocol in workflow.md)
+- [x] Task: Playtest a full game loop to 30 points to verify state transitions.
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI & Validation' (Protocol in workflow.md)
