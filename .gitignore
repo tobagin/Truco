@@ -19,6 +19,10 @@ node_modules/
 .env.*
 !.env.example
 
+# Python (asset generation tools)
+__pycache__/
+*.pyc
+
 # Editor / OS
 .DS_Store
 *.swp
