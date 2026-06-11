@@ -4,14 +4,44 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <name>Truco</name>
-  <summary>A card game application</summary>
+  <summary>Play the South American Truco card game</summary>
   <description>
     <p>
-      Play the traditional Truco card game.
+      Truco is a native GNOME version of the classic South American
+      trick-taking card game played with a Spanish deck. Outsmart your
+      opponents, raise the stakes, and call truco at the right moment.
     </p>
+    <p>Features:</p>
+    <ul>
+      <li>Multiple regional variants: Paulista, Mineiro, Argentino, Uruguayo and Venezolano</li>
+      <li>Authentic per-variant rules including manilhas, Envido and Flor</li>
+      <li>Smart CPU opponents with distinct personalities</li>
+      <li>Truco escalation, Mão de 11 and Mão de Ferro special hands</li>
+      <li>Customizable card decks, table felts and player avatars</li>
+      <li>Match statistics and game-history tracking</li>
+      <li>Built-in tutorial and interactive help</li>
+    </ul>
   </description>
   <launchable type="desktop-id">@APPLICATION_ID@.desktop</launchable>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-info">mild</content_attribute>
+  </content_rating>
+  <categories>
+    <category>Game</category>
+    <category>CardGame</category>
+  </categories>
+  <keywords>
+    <keyword>truco</keyword>
+    <keyword>card game</keyword>
+    <keyword>cards</keyword>
+    <keyword>baraja</keyword>
+    <keyword>manilha</keyword>
+  </keywords>
   <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/tobagin/Truco/master/data/screenshots/gameplay.png</image>
+      <caption>A Truco match in progress</caption>
+    </screenshot>
   </screenshots>
   <releases>
     <release version="0.1.0" date="2025-12-15">
