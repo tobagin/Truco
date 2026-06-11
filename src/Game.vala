@@ -419,7 +419,33 @@ namespace Truco {
             advance_turn();
             return true;
         }
-        
+
+        // --- Multiplayer remote-action entry points ----------------------
+        // These apply an opponent's networked action to the shared GameState,
+        // reusing the same logic a local turn uses. They locate the card/stake
+        // by value rather than UI index, since the remote peer's hand layout
+        // is not mirrored locally.
+
+        public bool play_card_for_player(int player_index, Suit suit, int value) {
+            if (player_index < 0 || player_index >= players.size) return false;
+            var p = players[player_index];
+            for (int i = 0; i < p.hand.size; i++) {
+                if (p.hand[i].suit == suit && p.hand[i].value == value) {
+                    return play_card(player_index, i);
+                }
+            }
+            warning("Remote play_card: card %d of %d not found in opponent hand", value, (int) suit);
+            return false;
+        }
+
+        public bool remote_raise_stake(int player_index) {
+            return raise_stake(player_index);
+        }
+
+        public void remote_respond_challenge(int player_index, bool accept) {
+            respond_challenge(player_index, accept);
+        }
+
         public bool raise_stake(int player_id) {
             // Allow counter-raising! 
             // Only forbid if we are the ones who proposed it (cannot raise own proposal immediately)
