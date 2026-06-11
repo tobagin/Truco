@@ -43,7 +43,7 @@ namespace Truco {
             add_action (shortcuts_action);
 
             var online_action = new SimpleAction ("play-online", null);
-            online_action.activate.connect (() => { show_not_implemented("Play Online"); });
+            online_action.activate.connect (show_play_online);
             add_action (online_action);
 
             var leaderboard_action = new SimpleAction ("leaderboard", null);
@@ -98,6 +98,18 @@ namespace Truco {
             }
         }
         
+        private void show_play_online () {
+            var win = active_window as Truco.Window;
+            if (win == null) {
+                return;
+            }
+            var dialog = new OnlineDialog (win.get_local_player_name ());
+            dialog.game_ready.connect ((controller, variant, seat, first_dealer, seed) => {
+                win.start_multiplayer_game (controller, variant, seat, first_dealer, seed);
+            });
+            dialog.present (win);
+        }
+
         private void show_not_implemented (string title) {
             var win = active_window as Truco.Window;
             if (win != null) {

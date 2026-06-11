@@ -1,11 +1,30 @@
-.DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
+# Build output
+/build/
+/builddir/
+_build/
+*.o
+*.log
+
+# Flatpak
+.flatpak-builder/
+/.flatpak*
+repo/
+
+# Vala generated
+*.c.stamp
+
+# Node (multiplayer server)
+node_modules/
 .env
 .env.*
 !.env.example
-vite.config.js.timestamp-*
-vite.config.ts.timestamp-*
-.flatpak*
+
+# Python (asset generation tools)
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
+*.swp
+.vscode/
+.idea/
