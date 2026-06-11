@@ -59,11 +59,16 @@ namespace Truco.Network {
             }
         }
 
-        private void on_message (int type, Bytes bytes) {
+        private void on_message (Soup.WebsocketDataType type, Bytes bytes) {
             if (type != Soup.WebsocketDataType.TEXT) {
                 return;
             }
-            var raw = (string) bytes.get_data ();
+            // WebSocket text frames are not NUL-terminated, so build the string
+            // with an explicit length rather than casting the raw buffer.
+            unowned uint8[] data = bytes.get_data ();
+            var sb = new StringBuilder ();
+            sb.append_len ((string) data, (ssize_t) bytes.get_size ());
+            var raw = sb.str;
             var msg = NetworkMessage.parse (raw);
             if (msg != null) {
                 message_received (msg);
