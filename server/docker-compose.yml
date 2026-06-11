@@ -1,0 +1,19 @@
+services:
+  truco-server:
+    build: .
+    image: truco-multiplayer-server:latest
+    container_name: truco-server
+    restart: unless-stopped
+    ports:
+      - "8443:8443"
+    environment:
+      - PORT=8443
+      # Optional Supabase persistence. Leave unset for memory-only mode.
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_KEY=${SUPABASE_KEY:-}
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:8443/health', (r) => r.statusCode === 200 ? process.exit(0) : process.exit(1))"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
