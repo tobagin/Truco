@@ -104,8 +104,8 @@ namespace Truco {
                 return;
             }
             var dialog = new OnlineDialog (win.get_local_player_name ());
-            dialog.game_ready.connect ((controller, variant, seat, first_dealer) => {
-                win.start_multiplayer_game (controller, variant, seat, first_dealer);
+            dialog.game_ready.connect ((controller, variant, seat, first_dealer, seed) => {
+                win.start_multiplayer_game (controller, variant, seat, first_dealer, seed);
             });
             dialog.present (win);
         }

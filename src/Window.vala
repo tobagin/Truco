@@ -495,9 +495,9 @@ namespace Truco {
          * controller below carries the opponent's intent inbound.
          */
         public void start_multiplayer_game (Truco.Network.MultiplayerGameController controller,
-                                            string variant, int seat, int first_dealer) {
+                                            string variant, int seat, int first_dealer, uint32 seed) {
             mp_controller = controller;
-            game = new GameState (variant, 1, false, false);
+            game = new GameState.online (variant, seat, seed, first_dealer);
             // Label the opponent seat with the remote player's name.
             if (game.players.size > 1) {
                 game.players.get (1).name = controller.session.opponent_name;

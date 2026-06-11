@@ -31,7 +31,7 @@ namespace Truco {
 
         /** Emitted once an opponent is matched and the game can begin. */
         public signal void game_ready (MultiplayerGameController controller,
-                                       string variant, int seat, int first_dealer);
+                                       string variant, int seat, int first_dealer, uint32 seed);
 
         public OnlineDialog (string player_name) {
             Object ();
@@ -179,7 +179,8 @@ namespace Truco {
             });
             session.game_started.connect (() => {
                 set_status (_("Opponent found! Starting game…"));
-                game_ready (controller, session.variant, session.seat, session.first_dealer);
+                game_ready (controller, session.variant, session.seat,
+                            session.first_dealer, session.deal_seed);
                 this.close ();
             });
             session.session_error.connect ((code, message) => {

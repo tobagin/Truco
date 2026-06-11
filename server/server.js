@@ -177,6 +177,11 @@ function startGame(room) {
     recordVariant(room.variant);
     // Randomly choose who deals first.
     const firstDealer = crypto.randomInt(2);
+    // Shared deal seed: both clients deal deterministically from this so their
+    // decks match every hand without relaying card data.
+    const seed = crypto.randomInt(1, 2 ** 31);
+    room.seed = seed;
+    room.firstDealer = firstDealer;
     room.players.forEach((player, seat) => {
         const opponent = room.players[1 - seat];
         send(player.ws, 'game_started', {
@@ -184,6 +189,7 @@ function startGame(room) {
             variant: room.variant,
             seat,
             firstDealer,
+            seed,
             opponentName: opponent ? opponent.name : 'Opponent',
         });
     });
@@ -330,6 +336,8 @@ function handleReconnect(client, msg) {
         roomCode: room.code,
         variant: room.variant,
         seat,
+        seed: room.seed,
+        firstDealer: room.firstDealer,
         moves: room.moves,
     });
     const opp = opponentOf(room, client);
