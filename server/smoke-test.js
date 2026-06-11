@@ -44,6 +44,9 @@ const send = (ws, obj) => ws.send(JSON.stringify(obj));
     check(hostJoined.type === 'opponent_joined' && hostJoined.opponentName === 'Guest', 'host sees opponent_joined');
     check(hostStart.type === 'game_started' && hostStart.seat === 0, 'host game_started seat 0');
     check(guestStart.type === 'game_started' && guestStart.seat === 1, 'guest game_started seat 1');
+    check(typeof hostStart.seed === 'number' && hostStart.seed === guestStart.seed,
+        'both clients receive identical deal seed');
+    check(hostStart.firstDealer === guestStart.firstDealer, 'both clients agree on first dealer');
 
     // Relay a play_card from host -> guest
     send(host, { type: 'play_card', card: { suit: 'clubs', value: 4 } });

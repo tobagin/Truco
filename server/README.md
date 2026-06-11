@@ -76,6 +76,14 @@ All messages are JSON objects with a `type` string and a `timestamp`
 Each is forwarded to the opponent with the sender's `seat` (0/1) attached.
 Their payloads are defined by the client (see `src/services/network/`).
 
+### Deterministic dealing
+
+`game_started` carries a shared `seed`. Both clients deal every hand from
+this seed (plus the hand number), so their decks match without the server ever
+seeing card data — the relay stays game-agnostic while the clients remain in
+lockstep. The cards are sliced by seat (seat 0 takes the first three, seat 1
+the next three, then the vira), so each client holds only its own hand.
+
 ### Server → Client
 
 | Type | Payload | Meaning |
@@ -86,7 +94,7 @@ Their payloads are defined by the client (see `src/services/network/`).
 | `opponent_joined` | `opponentName` | Second player arrived |
 | `queued` | `variant` | Waiting for a quick-match opponent |
 | `quick_match_cancelled` | — | Left the queue |
-| `game_started` | `roomCode`, `variant`, `seat`, `firstDealer`, `opponentName` | Both players present; begin |
+| `game_started` | `roomCode`, `variant`, `seat`, `firstDealer`, `seed`, `opponentName` | Both players present; begin |
 | `opponent_disconnected` | `graceMs` | Opponent dropped, grace window started |
 | `opponent_reconnected` | — | Opponent came back |
 | `opponent_forfeited` | — | Opponent did not return in time |

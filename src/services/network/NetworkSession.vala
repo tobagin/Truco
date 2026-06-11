@@ -24,6 +24,7 @@ namespace Truco.Network {
         public string variant { get; private set; default = "paulista"; }
         public int seat { get; private set; default = -1; }
         public int first_dealer { get; private set; default = 0; }
+        public uint32 deal_seed { get; private set; default = 0; }
         public string opponent_name { get; private set; default = ""; }
 
         // Lifecycle signals consumed by the UI / controller.
@@ -148,6 +149,7 @@ namespace Truco.Network {
                     variant = m.get_string ("variant", variant);
                     seat = m.get_int ("seat", seat);
                     first_dealer = m.get_int ("firstDealer", 0);
+                    deal_seed = (uint32) m.get_int ("seed", 0);
                     opponent_name = m.get_string ("opponentName", opponent_name);
                     set_state (SessionState.IN_GAME);
                     game_started ();
