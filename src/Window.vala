@@ -282,7 +282,11 @@ namespace Truco {
 
         private GameState game;
         private TutorialManager tutorial_manager;
-        
+
+        // Multiplayer: set when an online match is active; null for local play.
+        private Truco.Network.MultiplayerGameController? mp_controller = null;
+        public bool online_mode { get { return mp_controller != null; } }
+
         private string current_felt_class = "felt-green";
         private string current_card_back = "cards/backs/player_card_back_design_1_blue.svg";
         private int current_deck_style = 0;
@@ -339,24 +343,35 @@ namespace Truco {
             btn_truco.clicked.connect (() => {
                 if (game.raise_stake(0)) {
                     update_ui();
-                    // AI Response Delay
-                    GLib.Timeout.add(1000, () => {
-                        game.cpu_respond_truco();
-                        update_ui();
-                        check_cpu_turn();
-                        return false;
-                    });
+                    if (mp_controller != null) {
+                        // Online: send the call and wait for the remote response.
+                        mp_controller.local_call_truco(game.proposed_stake ?? 3);
+                    } else {
+                        // AI Response Delay
+                        GLib.Timeout.add(1000, () => {
+                            game.cpu_respond_truco();
+                            update_ui();
+                            check_cpu_turn();
+                            return false;
+                        });
+                    }
                 }
             });
-            
+
             btn_accept.clicked.connect(() => {
                 game.respond_challenge(0, true);
+                if (mp_controller != null) {
+                    mp_controller.local_respond_truco("accept");
+                }
                 update_ui();
                 check_cpu_turn();
             });
-            
+
             btn_refuse.clicked.connect(() => {
                 game.respond_challenge(0, false);
+                if (mp_controller != null) {
+                    mp_controller.local_respond_truco("run");
+                }
                 update_ui();
             });
             
@@ -463,6 +478,97 @@ namespace Truco {
             dialog.present(this);
         }
 
+        /** Name shown to a remote opponent. */
+        public string get_local_player_name () {
+            var n = GLib.Environment.get_real_name ();
+            return (n == null || n == "Unknown" || n.strip () == "") ? _("Player") : n;
+        }
+
+        /**
+         * Begin an online match. Starts a 1-vs-1 game in the negotiated variant
+         * and connects the network controller's opponent signals so remote
+         * actions are applied to the local board.
+         *
+         * NOTE: turn routing — sending the local player's own actions over the
+         * wire and suppressing the local AI for the opponent seat — is wired in
+         * the play handlers (see local_play_card / handle_* call sites). The
+         * controller below carries the opponent's intent inbound.
+         */
+        public void start_multiplayer_game (Truco.Network.MultiplayerGameController controller,
+                                            string variant, int seat, int first_dealer, uint32 seed) {
+            mp_controller = controller;
+            game = new GameState.online (variant, seat, seed, first_dealer);
+            // Label the opponent seat with the remote player's name.
+            if (game.players.size > 1) {
+                game.players.get (1).name = controller.session.opponent_name;
+            }
+            setup_game_signals ();
+            connect_multiplayer_signals (controller);
+            update_layout_visibility ();
+            update_ui ();
+        }
+
+        private void connect_multiplayer_signals (Truco.Network.MultiplayerGameController c) {
+            c.opponent_played_card.connect ((suit, value) => {
+                apply_remote_card (suit, value);
+            });
+            c.opponent_called_truco.connect ((level) => {
+                apply_remote_truco (level);
+            });
+            c.opponent_responded_truco.connect ((response) => {
+                apply_remote_truco_response (response);
+            });
+            c.session.opponent_left.connect ((reason) => {
+                show_opponent_left (reason);
+            });
+        }
+
+        // Inbound remote-action application. These translate an opponent's
+        // network action into the same GameState mutation a local turn makes,
+        // then refresh the board. Kept as focused entry points so the mapping
+        // to GameState lives in one place.
+        private void apply_remote_card (Truco.Suit suit, int value) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            game.play_card_for_player (opp_index, suit, value);
+            update_ui ();
+            check_cpu_turn ();
+        }
+
+        private void apply_remote_truco (int level) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            game.remote_raise_stake (opp_index);
+            update_ui ();
+        }
+
+        private void apply_remote_truco_response (string response) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            switch (response) {
+                case "raise":
+                    game.remote_raise_stake (opp_index);
+                    break;
+                case "run":
+                    game.remote_respond_challenge (opp_index, false);
+                    break;
+                default: // "accept"
+                    game.remote_respond_challenge (opp_index, true);
+                    break;
+            }
+            update_ui ();
+        }
+
+        private void show_opponent_left (string reason) {
+            string msg = (reason == "resign")
+                ? _("Your opponent resigned. You win!")
+                : _("Your opponent left the game.");
+            var dialog = new Adw.AlertDialog (_("Game Over"), msg);
+            dialog.add_response ("ok", _("OK"));
+            dialog.present (this);
+            mp_controller = null;
+        }
+
         private void on_new_game_quick(SimpleAction action, Variant? parameter) {
              game = new GameState(game.game_mode);
              setup_game_signals();
@@ -484,7 +590,11 @@ namespace Truco {
 
         private void check_cpu_turn() {
             if (game.game_over || game.match_over) return;
-            
+
+            // In online mode the opponent's moves arrive over the network, so
+            // the local AI must not act on their behalf.
+            if (mp_controller != null) return;
+
             // 1. Handle Pending Challenges (Truco/Envido)
             if (game.proposed_stake != null) {
                 int responding_team = (game.challenger_team == 0) ? 1 : 0;
@@ -738,10 +848,14 @@ namespace Truco {
                 
                 // Capture index
                 int idx = i;
+                var played = c;
                 btn.clicked.connect(() => {
                     if (game.play_card(0, idx)) {
+                        if (mp_controller != null) {
+                            mp_controller.local_play_card(played);
+                        }
                         update_ui();
-                        check_cpu_turn(); 
+                        check_cpu_turn();
                     }
                 });
                 player_hand_box.append(btn);

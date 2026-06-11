@@ -1,0 +1,28 @@
+{
+  "name": "truco-multiplayer-server",
+  "version": "1.0.0",
+  "description": "WebSocket relay server for Truco multiplayer gameplay",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "truco",
+    "cards",
+    "multiplayer",
+    "websocket"
+  ],
+  "author": "Thiago Fernandes",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "ws": "^8.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

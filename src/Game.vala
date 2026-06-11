@@ -128,6 +128,10 @@ namespace Truco {
         public string? last_signal { get; set; }
         public string avatar_icon { get; set; default = "avatars/avatar1.svg"; } // Default
 
+        // Network seat (0/1) in online play; -1 for local games. Used to map a
+        // shared, deterministically dealt deck onto each client's perspective.
+        public int net_seat { get; set; default = -1; }
+
         public Player(int id, string name, bool is_cpu, int team) {
             this.id = id;
             this.name = name;
@@ -223,6 +227,16 @@ namespace Truco {
         public bool hidden_vira = false;
         public RulesEngine rules_engine;
 
+        // --- Online lockstep state ---------------------------------------
+        // In online play both clients run the identical engine in lockstep.
+        // A shared server seed makes every deal deterministic, and dealing is
+        // sliced by net_seat so each client holds its own cards. The dealer is
+        // tracked in net-seat space so both peers agree who starts.
+        public bool online_mode = false;
+        public int my_net_seat = 0;
+        private uint32 deal_seed = 0;
+        public int dealer_net_seat = 0;
+
         public GameState(string mode, int team_size = 2, bool fixed_manilha = false, bool hide_vira = false) {
             this.game_mode = mode;
             this.manilha_fixed = fixed_manilha;
@@ -253,7 +267,43 @@ namespace Truco {
 
             reset_match();
         }
-        
+
+        /**
+         * Construct a two-player online game. The local player is always seat
+         * index 0 ("You"); the opponent (driven by the network, not the AI) is
+         * index 1. `seat` is our network seat (0/1), `seed` is the shared deal
+         * seed from the server, and `first_dealer` is the net seat that deals
+         * the opening hand.
+         */
+        public GameState.online(string mode, int seat, uint32 seed, int first_dealer) {
+            this.game_mode = mode;
+            this.online_mode = true;
+            this.my_net_seat = seat;
+            this.deal_seed = seed;
+            this.manilha_fixed = false;
+            this.hidden_vira = false;
+            this.rules_engine = new RulesEngine();
+            this.score_manager = new ScoreManager(get_max_points());
+            this.players = new ArrayList<Player>();
+            this.history = new ArrayList<HistoryItem?>();
+            this.table_cards = new ArrayList<Card?>();
+            this.table_pids = new ArrayList<int>();
+
+            var you = new Player(0, _("You"), false, 0);
+            you.net_seat = seat;
+            players.add(you);
+
+            var opp = new Player(1, _("Opponent"), false, 1); // network-driven, not CPU
+            opp.net_seat = 1 - seat;
+            players.add(opp);
+
+            // Seed the dealer so the first increment in start_round lands on
+            // first_dealer (mirrors the offset trick used in reset_match).
+            this.dealer_net_seat = (first_dealer + 1) % 2;
+
+            reset_match();
+        }
+
         public void reset_match() {
             matches_won_team_0 = 0;
             matches_won_team_1 = 0;
@@ -310,11 +360,20 @@ namespace Truco {
             history.add(HistoryItem(-1, _("Round %d started.").printf(round_count)));
 
             deal_cards();
-            
-            // Rotate dealer
-            dealer_index = (dealer_index + 1) % players.size;
-            current_player_index = (dealer_index + 1) % players.size; 
-            
+
+            if (online_mode) {
+                // Rotate dealer in net-seat space so both clients agree, then
+                // map the starter back to this client's local index.
+                dealer_net_seat = (dealer_net_seat + 1) % 2;
+                int current_net = (dealer_net_seat + 1) % 2;
+                current_player_index = (players[0].net_seat == current_net) ? 0 : 1;
+                dealer_index = (players[0].net_seat == dealer_net_seat) ? 0 : 1;
+            } else {
+                // Rotate dealer
+                dealer_index = (dealer_index + 1) % players.size;
+                current_player_index = (dealer_index + 1) % players.size;
+            }
+
             history.add(HistoryItem(-1, _("%s starts the round.").printf(players[current_player_index].name)));
             
             // Check Mão de 11
@@ -346,6 +405,11 @@ namespace Truco {
         }
 
         private void deal_cards() {
+            if (online_mode) {
+                deal_cards_online();
+                return;
+            }
+
             var deck = create_deck();
             // Simple shuffle (fisher-yates)
             for (int i = deck.size - 1; i > 0; i--) {
@@ -368,7 +432,42 @@ namespace Truco {
             } else {
                 vira = null;
             }
-            
+
+            calculate_powers();
+        }
+
+        /**
+         * Deterministic deal for online lockstep play. Both clients shuffle the
+         * same deck from (deal_seed + round_count) and then slice it by
+         * net_seat, so each holds its own three cards while staying in sync.
+         */
+        private void deal_cards_online() {
+            var deck = create_deck();
+            var rng = new Rand.with_seed (deal_seed + (uint32) round_count);
+            for (int i = deck.size - 1; i > 0; i--) {
+                int j = (int) rng.int_range (0, i + 1);
+                var temp = deck[i];
+                deck[i] = deck[j];
+                deck[j] = temp;
+            }
+
+            foreach (var p in players) {
+                p.hand.clear();
+                p.last_signal = null;
+                int base_index = p.net_seat * 3; // seat 0 -> 0..2, seat 1 -> 3..5
+                for (int i = 0; i < 3; i++) {
+                    if (base_index + i < deck.size) p.hand.add(deck[base_index + i]);
+                }
+            }
+
+            int vira_index = players.size * 3; // 6 for a two-player game
+            if (vira_index < deck.size
+                && (game_mode == "paulista" || game_mode == "uruguayo" || game_mode == "venezolano")) {
+                vira = deck[vira_index];
+            } else {
+                vira = null;
+            }
+
             calculate_powers();
         }
 
@@ -419,7 +518,33 @@ namespace Truco {
             advance_turn();
             return true;
         }
-        
+
+        // --- Multiplayer remote-action entry points ----------------------
+        // These apply an opponent's networked action to the shared GameState,
+        // reusing the same logic a local turn uses. They locate the card/stake
+        // by value rather than UI index, since the remote peer's hand layout
+        // is not mirrored locally.
+
+        public bool play_card_for_player(int player_index, Suit suit, int value) {
+            if (player_index < 0 || player_index >= players.size) return false;
+            var p = players[player_index];
+            for (int i = 0; i < p.hand.size; i++) {
+                if (p.hand[i].suit == suit && p.hand[i].value == value) {
+                    return play_card(player_index, i);
+                }
+            }
+            warning("Remote play_card: card %d of %d not found in opponent hand", value, (int) suit);
+            return false;
+        }
+
+        public bool remote_raise_stake(int player_index) {
+            return raise_stake(player_index);
+        }
+
+        public void remote_respond_challenge(int player_index, bool accept) {
+            respond_challenge(player_index, accept);
+        }
+
         public bool raise_stake(int player_id) {
             // Allow counter-raising! 
             // Only forbid if we are the ones who proposed it (cannot raise own proposal immediately)
