@@ -545,6 +545,25 @@ namespace Truco {
             respond_challenge(player_index, accept);
         }
 
+        // Betting (Envido/Flor) and Mão de 11 carried from the remote peer.
+        // Both clients run identical lockstep hands, so resolution (which needs
+        // both players' cards) happens locally with no extra wire data.
+        public bool remote_call_envido(int player_index, int type) {
+            return call_envido(player_index, type);
+        }
+
+        public bool remote_call_flor(int player_index) {
+            return call_flor(player_index);
+        }
+
+        public void remote_respond_bet(int player_index, bool accept) {
+            respond_envido(player_index, accept);
+        }
+
+        public void remote_mao_de_11_decision(int player_index, bool accept) {
+            respond_challenge(player_index, accept);
+        }
+
         public bool raise_stake(int player_id) {
             // Allow counter-raising! 
             // Only forbid if we are the ones who proposed it (cannot raise own proposal immediately)

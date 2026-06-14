@@ -1,15 +1,21 @@
+# Catalan translations for io.github.tobagin.Truco package.
+# Copyright (C) 2026 THE io.github.tobagin.Truco'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.github.tobagin.Truco package.
+# Automatically generated, 2026.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Truco 0.1.0\n"
+"Project-Id-Version: io.github.tobagin.Truco\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-14 21:05+0100\n"
-"PO-Revision-Date: 2025-12-15 21:40+0000\n"
-"Last-Translator: \n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
+"PO-Revision-Date: 2026-06-14 19:19+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/Window.vala:489 src/Application.vala:85
 #: data/ui/preferences_dialog.blp:56
@@ -19,99 +25,99 @@ msgstr "Jugador"
 #: src/Window.vala:623
 #, c-format
 msgid "Opponent: %s"
-msgstr "Oponente: %s"
+msgstr "Adversari: %s"
 
 #: src/Window.vala:628
 msgid "Your opponent resigned. You win!"
-msgstr "Tu oponente se rindió. ¡Ganaste!"
+msgstr "El teu adversari s'ha rendit. Has guanyat!"
 
 #: src/Window.vala:629
 msgid "Your opponent left the game."
-msgstr "Tu oponente abandonó la partida."
+msgstr "El teu adversari ha abandonat la partida."
 
 #: src/Window.vala:630
 msgid "Game Over"
-msgstr "Fin del Juego"
+msgstr "Fi de la partida"
 
 #: src/Window.vala:631 src/dialogs/MatchEndDialog.vala:19
 #: data/ui/match_end_dialog.blp:56
 msgid "OK"
-msgstr "Aceptar"
+msgstr "D'acord"
 
 #: src/Window.vala:692 src/Game.vala:296 data/ui/window.blp:147
 #: data/ui/window.blp:192 data/ui/window.blp:214
 msgid "Opponent"
-msgstr "Oponente"
+msgstr "Adversari"
 
 #. Opponent 1
 #: src/Window.vala:692 src/Game.vala:258 data/ui/window.blp:299
 msgid "Partner"
-msgstr "Compañero"
+msgstr "Company"
 
 #: src/Window.vala:762
 #, c-format
 msgid "%s Variant"
-msgstr "Variante %s"
+msgstr "Variant %s"
 
 #. Status & Buttons
 #: src/Window.vala:776
 #, c-format
 msgid "Stake: %d"
-msgstr "Valor: %d"
+msgstr "Aposta: %d"
 
 #: src/Window.vala:780
 #, c-format
 msgid "Truco! %d proposed by Team %d."
-msgstr "¡Truco! %d propuesto por el Equipo %d."
+msgstr "Truco! %d proposat per l'equip %d."
 
 #: src/Window.vala:796
 msgid "Waiting for response..."
-msgstr "Esperando respuesta..."
+msgstr "Esperant resposta..."
 
 #: src/Window.vala:804
 #, c-format
 msgid "Envido! Points proposed by Team %d."
-msgstr "¡Envido! Puntos propuestos por el Equipo %d."
+msgstr "Envido! Punts proposats per l'equip %d."
 
 #: src/Window.vala:816
 msgid "Waiting for Envido response..."
-msgstr "Esperando respuesta de Envido..."
+msgstr "Esperant resposta a l'Envido..."
 
 #. Reset state
 #. Scoreboard shows Status (Turn | Stake)
 #: src/Window.vala:826 src/Window.vala:877
 #, c-format
 msgid "Turn: %s | %s"
-msgstr "Turno: %s | %s"
+msgstr "Torn: %s | %s"
 
 #: src/Window.vala:845
 msgid "TRUCO!"
-msgstr "¡TRUCO!"
+msgstr "TRUCO!"
 
 #: src/Window.vala:850 src/Window.vala:1066
 msgid "SIX!"
-msgstr "¡SEIS!"
+msgstr "SIS!"
 
 #: src/Window.vala:851 src/Window.vala:1067
 msgid "NINE!"
-msgstr "¡NUEVE!"
+msgstr "NOU!"
 
 #: src/Window.vala:852 src/Window.vala:1068
 msgid "TWELVE!"
-msgstr "¡DOCE!"
+msgstr "DOTZE!"
 
 #. Argentino / Uruguayo
 #: src/Window.vala:854 src/Window.vala:858
 msgid "RETRUCO!"
-msgstr "¡RETRUCO!"
+msgstr "RETRUCO!"
 
 #: src/Window.vala:855
 msgid "VALE JUEGO!"
-msgstr "¡VALE JUEGO!"
+msgstr "VALE JUEGO!"
 
 #: src/Window.vala:859
 msgid "VALE CUATRO!"
-msgstr "¡VALE CUATRO!"
+msgstr "VALE CUATRO!"
 
 #: src/Window.vala:876
 msgid "MÃO DE FERRO"
@@ -132,104 +138,103 @@ msgstr "Ronda: %d"
 #. Arg/Uru
 #: src/Window.vala:1065 src/Game.vala:637
 msgid "Truco!"
-msgstr "¡Truco!"
+msgstr "Truco!"
 
 #: src/Window.vala:1072
 #, c-format
 msgid "%s proposed %s (Stake: %d)"
-msgstr "%s propuso %s (Valor: %d)"
+msgstr "%s ha proposat %s (Aposta: %d)"
 
 #: src/Window.vala:1073
 msgid "Accept"
-msgstr "Aceptar"
+msgstr "Accepta"
 
 #: src/Window.vala:1074 data/ui/window.blp:354
 msgid "Run"
-msgstr "Correr"
+msgstr "Fuig"
 
 #: src/Window.vala:1083
 msgid "Six!"
-msgstr "¡Seis!"
+msgstr "Sis!"
 
 #: src/Window.vala:1084
 msgid "Nine!"
-msgstr "¡Nueve!"
+msgstr "Nou!"
 
 #: src/Window.vala:1085
 msgid "Twelve!"
-msgstr "¡Doce!"
+msgstr "Dotze!"
 
 #: src/Window.vala:1087 src/Window.vala:1090 src/Game.vala:633
 #: src/Game.vala:638
 msgid "Retruco!"
-msgstr "¡Retruco!"
+msgstr "Retruco!"
 
 #: src/Window.vala:1088 src/Game.vala:639
 msgid "Vale Cuatro!"
-msgstr "¡Vale Cuatro!"
+msgstr "Vale Cuatro!"
 
 #: src/Window.vala:1091 src/Game.vala:634
 msgid "Vale Juego!"
-msgstr "¡Vale Juego!"
+msgstr "Vale Juego!"
 
 #: src/Window.vala:1139 src/Game.vala:717
 msgid "Envido!"
-msgstr "¡Envido!"
+msgstr "Envido!"
 
 #: src/Window.vala:1140 src/Game.vala:718
 msgid "Real Envido!"
-msgstr "¡Real Envido!"
+msgstr "Real Envido!"
 
 #: src/Window.vala:1141 src/Game.vala:719
 msgid "Falta Envido!"
-msgstr "¡Falta Envido!"
+msgstr "Falta Envido!"
 
 #: src/Window.vala:1145
 #, c-format
 msgid "%s proposed %s"
-msgstr "%s propuso %s"
+msgstr "%s ha proposat %s"
 
 #: src/Window.vala:1146
 msgid "Quiero (Accept)"
-msgstr "Quiero (Aceptar)"
+msgstr "Quiero (Accepta)"
 
 #: src/Window.vala:1147
 msgid "No Quiero (Run)"
-msgstr "No Quiero (Correr)"
+msgstr "No Quiero (Fuig)"
 
 #: src/Window.vala:1200
 msgid ""
 "Your team has 11 points. You can see your partner's cards. Do you want to "
 "play this round (Worth 3 points)?"
 msgstr ""
-"Tu equipo tiene 11 puntos. Podés ver las cartas de tu compañero. ¿Querés "
-"jugar esta ronda (Vale 3 puntos)?"
+"El teu equip té 11 punts. Pots veure les cartes del teu company. Vols jugar "
+"aquesta ronda (Val 3 punts)?"
 
 #: src/Window.vala:1201
 msgid ""
 "Your team has 11 points. Do you want to play this round (Worth 3 points)?"
-msgstr "Tu equipo tiene 11 puntos. ¿Querés jugar esta ronda (Vale 3 puntos)?"
+msgstr "El teu equip té 11 punts. Vols jugar aquesta ronda (Val 3 punts)?"
 
 #: src/Window.vala:1204
 msgid "Mão de 11!"
-msgstr "¡Mão de 11!"
+msgstr "Mão de 11!"
 
 #: src/Window.vala:1206
 msgid "Play (Worth 3)"
-msgstr "Jugar (Vale 3)"
+msgstr "Juga (Val 3)"
 
 #: src/Window.vala:1207
 msgid "Run (Give 1 point)"
-msgstr "Correr (Dar 1 punto)"
+msgstr "Fuig (Cedeix 1 punt)"
 
 #: src/Window.vala:1224
 msgid "Your Partner's Hand:"
-msgstr "Mano de tu compañero:"
+msgstr "La mà del teu company:"
 
-# Cards
 #: src/Game.vala:13
 msgid "Swords"
-msgstr "Espadas"
+msgstr "Espases"
 
 #: src/Game.vala:14
 msgid "Clubs"
@@ -241,7 +246,7 @@ msgstr "Oros"
 
 #: src/Game.vala:16
 msgid "Cups"
-msgstr "Copas"
+msgstr "Copes"
 
 #: src/Game.vala:36
 msgid "Ace"
@@ -253,22 +258,21 @@ msgstr "Sota"
 
 #: src/Game.vala:38
 msgid "King"
-msgstr "Rey"
+msgstr "Rei"
 
 #: src/Game.vala:39
 msgid "Queen"
-msgstr "Caballo"
+msgstr "Cavall"
 
 #: src/Game.vala:41
 #, c-format
 msgid "%s of %s"
-msgstr "%s de %s"
+msgstr "%s d'%s"
 
-# Player Names & Turn
 #. Teams: 0 (You + Partners), 1 (Opponents)
 #: src/Game.vala:252 src/Game.vala:292 data/ui/window.blp:275
 msgid "You"
-msgstr "Tú"
+msgstr "Tu"
 
 #: src/Game.vala:255 src/Game.vala:257 src/Game.vala:261
 msgid "CPU 1"
@@ -283,7 +287,7 @@ msgstr "CPU 3"
 #. Opponent 1
 #: src/Game.vala:262 data/ui/window.blp:88
 msgid "Partner 1"
-msgstr "Compañero 1"
+msgstr "Company 1"
 
 #. Partner 1
 #: src/Game.vala:263
@@ -293,18 +297,16 @@ msgstr "CPU 2"
 #. Opponent 2
 #: src/Game.vala:264 data/ui/window.blp:111
 msgid "Partner 2"
-msgstr "Compañero 2"
+msgstr "Company 2"
 
-# Other History
 #: src/Game.vala:315
 msgid "Match Started!"
-msgstr "¡Partida Iniciada!"
+msgstr "Partida iniciada!"
 
 #: src/Game.vala:322
 msgid "New Game Started. Score 0-0."
-msgstr "Nuevo Juego Iniciado. Puntuación 0-0."
+msgstr "Joc nou iniciat. Marcador 0-0."
 
-# History Messages
 #. history.add("Round %d started.".printf(round_count)); // Logged in deal_cards? No, do it here.
 #: src/Game.vala:360
 #, c-format
@@ -314,136 +316,135 @@ msgstr "Ronda %d iniciada."
 #: src/Game.vala:377
 #, c-format
 msgid "%s starts the round."
-msgstr "%s comienza la ronda."
+msgstr "%s comença la ronda."
 
 #: src/Game.vala:386
 msgid "Mão de Ferro! Players plays blind!"
-msgstr "¡Mão de Ferro! ¡Los jugadores juegan a ciegas!"
+msgstr "Mão de Ferro! Els jugadors juguen a cegues!"
 
 #: src/Game.vala:397
 msgid "YOUR TEAM"
-msgstr "TU EQUIPO"
+msgstr "EL TEU EQUIP"
 
 #: src/Game.vala:397
 msgid "OPPONENT TEAM"
-msgstr "EQUIPO OPONENTE"
+msgstr "EQUIP ADVERSARI"
 
 #: src/Game.vala:398
 #, c-format
 msgid "Mão de 11 for %s! Deciding..."
-msgstr "¡Mão de 11 para %s! Decidiendo..."
+msgstr "Mão de 11 per a %s! Decidint..."
 
 #: src/Game.vala:625 src/Game.vala:632
 msgid "Called Truco!"
-msgstr "¡Cantó Truco!"
+msgstr "Ha cantat Truco!"
 
 #: src/Game.vala:628
 msgid "Called Six!"
-msgstr "¡Cantó Seis!"
+msgstr "Ha cantat Sis!"
 
 #: src/Game.vala:629
 msgid "Called Nine!"
-msgstr "¡Cantó Nueve!"
+msgstr "Ha cantat Nou!"
 
 #: src/Game.vala:630
 msgid "Called Twelve!"
-msgstr "¡Cantó Doce!"
+msgstr "Ha cantat Dotze!"
 
 #: src/Game.vala:661
 #, c-format
 msgid "Accepted Hand! Round worth %d points."
-msgstr "¡Mano aceptada! Ronda vale %d puntos."
+msgstr "Mà acceptada! La ronda val %d punts."
 
 #: src/Game.vala:664
 msgid "Refused Mão de 11!"
-msgstr "¡Mão de 11 rechazada!"
+msgstr "Ha rebutjat la Mão de 11!"
 
-# Calls
 #: src/Game.vala:681
 #, c-format
 msgid "Accepted! Stake is now %d"
-msgstr "¡Aceptado! El valor es ahora %d"
+msgstr "Acceptat! L'aposta ara és %d"
 
 #: src/Game.vala:686
 msgid "Refused!"
-msgstr "¡Rechazado!"
+msgstr "Rebutjat!"
 
 #: src/Game.vala:689
 msgid "Your team won the round!"
-msgstr "¡Tu equipo ganó la ronda!"
+msgstr "El teu equip ha guanyat la ronda!"
 
 #: src/Game.vala:689
 msgid "Opponent team won the round!"
-msgstr "¡El equipo oponente ganó la ronda!"
+msgstr "L'equip adversari ha guanyat la ronda!"
 
 #: src/Game.vala:755
 msgid "Quiero! (Accepted Envido)"
-msgstr "¡Quiero! (Envido aceptado)"
+msgstr "Quiero! (Envido acceptat)"
 
 #: src/Game.vala:759
 msgid "No Quiero! (Refused Envido)"
-msgstr "¡No Quiero! (Envido rechazado)"
+msgstr "No Quiero! (Envido rebutjat)"
 
 #: src/Game.vala:788
 msgid "Envido Scores: "
-msgstr "Puntos de Envido: "
+msgstr "Punts d'Envido: "
 
 #: src/Game.vala:807
 msgid "Your team wins Envido!"
-msgstr "¡Tu equipo gana el Envido!"
+msgstr "El teu equip guanya l'Envido!"
 
 #: src/Game.vala:807
 msgid "Opponent team wins Envido!"
-msgstr "¡El equipo oponente gana el Envido!"
+msgstr "L'equip adversari guanya l'Envido!"
 
 #: src/Game.vala:830
 msgid "Flor!"
-msgstr "¡Flor!"
+msgstr "Flor!"
 
 #. Contra Flor!
 #: src/Game.vala:853
 msgid "Contra Flor!"
-msgstr "¡Contra Flor!"
+msgstr "Contra Flor!"
 
 #: src/Game.vala:881
 #, c-format
 msgid "Flor Showdown: Us %d vs Them %d"
-msgstr "Duelo de Flor: Nosotros %d vs Ellos %d"
+msgstr "Desempat de Flor: Nosaltres %d contra Ells %d"
 
 #: src/Game.vala:882
 msgid "Your team wins Flor!"
-msgstr "¡Tu equipo gana la Flor!"
+msgstr "El teu equip guanya la Flor!"
 
 #: src/Game.vala:882
 msgid "Opponent team wins Flor!"
-msgstr "¡El equipo oponente gana la Flor!"
+msgstr "L'equip adversari guanya la Flor!"
 
 #. No Flor for opponents
 #: src/Game.vala:889
 msgid "Opponents have no Flor. 3 points awarded."
-msgstr "Los oponentes no tienen Flor. Se otorgan 3 puntos."
+msgstr "Els adversaris no tenen Flor. S'atorguen 3 punts."
 
 #: src/Game.vala:1186
 msgid "Wait for your turn."
-msgstr "Esperá tu turno."
+msgstr "Espera el teu torn."
 
 #: src/Game.vala:1193
 msgid "Hint: You have a Flor! You should call it."
-msgstr "Consejo: ¡Tenés Flor! Deberías cantarla."
+msgstr "Pista: Tens una Flor! Hauries de cantar-la."
 
 #: src/Game.vala:1199
 #, c-format
 msgid "Hint: You have a good Envido score (%d). Consider calling it."
-msgstr "Consejo: Tenés un buen tanto de Envido (%d). Considerá cantarlo."
+msgstr "Pista: Tens una bona puntuació d'Envido (%d). Considera cantar-lo."
 
 #: src/Game.vala:1206
 msgid "Hint: You have strong cards. Consider calling Truco!"
-msgstr "Consejo: Tenés cartas fuertes. ¡Considerá cantar Truco!"
+msgstr "Pista: Tens cartes fortes. Considera cantar Truco!"
 
 #: src/Game.vala:1212
 #, c-format
 msgid "Hint: I suggest playing the %s."
-msgstr "Consejo: Te sugiero jugar el %s."
+msgstr "Pista: Et suggereixo jugar la %s."
 
 #: src/Game.vala:1225 src/RulesEngine.vala:150
 msgid "Zap"
@@ -451,48 +452,48 @@ msgstr "Zap"
 
 #: src/Game.vala:1225
 msgid "Strong"
-msgstr "Fuerte"
+msgstr "Forta"
 
 #: src/Game.vala:1470
 msgid "Team US wins the Game!"
-msgstr "¡El Equipo NOSOTROS gana el Juego!"
+msgstr "L'equip NOSALTRES guanya el joc!"
 
 #: src/Game.vala:1470
 msgid "Team THEM wins the Game!"
-msgstr "¡El Equipo ELLOS gana el Juego!"
+msgstr "L'equip ELLS guanya el joc!"
 
 #: src/Game.vala:1476
 msgid "Team US wins the Match!"
-msgstr "¡El Equipo NOSOTROS gana la Partida!"
+msgstr "L'equip NOSALTRES guanya la partida!"
 
 #: src/Game.vala:1476
 msgid "Team THEM wins the Match!"
-msgstr "¡El Equipo ELLOS gana la Partida!"
+msgstr "L'equip ELLS guanya la partida!"
 
 #: src/Game.vala:1502
 msgid "Zap! (Best Card)"
-msgstr "¡Zap! (Mejor carta)"
+msgstr "Zap! (Millor carta)"
 
 #: src/Game.vala:1503
 msgid "Strong Card"
-msgstr "Carta fuerte"
+msgstr "Carta forta"
 
 #: src/Game.vala:1504
 msgid "Good Hand"
-msgstr "Buena mano"
+msgstr "Bona mà"
 
 #: src/Game.vala:1505
 msgid "Weak Hand"
-msgstr "Mano débil"
+msgstr "Mà fluixa"
 
 #: src/Game.vala:1506
 msgid "Average Hand"
-msgstr "Mano regular"
+msgstr "Mà mitjana"
 
 #: src/Game.vala:1525
 #, c-format
 msgid "Signal: %s"
-msgstr "Seña: %s"
+msgstr "Senyal: %s"
 
 #: src/RulesEngine.vala:151
 msgid "Copas"
@@ -539,32 +540,32 @@ msgstr "%d Buenas"
 #: src/dialogs/NewGameDialog.vala:24 data/ui/online_dialog.blp:93
 #: data/ui/online_dialog.blp:162
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Cancel·la"
 
 #: src/dialogs/NewGameDialog.vala:25
 msgid "Start Game"
-msgstr "Iniciar Juego"
+msgstr "Inicia la partida"
 
 #: src/dialogs/MatchEndDialog.vala:11 data/ui/match_end_dialog.blp:18
 msgid "Match Over"
-msgstr "Partida Terminada"
+msgstr "Partida acabada"
 
 #: src/dialogs/MatchEndDialog.vala:12 data/ui/match_end_dialog.blp:32
 msgid "You Won!"
-msgstr "¡Partida Terminada! ¡Ganaste!"
+msgstr "Has guanyat!"
 
 #: src/dialogs/MatchEndDialog.vala:12
 msgid "You Lost!"
-msgstr "¡Perdiste!"
+msgstr "Has perdut!"
 
 #. Actions
 #: src/dialogs/MatchEndDialog.vala:16
 msgid "Replay"
-msgstr "Jugar de nuevo"
+msgstr "Torna a jugar"
 
 #: src/dialogs/MatchEndDialog.vala:21 data/ui/shortcuts.blp:24
 msgid "Quit"
-msgstr "Salir"
+msgstr "Surt"
 
 #: src/dialogs/MatchEndDialog.vala:35
 #, c-format
@@ -572,25 +573,25 @@ msgid ""
 "Games Won: %d/%d (%.0f%%)\n"
 "Rounds Won: %d/%d (%.0f%%)"
 msgstr ""
-"Juegos Ganados: %d/%d (%.0f%%)\n"
-"Rondas Ganadas: %d/%d (%.0f%%)"
+"Jocs guanyats: %d/%d (%.0f%%)\n"
+"Rondes guanyades: %d/%d (%.0f%%)"
 
 #: src/dialogs/OnlineDialog.vala:154 data/ui/online_dialog.blp:120
 msgid "Creating room…"
-msgstr "Creando sala…"
+msgstr "S'està creant la sala…"
 
 #: src/dialogs/OnlineDialog.vala:192
 msgid "Code copied"
-msgstr "Código copiado"
+msgstr "Codi copiat"
 
 #: src/dialogs/OnlineDialog.vala:202 data/ui/online_dialog.blp:156
 msgid "Waiting for opponent…"
-msgstr "Esperando a un oponente…"
+msgstr "S'està esperant l'adversari…"
 
 #: src/dialogs/OnlineDialog.vala:205
 #, c-format
 msgid "%s joined. Starting…"
-msgstr "%s se unió. Comenzando…"
+msgstr "%s s'ha unit. S'està començant…"
 
 #: src/dialogs/OnlineDialog.vala:222
 #, c-format
@@ -599,7 +600,7 @@ msgstr "Error: %s"
 
 #: data/ui/window.blp:17
 msgid "Toggle History"
-msgstr "Alternar Historial"
+msgstr "Mostra/amaga l'historial"
 
 #: data/ui/window.blp:22
 msgid "Truco"
@@ -611,23 +612,23 @@ msgstr "Menú principal"
 
 #: data/ui/window.blp:337
 msgid "Hint"
-msgstr "Consejo"
+msgstr "Pista"
 
 #: data/ui/window.blp:338
 msgid "Get a move suggestion"
-msgstr "Obtené una sugerencia de jugada"
+msgstr "Obtén un suggeriment de jugada"
 
 #: data/ui/window.blp:376
 msgid "MATCH SCORE"
-msgstr "PUNTUACIÓN DE LA PARTIDA"
+msgstr "PUNTUACIÓ DE LA PARTIDA"
 
 #: data/ui/window.blp:405
 msgid "GAME SCORE"
-msgstr "PUNTUACIÓN DEL JUEGO"
+msgstr "PUNTUACIÓ DEL JOC"
 
 #: data/ui/window.blp:434
 msgid "Turn: Player 1"
-msgstr "Turno: Jugador 1"
+msgstr "Torn: Jugador 1"
 
 #: data/ui/window.blp:439
 msgid "Round 1"
@@ -635,20 +636,20 @@ msgstr "Ronda 1"
 
 #: data/ui/window.blp:459
 msgid "TURN CARD"
-msgstr "CARTA VIRA"
+msgstr "CARTA DEL TORN"
 
 #: data/ui/window.blp:504
 msgid "Next"
-msgstr "Siguiente"
+msgstr "Següent"
 
 #: data/ui/window.blp:508
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Tanca"
 
 #: data/ui/window.blp:519 data/ui/shortcuts.blp:33
 #: data/ui/new_game_dialog.blp:5
 msgid "New Game"
-msgstr "Nuevo Juego"
+msgstr "Partida nova"
 
 #: data/ui/window.blp:520
 msgid "Tutorial"
@@ -657,54 +658,51 @@ msgstr "Tutorial"
 #: data/ui/window.blp:521 data/ui/online_dialog.blp:5
 #: data/ui/online_dialog.blp:15
 msgid "Play Online"
-msgstr "Jugar en Línea"
+msgstr "Juga en línia"
 
 #: data/ui/window.blp:524 data/ui/shortcuts.blp:9
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr "Preferències"
 
 #: data/ui/window.blp:527
 msgid "Game Rules"
-msgstr "Reglas del Juego"
+msgstr "Regles del joc"
 
 #: data/ui/window.blp:528 data/ui/shortcuts.blp:14
 msgid "Keyboard Shortcuts"
-msgstr "Atajos de Teclado"
+msgstr "Dreceres de teclat"
 
-# Main Menu & History
 #: data/ui/window.blp:529
 msgid "About Truco"
-msgstr "Acerca de Truco"
+msgstr "Quant al Truco"
 
 #: data/ui/window.blp:532 data/ui/match_end_dialog.blp:62
 msgid "Quit Game"
-msgstr "Salir del Juego"
+msgstr "Surt del joc"
 
-# Shortcuts & General
 #: data/ui/shortcuts.blp:6
 msgid "General"
 msgstr "General"
 
 #: data/ui/shortcuts.blp:19
 msgid "About"
-msgstr "Acerca de"
+msgstr "Quant a"
 
 #: data/ui/shortcuts.blp:30
 msgid "Game"
-msgstr "Juego"
+msgstr "Joc"
 
 #: data/ui/shortcuts.blp:38
 msgid "Help"
-msgstr "Ayuda"
+msgstr "Ajuda"
 
-# New Game Dialog
 #: data/ui/new_game_dialog.blp:6
 msgid "Select the game variant."
-msgstr "Selecciona la variante del juego."
+msgstr "Selecciona la variant del joc."
 
 #: data/ui/new_game_dialog.blp:10 data/ui/online_dialog.blp:23
 msgid "Variant"
-msgstr "Variante"
+msgstr "Variant"
 
 #: data/ui/new_game_dialog.blp:13
 msgid "Truco Mineiro"
@@ -732,7 +730,7 @@ msgstr "Truco de Reis"
 
 #: data/ui/new_game_dialog.blp:24
 msgid "Team Size"
-msgstr "Tamaño del equipo"
+msgstr "Mida de l'equip"
 
 #: data/ui/new_game_dialog.blp:27
 msgid "1v1 (Mano a Mano)"
@@ -744,34 +742,32 @@ msgstr "2v2 (Duplas)"
 
 #: data/ui/new_game_dialog.blp:29
 msgid "3v3 (Trio)"
-msgstr "3v3 (Trío)"
+msgstr "3v3 (Trio)"
 
 #: data/ui/new_game_dialog.blp:36
 msgid "Hidden Vira"
-msgstr "Vira oculta"
+msgstr "Vira amagada"
 
 #: data/ui/new_game_dialog.blp:37
 msgid "Play without knowing the vira until the end"
-msgstr "Jugá sin conocer la vira hasta el final"
+msgstr "Juga sense conèixer la vira fins al final"
 
 #: data/ui/match_end_dialog.blp:50
 msgid "Play Again"
-msgstr "Jugar de Nuevo"
+msgstr "Torna a jugar"
 
-# Preferences
 #: data/ui/preferences_dialog.blp:8
 msgid "Appearance"
-msgstr "Apariencia"
+msgstr "Aparença"
 
 #: data/ui/preferences_dialog.blp:12
 msgid "Table"
-msgstr "Mesa"
+msgstr "Taula"
 
 #: data/ui/preferences_dialog.blp:15
 msgid "Default Game Variant"
-msgstr "Variante de Juego por Defecto"
+msgstr "Variant del joc predeterminada"
 
-# Preferences: Variants
 #: data/ui/preferences_dialog.blp:17
 msgid "Mineiro"
 msgstr "Mineiro"
@@ -794,39 +790,39 @@ msgstr "Argentino"
 
 #: data/ui/preferences_dialog.blp:22
 msgid "Felt Color"
-msgstr "Color del Tapete"
+msgstr "Color del tapet"
 
 #: data/ui/preferences_dialog.blp:25 data/ui/preferences_dialog.blp:51
 msgid "Green"
-msgstr "Verde"
+msgstr "Verd"
 
 #: data/ui/preferences_dialog.blp:25 data/ui/preferences_dialog.blp:51
 msgid "Red"
-msgstr "Rojo"
+msgstr "Vermell"
 
 #: data/ui/preferences_dialog.blp:25 data/ui/preferences_dialog.blp:51
 msgid "Blue"
-msgstr "Azul"
+msgstr "Blau"
 
 #: data/ui/preferences_dialog.blp:31
 msgid "Cards"
-msgstr "Cartas"
+msgstr "Cartes"
 
 #: data/ui/preferences_dialog.blp:34
 msgid "Deck Style"
-msgstr "Estilo de baraja"
+msgstr "Estil de la baralla"
 
 #: data/ui/preferences_dialog.blp:36
 msgid "Modern Simple"
-msgstr "Moderna sencilla"
+msgstr "Moderna senzilla"
 
 #: data/ui/preferences_dialog.blp:36
 msgid "Modern Faces"
-msgstr "Moderna con figuras"
+msgstr "Moderna amb figures"
 
 #: data/ui/preferences_dialog.blp:36
 msgid "Traditional Spanish"
-msgstr "Española tradicional"
+msgstr "Espanyola tradicional"
 
 #: data/ui/preferences_dialog.blp:36
 msgid "French"
@@ -834,118 +830,117 @@ msgstr "Francesa"
 
 #: data/ui/preferences_dialog.blp:41
 msgid "Back Design"
-msgstr "Diseño del Reverso"
+msgstr "Disseny del dors"
 
 #: data/ui/preferences_dialog.blp:43
 msgid "Design 1 (Classic)"
-msgstr "Diseño 1 (Clásico)"
+msgstr "Disseny 1 (Clàssic)"
 
 #: data/ui/preferences_dialog.blp:43
 msgid "Design 2 (Modern)"
-msgstr "Diseño 2 (Moderno)"
+msgstr "Disseny 2 (Modern)"
 
 #: data/ui/preferences_dialog.blp:43
 msgid "Design 3 (Pattern)"
-msgstr "Diseño 3 (Patrón)"
+msgstr "Disseny 3 (Patró)"
 
 #: data/ui/preferences_dialog.blp:48
 msgid "Back Color"
-msgstr "Color del Reverso"
+msgstr "Color del dors"
 
 #. black, blue, green, lightblue, red
 #: data/ui/preferences_dialog.blp:51
 msgid "Black"
-msgstr "Negro"
+msgstr "Negre"
 
 #: data/ui/preferences_dialog.blp:51
 msgid "Light Blue"
-msgstr "Azul Claro"
+msgstr "Blau clar"
 
 #: data/ui/preferences_dialog.blp:59 data/ui/onboarding_dialog.blp:58
 msgid "Username"
-msgstr "Nombre de usuario"
+msgstr "Nom d'usuari"
 
 #: data/ui/preferences_dialog.blp:63
 msgid "Your Avatar"
-msgstr "Tu Avatar"
+msgstr "El teu avatar"
 
 #: data/ui/preferences_dialog.blp:82
 msgid "Audio"
-msgstr "Audio"
+msgstr "Àudio"
 
 #: data/ui/preferences_dialog.blp:85
 msgid "Enable Sound Effects"
-msgstr "Activar efectos de sonido"
+msgstr "Activa els efectes de so"
 
-# Avatar Selector
 #: data/ui/avatar_selector.blp:8
 msgid "Choose an Avatar"
-msgstr "Elige un Avatar"
+msgstr "Trieu un avatar"
 
 #: data/ui/online_dialog.blp:26
 msgid "Game Variant"
-msgstr "Variante del juego"
+msgstr "Variant del joc"
 
 #: data/ui/online_dialog.blp:40 data/ui/online_dialog.blp:62
 msgid "Quick Match"
-msgstr "Partida rápida"
+msgstr "Partida ràpida"
 
 #: data/ui/online_dialog.blp:45 data/ui/online_dialog.blp:105
 msgid "Create Room"
-msgstr "Crear sala"
+msgstr "Crea una sala"
 
 #: data/ui/online_dialog.blp:50 data/ui/online_dialog.blp:174
 msgid "Join Room"
-msgstr "Unirse a una sala"
+msgstr "Uneix-te a una sala"
 
 #: data/ui/online_dialog.blp:82
 msgid "Searching for an opponent…"
-msgstr "Buscando un oponente…"
+msgstr "S'està cercant un adversari…"
 
 #: data/ui/online_dialog.blp:131
 msgid "Share this code with a friend"
-msgstr "Comparte este código con un amigo"
+msgstr "Comparteix aquest codi amb un amic"
 
 #: data/ui/online_dialog.blp:141
 msgid "Copy Code"
-msgstr "Copiar código"
+msgstr "Copia el codi"
 
 #: data/ui/online_dialog.blp:182
 msgid "Join a Room"
-msgstr "Unirse a una sala"
+msgstr "Uneix-te a una sala"
 
 #: data/ui/online_dialog.blp:183
 msgid "Enter the code your friend shared with you."
-msgstr "Introduce el código que tu amigo compartió contigo."
+msgstr "Introdueix el codi que el teu amic t'ha compartit."
 
 #: data/ui/online_dialog.blp:186
 msgid "Room Code"
-msgstr "Código de sala"
+msgstr "Codi de sala"
 
 #: data/ui/online_dialog.blp:197
 msgid "Join"
-msgstr "Unirse"
+msgstr "Uneix-te"
 
 #: data/ui/onboarding_dialog.blp:8 data/ui/onboarding_dialog.blp:27
 msgid "Welcome to Truco"
-msgstr "Te damos la bienvenida a Truco"
+msgstr "Us donem la benvinguda al Truco"
 
 #: data/ui/onboarding_dialog.blp:32
 msgid "Set up your player profile to get started."
-msgstr "Configura tu perfil de jugador para empezar."
+msgstr "Configura el teu perfil de jugador per començar."
 
-# Avatar Selector
 #: data/ui/onboarding_dialog.blp:44
 msgid "Choose an avatar"
-msgstr "Elige un avatar"
+msgstr "Tria un avatar"
 
 #: data/ui/onboarding_dialog.blp:55
 msgid "Your username appears to opponents and on the leaderboards."
-msgstr "Tu nombre de usuario aparece ante los oponentes y en las tablas de clasificación."
+msgstr ""
+"El teu nom d'usuari es mostra als adversaris i a les classificacions."
 
 #: data/ui/onboarding_dialog.blp:64
 msgid "Start Playing"
-msgstr "Empezar a jugar"
+msgstr "Comença a jugar"
 
 #: data/io.github.tobagin.Truco.desktop.in:2
 msgid "@APP_NAME@"
@@ -953,11 +948,11 @@ msgstr "@APP_NAME@"
 
 #: data/io.github.tobagin.Truco.desktop.in:3
 msgid "A card game application"
-msgstr "Un juego de cartas"
+msgstr "Una aplicació de joc de cartes"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:7
 msgid "Play the South American Truco card game"
-msgstr "Juega al juego de cartas sudamericano Truco"
+msgstr "Juga al joc de cartes Truco sud-americà"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:9
 msgid ""
@@ -965,47 +960,47 @@ msgid ""
 "card game played with a Spanish deck. Outsmart your opponents, raise the "
 "stakes, and call truco at the right moment."
 msgstr ""
-"Truco es una versión nativa de GNOME del clásico juego de cartas de baza "
-"sudamericano que se juega con una baraja española. Superá en astucia a tus "
-"oponentes, subí la apuesta y cantá truco en el momento justo."
+"El Truco és una versió nativa de GNOME del clàssic joc de cartes de bases "
+"sud-americà que es juga amb una baralla espanyola. Supera els teus "
+"adversaris amb astúcia, apuja l'aposta i canta truco en el moment adequat."
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:14
 msgid "Features:"
-msgstr "Características:"
+msgstr "Característiques:"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:16
 msgid ""
 "Multiple regional variants: Paulista, Mineiro, Argentino, Uruguayo and "
 "Venezolano"
 msgstr ""
-"Múltiples variantes regionales: Paulista, Mineiro, Argentino, Uruguayo y "
+"Múltiples variants regionals: Paulista, Mineiro, Argentino, Uruguayo i "
 "Venezolano"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:17
 msgid "Authentic per-variant rules including manilhas, Envido and Flor"
-msgstr "Reglas auténticas por variante, incluyendo manilhas, Envido y Flor"
+msgstr ""
+"Regles autèntiques per a cada variant, incloent-hi manilhas, Envido i Flor"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:18
 msgid "Smart CPU opponents with distinct personalities"
-msgstr ""
-"Oponentes inteligentes controlados por la CPU con personalidades distintas"
+msgstr "Adversaris CPU intel·ligents amb personalitats diferents"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:19
 msgid "Truco escalation, Mão de 11 and Mão de Ferro special hands"
-msgstr "Escalada de Truco y manos especiales Mão de 11 y Mão de Ferro"
+msgstr "Escalada de Truco i mans especials Mão de 11 i Mão de Ferro"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:20
 msgid "Customizable card decks, table felts and player avatars"
 msgstr ""
-"Barajas de cartas, tapetes de mesa y avatares de jugador personalizables"
+"Baralles de cartes, tapets de taula i avatars de jugador personalitzables"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:21
 msgid "Match statistics and game-history tracking"
-msgstr "Estadísticas de partidas y seguimiento del historial de juego"
+msgstr "Estadístiques de partida i seguiment de l'historial de jocs"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:22
 msgid "Built-in tutorial and interactive help"
-msgstr "Tutorial integrado y ayuda interactiva"
+msgstr "Tutorial integrat i ajuda interactiva"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:34
 msgid "truco"
@@ -1013,11 +1008,11 @@ msgstr "truco"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:35
 msgid "card game"
-msgstr "juego de cartas"
+msgstr "joc de cartes"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:36
 msgid "cards"
-msgstr "cartas"
+msgstr "cartes"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:37
 msgid "baraja"
@@ -1029,79 +1024,30 @@ msgstr "manilha"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:43
 msgid "A Truco match in progress"
-msgstr "Una partida de Truco en curso"
+msgstr "Una partida de Truco en curs"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:49
 msgid "Initial release features:"
-msgstr "Características de la versión inicial:"
+msgstr "Característiques de la versió inicial:"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:51
 msgid ""
 "Play multiple variants: Mineiro, Paulista, Uruguayo, Venezolano, Argentino"
 msgstr ""
-"Jugá múltiples variantes: Mineiro, Paulista, Uruguayo, Venezolano, Argentino"
+"Juga a múltiples variants: Mineiro, Paulista, Uruguayo, Venezolano, Argentino"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:52
 msgid "Smart CPU opponents"
-msgstr "Oponentes inteligentes controlados por la CPU"
+msgstr "Adversaris CPU intel·ligents"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:53
 msgid "Customizable table felt and card decks"
-msgstr "Tapete de mesa y barajas de cartas personalizables"
+msgstr "Tapet de taula i baralles de cartes personalitzables"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:54
 msgid "Match statistics and game history tracking"
-msgstr "Estadísticas de partidas y seguimiento del historial de juego"
+msgstr "Estadístiques de partida i seguiment de l'historial de jocs"
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:64
 msgid "Thiago Fernandes"
 msgstr "Thiago Fernandes"
-
-#, c-format
-#~ msgid "Turn: Player %d | MÃO DE 11"
-#~ msgstr "Turno: Jugador %d | MÃO DE 11"
-
-#, c-format
-#~ msgid "%s Refused! %s wins round."
-#~ msgstr "¡%s Rechazado! %s gana la ronda."
-
-#~ msgid ""
-#~ "Final Score: Us %d - %d Them\n"
-#~ "Matches Won: Us %d - %d Them"
-#~ msgstr ""
-#~ "Puntuación Final: Nosotros %d - %d Ellos\n"
-#~ "Partidas Ganadas: Nosotros %d - %d Ellos"
-
-#~ msgid "Match Over! You Won!"
-#~ msgstr "¡Partida Terminada! ¡Ganaste!"
-
-#~ msgid "Leaderboard"
-#~ msgstr "Tabla de Clasificación"
-
-#~ msgid "History"
-#~ msgstr "Historial"
-
-# Note: "CPU 2 (Partner)" is used in the UI label
-#~ msgid "CPU 2 (Partner)"
-#~ msgstr "CPU 2 (Compañero)"
-
-#, c-format
-#~ msgid "Turn: %s"
-#~ msgstr "Turno: %s"
-
-# Raise Dialog
-#~ msgid "Truco Challenge!"
-#~ msgstr "¡Desafío de Truco!"
-
-#, c-format
-#~ msgid "%s called Truco! (Stake: %d)"
-#~ msgstr "¡%s cantó Truco! (Valor: %d)"
-
-#~ msgid "Raise to 6"
-#~ msgstr "Subir a 6"
-
-#~ msgid "Raise to 9"
-#~ msgstr "Subir a 9"
-
-#~ msgid "Raise to 12"
-#~ msgstr "Subir a 12"

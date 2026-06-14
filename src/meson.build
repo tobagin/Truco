@@ -22,6 +22,7 @@ sources = [
     'dialogs/AvatarSelector.vala',
     'dialogs/About.vala',
     'dialogs/OnlineDialog.vala',
+    'dialogs/OnboardingDialog.vala',
     'services/network/NetworkMessage.vala',
     'services/network/NetworkClient.vala',
     'services/network/NetworkSession.vala',

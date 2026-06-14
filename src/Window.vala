@@ -376,35 +376,35 @@ namespace Truco {
             });
             
             btn_call_envido.clicked.connect(() => {
-                game.call_envido(0, 0); // 0 = Envido
-                update_ui();
-                // Check CPU turn? They need to respond.
-                // call_envido sets state_envido_pending. 
-                // cpu_turn or check_cpu_turn needs to handle this.
-                // Logic in check_cpu_turn handles pending challenges (though mostly truco).
-                // cpu_respond_truco also used for envido (updated earlier? No, I need to check cpu_respond_truco).
-                // Wait, I updated cpu_respond_truco to handle Mão de 11.
-                // I need to ensure CPU responds to Envido too.
-                check_cpu_turn(); 
+                if (game.call_envido(0, 0)) { // 0 = Envido
+                    update_ui();
+                    if (mp_controller != null) mp_controller.local_call_bet("envido");
+                    else check_cpu_turn();
+                }
             });
 
             btn_call_real_envido.clicked.connect(() => {
-                game.call_envido(0, 1);
-                update_ui();
-                check_cpu_turn(); 
+                if (game.call_envido(0, 1)) {
+                    update_ui();
+                    if (mp_controller != null) mp_controller.local_call_bet("real_envido");
+                    else check_cpu_turn();
+                }
             });
 
             btn_call_falta_envido.clicked.connect(() => {
-                game.call_envido(0, 2);
-                update_ui();
-                check_cpu_turn(); 
+                if (game.call_envido(0, 2)) {
+                    update_ui();
+                    if (mp_controller != null) mp_controller.local_call_bet("falta_envido");
+                    else check_cpu_turn();
+                }
             });
 
             btn_call_flor.clicked.connect(() => {
-                game.call_flor(0);
-                update_ui();
-                // Check CPU turn (resolve flor might trigger game end or just points)
-                check_cpu_turn();
+                if (game.call_flor(0)) {
+                    update_ui();
+                    if (mp_controller != null) mp_controller.local_call_bet("flor");
+                    else check_cpu_turn();
+                }
             });
 
             btn_hint.clicked.connect(() => {
@@ -478,8 +478,13 @@ namespace Truco {
             dialog.present(this);
         }
 
-        /** Name shown to a remote opponent. */
+        /** Name shown to a remote opponent and on leaderboards. */
         public string get_local_player_name () {
+            var settings = new GLib.Settings (Config.SCHEMA_ID);
+            var u = settings.get_string ("username").strip ();
+            if (u != "") {
+                return u;
+            }
             var n = GLib.Environment.get_real_name ();
             return (n == null || n == "Unknown" || n.strip () == "") ? _("Player") : n;
         }
@@ -517,6 +522,21 @@ namespace Truco {
             });
             c.opponent_responded_truco.connect ((response) => {
                 apply_remote_truco_response (response);
+            });
+            c.opponent_called_bet.connect ((bet) => {
+                apply_remote_bet (bet);
+            });
+            c.opponent_responded_bet.connect ((response) => {
+                apply_remote_bet_response (response);
+            });
+            c.opponent_mao_de_11_decision.connect ((accepted) => {
+                apply_remote_mao_de_11 (accepted);
+            });
+            c.opponent_signalled.connect ((text) => {
+                apply_remote_signal (text);
+            });
+            c.opponent_chat.connect ((text) => {
+                show_remote_chat (text);
             });
             c.session.opponent_left.connect ((reason) => {
                 show_opponent_left (reason);
@@ -557,6 +577,50 @@ namespace Truco {
                     break;
             }
             update_ui ();
+        }
+
+        // Opponent called Envido/Real/Falta or Flor. Apply it for their seat;
+        // update_ui then auto-presents the response dialog to the local player
+        // (the challenger team is non-zero, i.e. the opponent).
+        private void apply_remote_bet (string bet) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            if (bet == "flor") {
+                game.remote_call_flor (opp_index);
+            } else {
+                int type = 0; // envido
+                if (bet == "real_envido") type = 1;
+                else if (bet == "falta_envido") type = 2;
+                game.remote_call_envido (opp_index, type);
+            }
+            update_ui ();
+        }
+
+        private void apply_remote_bet_response (string response) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            game.remote_respond_bet (opp_index, response == "accept");
+            update_ui ();
+        }
+
+        private void apply_remote_mao_de_11 (bool accepted) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            game.remote_mao_de_11_decision (opp_index, accepted);
+            update_ui ();
+        }
+
+        private void apply_remote_signal (string text) {
+            if (mp_controller == null) return;
+            int opp_index = mp_controller.local_seat == 0 ? 1 : 0;
+            if (opp_index < game.players.size) {
+                game.players[opp_index].last_signal = text;
+            }
+            update_ui ();
+        }
+
+        private void show_remote_chat (string text) {
+            status_label.label = _("Opponent: %s").printf (text);
         }
 
         private void show_opponent_left (string reason) {
@@ -1051,15 +1115,17 @@ namespace Truco {
                      bool success = game.raise_stake(0);
                      if (success) {
                         update_ui();
-                        // AI Response Delay
-                        GLib.Timeout.add(1000, () => {
-                            game.cpu_respond_truco();
-                            update_ui();
-                            check_cpu_turn();
-                            return false;
-                        });
-                     } else {
-                        print("DEBUG: raise_stake(0) failed!\n");
+                        if (mp_controller != null) {
+                            mp_controller.local_call_truco(game.proposed_stake ?? 3);
+                        } else {
+                            // AI Response Delay
+                            GLib.Timeout.add(1000, () => {
+                                game.cpu_respond_truco();
+                                update_ui();
+                                check_cpu_turn();
+                                return false;
+                            });
+                        }
                      }
                  }
             });
@@ -1086,15 +1152,17 @@ namespace Truco {
             dialog.response.connect ((response) => {
                  if (response == "accept") {
                      game.respond_envido(0, true);
+                     if (mp_controller != null) mp_controller.local_respond_bet("accept");
                      update_ui();
                      check_cpu_turn();
                  } else if (response == "refuse") {
                      game.respond_envido(0, false);
+                     if (mp_controller != null) mp_controller.local_respond_bet("refuse");
                      update_ui();
                      check_cpu_turn();
                  }
             });
-            
+
             dialog.present (this);
         }
 
@@ -1123,42 +1191,50 @@ namespace Truco {
 
         private void show_mao_11_dialog() {
             split_view.show_sidebar = false;
-            
-            // Create a custom content area to show partner cards
-            var box = new Box(Orientation.VERTICAL, 12);
-            box.halign = Align.CENTER;
-            
-            var cards_box = new Box(Orientation.HORIZONTAL, 6);
-            cards_box.halign = Align.CENTER;
-            
-            foreach (var c in game.players[2].hand) {
-                var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
-                img.pixel_size = 80;
-                cards_box.append(img);
-            }
-            
-            box.append(new Label(_("Your Partner's Hand:")));
-            box.append(cards_box);
-            
+
+            // Partner cards only exist in team play (4/6 players). In a 1-vs-1
+            // online match there is no partner, so omit the peek and the wording.
+            bool has_partner = game.players.size > 2;
+
+            string body = has_partner
+                ? _("Your team has 11 points. You can see your partner's cards. Do you want to play this round (Worth 3 points)?")
+                : _("Your team has 11 points. Do you want to play this round (Worth 3 points)?");
+
             var dialog = DialogFactory.create_game_dialog(
                 _("Mão de 11!"),
-                _("Your team has 11 points. You can see your partner's cards. Do you want to play this round (Worth 3 points)?"),
+                body,
                 _("Play (Worth 3)"),
                 _("Run (Give 1 point)")
             );
-            
-            dialog.set_extra_child(box);
-            
-            dialog.response.connect((response) => {
-                if (response == "accept") {
-                    game.respond_challenge(0, true);
-                    update_ui();
-                } else {
-                    game.respond_challenge(0, false);
-                    update_ui();
+
+            if (has_partner) {
+                // Create a custom content area to show partner cards
+                var box = new Box(Orientation.VERTICAL, 12);
+                box.halign = Align.CENTER;
+
+                var cards_box = new Box(Orientation.HORIZONTAL, 6);
+                cards_box.halign = Align.CENTER;
+
+                foreach (var c in game.players[2].hand) {
+                    var img = new Image.from_resource(Config.RESOURCE_PATH + "/" + c.get_svg_name(current_deck_style));
+                    img.pixel_size = 80;
+                    cards_box.append(img);
                 }
+
+                box.append(new Label(_("Your Partner's Hand:")));
+                box.append(cards_box);
+                dialog.set_extra_child(box);
+            }
+
+            dialog.response.connect((response) => {
+                bool accepted = (response == "accept");
+                game.respond_challenge(0, accepted);
+                if (mp_controller != null) {
+                    mp_controller.local_mao_de_11_decision(accepted);
+                }
+                update_ui();
             });
-            
+
             dialog.present(this);
         }
 

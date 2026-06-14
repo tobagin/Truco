@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Truco
-Comment=A card game application
-Exec=truco
-Icon=io.github.tobagin.Truco
-Terminal=false
-Type=Application
-Categories=Game;

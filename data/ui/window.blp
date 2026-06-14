@@ -457,7 +457,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
            
            Label {
               label: _("TURN CARD");
-              styles ["caption"]
+              styles ["caption", "vira-label"]
               halign: center;
            }
 
@@ -519,7 +519,6 @@ menu main_menu {
     item (_("New Game"), "win.new-game")
     item (_("Tutorial"), "win.tutorial")
     item (_("Play Online"), "app.play-online")
-    item (_("Leaderboard"), "app.leaderboard")
   }
   section {
     item (_("Preferences"), "app.preferences")

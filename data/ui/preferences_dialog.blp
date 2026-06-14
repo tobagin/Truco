@@ -54,7 +54,11 @@ template $TrucoPreferencesDialog : Adw.PreferencesDialog {
     }
     Adw.PreferencesGroup {
       title: _("Player");
-      
+
+      Adw.EntryRow username_row {
+        title: _("Username");
+      }
+
       Adw.ActionRow avatar_row {
         title: _("Your Avatar");
         activatable: true;
