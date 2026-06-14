@@ -28,6 +28,11 @@
         <summary>Deck Style</summary>
         <description>0=Modern Simple, 1=Modern Faces, 2=Spanish, 3=French</description>
     </key>
+    <key name="username" type="s">
+      <default>''</default>
+      <summary>Player Username</summary>
+      <description>The player's display name, shown to opponents and on leaderboards. Empty means onboarding has not run yet.</description>
+    </key>
     <key name="avatar" type="s">
       <default>'avatars/avatar1.svg'</default>
       <summary>User Avatar</summary>

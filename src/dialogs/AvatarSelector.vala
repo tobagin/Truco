@@ -13,7 +13,7 @@ namespace Truco {
         
         public signal void avatar_selected(int index);
         
-        public AvatarSelector(Window? parent) {
+        public AvatarSelector(Gtk.Window? parent) {
             Object(transient_for: parent);
             
             populate();

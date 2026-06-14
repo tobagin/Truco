@@ -17,6 +17,8 @@ namespace Truco {
         [GtkChild]
         private unowned Adw.ComboRow card_color_row;
         [GtkChild]
+        private unowned Adw.EntryRow username_row;
+        [GtkChild]
         private unowned Adw.ActionRow avatar_row;
         [GtkChild]
         private unowned Adw.Avatar avatar_image;
@@ -43,6 +45,7 @@ namespace Truco {
             // GSettings Binding
             var settings = new GLib.Settings (Config.SCHEMA_ID);
             
+            settings.bind ("username", username_row, "text", SettingsBindFlags.DEFAULT);
             settings.bind ("default-game-variant", default_variant_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("felt-color-index", felt_color_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("deck-style", deck_style_row, "selected", SettingsBindFlags.DEFAULT);

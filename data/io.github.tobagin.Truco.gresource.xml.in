@@ -7,6 +7,8 @@
     <file preprocess="xml-stripblanks" alias="shortcuts.ui">shortcuts.ui</file>
     <file preprocess="xml-stripblanks" alias="preferences_dialog.ui">preferences_dialog.ui</file>
     <file preprocess="xml-stripblanks" alias="avatar_selector.ui">avatar_selector.ui</file>
+    <file preprocess="xml-stripblanks" alias="online_dialog.ui">online_dialog.ui</file>
+    <file preprocess="xml-stripblanks" alias="onboarding_dialog.ui">onboarding_dialog.ui</file>
     <file>cards/backs/player_card_back_design_1_black.svg</file>
     <file>cards/backs/player_card_back_design_1_blue.svg</file>
     <file>cards/backs/player_card_back_design_1_green.svg</file>

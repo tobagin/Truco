@@ -66,6 +66,25 @@ namespace Truco {
             }
 
             window.present ();
+
+            // First run: prompt for a username + avatar before playing.
+            var settings = new GLib.Settings (Config.SCHEMA_ID);
+            if (settings.get_string ("username").strip () == "") {
+                var onboarding = new OnboardingDialog (window, suggested_username ());
+                onboarding.present ();
+            }
+        }
+
+        /** A sensible default handle from the system account. */
+        private string suggested_username () {
+            string? n = GLib.Environment.get_user_name ();
+            if (n == null || n.strip () == "") {
+                n = GLib.Environment.get_real_name ();
+            }
+            if (n == null || n == "Unknown" || n.strip () == "") {
+                return _("Player");
+            }
+            return n;
         }
         
         private void show_help () {
@@ -99,6 +118,19 @@ namespace Truco {
             if (win == null) {
                 return;
             }
+            // A username is required online (it's the leaderboard handle); if
+            // onboarding was skipped, run it first, then open the lobby.
+            var settings = new GLib.Settings (Config.SCHEMA_ID);
+            if (settings.get_string ("username").strip () == "") {
+                var onboarding = new OnboardingDialog (win, suggested_username ());
+                onboarding.completed.connect (() => open_online_lobby (win));
+                onboarding.present ();
+            } else {
+                open_online_lobby (win);
+            }
+        }
+
+        private void open_online_lobby (Truco.Window win) {
             var dialog = new OnlineDialog (win.get_local_player_name ());
             dialog.game_ready.connect ((controller, variant, seat, first_dealer, seed) => {
                 win.start_multiplayer_game (controller, variant, seat, first_dealer, seed);

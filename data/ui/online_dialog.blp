@@ -1,0 +1,213 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoOnlineDialog : Adw.Dialog {
+  title: _("Play Online");
+  content-width: 400;
+  content-height: 480;
+
+  child: Adw.ToastOverlay toasts {
+    child: Adw.NavigationView nav {
+
+      // --- Root: variant + actions ---------------------------------
+      Adw.NavigationPage {
+        tag: "main";
+        title: _("Play Online");
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {}
+
+          content: Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              title: _("Variant");
+
+              Adw.ComboRow variant_row {
+                title: _("Game Variant");
+                model: StringList {
+                  strings ["Mineiro", "Paulista", "Uruguayo", "Venezolano", "Argentino"]
+                };
+              }
+            }
+
+            Adw.PreferencesGroup {
+              Box {
+                orientation: vertical;
+                spacing: 12;
+                margin-top: 12;
+
+                Button quick_button {
+                  label: _("Quick Match");
+                  styles ["suggested-action", "pill"]
+                }
+
+                Button create_button {
+                  label: _("Create Room");
+                  styles ["pill"]
+                }
+
+                Button join_button {
+                  label: _("Join Room");
+                  styles ["pill"]
+                }
+              }
+            }
+          };
+        };
+      }
+
+      // --- Quick match: searching ----------------------------------
+      Adw.NavigationPage {
+        tag: "searching";
+        title: _("Quick Match");
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {}
+
+          content: Box {
+            orientation: vertical;
+            spacing: 18;
+            valign: center;
+            halign: center;
+            margin-start: 24;
+            margin-end: 24;
+
+            Spinner search_spinner {
+              width-request: 56;
+              height-request: 56;
+            }
+
+            Label {
+              label: _("Searching for an opponent…");
+              wrap: true;
+              justify: center;
+              styles ["title-2"]
+            }
+
+            Label search_variant_label {
+              styles ["dim-label"]
+            }
+
+            Button search_cancel_button {
+              label: _("Cancel");
+              halign: center;
+              margin-top: 6;
+              styles ["pill"]
+            }
+          };
+        };
+      }
+
+      // --- Create room: share code ---------------------------------
+      Adw.NavigationPage {
+        tag: "room";
+        title: _("Create Room");
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {}
+
+          content: Box {
+            orientation: vertical;
+            spacing: 12;
+            valign: center;
+            halign: center;
+            margin-start: 24;
+            margin-end: 24;
+
+            Label room_creating_label {
+              label: _("Creating room…");
+              styles ["title-2"]
+            }
+
+            Box room_code_box {
+              orientation: vertical;
+              spacing: 8;
+              halign: center;
+              visible: false;
+
+              Label {
+                label: _("Share this code with a friend");
+                styles ["dim-label"]
+              }
+
+              Label room_code_label {
+                selectable: true;
+                styles ["title-1"]
+              }
+
+              Button room_copy_button {
+                label: _("Copy Code");
+                halign: center;
+                styles ["pill"]
+              }
+            }
+
+            Box {
+              orientation: horizontal;
+              spacing: 8;
+              halign: center;
+              margin-top: 12;
+
+              Spinner room_spinner {}
+
+              Label room_wait_label {
+                label: _("Waiting for opponent…");
+                styles ["dim-label"]
+              }
+            }
+
+            Button room_cancel_button {
+              label: _("Cancel");
+              halign: center;
+              margin-top: 6;
+              styles ["pill"]
+            }
+          };
+        };
+      }
+
+      // --- Join room: enter code -----------------------------------
+      Adw.NavigationPage {
+        tag: "join";
+        title: _("Join Room");
+
+        child: Adw.ToolbarView {
+          [top]
+          Adw.HeaderBar {}
+
+          content: Adw.PreferencesPage {
+            Adw.PreferencesGroup {
+              title: _("Join a Room");
+              description: _("Enter the code your friend shared with you.");
+
+              Adw.EntryRow join_code_row {
+                title: _("Room Code");
+              }
+            }
+
+            Adw.PreferencesGroup {
+              Box {
+                orientation: vertical;
+                spacing: 6;
+                margin-top: 6;
+
+                Button join_confirm_button {
+                  label: _("Join");
+                  sensitive: false;
+                  styles ["suggested-action", "pill"]
+                }
+
+                Spinner join_spinner {
+                  halign: center;
+                  visible: false;
+                }
+              }
+            }
+          };
+        };
+      }
+    };
+  };
+}

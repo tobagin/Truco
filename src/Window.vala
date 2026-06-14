@@ -478,8 +478,13 @@ namespace Truco {
             dialog.present(this);
         }
 
-        /** Name shown to a remote opponent. */
+        /** Name shown to a remote opponent and on leaderboards. */
         public string get_local_player_name () {
+            var settings = new GLib.Settings (Config.SCHEMA_ID);
+            var u = settings.get_string ("username").strip ();
+            if (u != "") {
+                return u;
+            }
             var n = GLib.Environment.get_real_name ();
             return (n == null || n == "Unknown" || n.strip () == "") ? _("Player") : n;
         }
