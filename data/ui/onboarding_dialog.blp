@@ -1,0 +1,71 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $TrucoOnboardingDialog : Adw.Window {
+  modal: true;
+  default-width: 420;
+  default-height: 540;
+  title: _("Welcome to Truco");
+
+  content: Adw.ToolbarView {
+    [top]
+    Adw.HeaderBar {
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+    }
+
+    content: Adw.PreferencesPage {
+      Adw.PreferencesGroup {
+        Box {
+          orientation: vertical;
+          spacing: 6;
+          halign: center;
+          margin-top: 12;
+          margin-bottom: 6;
+
+          Label {
+            label: _("Welcome to Truco");
+            styles ["title-1"]
+          }
+
+          Label {
+            label: _("Set up your player profile to get started.");
+            wrap: true;
+            justify: center;
+            styles ["dim-label"]
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        Button avatar_button {
+          halign: center;
+          margin-bottom: 6;
+          tooltip-text: _("Choose an avatar");
+          styles ["flat", "circular"]
+
+          Adw.Avatar avatar_image {
+            size: 96;
+            show-initials: false;
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        description: _("Your username appears to opponents and on the leaderboards.");
+
+        Adw.EntryRow username_row {
+          title: _("Username");
+        }
+      }
+
+      Adw.PreferencesGroup {
+        Button continue_button {
+          label: _("Start Playing");
+          sensitive: false;
+          styles ["suggested-action", "pill"]
+        }
+      }
+    };
+  };
+}

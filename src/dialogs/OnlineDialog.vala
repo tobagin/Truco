@@ -5,31 +5,53 @@ using Truco.Network;
 namespace Truco {
 
     /**
-     * Connect-to-multiplayer dialog: pick a server, then create a private
-     * room, join one by code, or enter quick matchmaking. Built in code
-     * (no Blueprint template) so it has no compiled UI dependency.
+     * Multiplayer entry flow. A root screen offers a variant picker plus three
+     * actions — Quick Match, Create Room, Join Room — each of which navigates
+     * to its own focused screen:
      *
-     * When both players are present the dialog emits `game_ready`, handing the
-     * window a ready MultiplayerGameController plus the negotiated variant and
-     * seat so it can start the board in multiplayer mode.
+     *   - Quick Match  → a searching screen (spinner + cancel)
+     *   - Create Room  → a screen that shows the shareable room code
+     *   - Join Room    → a screen to type a friend's code
+     *
+     * The relay is always our server, so there is no server or name field.
+     * When an opponent is matched the dialog emits `game_ready` and closes.
+     *
+     * Layout lives in online_dialog.blp; this class only wires behaviour.
      */
+    [GtkTemplate (ui = "/io/github/tobagin/Truco/online_dialog.ui")]
     public class OnlineDialog : Adw.Dialog {
-        // Default relay; override in the entry to point at a deployed server.
+        // Our relay; the only server the client ever talks to.
         public const string DEFAULT_SERVER = "wss://truco.tobagin.eu";
+
+        [GtkChild] private unowned Adw.ToastOverlay toasts;
+        [GtkChild] private unowned Adw.NavigationView nav;
+        [GtkChild] private unowned Adw.ComboRow variant_row;
+        [GtkChild] private unowned Gtk.Button quick_button;
+        [GtkChild] private unowned Gtk.Button create_button;
+        [GtkChild] private unowned Gtk.Button join_button;
+
+        [GtkChild] private unowned Gtk.Spinner search_spinner;
+        [GtkChild] private unowned Gtk.Label search_variant_label;
+        [GtkChild] private unowned Gtk.Button search_cancel_button;
+
+        [GtkChild] private unowned Gtk.Label room_creating_label;
+        [GtkChild] private unowned Gtk.Box room_code_box;
+        [GtkChild] private unowned Gtk.Label room_code_label;
+        [GtkChild] private unowned Gtk.Label room_wait_label;
+        [GtkChild] private unowned Gtk.Spinner room_spinner;
+        [GtkChild] private unowned Gtk.Button room_copy_button;
+        [GtkChild] private unowned Gtk.Button room_cancel_button;
+
+        [GtkChild] private unowned Adw.EntryRow join_code_row;
+        [GtkChild] private unowned Gtk.Button join_confirm_button;
+        [GtkChild] private unowned Gtk.Spinner join_spinner;
 
         private NetworkSession session;
         private MultiplayerGameController controller;
 
-        private Adw.EntryRow server_row;
-        private Adw.EntryRow name_row;
-        private Adw.EntryRow code_row;
-        private Adw.ComboRow variant_row;
-        private Gtk.Label status_label;
-        private Gtk.Spinner spinner;
-        private Gtk.Button create_btn;
-        private Gtk.Button join_btn;
-        private Gtk.Button quick_btn;
-        private Gtk.Button cancel_btn;
+        // What sub-screen we are on, so a back/cancel cleans up server state.
+        private enum Mode { NONE, SEARCHING, ROOM, JOIN }
+        private Mode mode = Mode.NONE;
 
         /** Emitted once an opponent is matched and the game can begin. */
         public signal void game_ready (MultiplayerGameController controller,
@@ -37,106 +59,28 @@ namespace Truco {
 
         public OnlineDialog (string player_name) {
             Object ();
-            this.title = _("Play Online");
-            this.content_width = 420;
 
             session = new NetworkSession (player_name);
             controller = new MultiplayerGameController (session);
             wire_session ();
 
-            build_ui (player_name);
-        }
-
-        private void build_ui (string player_name) {
-            var toolbar = new Adw.ToolbarView ();
-            toolbar.add_top_bar (new Adw.HeaderBar ());
-
-            var page = new Adw.PreferencesPage ();
-
-            var conn_group = new Adw.PreferencesGroup ();
-            conn_group.title = _("Connection");
-
-            server_row = new Adw.EntryRow ();
-            server_row.title = _("Server");
-            server_row.text = DEFAULT_SERVER;
-            conn_group.add (server_row);
-
-            name_row = new Adw.EntryRow ();
-            name_row.title = _("Your Name");
-            name_row.text = player_name;
-            conn_group.add (name_row);
-
-            variant_row = new Adw.ComboRow ();
-            variant_row.title = _("Variant");
-            variant_row.model = new Gtk.StringList ({
-                "Mineiro", "Paulista", "Uruguayo", "Venezolano", "Argentino"
+            quick_button.clicked.connect (on_quick_match);
+            create_button.clicked.connect (on_create_room);
+            join_button.clicked.connect (on_open_join);
+            search_cancel_button.clicked.connect (() => nav.pop ());
+            room_cancel_button.clicked.connect (() => nav.pop ());
+            room_copy_button.clicked.connect (on_copy_code);
+            join_confirm_button.clicked.connect (on_join_confirm);
+            join_code_row.changed.connect (() => {
+                join_confirm_button.sensitive = join_code_row.text.strip () != "";
             });
-            conn_group.add (variant_row);
-            page.add (conn_group);
 
-            var play_group = new Adw.PreferencesGroup ();
-            play_group.title = _("Match");
-
-            quick_btn = new Gtk.Button.with_label (_("Quick Match"));
-            quick_btn.add_css_class ("suggested-action");
-            quick_btn.add_css_class ("pill");
-            quick_btn.margin_top = 6;
-            quick_btn.clicked.connect (on_quick_match);
-            play_group.add (quick_btn);
-
-            create_btn = new Gtk.Button.with_label (_("Create Private Room"));
-            create_btn.add_css_class ("pill");
-            create_btn.margin_top = 6;
-            create_btn.clicked.connect (on_create_room);
-            play_group.add (create_btn);
-
-            code_row = new Adw.EntryRow ();
-            code_row.title = _("Room Code");
-            play_group.add (code_row);
-
-            join_btn = new Gtk.Button.with_label (_("Join Room"));
-            join_btn.add_css_class ("pill");
-            join_btn.margin_top = 6;
-            join_btn.clicked.connect (on_join_room);
-            play_group.add (join_btn);
-
-            page.add (play_group);
-
-            var status_group = new Adw.PreferencesGroup ();
-
-            var status_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 8);
-            status_box.halign = Gtk.Align.CENTER;
-            spinner = new Gtk.Spinner ();
-            spinner.visible = false;
-            status_box.append (spinner);
-            status_label = new Gtk.Label (_("Not connected."));
-            status_label.wrap = true;
-            status_label.add_css_class ("dim-label");
-            status_box.append (status_label);
-            status_group.add (status_box);
-
-            cancel_btn = new Gtk.Button.with_label (_("Cancel Search"));
-            cancel_btn.add_css_class ("pill");
-            cancel_btn.margin_top = 6;
-            cancel_btn.visible = false;
-            cancel_btn.clicked.connect (on_cancel_search);
-            status_group.add (cancel_btn);
-
-            page.add (status_group);
-
-            toolbar.content = page;
-            this.child = toolbar;
+            // A back-navigation (header back button) out of a sub-screen must
+            // unwind whatever we started on the server.
+            nav.popped.connect ((page) => leave_current_mode ());
         }
 
-        private void set_searching (bool active) {
-            spinner.visible = active;
-            if (active) {
-                spinner.start ();
-            } else {
-                spinner.stop ();
-            }
-            cancel_btn.visible = active;
-        }
+        // --- Helpers ------------------------------------------------------
 
         private string selected_variant () {
             switch (variant_row.selected) {
@@ -149,97 +93,133 @@ namespace Truco {
             }
         }
 
-        private void set_status (string text) {
-            status_label.label = text;
+        private string variant_display () {
+            return ((Gtk.StringList) variant_row.model).get_string (variant_row.selected);
         }
 
-        private void set_busy (bool busy) {
-            create_btn.sensitive = !busy;
-            join_btn.sensitive = !busy;
-            quick_btn.sensitive = !busy;
+        private void toast (string text) {
+            toasts.add_toast (new Adw.Toast (text));
+        }
+
+        private async void ensure_connected () {
+            if (session.state == SessionState.DISCONNECTED) {
+                yield session.connect_to_server (DEFAULT_SERVER);
+            }
+        }
+
+        // Unwind whatever the current sub-screen started on the server.
+        private void leave_current_mode () {
+            switch (mode) {
+                case Mode.SEARCHING:
+                    if (session.state == SessionState.WAITING) {
+                        session.cancel_quick_match ();
+                    }
+                    search_spinner.stop ();
+                    break;
+                case Mode.ROOM:
+                    // No "leave room" intent on the relay; drop the socket so
+                    // the server tears the empty room down. Reconnect lazily.
+                    if (session.state != SessionState.IN_GAME) {
+                        session.disconnect ();
+                    }
+                    room_spinner.stop ();
+                    break;
+                case Mode.JOIN:
+                    join_spinner.visible = false;
+                    join_spinner.stop ();
+                    break;
+                default:
+                    break;
+            }
+            mode = Mode.NONE;
         }
 
         // --- Actions ------------------------------------------------------
 
-        private async void ensure_connected () {
-            if (session.state == SessionState.DISCONNECTED) {
-                set_status (_("Connecting to %s…").printf (server_row.text));
-                yield session.connect_to_server (server_row.text);
-            }
-        }
-
         private void on_quick_match () {
-            set_busy (true);
-            ensure_connected.begin (() => {
+            mode = Mode.SEARCHING;
+            search_variant_label.label = variant_display ();
+            search_spinner.start ();
+            nav.push_by_tag ("searching");
+
+            ensure_connected.begin ((o, r) => {
+                ensure_connected.end (r);
                 session.quick_match (selected_variant ());
-                set_status (_("Looking for an opponent…"));
-                set_searching (true);
             });
         }
 
-        private void on_cancel_search () {
-            session.cancel_quick_match ();
-            set_searching (false);
-            set_busy (false);
-            set_status (_("Search cancelled."));
-        }
-
         private void on_create_room () {
-            set_busy (true);
-            ensure_connected.begin (() => {
+            mode = Mode.ROOM;
+            room_creating_label.visible = true;
+            room_creating_label.label = _("Creating room…");
+            room_code_box.visible = false;
+            room_spinner.start ();
+            nav.push_by_tag ("room");
+
+            ensure_connected.begin ((o, r) => {
+                ensure_connected.end (r);
                 session.create_room (selected_variant ());
             });
         }
 
-        private void on_join_room () {
-            if (code_row.text.strip () == "") {
-                set_status (_("Enter a room code to join."));
+        private void on_open_join () {
+            mode = Mode.JOIN;
+            join_code_row.text = "";
+            join_confirm_button.sensitive = false;
+            join_spinner.visible = false;
+            nav.push_by_tag ("join");
+            join_code_row.grab_focus ();
+        }
+
+        private void on_join_confirm () {
+            string code = join_code_row.text.strip ().up ();
+            if (code == "") {
                 return;
             }
-            set_busy (true);
-            ensure_connected.begin (() => {
-                session.join_room (code_row.text.strip ());
-                set_status (_("Joining room %s…").printf (code_row.text.up ()));
+            join_confirm_button.sensitive = false;
+            join_spinner.visible = true;
+            join_spinner.start ();
+
+            ensure_connected.begin ((o, r) => {
+                ensure_connected.end (r);
+                session.join_room (code);
             });
+        }
+
+        private void on_copy_code () {
+            var clipboard = Gdk.Display.get_default ().get_clipboard ();
+            clipboard.set_text (room_code_label.label);
+            toast (_("Code copied"));
         }
 
         // --- Session signals ---------------------------------------------
 
         private void wire_session () {
             session.room_created.connect ((code) => {
-                set_status (_("Room created. Share this code with a friend:\n%s").printf (code));
+                room_creating_label.visible = false;
+                room_code_label.label = code;
+                room_code_box.visible = true;
+                room_wait_label.label = _("Waiting for opponent…");
             });
             session.opponent_joined.connect ((name) => {
-                set_status (_("%s joined. Starting…").printf (name));
-            });
-            session.searching.connect (() => {
-                set_searching (true);
-                set_status (_("Searching for an opponent…"));
-            });
-            session.match_found.connect (() => {
-                set_searching (false);
-                set_status (_("Opponent found! Starting game…"));
-            });
-            session.quick_match_cancelled.connect (() => {
-                set_searching (false);
-                set_busy (false);
+                room_wait_label.label = _("%s joined. Starting…").printf (name);
             });
             session.game_started.connect (() => {
-                set_searching (false);
-                set_status (_("Opponent found! Starting game…"));
+                mode = Mode.NONE; // leaving cleanly; don't unwind on close
                 game_ready (controller, session.variant, session.seat,
                             session.first_dealer, session.deal_seed);
                 this.close ();
             });
-            session.session_error.connect ((code, message) => {
-                set_searching (false);
-                set_busy (false);
-                set_status (_("Error: %s").printf (message));
+            session.quick_match_cancelled.connect (() => {
+                search_spinner.stop ();
             });
-            session.state_changed.connect ((state) => {
-                if (state == SessionState.DISCONNECTED) {
-                    set_busy (false);
+            session.session_error.connect ((code, message) => {
+                if (nav.visible_page != null && nav.visible_page.tag != "main") {
+                    mode = Mode.NONE;
+                    nav.pop_to_tag ("main");
                 }
+                join_spinner.visible = false;
+                toast (_("Error: %s").printf (message));
             });
         }
     }

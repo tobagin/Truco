@@ -1,79 +1,103 @@
 # Truco
 
-A native GNOME card game for playing **Truco**, the popular South American
-trick-taking card game played with a Spanish deck. Built with **Vala** and
-**GTK4 / Libadwaita**, distributed as a **Flatpak**.
+A native GNOME version of **Truco**, the popular South American trick-taking card game played with a Spanish deck.
 
-![Application ID](https://img.shields.io/badge/app--id-io.github.tobagin.Truco-blue)
-![License](https://img.shields.io/badge/license-GPL--3.0--or--later-green)
+<div align="center">
+
+![Truco Application](data/screenshots/gameplay.png)
+
+<a href="https://flathub.org/apps/io.github.tobagin.Truco"><img src="https://flathub.org/api/badge" height="110" alt="Get it on Flathub"></a>
+<a href="https://github.com/sponsors/tobagin"><img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=github" height="82" alt="Sponsor on GitHub"></a>
+
+</div>
+
+## 🎉 Version 0.1.0 — First Release
+
+**Truco 0.1.0** is the first public release: play the classic South American card game on GNOME, against smart CPU opponents or friends online.
+
+### ✨ Key Features
+
+- **🃏 Five Regional Variants**: Paulista, Mineiro, Argentino, Uruguayo, and Venezolano — each with authentic card-power rules.
+- **🌐 Online Multiplayer**: Quick match, create a private room to share, or join a friend by code.
+- **🤖 Smart CPU Opponents**: Distinct personalities driven by an MCTS-based decision engine.
+
+For detailed release notes and version history, see [CHANGELOG.md](CHANGELOG.md).
 
 ## Features
 
-- **Multiple regional variants**, each with authentic card-power rules:
-  - **Paulista** (Brazil) — dynamic manilhas based on the *vira* card
-  - **Mineiro** (Brazil) — fixed manilhas (Zap 4♣, 7♥, A♠, 7♦)
-  - **Argentino / Uruguayo / Venezolano** — international rules with Envido and Flor
-  - **Truco de Reis** — fixed-manilha mode where Kings are manilhas
-- **Smart CPU opponents** with distinct personalities and an MCTS-based decision engine
-- Variant-specific mechanics: **Mão de 11 / Mão de Ferro**, truco escalation
-  (3 → 6 → 9 → 12), Envido/Flor betting, and card signaling
-- **Customizable presentation** — multiple card decks (Spanish, French, modern),
-  table felts, and 18+ player avatars
-- Match statistics and game-history tracking
-- Built-in tutorial and interactive help
-- Fully translated: Spanish and Portuguese (pt, pt_BR, pt_PT)
+### Core Features
+- **Regional Variants**: Five rule sets, plus a fixed-manilha *Truco de Reis* mode.
+- **Online Multiplayer**: Quick matchmaking and private room codes, always on our relay.
+- **Game Mechanics**: Truco escalation (3 → 6 → 9 → 12), Envido/Flor betting, Mão de 11 and Mão de Ferro special hands, and partner signalling.
 
-## Building
+### User Experience
+- **Player Profile**: First-run onboarding to pick a username and avatar, used online and on leaderboards.
+- **Customizable Table**: Multiple card decks (Spanish, French, modern), table felts, and 18+ avatars.
+- **History & Stats**: Match statistics and a running game-history log.
 
-The supported build path is Flatpak via the helper script:
+### Accessibility & Localization
+- **Built-in Help**: Interactive tutorial and Mallard user help.
+- **Sound Effects**: Audio feedback for cards, calls, and outcomes.
+- **Six Languages**: Catalan, Spanish, French, Italian, Brazilian Portuguese, and European Portuguese.
 
-```bash
-./scripts/build.sh --dev   # development build (io.github.tobagin.Truco.Devel)
-./scripts/build.sh         # production build (io.github.tobagin.Truco)
-```
+## Screenshots
 
-Run after building:
+| Gameplay |
+|----------|
+| ![Gameplay](data/screenshots/gameplay.png) |
+
+## Building from Source
 
 ```bash
-flatpak run io.github.tobagin.Truco.Devel   # development
-flatpak run io.github.tobagin.Truco         # production
+# Clone the repository
+git clone https://github.com/tobagin/Truco.git
+cd Truco
+
+# Build and install development version
+./scripts/build.sh --dev
+
+# Run the application
+flatpak run io.github.tobagin.Truco.Devel
 ```
 
-### Build dependencies
+For a production build, run `./scripts/build.sh` (installs `io.github.tobagin.Truco`).
+
+### Build Dependencies
 
 - `meson` (>= 0.59) and `ninja`
 - `vala`
 - `blueprint-compiler`
-- GTK4 and Libadwaita development libraries
-- `libgee` (Gee collections)
+- GTK4 and libadwaita development libraries
+- `libgee`, `gstreamer`, `libsoup`, `json-glib`
 
-A direct (non-Flatpak) build:
+## Usage
 
-```bash
-meson setup build
-meson compile -C build
-./build/src/truco
-```
+### Basic Usage
 
-## Project layout
+1.  **New Game**: Click the menu button (☰) and select "New Game".
+2.  **Online Play**: Select "Play Online" to quick match, create a room, or join one by code.
+3.  **Help**: Press `F1` for the in-app rules and `Ctrl+?` for keyboard shortcuts.
 
-| Path | Purpose |
-|------|---------|
-| `src/` | Vala source — game engine, UI, rules, managers, dialogs |
-| `src/Game.vala` | Core engine: cards, players, game state, AI opponent |
-| `src/RulesEngine.vala` | Per-variant card-power calculation |
-| `src/Window.vala` | Main game window and UI |
-| `src/dialogs/` | New Game, Preferences, Match End, Avatar Selector, About |
-| `data/` | Card art, avatars, icons, sounds, CSS, GSettings schema, Blueprint UI |
-| `po/` | gettext translations |
-| `help/` | Mallard user help (yelp) |
-| `packaging/` | Flatpak manifests (dev + prod) |
+### Privacy
 
-## Translating
+**Truco** respects your privacy.
+-   **No Telemetry**: We do not track your usage.
+-   **Online Play**: Only game actions are transmitted, and only during multiplayer matches.
+-   **Local Data**: Your profile, preferences, and history are stored locally on your device.
 
-Translations live in `po/`. To add a language, append its code to `po/LINGUAS`
-and provide a `.po` file generated from `po/io.github.tobagin.Truco.pot`.
+## Contributing
+
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+-   **Bug Reports**: [GitHub Issues](https://github.com/tobagin/Truco/issues)
+-   **Translations**: Add your language code to `po/LINGUAS` and a `.po` file generated from `po/io.github.tobagin.Truco.pot`.
 
 ## License
 
-Truco is released under the **GPL-3.0-or-later** license.
+Truco is licensed under the [GNU GPLv3+](LICENSE).
+
+## Acknowledgments
+
+-   **GNOME Project**: For the incredible platform.
+-   **South American Truco Community**: For preserving the rules and regional variants.
+-   **LibAdwaita**: For the beautiful UI components.

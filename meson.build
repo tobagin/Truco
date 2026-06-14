@@ -77,7 +77,21 @@ match_end_dialog = custom_target('compile-match-end',
   install: false,
 )
 
-compiled_blueprints = [blueprints, new_game_dialog, match_end_dialog, shortcuts_ui, preferences_dialog, avatar_selector]
+online_dialog = custom_target('compile-online',
+  input: files('data/ui/online_dialog.blp'),
+  output: 'online_dialog.ui',
+  command: [blueprint_compiler, 'compile', '--output', '@OUTPUT@', '@INPUT@'],
+  install: false,
+)
+
+onboarding_dialog = custom_target('compile-onboarding',
+  input: files('data/ui/onboarding_dialog.blp'),
+  output: 'onboarding_dialog.ui',
+  command: [blueprint_compiler, 'compile', '--output', '@OUTPUT@', '@INPUT@'],
+  install: false,
+)
+
+compiled_blueprints = [blueprints, new_game_dialog, match_end_dialog, shortcuts_ui, preferences_dialog, avatar_selector, online_dialog, onboarding_dialog]
 
 
 # Configure desktop file from template with dynamic app ID
