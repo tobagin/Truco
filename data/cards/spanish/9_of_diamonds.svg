@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="250" height="350" viewBox="0 0 250 350"><defs>
+    <linearGradient id="parch" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
+    <radialGradient id="parchGlow" cx="50%" cy="42%" r="70%"><stop offset="0%" stop-color="#fffdf3" stop-opacity="0.6"/><stop offset="100%" stop-color="#fffdf3" stop-opacity="0"/></radialGradient>
     <radialGradient id="oroGrado" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreo" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowlo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -9,7 +11,6 @@
     <linearGradient id="gripo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommelo" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
     <linearGradient id="woodo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parcho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
     <radialGradient id="oroGradoi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreoi" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowloi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -19,15 +20,12 @@
     <linearGradient id="guardoi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></linearGradient>
     <linearGradient id="gripoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommeloi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
-    <linearGradient id="woodoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parchoi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient></defs>
-    <rect x="3" y="3" width="244" height="344" rx="16" fill="url(#parcho)" stroke="#cdbb8e" stroke-width="2"/>
-    <rect x="12" y="12" width="226" height="326" rx="11" fill="none" stroke="#b07d12" stroke-width="2.4" opacity="0.9"/>
-    <rect x="17" y="17" width="216" height="316" rx="8" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
-    <g fill="#b07d12">
-      <circle cx="12" cy="12" r="3.2"/><circle cx="238" cy="12" r="3.2"/>
-      <circle cx="12" cy="338" r="3.2"/><circle cx="238" cy="338" r="3.2"/>
-    </g><g transform="translate(80.4 77.7) scale(0.480)"><g>
+    <linearGradient id="woodoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient></defs>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parch)" stroke="#cbb98a" stroke-width="2"/>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parchGlow)"/>
+    <rect x="11" y="11" width="228" height="328" rx="12" fill="none" stroke="#b07d12" stroke-width="2.6"/>
+    <rect x="16" y="16" width="218" height="318" rx="8.5" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
+    <g transform="translate(80.4 77.7) scale(0.480)"><g>
       <circle r="47" fill="url(#oroGrado)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
@@ -98,14 +96,14 @@
       <g fill="#9c6f17"><circle cx="42.00" cy="0.00" r="1.7"/><circle cx="36.37" cy="21.00" r="1.7"/><circle cx="21.00" cy="36.37" r="1.7"/><circle cx="0.00" cy="42.00" r="1.7"/><circle cx="-21.00" cy="36.37" r="1.7"/><circle cx="-36.37" cy="21.00" r="1.7"/><circle cx="-42.00" cy="0.00" r="1.7"/><circle cx="-36.37" cy="-21.00" r="1.7"/><circle cx="-21.00" cy="-36.37" r="1.7"/><circle cx="-0.00" cy="-42.00" r="1.7"/><circle cx="21.00" cy="-36.37" r="1.7"/><circle cx="36.37" cy="-21.00" r="1.7"/></g>
       <circle r="21" fill="url(#oroCoreo)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
-    </g></g><g transform="translate(30 40)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">9</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    </g></g><g transform="translate(31 41)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">9</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
       <g fill="#9c6f17"><circle cx="42.00" cy="0.00" r="1.7"/><circle cx="36.37" cy="21.00" r="1.7"/><circle cx="21.00" cy="36.37" r="1.7"/><circle cx="0.00" cy="42.00" r="1.7"/><circle cx="-21.00" cy="36.37" r="1.7"/><circle cx="-36.37" cy="21.00" r="1.7"/><circle cx="-42.00" cy="0.00" r="1.7"/><circle cx="-36.37" cy="-21.00" r="1.7"/><circle cx="-21.00" cy="-36.37" r="1.7"/><circle cx="-0.00" cy="-42.00" r="1.7"/><circle cx="21.00" cy="-36.37" r="1.7"/><circle cx="36.37" cy="-21.00" r="1.7"/></g>
       <circle r="21" fill="url(#oroCoreoi)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
-    </g></g></g></g><g transform="translate(220 310) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">9</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    </g></g></g></g><g transform="translate(219 309) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">9</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>

@@ -59,7 +59,7 @@ namespace Truco.Network {
             }
         }
 
-        private void on_message (Soup.WebsocketDataType type, Bytes bytes) {
+        private void on_message (int type, Bytes bytes) {
             if (type != Soup.WebsocketDataType.TEXT) {
                 return;
             }
