@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.tobagin.Truco\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-15 18:33+0000\n"
+"POT-Creation-Date: 2026-06-14 19:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,106 +17,814 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Window.vala:229
+#: src/Window.vala:484
+msgid "Player"
+msgstr ""
+
+#: src/Window.vala:618
+#, c-format
+msgid "Opponent: %s"
+msgstr ""
+
+#: src/Window.vala:623
+msgid "Your opponent resigned. You win!"
+msgstr ""
+
+#: src/Window.vala:624
+msgid "Your opponent left the game."
+msgstr ""
+
+#: src/Window.vala:625
+msgid "Game Over"
+msgstr ""
+
+#: src/Window.vala:626 src/dialogs/MatchEndDialog.vala:19
+#: data/ui/match_end_dialog.blp:56
+msgid "OK"
+msgstr ""
+
+#: src/Window.vala:687 src/Game.vala:296 data/ui/window.blp:147
+#: data/ui/window.blp:192 data/ui/window.blp:214
+msgid "Opponent"
+msgstr ""
+
+#. Opponent 1
+#: src/Window.vala:687 src/Game.vala:258 data/ui/window.blp:299
+msgid "Partner"
+msgstr ""
+
+#: src/Window.vala:757
 #, c-format
 msgid "%s Variant"
 msgstr ""
 
 #. Status & Buttons
-#: src/Window.vala:241
+#: src/Window.vala:771
 #, c-format
 msgid "Stake: %d"
 msgstr ""
 
-#: src/Window.vala:245
+#: src/Window.vala:775
 #, c-format
 msgid "Truco! %d proposed by Team %d."
 msgstr ""
 
-#: src/Window.vala:272
+#: src/Window.vala:791
 msgid "Waiting for response..."
 msgstr ""
 
-#: src/Window.vala:278
+#: src/Window.vala:799
 #, c-format
-msgid "Turn: Player %d | %s"
+msgid "Envido! Points proposed by Team %d."
 msgstr ""
 
-#: src/Window.vala:285
+#: src/Window.vala:811
+msgid "Waiting for Envido response..."
+msgstr ""
+
+#. Reset state
+#. Scoreboard shows Status (Turn | Stake)
+#: src/Window.vala:821 src/Window.vala:872
+#, c-format
+msgid "Turn: %s | %s"
+msgstr ""
+
+#: src/Window.vala:840
 msgid "TRUCO!"
 msgstr ""
 
-#: src/Window.vala:286
-msgid "SEIS!"
+#: src/Window.vala:845 src/Window.vala:1061
+msgid "SIX!"
 msgstr ""
 
-#: src/Window.vala:287
-msgid "NOVE!"
+#: src/Window.vala:846 src/Window.vala:1062
+msgid "NINE!"
 msgstr ""
 
-#: src/Window.vala:288
-msgid "DOZE!"
+#: src/Window.vala:847 src/Window.vala:1063
+msgid "TWELVE!"
 msgstr ""
 
-#: src/Window.vala:292
+#. Argentino / Uruguayo
+#: src/Window.vala:849 src/Window.vala:853
+msgid "RETRUCO!"
+msgstr ""
+
+#: src/Window.vala:850
+msgid "VALE JUEGO!"
+msgstr ""
+
+#: src/Window.vala:854
+msgid "VALE CUATRO!"
+msgstr ""
+
+#: src/Window.vala:871
+msgid "MÃO DE FERRO"
+msgstr ""
+
+#: src/Window.vala:871
+msgid "MÃO DE 11"
+msgstr ""
+
+#. Status status_label updated above in logic blocks
+#. Round Label
+#: src/Window.vala:885
 #, c-format
-msgid "Turn: Player %d | MÃO DE 11"
+msgid "Round: %d"
 msgstr ""
 
-#: src/dialogs/NewGameDialog.vala:17
+#. Ensure dialog is seen
+#. Arg/Uru
+#: src/Window.vala:1060 src/Game.vala:637
+msgid "Truco!"
+msgstr ""
+
+#: src/Window.vala:1067
+#, c-format
+msgid "%s proposed %s (Stake: %d)"
+msgstr ""
+
+#: src/Window.vala:1068
+msgid "Accept"
+msgstr ""
+
+#: src/Window.vala:1069 data/ui/window.blp:354
+msgid "Run"
+msgstr ""
+
+#: src/Window.vala:1078
+msgid "Six!"
+msgstr ""
+
+#: src/Window.vala:1079
+msgid "Nine!"
+msgstr ""
+
+#: src/Window.vala:1080
+msgid "Twelve!"
+msgstr ""
+
+#: src/Window.vala:1082 src/Window.vala:1085 src/Game.vala:633
+#: src/Game.vala:638
+msgid "Retruco!"
+msgstr ""
+
+#: src/Window.vala:1083 src/Game.vala:639
+msgid "Vale Cuatro!"
+msgstr ""
+
+#: src/Window.vala:1086 src/Game.vala:634
+msgid "Vale Juego!"
+msgstr ""
+
+#: src/Window.vala:1134 src/Game.vala:717
+msgid "Envido!"
+msgstr ""
+
+#: src/Window.vala:1135 src/Game.vala:718
+msgid "Real Envido!"
+msgstr ""
+
+#: src/Window.vala:1136 src/Game.vala:719
+msgid "Falta Envido!"
+msgstr ""
+
+#: src/Window.vala:1140
+#, c-format
+msgid "%s proposed %s"
+msgstr ""
+
+#: src/Window.vala:1141
+msgid "Quiero (Accept)"
+msgstr ""
+
+#: src/Window.vala:1142
+msgid "No Quiero (Run)"
+msgstr ""
+
+#: src/Window.vala:1195
+msgid ""
+"Your team has 11 points. You can see your partner's cards. Do you want to "
+"play this round (Worth 3 points)?"
+msgstr ""
+
+#: src/Window.vala:1196
+msgid ""
+"Your team has 11 points. Do you want to play this round (Worth 3 points)?"
+msgstr ""
+
+#: src/Window.vala:1199
+msgid "Mão de 11!"
+msgstr ""
+
+#: src/Window.vala:1201
+msgid "Play (Worth 3)"
+msgstr ""
+
+#: src/Window.vala:1202
+msgid "Run (Give 1 point)"
+msgstr ""
+
+#: src/Window.vala:1219
+msgid "Your Partner's Hand:"
+msgstr ""
+
+#: src/Game.vala:13
+msgid "Swords"
+msgstr ""
+
+#: src/Game.vala:14
+msgid "Clubs"
+msgstr ""
+
+#: src/Game.vala:15
+msgid "Golds"
+msgstr ""
+
+#: src/Game.vala:16
+msgid "Cups"
+msgstr ""
+
+#: src/Game.vala:36
+msgid "Ace"
+msgstr ""
+
+#: src/Game.vala:37
+msgid "Jack"
+msgstr ""
+
+#: src/Game.vala:38
+msgid "King"
+msgstr ""
+
+#: src/Game.vala:39
+msgid "Queen"
+msgstr ""
+
+#: src/Game.vala:41
+#, c-format
+msgid "%s of %s"
+msgstr ""
+
+#. Teams: 0 (You + Partners), 1 (Opponents)
+#: src/Game.vala:252 src/Game.vala:292 data/ui/window.blp:275
+msgid "You"
+msgstr ""
+
+#: src/Game.vala:255 src/Game.vala:257 src/Game.vala:261
+msgid "CPU 1"
+msgstr ""
+
+#. Partner
+#. Partner 2
+#: src/Game.vala:259 src/Game.vala:265
+msgid "CPU 3"
+msgstr ""
+
+#. Opponent 1
+#: src/Game.vala:262 data/ui/window.blp:88
+msgid "Partner 1"
+msgstr ""
+
+#. Partner 1
+#: src/Game.vala:263
+msgid "CPU 2"
+msgstr ""
+
+#. Opponent 2
+#: src/Game.vala:264 data/ui/window.blp:111
+msgid "Partner 2"
+msgstr ""
+
+#: src/Game.vala:315
+msgid "Match Started!"
+msgstr ""
+
+#: src/Game.vala:322
+msgid "New Game Started. Score 0-0."
+msgstr ""
+
+#. history.add("Round %d started.".printf(round_count)); // Logged in deal_cards? No, do it here.
+#: src/Game.vala:360
+#, c-format
+msgid "Round %d started."
+msgstr ""
+
+#: src/Game.vala:377
+#, c-format
+msgid "%s starts the round."
+msgstr ""
+
+#: src/Game.vala:386
+msgid "Mão de Ferro! Players plays blind!"
+msgstr ""
+
+#: src/Game.vala:397
+msgid "YOUR TEAM"
+msgstr ""
+
+#: src/Game.vala:397
+msgid "OPPONENT TEAM"
+msgstr ""
+
+#: src/Game.vala:398
+#, c-format
+msgid "Mão de 11 for %s! Deciding..."
+msgstr ""
+
+#: src/Game.vala:625 src/Game.vala:632
+msgid "Called Truco!"
+msgstr ""
+
+#: src/Game.vala:628
+msgid "Called Six!"
+msgstr ""
+
+#: src/Game.vala:629
+msgid "Called Nine!"
+msgstr ""
+
+#: src/Game.vala:630
+msgid "Called Twelve!"
+msgstr ""
+
+#: src/Game.vala:661
+#, c-format
+msgid "Accepted Hand! Round worth %d points."
+msgstr ""
+
+#: src/Game.vala:664
+msgid "Refused Mão de 11!"
+msgstr ""
+
+#: src/Game.vala:681
+#, c-format
+msgid "Accepted! Stake is now %d"
+msgstr ""
+
+#: src/Game.vala:686
+msgid "Refused!"
+msgstr ""
+
+#: src/Game.vala:689
+msgid "Your team won the round!"
+msgstr ""
+
+#: src/Game.vala:689
+msgid "Opponent team won the round!"
+msgstr ""
+
+#: src/Game.vala:755
+msgid "Quiero! (Accepted Envido)"
+msgstr ""
+
+#: src/Game.vala:759
+msgid "No Quiero! (Refused Envido)"
+msgstr ""
+
+#: src/Game.vala:788
+msgid "Envido Scores: "
+msgstr ""
+
+#: src/Game.vala:807
+msgid "Your team wins Envido!"
+msgstr ""
+
+#: src/Game.vala:807
+msgid "Opponent team wins Envido!"
+msgstr ""
+
+#: src/Game.vala:830
+msgid "Flor!"
+msgstr ""
+
+#. Contra Flor!
+#: src/Game.vala:853
+msgid "Contra Flor!"
+msgstr ""
+
+#: src/Game.vala:881
+#, c-format
+msgid "Flor Showdown: Us %d vs Them %d"
+msgstr ""
+
+#: src/Game.vala:882
+msgid "Your team wins Flor!"
+msgstr ""
+
+#: src/Game.vala:882
+msgid "Opponent team wins Flor!"
+msgstr ""
+
+#. No Flor for opponents
+#: src/Game.vala:889
+msgid "Opponents have no Flor. 3 points awarded."
+msgstr ""
+
+#: src/Game.vala:1186
+msgid "Wait for your turn."
+msgstr ""
+
+#: src/Game.vala:1193
+msgid "Hint: You have a Flor! You should call it."
+msgstr ""
+
+#: src/Game.vala:1199
+#, c-format
+msgid "Hint: You have a good Envido score (%d). Consider calling it."
+msgstr ""
+
+#: src/Game.vala:1206
+msgid "Hint: You have strong cards. Consider calling Truco!"
+msgstr ""
+
+#: src/Game.vala:1212
+#, c-format
+msgid "Hint: I suggest playing the %s."
+msgstr ""
+
+#: src/Game.vala:1225 src/RulesEngine.vala:150
+msgid "Zap"
+msgstr ""
+
+#: src/Game.vala:1225
+msgid "Strong"
+msgstr ""
+
+#: src/Game.vala:1470
+msgid "Team US wins the Game!"
+msgstr ""
+
+#: src/Game.vala:1470
+msgid "Team THEM wins the Game!"
+msgstr ""
+
+#: src/Game.vala:1476
+msgid "Team US wins the Match!"
+msgstr ""
+
+#: src/Game.vala:1476
+msgid "Team THEM wins the Match!"
+msgstr ""
+
+#: src/Game.vala:1502
+msgid "Zap! (Best Card)"
+msgstr ""
+
+#: src/Game.vala:1503
+msgid "Strong Card"
+msgstr ""
+
+#: src/Game.vala:1504
+msgid "Good Hand"
+msgstr ""
+
+#: src/Game.vala:1505
+msgid "Weak Hand"
+msgstr ""
+
+#: src/Game.vala:1506
+msgid "Average Hand"
+msgstr ""
+
+#: src/Game.vala:1525
+#, c-format
+msgid "Signal: %s"
+msgstr ""
+
+#: src/RulesEngine.vala:151
+msgid "Copas"
+msgstr ""
+
+#: src/RulesEngine.vala:152
+msgid "Espadilha"
+msgstr ""
+
+#: src/RulesEngine.vala:153
+msgid "Ouros"
+msgstr ""
+
+#: src/RulesEngine.vala:159
+msgid "Manilha"
+msgstr ""
+
+#: src/RulesEngine.vala:161
+msgid "Espadilla"
+msgstr ""
+
+#: src/RulesEngine.vala:162
+msgid "Bastardillo"
+msgstr ""
+
+#: src/RulesEngine.vala:163
+msgid "Siete de Espadas"
+msgstr ""
+
+#: src/RulesEngine.vala:164
+msgid "Siete de Oro"
+msgstr ""
+
+#: src/ScoreManager.vala:25
+#, c-format
+msgid "%d Malas"
+msgstr ""
+
+#: src/ScoreManager.vala:26
+#, c-format
+msgid "%d Buenas"
+msgstr ""
+
+#: src/dialogs/NewGameDialog.vala:24
 msgid "Cancel"
 msgstr ""
 
-#: src/dialogs/NewGameDialog.vala:18
+#: src/dialogs/NewGameDialog.vala:25
 msgid "Start Game"
+msgstr ""
+
+#: src/dialogs/MatchEndDialog.vala:11 data/ui/match_end_dialog.blp:18
+msgid "Match Over"
+msgstr ""
+
+#: src/dialogs/MatchEndDialog.vala:12 data/ui/match_end_dialog.blp:32
+msgid "You Won!"
+msgstr ""
+
+#: src/dialogs/MatchEndDialog.vala:12
+msgid "You Lost!"
+msgstr ""
+
+#. Actions
+#: src/dialogs/MatchEndDialog.vala:16
+msgid "Replay"
+msgstr ""
+
+#: src/dialogs/MatchEndDialog.vala:21 data/ui/shortcuts.blp:24
+msgid "Quit"
+msgstr ""
+
+#: src/dialogs/MatchEndDialog.vala:35
+#, c-format
+msgid ""
+"Games Won: %d/%d (%.0f%%)\n"
+"Rounds Won: %d/%d (%.0f%%)"
+msgstr ""
+
+#: data/ui/window.blp:17
+msgid "Toggle History"
+msgstr ""
+
+#: data/ui/window.blp:22
+msgid "Truco"
+msgstr ""
+
+#: data/ui/window.blp:30
+msgid "Main Menu"
+msgstr ""
+
+#: data/ui/window.blp:337
+msgid "Hint"
+msgstr ""
+
+#: data/ui/window.blp:338
+msgid "Get a move suggestion"
+msgstr ""
+
+#: data/ui/window.blp:376
+msgid "MATCH SCORE"
+msgstr ""
+
+#: data/ui/window.blp:405
+msgid "GAME SCORE"
+msgstr ""
+
+#: data/ui/window.blp:434
+msgid "Turn: Player 1"
+msgstr ""
+
+#: data/ui/window.blp:439
+msgid "Round 1"
+msgstr ""
+
+#: data/ui/window.blp:459
+msgid "TURN CARD"
+msgstr ""
+
+#: data/ui/window.blp:504
+msgid "Next"
+msgstr ""
+
+#: data/ui/window.blp:508
+msgid "Close"
+msgstr ""
+
+#: data/ui/window.blp:519 data/ui/shortcuts.blp:33
+#: data/ui/new_game_dialog.blp:5
+msgid "New Game"
+msgstr ""
+
+#: data/ui/window.blp:520
+msgid "Tutorial"
+msgstr ""
+
+#: data/ui/window.blp:521
+msgid "Play Online"
+msgstr ""
+
+#: data/ui/window.blp:524 data/ui/shortcuts.blp:9
+msgid "Preferences"
+msgstr ""
+
+#: data/ui/window.blp:527
+msgid "Game Rules"
+msgstr ""
+
+#: data/ui/window.blp:528 data/ui/shortcuts.blp:14
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/window.blp:529
+msgid "About Truco"
+msgstr ""
+
+#: data/ui/window.blp:532 data/ui/match_end_dialog.blp:62
+msgid "Quit Game"
 msgstr ""
 
 #: data/ui/shortcuts.blp:6
 msgid "General"
 msgstr ""
 
-#: data/ui/shortcuts.blp:9
-msgid "Preferences"
-msgstr ""
-
-#: data/ui/shortcuts.blp:14
-msgid "Keyboard Shortcuts"
-msgstr ""
-
 #: data/ui/shortcuts.blp:19
 msgid "About"
-msgstr ""
-
-#: data/ui/shortcuts.blp:24
-msgid "Quit"
 msgstr ""
 
 #: data/ui/shortcuts.blp:30
 msgid "Game"
 msgstr ""
 
-#: data/ui/shortcuts.blp:33
-msgid "New Game"
-msgstr ""
-
 #: data/ui/shortcuts.blp:38
 msgid "Help"
 msgstr ""
 
+#: data/ui/new_game_dialog.blp:6
+msgid "Select the game variant."
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:10
+msgid "Variant"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:13
+msgid "Truco Mineiro"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:14
+msgid "Truco Paulista"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:15
+msgid "Truco Uruguayo"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:16
+msgid "Truco Venezolano"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:17
+msgid "Truco Argentino"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:18
+msgid "Truco de Reis"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:24
+msgid "Team Size"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:27
+msgid "1v1 (Mano a Mano)"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:28
+msgid "2v2 (Duplas)"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:29
+msgid "3v3 (Trio)"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:36
+msgid "Hidden Vira"
+msgstr ""
+
+#: data/ui/new_game_dialog.blp:37
+msgid "Play without knowing the vira until the end"
+msgstr ""
+
+#: data/ui/match_end_dialog.blp:50
+msgid "Play Again"
+msgstr ""
+
 #: data/io.github.tobagin.Truco.desktop.in:2
-#: data/io.github.tobagin.Truco.metainfo.xml.in:6
-msgid "Truco"
+msgid "@APP_NAME@"
 msgstr ""
 
 #: data/io.github.tobagin.Truco.desktop.in:3
-#: data/io.github.tobagin.Truco.metainfo.xml.in:7
 msgid "A card game application"
 msgstr ""
 
+#: data/io.github.tobagin.Truco.metainfo.xml.in:7
+msgid "Play the South American Truco card game"
+msgstr ""
+
 #: data/io.github.tobagin.Truco.metainfo.xml.in:9
-msgid "Play the traditional Truco card game."
+msgid ""
+"Truco is a native GNOME version of the classic South American trick-taking "
+"card game played with a Spanish deck. Outsmart your opponents, raise the "
+"stakes, and call truco at the right moment."
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:14
+msgid "Features:"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:16
+msgid ""
+"Multiple regional variants: Paulista, Mineiro, Argentino, Uruguayo and "
+"Venezolano"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:17
+msgid "Authentic per-variant rules including manilhas, Envido and Flor"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:18
+msgid "Smart CPU opponents with distinct personalities"
 msgstr ""
 
 #: data/io.github.tobagin.Truco.metainfo.xml.in:19
-msgid "Tobagin"
+msgid "Truco escalation, Mão de 11 and Mão de Ferro special hands"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:20
+msgid "Customizable card decks, table felts and player avatars"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:21
+msgid "Match statistics and game-history tracking"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:22
+msgid "Built-in tutorial and interactive help"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:34
+msgid "truco"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:35
+msgid "card game"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:36
+msgid "cards"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:37
+msgid "baraja"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:38
+msgid "manilha"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:43
+msgid "A Truco match in progress"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:49
+msgid "Initial release features:"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:51
+msgid ""
+"Play multiple variants: Mineiro, Paulista, Uruguayo, Venezolano, Argentino"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:52
+msgid "Smart CPU opponents"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:53
+msgid "Customizable table felt and card decks"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:54
+msgid "Match statistics and game history tracking"
+msgstr ""
+
+#: data/io.github.tobagin.Truco.metainfo.xml.in:64
+msgid "Thiago Fernandes"
 msgstr ""
