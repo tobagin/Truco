@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="250" height="350" viewBox="0 0 250 350"><defs>
+    <linearGradient id="parch" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
+    <radialGradient id="parchGlow" cx="50%" cy="42%" r="70%"><stop offset="0%" stop-color="#fffdf3" stop-opacity="0.6"/><stop offset="100%" stop-color="#fffdf3" stop-opacity="0"/></radialGradient>
     <radialGradient id="oroGrado" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreo" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowlo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -9,7 +11,6 @@
     <linearGradient id="gripo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommelo" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
     <linearGradient id="woodo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parcho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
     <radialGradient id="oroGradoi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreoi" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowloi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -20,7 +21,6 @@
     <linearGradient id="gripoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommeloi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
     <linearGradient id="woodoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parchoi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
     <radialGradient id="oroGradoh" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreoh" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowloh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -30,39 +30,40 @@
     <linearGradient id="guardoh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></linearGradient>
     <linearGradient id="gripoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommeloh" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
-    <linearGradient id="woodoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parchoh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
-    <linearGradient id="robeo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b07d12"/><stop offset="100%" stop-color="#7b570c"/></linearGradient>
-    <linearGradient id="crowno" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4dd77"/><stop offset="100%" stop-color="#c79a2e"/></linearGradient>
-    <linearGradient id="capo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cfb170"/><stop offset="100%" stop-color="#b07d12"/></linearGradient>
-    <linearGradient id="horseo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#efe9dc"/><stop offset="100%" stop-color="#c9c1b0"/></linearGradient></defs>
-    <rect x="3" y="3" width="244" height="344" rx="16" fill="url(#parcho)" stroke="#cdbb8e" stroke-width="2"/>
-    <rect x="12" y="12" width="226" height="326" rx="11" fill="none" stroke="#b07d12" stroke-width="2.4" opacity="0.9"/>
-    <rect x="17" y="17" width="216" height="316" rx="8" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
-    <g fill="#b07d12">
-      <circle cx="12" cy="12" r="3.2"/><circle cx="238" cy="12" r="3.2"/>
-      <circle cx="12" cy="338" r="3.2"/><circle cx="238" cy="338" r="3.2"/>
+    <linearGradient id="woodoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient></defs>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parch)" stroke="#cbb98a" stroke-width="2"/>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parchGlow)"/>
+    <rect x="11" y="11" width="228" height="328" rx="12" fill="none" stroke="#b07d12" stroke-width="2.6"/>
+    <rect x="16" y="16" width="218" height="318" rx="8.5" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
+    
+    <ellipse cx="124" cy="298" rx="84" ry="7" fill="#000" opacity="0.10"/>
+    <!-- horse body -->
+    <path d="M58,236 Q56,196 96,186 Q150,178 176,196 Q196,210 192,250 L178,250 Q180,220 168,212
+             Q120,198 92,210 Q74,220 74,248 Z" fill="#efe7d4" stroke="#2b2117" stroke-width="1.8"/>
+    <!-- legs -->
+    <g fill="#efe7d4" stroke="#2b2117" stroke-width="1.5">
+      <path d="M80,244 L76,292 L86,292 L90,246 Z"/><path d="M104,248 L100,292 L110,292 L114,250 Z"/>
+      <path d="M156,248 L160,292 L170,292 L164,250 Z"/><path d="M176,244 L184,290 L194,290 L186,246 Z"/>
     </g>
-    <ellipse cx="120" cy="290" rx="78" ry="8" fill="#000000" opacity="0.12"/>
-    <path d="M176,196 Q200,210 196,250 Q188,232 182,236 Q188,256 178,268 Q176,236 168,214 Z" fill="#5a4631"/>
-    <path d="M150,236 L156,286 L148,286 L144,238 Z" fill="#b8b0a0" stroke="#00000022" stroke-width="1"/>
-    <path d="M92,238 L88,286 L96,286 L100,238 Z" fill="#b8b0a0" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="118" cy="216" rx="60" ry="27" fill="url(#horseo)" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M70,210 Q52,196 46,176 Q44,166 52,164 Q60,178 78,192 Q86,200 84,214 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M52,168 Q40,166 34,176 Q30,184 36,188 Q44,190 50,184 Q56,178 56,170 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M34,176 Q28,180 30,186 L37,186 Q36,180 40,178 Z" fill="#b8b0a0"/>
-    <path d="M54,160 L50,150 L60,158 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1"/>
-    <path d="M62,160 L60,149 L70,160 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1"/>
-    <circle cx="48" cy="174" r="2.2" fill="#2a221a"/>
-    <path d="M58,158 Q70,166 76,188 Q70,184 64,190 Q60,176 52,166 Z" fill="#5a4631"/>
-    <path d="M104,238 L100,287 L110,287 L112,240 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1.2"/>
-    <path d="M158,236 L164,287 L174,287 L168,238 Z" fill="url(#horseo)" stroke="#9a9486" stroke-width="1.2"/>
-    <g fill="#2f2417"><rect x="99" y="284" width="13" height="6" rx="2"/><rect x="162" y="284" width="14" height="6" rx="2"/>
-       <rect x="86" y="283" width="12" height="6" rx="2"/><rect x="145" y="283" width="12" height="6" rx="2"/></g>
-    <path d="M92,198 Q120,210 150,198 L154,214 Q120,226 88,214 Z" fill="url(#robeo)" stroke="#00000033" stroke-width="1"/>
-    <rect x="86" y="206" width="70" height="5" fill="#e9c34e" opacity="0.8"/>
-    <path d="M52,176 Q90,150 112,168" fill="none" stroke="#3a2a18" stroke-width="2"/>
-    <g transform="translate(178 132) scale(0.46)"><g>
+    <g fill="#2b2117"><rect x="74" y="289" width="14" height="5" rx="1.5"/><rect x="99" y="289" width="14" height="5" rx="1.5"/>
+       <rect x="158" y="289" width="14" height="5" rx="1.5"/><rect x="183" y="289" width="14" height="5" rx="1.5"/></g>
+    <!-- neck + head -->
+    <path d="M58,236 Q40,214 36,188 Q34,174 44,172 Q54,190 76,206 Q84,214 80,232 Z" fill="#efe7d4" stroke="#2b2117" stroke-width="1.8"/>
+    <path d="M44,174 Q30,170 24,182 Q20,192 28,196 Q38,198 46,190 Q52,182 52,174 Z" fill="#efe7d4" stroke="#2b2117" stroke-width="1.6"/>
+    <path d="M24,182 Q17,187 19,194 L28,193 Q27,186 32,183 Z" fill="#cdc2a6" stroke="#2b2117" stroke-width="1.1"/>
+    <path d="M46,166 L42,154 L54,164 Z" fill="#efe7d4" stroke="#2b2117" stroke-width="1.2"/>
+    <path d="M55,166 L53,153 L65,166 Z" fill="#efe7d4" stroke="#2b2117" stroke-width="1.2"/>
+    <circle cx="40" cy="184" r="2.2" fill="#2b2117"/>
+    <!-- mane + tail -->
+    <path d="M52,166 Q66,176 74,202 Q66,196 58,202 Q56,182 46,170 Z" fill="#2b2117" opacity="0.85"/>
+    <path d="M190,206 Q210,214 208,256 Q200,236 192,240 Q196,222 184,212 Z" fill="#2b2117" opacity="0.85"/>
+    <!-- saddle blanket -->
+    <path d="M88,206 Q124,220 162,206 L168,224 Q124,238 84,224 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.5"/>
+    <path d="M86,214 L166,214" stroke="#e3b53a" stroke-width="2"/>
+    <!-- reins -->
+    <path d="M46,178 Q90,156 116,176" fill="none" stroke="#2b2117" stroke-width="1.8"/>
+    <!-- rider held emblem -->
+    <g transform="translate(178 120) scale(0.5) rotate(6)"><g>
       <circle r="47" fill="url(#oroGradoh)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
@@ -70,29 +71,26 @@
       <circle r="21" fill="url(#oroCoreoh)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
     </g></g>
-    <path d="M122,176 Q150,150 168,134 L160,126 Q142,142 116,166 Z" fill="url(#robeo)" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="166" cy="132" rx="7" ry="8" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <path d="M104,196 Q100,172 110,160 L130,160 Q140,172 136,196 Q120,204 104,196 Z" fill="url(#robeo)" stroke="#00000033" stroke-width="1.3"/>
-    <rect x="104" y="190" width="34" height="7" rx="2" fill="#7a5a2a"/>
-    <path d="M108,168 Q96,176 100,190 L110,186 Q108,176 116,170 Z" fill="url(#robeo)" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="103" cy="188" rx="6" ry="7" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <path d="M108,160 Q120,152 132,160 Q120,168 108,160 Z" fill="#fbf7ee" stroke="#cbb78a" stroke-width="1"/>
-    <rect x="114" y="145" width="12" height="12" fill="#f0c9a0"/>
-    <ellipse cx="120" cy="130" rx="15" ry="17" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <path d="M106,128 Q105,144 114,150 Q110,138 110,128 Z" fill="#6e4a26"/>
-    <g fill="#5a4631"><ellipse cx="115" cy="129" rx="1.7" ry="2.1"/><ellipse cx="126" cy="129" rx="1.7" ry="2.1"/></g>
-    <path d="M116,146 Q120,148 124,146" fill="none" stroke="#a8694a" stroke-width="1.3"/>
-    <ellipse cx="110" cy="138" rx="2.6" ry="1.8" fill="#e7a07e" opacity="0.5"/>
-    <path d="M104,120 Q106,104 120,104 Q135,104 137,118 Q120,112 104,120 Z" fill="url(#capo)" stroke="#00000033" stroke-width="1.1"/>
-    <rect x="105" y="116" width="32" height="5" rx="2" fill="#7a5a2a"/>
-    <path d="M134,112 Q152,104 156,88 Q146,98 136,106 Z" fill="#e9c34e" stroke="#9a7415" stroke-width="1"/><g transform="translate(30 40)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">11</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    <!-- rider torso -->
+    <path d="M104,200 Q98,172 110,158 L132,158 Q146,172 140,202 Q122,212 104,200 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.8"/>
+    <g stroke="#2b2117" stroke-width="0.9" opacity="0.4" fill="none"><path d="M122,162 L120,200"/></g>
+    <rect x="103" y="194" width="38" height="8" rx="2" fill="#e3b53a" stroke="#2b2117" stroke-width="1.2"/>
+    <!-- raised arm to emblem -->
+    <path d="M134,176 Q156,150 172,132 L164,124 Q146,142 122,168 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.6"/>
+    <ellipse cx="170" cy="130" rx="7.5" ry="8.5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.3"/>
+    <!-- leg over horse -->
+    <path d="M106,196 Q96,214 96,236 L108,236 Q108,214 118,202 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.6"/>
+    <path d="M104,232 L98,246 L112,246 L114,234 Z" fill="#6a4a24" stroke="#2b2117" stroke-width="1.3"/>
+    <rect x="116" y="146" width="16" height="16" rx="3" fill="#e8b88a" stroke="#2b2117" stroke-width="1.3"/>
+    <path d="M98,120 Q94,146 109,158 Q102,140 103,120 Z" fill="#2b2117"/><path d="M150,120 Q154,146 139,158 Q146,140 145,120 Z" fill="#2b2117"/><ellipse cx="124" cy="124" rx="22" ry="25" fill="#e8b88a" stroke="#2b2117" stroke-width="1.7"/><ellipse cx="103" cy="126" rx="3.4" ry="5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.1"/><ellipse cx="145" cy="126" rx="3.4" ry="5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.1"/><path d="M108,116 Q115,112 121,116" fill="none" stroke="#2b2117" stroke-width="1.6"/><path d="M127,116 Q133,112 140,116" fill="none" stroke="#2b2117" stroke-width="1.6"/><path d="M108,122 Q114,118 120,122 Q114,126 108,122 Z" fill="#fff" stroke="#2b2117" stroke-width="1.1"/><circle cx="114" cy="122" r="2.1" fill="#2b2117"/><path d="M128,122 Q134,118 140,122 Q134,126 128,122 Z" fill="#fff" stroke="#2b2117" stroke-width="1.1"/><circle cx="134" cy="122" r="2.1" fill="#2b2117"/><path d="M124,122 L121,134 Q124,137 127,134" fill="none" stroke="#2b2117" stroke-width="1.4"/><ellipse cx="110" cy="132" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/><ellipse cx="138" cy="132" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/><path d="M117,139 Q124,142 131,139" fill="none" stroke="#9a3b2a" stroke-width="1.6"/>
+    <path d="M98,130 Q96,100 124,98 Q152,100 150,130 Q124,118 98,130 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.7"/><rect x="97" y="126" width="54" height="9" rx="3" fill="#c39d4d" stroke="#2b2117" stroke-width="1.3"/><path d="M146,118 Q172,102 178,78 Q164,108 148,112 Z" fill="#e3b53a" stroke="#2b2117" stroke-width="1.2"/><g transform="translate(31 41)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">11</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
       <g fill="#9c6f17"><circle cx="42.00" cy="0.00" r="1.7"/><circle cx="36.37" cy="21.00" r="1.7"/><circle cx="21.00" cy="36.37" r="1.7"/><circle cx="0.00" cy="42.00" r="1.7"/><circle cx="-21.00" cy="36.37" r="1.7"/><circle cx="-36.37" cy="21.00" r="1.7"/><circle cx="-42.00" cy="0.00" r="1.7"/><circle cx="-36.37" cy="-21.00" r="1.7"/><circle cx="-21.00" cy="-36.37" r="1.7"/><circle cx="-0.00" cy="-42.00" r="1.7"/><circle cx="21.00" cy="-36.37" r="1.7"/><circle cx="36.37" cy="-21.00" r="1.7"/></g>
       <circle r="21" fill="url(#oroCoreoi)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
-    </g></g></g></g><g transform="translate(220 310) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">11</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    </g></g></g></g><g transform="translate(219 309) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">11</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
