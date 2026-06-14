@@ -44,7 +44,7 @@
     </screenshot>
   </screenshots>
   <releases>
-    <release version="0.1.0" date="2025-12-15">
+    <release version="0.1.0" date="2026-06-14">
       <description>
         <p>Initial release features:</p>
         <ul>
@@ -59,6 +59,8 @@
   <url type="homepage">https://github.com/tobagin/Truco</url>
   <url type="bugtracker">https://github.com/tobagin/Truco/issues</url>
   <url type="help">https://github.com/tobagin/Truco#readme</url>
-  <developer_name>Tobagin</developer_name>
-  <update_contact>tobagin@example.com</update_contact>
+  <url type="vcs-browser">https://github.com/tobagin/Truco</url>
+  <url type="donation">https://github.com/sponsors/tobagin</url>
+  <developer_name>Thiago Fernandes</developer_name>
+  <update_contact>thiago@avila-fernandes.com</update_contact>
 </component>

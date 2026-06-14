@@ -46,10 +46,6 @@ namespace Truco {
             online_action.activate.connect (show_play_online);
             add_action (online_action);
 
-            var leaderboard_action = new SimpleAction ("leaderboard", null);
-            leaderboard_action.activate.connect (() => { show_not_implemented("Leaderboard"); });
-            add_action (leaderboard_action);
-            
             var help_action = new SimpleAction ("help", null);
             help_action.activate.connect (show_help);
             add_action (help_action);
@@ -108,15 +104,6 @@ namespace Truco {
                 win.start_multiplayer_game (controller, variant, seat, first_dealer, seed);
             });
             dialog.present (win);
-        }
-
-        private void show_not_implemented (string title) {
-            var win = active_window as Truco.Window;
-            if (win != null) {
-                var dialog = new Adw.AlertDialog(title, "This feature is coming soon!");
-                dialog.add_response("ok", "OK");
-                dialog.present(win);
-            }
         }
     }
 }

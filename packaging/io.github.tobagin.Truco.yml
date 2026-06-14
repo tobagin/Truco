@@ -3,6 +3,7 @@ runtime: org.gnome.Platform
 runtime-version: '49'
 sdk: org.gnome.Sdk
 command: truco
+
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -11,24 +12,30 @@ finish-args:
   - --socket=pulseaudio
   - --share=network
 
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.node22
-
-build-options:
-  append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/node22/bin
-  build-args:
-    - --share=network
-  env:
-    CARGO_HOME: /run/build/truco/cargo
-    RUSTUP_HOME: /usr/lib/sdk/rust-stable
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /lib/cmake
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - /share/vala
+  - /share/aclocal
+  - /share/devhelp
+  - '*.la'
+  - '*.a'
 
 modules:
   - name: truco
     buildsystem: meson
-    sources:
-      - type: dir
-        path: ../
+    config-opts:
+      - -Dprofile=default
     build-options:
       env:
         GST_PLUGIN_SYSTEM_PATH: /app/lib/gstreamer-1.0
+    sources:
+      - type: git
+        url: https://github.com/tobagin/Truco.git
+        tag: v0.1.0
