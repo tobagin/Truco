@@ -2,65 +2,66 @@
   <defs>
     <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#e6ebf3"/>
+      <stop offset="1" stop-color="#e8edf4"/>
     </linearGradient>
-    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5b8be0"/>
-      <stop offset="0.5" stop-color="#3f74d6"/>
-      <stop offset="1" stop-color="#2c57ad"/>
-    </linearGradient>
-    <radialGradient id="gold" cx="0.4" cy="0.35" r="0.8">
+    <radialGradient id="gold" cx="0.4" cy="0.3" r="0.9">
       <stop offset="0" stop-color="#ffe6a0"/>
       <stop offset="0.6" stop-color="#f0b443"/>
       <stop offset="1" stop-color="#cf8a23"/>
     </radialGradient>
-    <linearGradient id="red" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="robe" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#e8584f"/>
-      <stop offset="1" stop-color="#c5322e"/>
+      <stop offset="1" stop-color="#bf2f2b"/>
     </linearGradient>
+    <g id="espada">
+      <path d="M0 -13 L2.6 -6 L2 8 L-2 8 L-2.6 -6 Z" fill="#3f74d6"/>
+      <path d="M0 -13 L0 8 L-2 8 L-2.6 -6 Z" fill="#6f9bea"/>
+      <rect x="-6.5" y="7" width="13" height="3" rx="1.5" fill="url(#gold)" stroke="#b9781b" stroke-width="0.5"/>
+      <rect x="-1.3" y="9.5" width="2.6" height="5" rx="1" fill="#8a4b28"/>
+    </g>
   </defs>
 
-  <g transform="translate(25.5 -23.5) rotate(-22 64 118)">
-    <!-- back card: copa (red) -->
-    <g transform="rotate(-2 46 116)">
-      <rect x="21" y="38" width="50" height="78" rx="7" fill="#ccd3e0"/>
-      <rect x="22.1" y="39.1" width="47.8" height="75.8" rx="6" fill="url(#face)"/>
-      <g transform="translate(33 53)">
-        <path d="M-6 -5 H6 A6 6 0 0 1 0 3 A6 6 0 0 1 -6 -5 Z" fill="url(#red)"/>
-        <rect x="-1.2" y="2.5" width="2.4" height="5" fill="url(#red)"/>
-        <rect x="-4.5" y="7" width="9" height="2.6" rx="1.3" fill="url(#red)"/>
-      </g>
-    </g>
+  <!-- fanned deck behind -->
+  <g transform="rotate(-10 64 108)">
+    <rect x="33" y="19" width="62" height="90" rx="8.5" fill="#cdd4e1"/>
+    <rect x="34.2" y="20.2" width="59.6" height="87.6" rx="7.5" fill="url(#face)"/>
+  </g>
+  <g transform="rotate(9 64 108)">
+    <rect x="33" y="19" width="62" height="90" rx="8.5" fill="#cdd4e1"/>
+    <rect x="34.2" y="20.2" width="59.6" height="87.6" rx="7.5" fill="url(#face)"/>
+  </g>
 
-    <!-- middle card: oro (gold) -->
-    <g transform="rotate(15 46 116)">
-      <rect x="21" y="38" width="50" height="78" rx="7" fill="#ccd3e0"/>
-      <rect x="22.1" y="39.1" width="47.8" height="75.8" rx="6" fill="url(#face)"/>
-      <g transform="translate(33 53)">
-        <circle r="6.4" fill="url(#gold)" stroke="#b9781b" stroke-width="1.4"/>
-        <circle r="3.4" fill="none" stroke="#b9781b" stroke-width="1" opacity="0.6"/>
-      </g>
-    </g>
+  <!-- top card: Rey de Espadas -->
+  <g>
+    <rect x="32" y="18" width="64" height="92" rx="9" fill="#cdd4e1"/>
+    <rect x="33.2" y="19.2" width="61.6" height="89.6" rx="8" fill="url(#face)"/>
 
-    <!-- front card: espada (blue) with hero sword -->
-    <g transform="rotate(32 46 116)">
-      <rect x="21" y="38" width="50" height="78" rx="7" fill="#ccd3e0"/>
-      <rect x="22.1" y="39.1" width="47.8" height="75.8" rx="6" fill="url(#face)"/>
-      <g transform="translate(32 53)">
-        <path d="M0 -7 L3 -1 L2.4 9 L-2.4 9 L-3 -1 Z" fill="url(#steel)"/>
-        <rect x="-5.5" y="8" width="11" height="2.6" rx="1.3" fill="#e7b53f"/>
-      </g>
-      <g transform="translate(46 76) scale(0.84)">
-        <path d="M0 -30 L5 -17 L4 19 L-4 19 L-5 -17 Z" fill="#3f74d6"/>
-        <path d="M0 -30 L0 19 L-4 19 L-5 -17 Z" fill="#6f9bea"/>
-        <path d="M0 -30 L0 19 L4 19 L5 -17 Z" fill="#2b5099"/>
-        <rect x="-14" y="18" width="28" height="6" rx="3" fill="url(#gold)" stroke="#b9781b" stroke-width="0.8"/>
-        <rect x="-2.8" y="23.5" width="5.6" height="11" rx="1.8" fill="#8a4b28"/>
-        <rect x="-2.8" y="26" width="5.6" height="1.5" fill="#6d3a1f"/>
-        <rect x="-2.8" y="29.5" width="5.6" height="1.5" fill="#6d3a1f"/>
-        <circle cx="0" cy="36" r="3.8" fill="url(#gold)" stroke="#b9781b" stroke-width="0.8"/>
-        <circle cx="0" cy="36" r="1.5" fill="#d23b3b"/>
-      </g>
-    </g>
+    <!-- corner suit pips -->
+    <g transform="translate(43 31) scale(0.62)"><use href="#espada"/></g>
+    <g transform="translate(85 97) rotate(180) scale(0.62)"><use href="#espada"/></g>
+
+    <!-- crown -->
+    <path d="M49 35 L53 23 L59 32 L64 21 L69 32 L75 23 L79 35 Z" fill="url(#gold)" stroke="#b9781b" stroke-width="1"/>
+    <circle cx="53" cy="22.5" r="2.3" fill="#e85b52"/>
+    <circle cx="64" cy="20.5" r="2.5" fill="#e85b52"/>
+    <circle cx="75" cy="22.5" r="2.3" fill="#e85b52"/>
+    <rect x="48" y="34" width="32" height="6" rx="2" fill="url(#gold)" stroke="#b9781b" stroke-width="1"/>
+    <circle cx="64" cy="37" r="2" fill="#e85b52"/>
+
+    <!-- head -->
+    <circle cx="64" cy="51" r="9.2" fill="#edc7a1"/>
+    <path d="M55 51 Q55 40 64 40 Q73 40 73 51 Q70 47 64 47 Q58 47 55 51 Z" fill="#7a4a2b"/>
+    <path d="M57 54 Q64 64 71 54 Q71 60 64 61 Q57 60 57 54 Z" fill="#8a5a34"/>
+    <circle cx="60.5" cy="50.5" r="1.2" fill="#3a2a1a"/>
+    <circle cx="67.5" cy="50.5" r="1.2" fill="#3a2a1a"/>
+
+    <!-- robe -->
+    <path d="M49 64 Q64 56 79 64 L84 104 L44 104 Z" fill="url(#robe)"/>
+    <path d="M49 64 Q64 56 79 64" stroke="url(#gold)" stroke-width="2.6" fill="none"/>
+    <path d="M59 61 H69 L71 104 H57 Z" fill="#eef0f6"/>
+    <path d="M59 61 H69" stroke="#cdd2dd" stroke-width="1" fill="none"/>
+    <circle cx="64" cy="74" r="2" fill="#f0b443"/>
+    <circle cx="64" cy="84" r="2" fill="#f0b443"/>
+    <circle cx="64" cy="94" r="2" fill="#f0b443"/>
   </g>
 </svg>
