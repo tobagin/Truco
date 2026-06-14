@@ -4,7 +4,7 @@ using Adw;
 namespace Truco {
 
     [GtkTemplate (ui = "/io/github/tobagin/Truco/onboarding_dialog.ui")]
-    public class OnboardingDialog : Adw.Window {
+    public class OnboardingDialog : Adw.Dialog {
 
         [GtkChild] private unowned Gtk.Button avatar_button;
         [GtkChild] private unowned Adw.Avatar avatar_image;
@@ -16,8 +16,8 @@ namespace Truco {
 
         public signal void completed ();
 
-        public OnboardingDialog (Gtk.Window? parent, string suggested_name) {
-            Object (transient_for: parent, modal: true);
+        public OnboardingDialog (string suggested_name) {
+            Object ();
 
             settings = new GLib.Settings (Config.SCHEMA_ID);
             avatar_index = settings.get_int ("avatar-index");
@@ -29,7 +29,7 @@ namespace Truco {
             username_row.changed.connect (update_continue_sensitive);
 
             avatar_button.clicked.connect (() => {
-                var selector = new AvatarSelector (this);
+                var selector = new AvatarSelector (this.get_root () as Gtk.Window);
                 selector.avatar_selected.connect ((idx) => {
                     avatar_index = idx;
                     settings.set_int ("avatar-index", idx);

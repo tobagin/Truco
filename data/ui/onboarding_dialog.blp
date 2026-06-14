@@ -1,13 +1,12 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $TrucoOnboardingDialog : Adw.Window {
-  modal: true;
-  default-width: 420;
-  default-height: 540;
+template $TrucoOnboardingDialog : Adw.Dialog {
+  content-width: 420;
+  content-height: 540;
   title: _("Welcome to Truco");
 
-  content: Adw.ToolbarView {
+  child: Adw.ToolbarView {
     [top]
     Adw.HeaderBar {
       show-start-title-buttons: false;

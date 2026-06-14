@@ -67,8 +67,8 @@ namespace Truco {
 
             var settings = new GLib.Settings (Config.SCHEMA_ID);
             if (settings.get_string ("username").strip () == "") {
-                var onboarding = new OnboardingDialog (window, suggested_username ());
-                onboarding.present ();
+                var onboarding = new OnboardingDialog (suggested_username ());
+                onboarding.present (window);
             }
         }
 
@@ -117,9 +117,9 @@ namespace Truco {
 
             var settings = new GLib.Settings (Config.SCHEMA_ID);
             if (settings.get_string ("username").strip () == "") {
-                var onboarding = new OnboardingDialog (win, suggested_username ());
+                var onboarding = new OnboardingDialog (suggested_username ());
                 onboarding.completed.connect (() => open_online_lobby (win));
-                onboarding.present ();
+                onboarding.present (win);
             } else {
                 open_online_lobby (win);
             }
