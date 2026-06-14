@@ -159,5 +159,5 @@ gresource_bundle = gnome.compile_resources(
 
 subdir('data')
 subdir('src')
-# subdir('help')
+subdir('help')
 subdir('po')
