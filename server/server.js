@@ -250,12 +250,30 @@ function handleMessage(client, msg) {
         case 'quick_match': {
             const variant = VARIANTS.has(msg.variant) ? msg.variant : 'paulista';
             const queue = quickMatchQueue.get(variant) || [];
-            const waiting = queue.shift();
-            if (waiting && waiting.ws.readyState === waiting.ws.OPEN) {
+
+            // Drop any stale entry for this client so re-queuing can't duplicate
+            // them or pair them against themselves.
+            const dup = queue.findIndex((c) => c.id === client.id);
+            if (dup >= 0) queue.splice(dup, 1);
+
+            // Skip waiting clients that have gone away or are this same client.
+            let waiting = null;
+            while (queue.length > 0) {
+                const candidate = queue.shift();
+                if (candidate.id === client.id) continue;
+                if (candidate.ws.readyState === candidate.ws.OPEN) { waiting = candidate; break; }
+            }
+
+            if (waiting) {
                 if (queue.length === 0) quickMatchQueue.delete(variant);
+                else quickMatchQueue.set(variant, queue);
                 const newRoom = createRoom(waiting, variant);
                 joinRoom(client, newRoom);
                 stats.quickMatches++;
+                // Tell both sides a match was found before the game payload, so
+                // the UI can leave the searching state cleanly.
+                send(waiting.ws, 'quick_match_found', { variant });
+                send(client.ws, 'quick_match_found', { variant });
                 send(waiting.ws, 'opponent_joined', { opponentName: client.name });
                 startGame(newRoom);
             } else {

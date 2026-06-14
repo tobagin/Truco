@@ -31,6 +31,9 @@ namespace Truco.Network {
         public signal void state_changed (SessionState state);
         public signal void room_created (string code);
         public signal void opponent_joined (string name);
+        public signal void searching ();           // queued for quick match
+        public signal void match_found ();          // opponent found, game about to start
+        public signal void quick_match_cancelled ();
         public signal void game_started ();
         public signal void opponent_disconnected (int grace_ms);
         public signal void opponent_reconnected ();
@@ -49,7 +52,7 @@ namespace Truco.Network {
             client.message_received.connect (on_message);
         }
 
-        private void set_state (SessionState s) {
+        private void transition_to (SessionState s) {
             if (state == s) {
                 return;
             }
@@ -58,17 +61,17 @@ namespace Truco.Network {
         }
 
         public async void connect_to_server (string url) {
-            set_state (SessionState.CONNECTING);
+            transition_to (SessionState.CONNECTING);
             yield client.connect_to (url);
         }
 
         public void disconnect () {
             client.disconnect_from_server ();
-            set_state (SessionState.DISCONNECTED);
+            transition_to (SessionState.DISCONNECTED);
         }
 
         private void on_opened () {
-            set_state (SessionState.HANDSHAKING);
+            transition_to (SessionState.HANDSHAKING);
             var hello = new NetworkMessage ("hello");
             hello.set_string ("version", PROTOCOL_VERSION);
             hello.set_string ("name", player_name);
@@ -76,7 +79,7 @@ namespace Truco.Network {
         }
 
         private void on_closed (string reason) {
-            set_state (SessionState.DISCONNECTED);
+            transition_to (SessionState.DISCONNECTED);
         }
 
         // --- Intent API (called by UI) ----------------------------------
@@ -99,12 +102,12 @@ namespace Truco.Network {
             var m = new NetworkMessage ("quick_match");
             m.set_string ("variant", variant);
             client.send (m);
-            set_state (SessionState.WAITING);
+            transition_to (SessionState.WAITING);
         }
 
         public void cancel_quick_match () {
             client.send (new NetworkMessage ("cancel_quick_match"));
-            set_state (SessionState.IDLE);
+            transition_to (SessionState.IDLE);
         }
 
         public void resign () {
@@ -130,11 +133,11 @@ namespace Truco.Network {
                     // handshake is sent on_opened; nothing to do here
                     break;
                 case "hello_ok":
-                    set_state (SessionState.IDLE);
+                    transition_to (SessionState.IDLE);
                     break;
                 case "room_created":
                     room_code = m.get_string ("roomCode");
-                    set_state (SessionState.WAITING);
+                    transition_to (SessionState.WAITING);
                     room_created (room_code);
                     break;
                 case "opponent_joined":
@@ -142,7 +145,15 @@ namespace Truco.Network {
                     opponent_joined (opponent_name);
                     break;
                 case "queued":
-                    set_state (SessionState.WAITING);
+                    transition_to (SessionState.WAITING);
+                    searching ();
+                    break;
+                case "quick_match_found":
+                    match_found ();
+                    break;
+                case "quick_match_cancelled":
+                    transition_to (SessionState.IDLE);
+                    quick_match_cancelled ();
                     break;
                 case "game_started":
                     room_code = m.get_string ("roomCode", room_code);
@@ -151,7 +162,7 @@ namespace Truco.Network {
                     first_dealer = m.get_int ("firstDealer", 0);
                     deal_seed = (uint32) m.get_int ("seed", 0);
                     opponent_name = m.get_string ("opponentName", opponent_name);
-                    set_state (SessionState.IN_GAME);
+                    transition_to (SessionState.IN_GAME);
                     game_started ();
                     break;
                 case "opponent_disconnected":
@@ -171,7 +182,7 @@ namespace Truco.Network {
                     break;
                 case "room_expired":
                     session_error ("room_expired", _("The room expired due to inactivity."));
-                    set_state (SessionState.IDLE);
+                    transition_to (SessionState.IDLE);
                     break;
                 case "pong":
                     break;
