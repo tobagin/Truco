@@ -1,53 +1,56 @@
 #!/usr/bin/env python3
 """
-Generate a hand-crafted Spanish deck (baraja española) as true vector SVG.
+Hand-crafted Spanish deck (baraja española) as true vector SVG, drawn in a
+traditional woodcut / engraving style: warm parchment stock, suit-coloured
+frame with "pintas", layered metallic suit emblems on the pip cards, and
+ink-outlined court figures (Sota, Caballo, Rey) with ornate costume detail.
 
 Suits (palos): oros, copas, espadas, bastos.
 Ranks: 1 (As) .. 9, plus Sota (10), Caballo (11), Rey (12).
 
-Output filenames map to the app's expectations (see Game.get_svg_name):
-    clubs   -> bastos       diamonds -> oros
-    hearts  -> copas        spades   -> espadas
-    ace=1   queen=Sota(10)  jack=Caballo(11)  king=Rey(12)
-
-Cards use a viewBox so they scale crisply at any resolution.
+Filenames map to the app (see Game.get_svg_name):
+    clubs -> bastos   diamonds -> oros   hearts -> copas   spades -> espadas
+    ace=1  queen=Sota(10)  jack=Caballo(11)  king=Rey(12)
 """
 import math, os
 
 CARD_W, CARD_H = 250, 350
 
-# filename suit -> spanish palo
 SUIT_FILE = {"diamonds": "oros", "hearts": "copas", "spades": "espadas", "clubs": "bastos"}
-# spanish palo -> accent colour (frame, indices)
 ACCENT = {"oros": "#b07d12", "copas": "#b0271c", "espadas": "#2f5b9c", "bastos": "#2f7d4f"}
+PINTAS = {"oros": 0, "copas": 1, "espadas": 2, "bastos": 3}
 
 NUMBER_FILES = ["ace", "2", "3", "4", "5", "6", "7", "8", "9"]
 COURT = {"queen": ("Sota", 10), "jack": ("Caballo", 11), "king": ("Rey", 12)}
 
-# Figure palette
-SKIN = "#f0c9a0"; SKIN_SH = "#d9a878"; HAIR = "#6e4a26"; BEARD = "#7a5630"
+INK = "#2b2117"
+SKIN = "#e8b88a"; SKIN_SH = "#c99064"
+GOLD = "#e3b53a"; GOLD_D = "#a87f1e"
+ERMINE = "#f4efe2"
+HORSE = "#efe7d4"; HORSE_SH = "#cdc2a6"
+
 
 def _shade(hexc, f):
-    h = hexc.lstrip('#'); r, g, b = (int(h[i:i+2], 16) for i in (0, 2, 4))
-    if f < 0:  # darken
-        f = 1 + f; return '#%02x%02x%02x' % (int(r*f), int(g*f), int(b*f))
-    return '#%02x%02x%02x' % (int(r+(255-r)*f), int(g+(255-g)*f), int(b+(255-b)*f))
+    h = hexc.lstrip('#'); r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    if f < 0:
+        f = 1 + f; return '#%02x%02x%02x' % (int(r * f), int(g * f), int(b * f))
+    return '#%02x%02x%02x' % (int(r + (255 - r) * f), int(g + (255 - g) * f), int(b + (255 - b) * f))
 
-def darken(hexc, f=0.7):  return _shade(hexc, -(1-f))
+def darken(hexc, f=0.7):  return _shade(hexc, -(1 - f))
 def lighten(hexc, f=0.4): return _shade(hexc, f)
 
 
 # --------------------------------------------------------------------------
-# Suit glyphs — centred at (0,0), ~94 units wide; callers scale/translate.
+# Suit glyphs — centred at (0,0); callers scale/translate.
 # --------------------------------------------------------------------------
 
 def g_oros(p):
     dots = "".join(
-        f'<circle cx="{42*math.cos(a*math.pi/6):.2f}" cy="{42*math.sin(a*math.pi/6):.2f}" r="1.7"/>'
+        f'<circle cx="{42 * math.cos(a * math.pi / 6):.2f}" cy="{42 * math.sin(a * math.pi / 6):.2f}" r="1.7"/>'
         for a in range(12))
     rays = "".join(
-        f'<line x1="{11*math.cos(a*math.pi/4):.2f}" y1="{11*math.sin(a*math.pi/4):.2f}" '
-        f'x2="{18*math.cos(a*math.pi/4):.2f}" y2="{18*math.sin(a*math.pi/4):.2f}"/>'
+        f'<line x1="{11 * math.cos(a * math.pi / 4):.2f}" y1="{11 * math.sin(a * math.pi / 4):.2f}" '
+        f'x2="{18 * math.cos(a * math.pi / 4):.2f}" y2="{18 * math.sin(a * math.pi / 4):.2f}"/>'
         for a in range(8))
     return f'''<g>
       <circle r="47" fill="url(#oroGrad{p})" stroke="#8a6414" stroke-width="2.5"/>
@@ -108,210 +111,273 @@ def gradients(p):
     <linearGradient id="guard{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></linearGradient>
     <linearGradient id="grip{p}" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommel{p}" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
-    <linearGradient id="wood{p}" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parch{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>'''
+    <linearGradient id="wood{p}" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>'''
+
+
+PARCH = '''
+    <linearGradient id="parch" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
+    <radialGradient id="parchGlow" cx="50%" cy="42%" r="70%"><stop offset="0%" stop-color="#fffdf3" stop-opacity="0.6"/><stop offset="100%" stop-color="#fffdf3" stop-opacity="0"/></radialGradient>'''
 
 
 # --------------------------------------------------------------------------
-# Pip layouts (normalised coords in [-1,1]); centre region maps them.
+# Frame + indices + pintas
 # --------------------------------------------------------------------------
 CX, CY, HX, HY = 125, 178, 72, 118
 
 def layout(n):
-    L = -0.62; R = 0.62
-    if n == 1: return [(0, 0)]
-    if n == 2: return [(0, -0.66), (0, 0.66)]
-    if n == 3: return [(0, -0.82), (0, 0), (0, 0.82)]
-    if n == 4: return [(L, -0.7), (R, -0.7), (L, 0.7), (R, 0.7)]
-    if n == 5: return [(L, -0.78), (R, -0.78), (0, 0), (L, 0.78), (R, 0.78)]
-    if n == 6: return [(L, -0.82), (R, -0.82), (L, 0), (R, 0), (L, 0.82), (R, 0.82)]
-    if n == 7: return [(L, -0.85), (R, -0.85), (0, -0.42), (L, 0.05), (R, 0.05), (L, 0.85), (R, 0.85)]
-    if n == 8: return [(L, -0.85), (R, -0.85), (L, -0.28), (R, -0.28), (L, 0.28), (R, 0.28), (L, 0.85), (R, 0.85)]
-    if n == 9: return [(L, -0.85), (R, -0.85), (L, -0.28), (R, -0.28), (0, 0), (L, 0.85), (R, 0.85), (L, 0.28), (R, 0.28)]
-    return [(0, 0)]
+    L, R = -0.62, 0.62
+    return {
+        1: [(0, 0)],
+        2: [(0, -0.66), (0, 0.66)],
+        3: [(0, -0.82), (0, 0), (0, 0.82)],
+        4: [(L, -0.7), (R, -0.7), (L, 0.7), (R, 0.7)],
+        5: [(L, -0.78), (R, -0.78), (0, 0), (L, 0.78), (R, 0.78)],
+        6: [(L, -0.82), (R, -0.82), (L, 0), (R, 0), (L, 0.82), (R, 0.82)],
+        7: [(L, -0.85), (R, -0.85), (0, -0.42), (L, 0.05), (R, 0.05), (L, 0.85), (R, 0.85)],
+        8: [(L, -0.85), (R, -0.85), (L, -0.28), (R, -0.28), (L, 0.28), (R, 0.28), (L, 0.85), (R, 0.85)],
+        9: [(L, -0.85), (R, -0.85), (L, -0.28), (R, -0.28), (0, 0), (L, 0.85), (R, 0.85), (L, 0.28), (R, 0.28)],
+    }.get(n, [(0, 0)])
 
-PIP_SCALE = {1: 1.25, 2: 0.82, 3: 0.80, 4: 0.66, 5: 0.62, 6: 0.58, 7: 0.55, 8: 0.50, 9: 0.48}
-
-
-def pip(palo, p, nx, ny, scale, tilt=0):
-    x = CX + nx * HX; y = CY + ny * HY
-    rot = f' rotate({tilt})' if tilt else ''
-    return f'<g transform="translate({x:.1f} {y:.1f}) scale({scale:.3f}){rot}">{GLYPH[palo](p)}</g>'
+PIP_SCALE = {1: 1.30, 2: 0.86, 3: 0.82, 4: 0.70, 5: 0.64, 6: 0.60, 7: 0.56, 8: 0.50, 9: 0.48}
+ACE_BOOST = {"espadas": 1.18, "bastos": 1.12, "oros": 1.0, "copas": 1.0}
 
 
-# --------------------------------------------------------------------------
-# Card frame + corner indices
-# --------------------------------------------------------------------------
+def pinta_marks(palo):
+    n = PINTAS[palo]
+    if n == 0:
+        return ''
+    acc = ACCENT[palo]
+    span = 13 * (n - 1)
+    out = []
+    for i in range(n):
+        dx = -span / 2 + i * 13
+        for cy in (19, CARD_H - 19):
+            out.append(f'<path transform="translate({CX + dx} {cy}) rotate(45)" d="M-2.6,-2.6 h5.2 v5.2 h-5.2 Z" fill="{acc}"/>')
+    return "".join(out)
 
-def frame(palo, p):
+
+def frame(palo):
     acc = ACCENT[palo]
     return f'''
-    <rect x="3" y="3" width="{CARD_W-6}" height="{CARD_H-6}" rx="16" fill="url(#parch{p})" stroke="#cdbb8e" stroke-width="2"/>
-    <rect x="12" y="12" width="{CARD_W-24}" height="{CARD_H-24}" rx="11" fill="none" stroke="{acc}" stroke-width="2.4" opacity="0.9"/>
-    <rect x="17" y="17" width="{CARD_W-34}" height="{CARD_H-34}" rx="8" fill="none" stroke="{acc}" stroke-width="1" opacity="0.5"/>
-    <g fill="{acc}">
-      <circle cx="12" cy="12" r="3.2"/><circle cx="{CARD_W-12}" cy="12" r="3.2"/>
-      <circle cx="12" cy="{CARD_H-12}" r="3.2"/><circle cx="{CARD_W-12}" cy="{CARD_H-12}" r="3.2"/>
-    </g>'''
+    <rect x="2.5" y="2.5" width="{CARD_W - 5}" height="{CARD_H - 5}" rx="17" fill="url(#parch)" stroke="#cbb98a" stroke-width="2"/>
+    <rect x="2.5" y="2.5" width="{CARD_W - 5}" height="{CARD_H - 5}" rx="17" fill="url(#parchGlow)"/>
+    <rect x="11" y="11" width="{CARD_W - 22}" height="{CARD_H - 22}" rx="12" fill="none" stroke="{acc}" stroke-width="2.6"/>
+    <rect x="16" y="16" width="{CARD_W - 32}" height="{CARD_H - 32}" rx="8.5" fill="none" stroke="{acc}" stroke-width="1" opacity="0.5"/>
+    {pinta_marks(palo)}'''
 
-def index(palo, p, label):
+
+def index(palo, label):
     acc = ACCENT[palo]
-    mini = f'<g transform="scale(0.22)">{GLYPH[palo](str(p)+"i")}</g>'
-    one = (f'<g transform="translate(30 40)">'
-           f'<text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" '
+    mini = f'<g transform="scale(0.21)">{GLYPH[palo](str(palo[0]) + "i")}</g>'
+    one = (f'<g transform="translate(31 41)">'
+           f'<text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" '
            f'fill="{acc}" text-anchor="middle">{label}</text>'
-           f'<g transform="translate(0 22)">{mini}</g></g>')
-    other = (f'<g transform="translate({CARD_W-30} {CARD_H-40}) rotate(180)">'
-             f'<text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" '
+           f'<g transform="translate(0 23)">{mini}</g></g>')
+    other = (f'<g transform="translate({CARD_W - 31} {CARD_H - 41}) rotate(180)">'
+             f'<text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" '
              f'fill="{acc}" text-anchor="middle">{label}</text>'
-             f'<g transform="translate(0 22)">{mini}</g></g>')
+             f'<g transform="translate(0 23)">{mini}</g></g>')
     return one + other
+
+
+def held(palo, p, x, y, scale, rot=0):
+    r = f' rotate({rot})' if rot else ''
+    return f'<g transform="translate({x} {y}) scale({scale}){r}">{GLYPH[palo](str(p) + "h")}</g>'
 
 
 def number_card(palo, rank_label, n):
     p = palo[0]
-    tiltable = palo in ("espadas", "bastos")
-    body = []
+    woven = palo in ("espadas", "bastos")
     pts = layout(n)
+    scale = PIP_SCALE[n] * (ACE_BOOST[palo] if n == 1 else 1.0)
+    body = []
     for i, (nx, ny) in enumerate(pts):
-        tilt = (12 if i % 2 == 0 else -12) if (tiltable and n > 1) else 0
-        body.append(pip(palo, p, nx, ny, PIP_SCALE[n], tilt))
+        tilt = 0
+        if woven and n > 1:
+            tilt = 16 if (nx < 0 or (nx == 0 and i % 2 == 0)) else -16
+        x = CX + nx * HX; y = CY + ny * HY
+        rot = f' rotate({tilt})' if tilt else ''
+        body.append(f'<g transform="translate({x:.1f} {y:.1f}) scale({scale:.3f}){rot}">{GLYPH[palo](p)}</g>')
     inner = "\n".join(body)
-    # need mini-glyph gradients too (suffix 'i')
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{CARD_W}" height="{CARD_H}" '
-            f'viewBox="0 0 {CARD_W} {CARD_H}">'
-            f'<defs>{gradients(p)}{gradients(str(p)+"i")}</defs>'
-            f'{frame(palo, p)}{inner}{index(palo, p, rank_label)}</svg>')
-
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{CARD_W}" height="{CARD_H}" viewBox="0 0 {CARD_W} {CARD_H}">'
+            f'<defs>{PARCH}{gradients(p)}{gradients(str(p) + "i")}</defs>'
+            f'{frame(palo)}{inner}{index(palo, rank_label)}</svg>')
 
 
 # --------------------------------------------------------------------------
-# Court figures (Sota = 10, Caballo = 11, Rey = 12)
+# Court figures (woodcut style)
 # --------------------------------------------------------------------------
 
-def figdefs(palo, p):
-    acc = ACCENT[palo]
+def _face(cx, cy, beard=False, queen=False):
+    hair = INK
+    locks = (f'<path d="M{cx-26},{cy-4} Q{cx-30},{cy+22} {cx-15},{cy+34} Q{cx-22},{cy+16} {cx-21},{cy-4} Z" fill="{hair}"/>'
+             f'<path d="M{cx+26},{cy-4} Q{cx+30},{cy+22} {cx+15},{cy+34} Q{cx+22},{cy+16} {cx+21},{cy-4} Z" fill="{hair}"/>')
+    if queen:
+        locks += f'<path d="M{cx-22},{cy-8} Q{cx},{cy-22} {cx+22},{cy-8} Q{cx},{cy-16} {cx-22},{cy-8} Z" fill="{hair}"/>'
+    head = (f'<ellipse cx="{cx}" cy="{cy}" rx="22" ry="25" fill="{SKIN}" stroke="{INK}" stroke-width="1.7"/>'
+            f'<ellipse cx="{cx-21}" cy="{cy+2}" rx="3.4" ry="5" fill="{SKIN}" stroke="{INK}" stroke-width="1.1"/>'
+            f'<ellipse cx="{cx+21}" cy="{cy+2}" rx="3.4" ry="5" fill="{SKIN}" stroke="{INK}" stroke-width="1.1"/>')
+    brows = (f'<path d="M{cx-16},{cy-8} Q{cx-9},{cy-12} {cx-3},{cy-8}" fill="none" stroke="{INK}" stroke-width="1.6"/>'
+             f'<path d="M{cx+3},{cy-8} Q{cx+9},{cy-12} {cx+16},{cy-8}" fill="none" stroke="{INK}" stroke-width="1.6"/>')
+    eyes = (f'<path d="M{cx-16},{cy-2} Q{cx-10},{cy-6} {cx-4},{cy-2} Q{cx-10},{cy+2} {cx-16},{cy-2} Z" fill="#fff" stroke="{INK}" stroke-width="1.1"/>'
+            f'<circle cx="{cx-10}" cy="{cy-2}" r="2.1" fill="{INK}"/>'
+            f'<path d="M{cx+4},{cy-2} Q{cx+10},{cy-6} {cx+16},{cy-2} Q{cx+10},{cy+2} {cx+4},{cy-2} Z" fill="#fff" stroke="{INK}" stroke-width="1.1"/>'
+            f'<circle cx="{cx+10}" cy="{cy-2}" r="2.1" fill="{INK}"/>')
+    nose = f'<path d="M{cx},{cy-2} L{cx-3},{cy+10} Q{cx},{cy+13} {cx+3},{cy+10}" fill="none" stroke="{INK}" stroke-width="1.4"/>'
+    if beard:
+        mouth = f'<path d="M{cx-13},{cy+14} Q{cx},{cy+19} {cx+13},{cy+14} Q{cx+11},{cy+17} {cx},{cy+18} Q{cx-11},{cy+17} {cx-13},{cy+14} Z" fill="{INK}"/>'
+        beardp = (f'<path d="M{cx-15},{cy+17} Q{cx-11},{cy+46} {cx},{cy+53} Q{cx+11},{cy+46} {cx+15},{cy+17} '
+                  f'Q{cx+11},{cy+30} {cx},{cy+32} Q{cx-11},{cy+30} {cx-15},{cy+17} Z" fill="{INK}"/>')
+        mouth += beardp
+    else:
+        mouth = f'<path d="M{cx-7},{cy+15} Q{cx},{cy+18} {cx+7},{cy+15}" fill="none" stroke="#9a3b2a" stroke-width="1.6"/>'
+    blush = (f'<ellipse cx="{cx-14}" cy="{cy+8}" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/>'
+             f'<ellipse cx="{cx+14}" cy="{cy+8}" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/>')
+    return locks + head + brows + eyes + nose + blush + mouth
+
+
+def _crown(cx, top):
+    return (f'<path d="M{cx-28},{top+32} L{cx-23},{top} L{cx-9},{top+24} L{cx},{top-6} '
+            f'L{cx+9},{top+24} L{cx+23},{top} L{cx+28},{top+32} Z" fill="{GOLD}" stroke="{INK}" stroke-width="1.8"/>'
+            f'<rect x="{cx-30}" y="{top+28}" width="60" height="13" rx="3" fill="{GOLD}" stroke="{INK}" stroke-width="1.6"/>'
+            f'<rect x="{cx-4}" y="{top-16}" width="8" height="12" fill="{GOLD}" stroke="{INK}" stroke-width="1.2"/>'
+            f'<rect x="{cx-9}" y="{top-12}" width="18" height="6" fill="{GOLD}" stroke="{INK}" stroke-width="1.2"/>'
+            f'<g stroke="{INK}" stroke-width="1">'
+            f'<circle cx="{cx-23}" cy="{top}" r="3" fill="#b0271c"/><circle cx="{cx}" cy="{top-6}" r="3.4" fill="#2f5b9c"/><circle cx="{cx+23}" cy="{top}" r="3" fill="#b0271c"/>'
+            f'<circle cx="{cx-14}" cy="{top+34}" r="2.4" fill="#b0271c"/><circle cx="{cx}" cy="{top+34}" r="2.6" fill="#2e7d4f"/><circle cx="{cx+14}" cy="{top+34}" r="2.4" fill="#2f5b9c"/></g>')
+
+
+def _hat(cx, top, acc):
+    return (f'<path d="M{cx-26},{top+30} Q{cx-28},{top} {cx},{top-2} Q{cx+28},{top} {cx+26},{top+30} '
+            f'Q{cx},{top+18} {cx-26},{top+30} Z" fill="{acc}" stroke="{INK}" stroke-width="1.7"/>'
+            f'<rect x="{cx-27}" y="{top+26}" width="54" height="9" rx="3" fill="{lighten(acc,0.25)}" stroke="{INK}" stroke-width="1.3"/>'
+            f'<path d="M{cx+22},{top+18} Q{cx+48},{top+2} {cx+54},{top-22} Q{cx+40},{top+8} {cx+24},{top+12} Z" fill="{GOLD}" stroke="{INK}" stroke-width="1.2"/>')
+
+
+def _robe(acc, x0=70, x1=180, top=166, foldcol=None):
+    fold = foldcol or darken(acc, 0.7)
     return f'''
-    <linearGradient id="robe{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="{acc}"/><stop offset="100%" stop-color="{darken(acc)}"/></linearGradient>
-    <linearGradient id="crown{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4dd77"/><stop offset="100%" stop-color="#c79a2e"/></linearGradient>
-    <linearGradient id="cap{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="{lighten(acc)}"/><stop offset="100%" stop-color="{acc}"/></linearGradient>
-    <linearGradient id="horse{p}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#efe9dc"/><stop offset="100%" stop-color="#c9c1b0"/></linearGradient>'''
+    <path d="M{x0},300 L{x0+4},210 Q{x0+10},176 {x0+34},166 L{x1-34},166 Q{x1-10},176 {x1-4},210 L{x1},300 Z"
+          fill="{acc}" stroke="{INK}" stroke-width="2"/>
+    <g stroke="{INK}" stroke-width="1" opacity="0.4" fill="none">
+      <path d="M104,182 Q100,242 96,298"/><path d="M125,178 L125,298"/><path d="M146,182 Q150,242 154,298"/>
+      <path d="M86,212 Q84,256 82,298"/><path d="M164,212 Q166,256 168,298"/>
+    </g>'''
 
-def held_glyph(palo, p, x, y, scale):
-    return f'<g transform="translate({x} {y}) scale({scale})">{GLYPH[palo](str(p)+"h")}</g>'
+
+def _placket():
+    spots = "".join(
+        f'<g transform="translate(122 {y})"><path d="M0,0 l3,0 -1.5,4 z" fill="{INK}"/>'
+        f'<circle cx="-2" cy="-1" r="0.8" fill="{INK}"/><circle cx="5" cy="-1" r="0.8" fill="{INK}"/></g>'
+        for y in (196, 222, 248, 274))
+    return (f'<path d="M116,168 L134,168 L138,300 L112,300 Z" fill="{ERMINE}" stroke="{INK}" stroke-width="1.4"/>{spots}')
+
+
+def _collar():
+    return f'<path d="M92,176 Q125,158 158,176 Q150,192 125,186 Q100,192 92,176 Z" fill="{ERMINE}" stroke="{INK}" stroke-width="1.6"/>'
+
+
+def _throne(acc):
+    return (f'<path d="M62,150 Q62,96 125,92 Q188,96 188,150 L188,300 L62,300 Z" fill="#f3ead2" stroke="{GOLD_D}" stroke-width="2"/>'
+            f'<path d="M70,150 Q70,104 125,100 Q180,104 180,150" fill="none" stroke="{GOLD}" stroke-width="2.5"/>')
+
 
 def rey(palo, p):
     acc = ACCENT[palo]
     return f'''
-    {held_glyph(palo, p, 182, 150, 0.5)}
-    <path d="M84,290 C78,232 92,182 100,168 L150,168 C158,182 172,232 166,290 Z" fill="url(#robe{p})" stroke="#00000033" stroke-width="1.5"/>
-    <path d="M118,170 L132,170 L136,290 L114,290 Z" fill="#ffffff" opacity="0.18"/>
-    <path d="M125,176 L125,286" stroke="{acc}" stroke-width="2" opacity="0.5"/>
-    <g fill="#e9c34e"><circle cx="125" cy="200" r="3"/><circle cx="125" cy="224" r="3"/><circle cx="125" cy="248" r="3"/></g>
-    <path d="M100,172 C84,186 80,214 86,240 L100,236 C96,212 100,190 112,180 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <path d="M150,172 C168,184 176,206 174,150 L160,150 C160,180 150,184 138,180 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="90" cy="240" rx="8" ry="9" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <ellipse cx="172" cy="150" rx="8" ry="9" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M96,168 Q125,150 154,168 Q125,182 96,168 Z" fill="#fbf7ee" stroke="#cbb78a" stroke-width="1.2"/>
-    <g fill="#3a3026"><circle cx="110" cy="167" r="1.5"/><circle cx="125" cy="171" r="1.5"/><circle cx="140" cy="167" r="1.5"/></g>
-    <rect x="118" y="150" width="14" height="14" fill="{SKIN}"/>
-    <ellipse cx="125" cy="128" rx="19" ry="22" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M106,124 Q104,150 116,158 Q110,140 110,126 Z" fill="{HAIR}"/>
-    <path d="M144,124 Q146,150 134,158 Q140,140 140,126 Z" fill="{HAIR}"/>
-    <path d="M111,138 Q125,176 139,138 Q138,152 125,158 Q112,152 111,138 Z" fill="{BEARD}"/>
-    <g fill="#5a4631"><ellipse cx="118" cy="126" rx="2" ry="2.4"/><ellipse cx="132" cy="126" rx="2" ry="2.4"/></g>
-    <path d="M125,130 L125,138" stroke="{SKIN_SH}" stroke-width="1.5"/>
-    <path d="M119,144 Q125,148 131,144" fill="none" stroke="#a8694a" stroke-width="1.6"/>
-    <path d="M112,118 Q118,114 124,118 M126,118 Q132,114 138,118" fill="none" stroke="{HAIR}" stroke-width="1.6"/>
-    <path d="M104,108 L108,90 L116,104 L125,86 L134,104 L142,90 L146,108 Z" fill="url(#crown{p})" stroke="#9a7415" stroke-width="1.4"/>
-    <rect x="103" y="106" width="44" height="8" rx="3" fill="url(#crown{p})" stroke="#9a7415" stroke-width="1.2"/>
-    <g><circle cx="108" cy="90" r="3" fill="#c0392b"/><circle cx="125" cy="86" r="3.4" fill="#2e7d32"/><circle cx="142" cy="90" r="3" fill="#2f5b9c"/>
-       <circle cx="116" cy="110" r="2.2" fill="#c0392b"/><circle cx="134" cy="110" r="2.2" fill="#2f5b9c"/></g>'''
+    {_throne(acc)}
+    {_robe(acc)}
+    {_placket()}
+    {_collar()}
+    <path d="M74,200 Q60,212 64,250 Q72,246 80,232 Q78,214 90,200 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <ellipse cx="68" cy="250" rx="9" ry="10" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    {held(palo, p, 58, 214, 0.62, -12)}
+    <path d="M176,200 Q190,212 186,250 Q178,246 170,232 Q172,214 160,200 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <ellipse cx="182" cy="250" rx="9" ry="10" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    <circle cx="186" cy="238" r="9" fill="{GOLD}" stroke="{INK}" stroke-width="1.4"/>
+    <path d="M186,229 L186,247 M177,238 L195,238" stroke="{GOLD_D}" stroke-width="1.4"/>
+    <rect x="116" y="146" width="18" height="22" rx="3" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    {_face(125, 120, beard=True)}
+    {_crown(125, 72)}'''
+
 
 def sota(palo, p):
     acc = ACCENT[palo]
     return f'''
-    {held_glyph(palo, p, 184, 150, 0.5)}
-    <path d="M108,232 L104,288 L120,288 L122,238 Z" fill="#caa46a" stroke="#00000022" stroke-width="1"/>
-    <path d="M128,238 L130,288 L146,288 L142,232 Z" fill="#b9925a" stroke="#00000022" stroke-width="1"/>
-    <path d="M100,286 L124,286 L124,294 L96,294 Z" fill="#4a3526"/>
-    <path d="M126,286 L148,286 L150,294 L124,294 Z" fill="#3e2c1f"/>
-    <path d="M92,238 C88,210 92,182 100,170 L150,170 C158,182 162,210 158,238 Q125,250 92,238 Z" fill="url(#robe{p})" stroke="#00000033" stroke-width="1.4"/>
-    <rect x="92" y="228" width="66" height="9" rx="3" fill="#7a5a2a"/>
-    <rect x="120" y="228" width="10" height="9" rx="2" fill="#e9c34e"/>
-    <path d="M125,176 L125,228" stroke="{acc}" stroke-width="1.6" opacity="0.45"/>
-    <path d="M98,174 C84,188 82,210 90,232 L102,228 C96,208 100,188 110,180 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <path d="M152,174 C168,184 176,204 174,150 L160,150 C160,178 150,184 140,180 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="94" cy="232" rx="7.5" ry="8.5" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <ellipse cx="172" cy="150" rx="8" ry="9" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M100,170 Q125,158 150,170 Q125,180 100,170 Z" fill="#fbf7ee" stroke="#cbb78a" stroke-width="1.1"/>
-    <rect x="118" y="152" width="14" height="13" fill="{SKIN}"/>
-    <ellipse cx="125" cy="132" rx="18" ry="21" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M107,128 Q106,150 117,156 Q112,142 112,130 Z" fill="{HAIR}"/>
-    <path d="M143,128 Q144,150 133,156 Q138,142 138,130 Z" fill="{HAIR}"/>
-    <g fill="#5a4631"><ellipse cx="119" cy="130" rx="2" ry="2.4"/><ellipse cx="131" cy="130" rx="2" ry="2.4"/></g>
-    <path d="M125,134 L125,141" stroke="{SKIN_SH}" stroke-width="1.4"/>
-    <path d="M120,147 Q125,150 130,147" fill="none" stroke="#a8694a" stroke-width="1.5"/>
-    <ellipse cx="113" cy="140" rx="3" ry="2" fill="#e7a07e" opacity="0.5"/>
-    <ellipse cx="137" cy="140" rx="3" ry="2" fill="#e7a07e" opacity="0.5"/>
-    <path d="M104,118 Q108,98 125,98 Q146,98 148,116 Q150,122 142,120 Q125,112 110,120 Q103,123 104,118 Z" fill="url(#cap{p})" stroke="#00000033" stroke-width="1.2"/>
-    <path d="M146,112 Q166,104 170,86 Q158,96 148,104 Z" fill="#e9c34e" stroke="#9a7415" stroke-width="1"/>
-    <rect x="106" y="114" width="40" height="6" rx="3" fill="#7a5a2a"/>'''
+    {_throne(acc)}
+    <path d="M86,300 L92,210 Q98,178 120,170 L130,170 Q152,178 158,210 L164,300 Z" fill="{acc}" stroke="{INK}" stroke-width="2"/>
+    <g stroke="{INK}" stroke-width="1" opacity="0.4" fill="none"><path d="M112,184 Q108,242 104,298"/><path d="M138,184 Q142,242 146,298"/><path d="M125,180 L125,298"/></g>
+    <rect x="92" y="226" width="66" height="10" rx="3" fill="{GOLD}" stroke="{INK}" stroke-width="1.3"/>
+    <circle cx="125" cy="231" r="4" fill="{lighten(acc,0.2)}" stroke="{INK}" stroke-width="1"/>
+    <path d="M120,170 Q108,210 96,236 L108,242 Q118,212 130,184 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <ellipse cx="100" cy="240" rx="8.5" ry="9.5" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    {held(palo, p, 96, 196, 0.6, 8)}
+    <path d="M150,176 Q166,188 168,232 Q160,228 150,216 Q150,196 138,184 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <ellipse cx="160" cy="230" rx="8" ry="9" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    <path d="M104,176 Q125,166 146,176 Q125,184 104,176 Z" fill="{ERMINE}" stroke="{INK}" stroke-width="1.4"/>
+    <rect x="117" y="150" width="16" height="20" rx="3" fill="{SKIN}" stroke="{INK}" stroke-width="1.4"/>
+    {_face(125, 126, beard=False)}
+    {_hat(125, 100, acc)}'''
+
 
 def caballo(palo, p):
+    acc = ACCENT[palo]
     return f'''
-    <ellipse cx="120" cy="290" rx="78" ry="8" fill="#000000" opacity="0.12"/>
-    <path d="M176,196 Q200,210 196,250 Q188,232 182,236 Q188,256 178,268 Q176,236 168,214 Z" fill="#5a4631"/>
-    <path d="M150,236 L156,286 L148,286 L144,238 Z" fill="#b8b0a0" stroke="#00000022" stroke-width="1"/>
-    <path d="M92,238 L88,286 L96,286 L100,238 Z" fill="#b8b0a0" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="118" cy="216" rx="60" ry="27" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M70,210 Q52,196 46,176 Q44,166 52,164 Q60,178 78,192 Q86,200 84,214 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M52,168 Q40,166 34,176 Q30,184 36,188 Q44,190 50,184 Q56,178 56,170 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1.4"/>
-    <path d="M34,176 Q28,180 30,186 L37,186 Q36,180 40,178 Z" fill="#b8b0a0"/>
-    <path d="M54,160 L50,150 L60,158 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1"/>
-    <path d="M62,160 L60,149 L70,160 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1"/>
-    <circle cx="48" cy="174" r="2.2" fill="#2a221a"/>
-    <path d="M58,158 Q70,166 76,188 Q70,184 64,190 Q60,176 52,166 Z" fill="#5a4631"/>
-    <path d="M104,238 L100,287 L110,287 L112,240 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1.2"/>
-    <path d="M158,236 L164,287 L174,287 L168,238 Z" fill="url(#horse{p})" stroke="#9a9486" stroke-width="1.2"/>
-    <g fill="#2f2417"><rect x="99" y="284" width="13" height="6" rx="2"/><rect x="162" y="284" width="14" height="6" rx="2"/>
-       <rect x="86" y="283" width="12" height="6" rx="2"/><rect x="145" y="283" width="12" height="6" rx="2"/></g>
-    <path d="M92,198 Q120,210 150,198 L154,214 Q120,226 88,214 Z" fill="url(#robe{p})" stroke="#00000033" stroke-width="1"/>
-    <rect x="86" y="206" width="70" height="5" fill="#e9c34e" opacity="0.8"/>
-    <path d="M52,176 Q90,150 112,168" fill="none" stroke="#3a2a18" stroke-width="2"/>
-    {held_glyph(palo, p, 178, 132, 0.46)}
-    <path d="M122,176 Q150,150 168,134 L160,126 Q142,142 116,166 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="166" cy="132" rx="7" ry="8" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M104,196 Q100,172 110,160 L130,160 Q140,172 136,196 Q120,204 104,196 Z" fill="url(#robe{p})" stroke="#00000033" stroke-width="1.3"/>
-    <rect x="104" y="190" width="34" height="7" rx="2" fill="#7a5a2a"/>
-    <path d="M108,168 Q96,176 100,190 L110,186 Q108,176 116,170 Z" fill="url(#robe{p})" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="103" cy="188" rx="6" ry="7" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M108,160 Q120,152 132,160 Q120,168 108,160 Z" fill="#fbf7ee" stroke="#cbb78a" stroke-width="1"/>
-    <rect x="114" y="145" width="12" height="12" fill="{SKIN}"/>
-    <ellipse cx="120" cy="130" rx="15" ry="17" fill="{SKIN}" stroke="{SKIN_SH}" stroke-width="1"/>
-    <path d="M106,128 Q105,144 114,150 Q110,138 110,128 Z" fill="{HAIR}"/>
-    <g fill="#5a4631"><ellipse cx="115" cy="129" rx="1.7" ry="2.1"/><ellipse cx="126" cy="129" rx="1.7" ry="2.1"/></g>
-    <path d="M116,146 Q120,148 124,146" fill="none" stroke="#a8694a" stroke-width="1.3"/>
-    <ellipse cx="110" cy="138" rx="2.6" ry="1.8" fill="#e7a07e" opacity="0.5"/>
-    <path d="M104,120 Q106,104 120,104 Q135,104 137,118 Q120,112 104,120 Z" fill="url(#cap{p})" stroke="#00000033" stroke-width="1.1"/>
-    <rect x="105" y="116" width="32" height="5" rx="2" fill="#7a5a2a"/>
-    <path d="M134,112 Q152,104 156,88 Q146,98 136,106 Z" fill="#e9c34e" stroke="#9a7415" stroke-width="1"/>'''
+    <ellipse cx="124" cy="298" rx="84" ry="7" fill="#000" opacity="0.10"/>
+    <!-- horse body -->
+    <path d="M58,236 Q56,196 96,186 Q150,178 176,196 Q196,210 192,250 L178,250 Q180,220 168,212
+             Q120,198 92,210 Q74,220 74,248 Z" fill="{HORSE}" stroke="{INK}" stroke-width="1.8"/>
+    <!-- legs -->
+    <g fill="{HORSE}" stroke="{INK}" stroke-width="1.5">
+      <path d="M80,244 L76,292 L86,292 L90,246 Z"/><path d="M104,248 L100,292 L110,292 L114,250 Z"/>
+      <path d="M156,248 L160,292 L170,292 L164,250 Z"/><path d="M176,244 L184,290 L194,290 L186,246 Z"/>
+    </g>
+    <g fill="{INK}"><rect x="74" y="289" width="14" height="5" rx="1.5"/><rect x="99" y="289" width="14" height="5" rx="1.5"/>
+       <rect x="158" y="289" width="14" height="5" rx="1.5"/><rect x="183" y="289" width="14" height="5" rx="1.5"/></g>
+    <!-- neck + head -->
+    <path d="M58,236 Q40,214 36,188 Q34,174 44,172 Q54,190 76,206 Q84,214 80,232 Z" fill="{HORSE}" stroke="{INK}" stroke-width="1.8"/>
+    <path d="M44,174 Q30,170 24,182 Q20,192 28,196 Q38,198 46,190 Q52,182 52,174 Z" fill="{HORSE}" stroke="{INK}" stroke-width="1.6"/>
+    <path d="M24,182 Q17,187 19,194 L28,193 Q27,186 32,183 Z" fill="{HORSE_SH}" stroke="{INK}" stroke-width="1.1"/>
+    <path d="M46,166 L42,154 L54,164 Z" fill="{HORSE}" stroke="{INK}" stroke-width="1.2"/>
+    <path d="M55,166 L53,153 L65,166 Z" fill="{HORSE}" stroke="{INK}" stroke-width="1.2"/>
+    <circle cx="40" cy="184" r="2.2" fill="{INK}"/>
+    <!-- mane + tail -->
+    <path d="M52,166 Q66,176 74,202 Q66,196 58,202 Q56,182 46,170 Z" fill="{INK}" opacity="0.85"/>
+    <path d="M190,206 Q210,214 208,256 Q200,236 192,240 Q196,222 184,212 Z" fill="{INK}" opacity="0.85"/>
+    <!-- saddle blanket -->
+    <path d="M88,206 Q124,220 162,206 L168,224 Q124,238 84,224 Z" fill="{acc}" stroke="{INK}" stroke-width="1.5"/>
+    <path d="M86,214 L166,214" stroke="{GOLD}" stroke-width="2"/>
+    <!-- reins -->
+    <path d="M46,178 Q90,156 116,176" fill="none" stroke="{INK}" stroke-width="1.8"/>
+    <!-- rider held emblem -->
+    {held(palo, p, 178, 120, 0.5, 6)}
+    <!-- rider torso -->
+    <path d="M104,200 Q98,172 110,158 L132,158 Q146,172 140,202 Q122,212 104,200 Z" fill="{acc}" stroke="{INK}" stroke-width="1.8"/>
+    <g stroke="{INK}" stroke-width="0.9" opacity="0.4" fill="none"><path d="M122,162 L120,200"/></g>
+    <rect x="103" y="194" width="38" height="8" rx="2" fill="{GOLD}" stroke="{INK}" stroke-width="1.2"/>
+    <!-- raised arm to emblem -->
+    <path d="M134,176 Q156,150 172,132 L164,124 Q146,142 122,168 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <ellipse cx="170" cy="130" rx="7.5" ry="8.5" fill="{SKIN}" stroke="{INK}" stroke-width="1.3"/>
+    <!-- leg over horse -->
+    <path d="M106,196 Q96,214 96,236 L108,236 Q108,214 118,202 Z" fill="{acc}" stroke="{INK}" stroke-width="1.6"/>
+    <path d="M104,232 L98,246 L112,246 L114,234 Z" fill="#6a4a24" stroke="{INK}" stroke-width="1.3"/>
+    <rect x="116" y="146" width="16" height="16" rx="3" fill="{SKIN}" stroke="{INK}" stroke-width="1.3"/>
+    {_face(124, 124, beard=False)}
+    {_hat(124, 100, acc)}'''
+
 
 FIGURE = {"queen": sota, "jack": caballo, "king": rey}
+
 
 def court_card(palo, court_file, label):
     p = palo[0]
     fig = FIGURE[court_file](palo, p)
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{CARD_W}" height="{CARD_H}" '
-            f'viewBox="0 0 {CARD_W} {CARD_H}">'
-            f'<defs>{gradients(p)}{gradients(str(p)+"i")}{gradients(str(p)+"h")}{figdefs(palo, p)}</defs>'
-            f'{frame(palo, p)}{fig}{index(palo, p, label)}</svg>')
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{CARD_W}" height="{CARD_H}" viewBox="0 0 {CARD_W} {CARD_H}">'
+            f'<defs>{PARCH}{gradients(p)}{gradients(str(p) + "i")}{gradients(str(p) + "h")}</defs>'
+            f'{frame(palo)}{fig}{index(palo, label)}</svg>')
 
 
 # --------------------------------------------------------------------------
-# Full deck generation
-# --------------------------------------------------------------------------
-
 def build_card(fsuit, vfile):
     palo = SUIT_FILE[fsuit]
     if vfile in COURT:
@@ -321,16 +387,17 @@ def build_card(fsuit, vfile):
     n = 1 if vfile == "ace" else int(vfile)
     return number_card(palo, label, n)
 
-ALL_VALUES = NUMBER_FILES + list(COURT.keys())  # ace..9, queen, jack, king
+
+ALL_VALUES = NUMBER_FILES + list(COURT.keys())
+
 
 def write_deck(outdir):
     os.makedirs(outdir, exist_ok=True)
     count = 0
     for fsuit in SUIT_FILE:
         for vfile in ALL_VALUES:
-            svg = build_card(fsuit, vfile)
             with open(os.path.join(outdir, f"{vfile}_of_{fsuit}.svg"), "w") as fh:
-                fh.write(svg)
+                fh.write(build_card(fsuit, vfile))
             count += 1
     return count
 
@@ -338,5 +405,4 @@ def write_deck(outdir):
 if __name__ == "__main__":
     import sys
     outdir = sys.argv[1] if len(sys.argv) > 1 else "data/cards/spanish"
-    n = write_deck(outdir)
-    print(f"wrote {n} cards to {outdir}")
+    print(f"wrote {write_deck(outdir)} cards to {outdir}")

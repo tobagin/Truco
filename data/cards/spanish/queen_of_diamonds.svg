@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="250" height="350" viewBox="0 0 250 350"><defs>
+    <linearGradient id="parch" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
+    <radialGradient id="parchGlow" cx="50%" cy="42%" r="70%"><stop offset="0%" stop-color="#fffdf3" stop-opacity="0.6"/><stop offset="100%" stop-color="#fffdf3" stop-opacity="0"/></radialGradient>
     <radialGradient id="oroGrado" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreo" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowlo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -9,7 +11,6 @@
     <linearGradient id="gripo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommelo" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
     <linearGradient id="woodo" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parcho" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
     <radialGradient id="oroGradoi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreoi" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowloi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -20,7 +21,6 @@
     <linearGradient id="gripoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommeloi" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
     <linearGradient id="woodoi" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parchoi" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
     <radialGradient id="oroGradoh" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="55%" stop-color="#e9c34e"/><stop offset="100%" stop-color="#c2941f"/></radialGradient>
     <radialGradient id="oroCoreoh" cx="40%" cy="35%" r="80%"><stop offset="0%" stop-color="#fdeaa0"/><stop offset="100%" stop-color="#d9ad33"/></radialGradient>
     <linearGradient id="copaBowloh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0c45e"/><stop offset="100%" stop-color="#c2901f"/></linearGradient>
@@ -30,20 +30,20 @@
     <linearGradient id="guardoh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></linearGradient>
     <linearGradient id="gripoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#6a4a24"/><stop offset="100%" stop-color="#3a260f"/></linearGradient>
     <radialGradient id="pommeloh" cx="40%" cy="35%" r="75%"><stop offset="0%" stop-color="#f0d36a"/><stop offset="100%" stop-color="#b8881c"/></radialGradient>
-    <linearGradient id="woodoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient>
-    <linearGradient id="parchoh" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fbf5e3"/><stop offset="100%" stop-color="#efe2c4"/></linearGradient>
-    <linearGradient id="robeo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b07d12"/><stop offset="100%" stop-color="#7b570c"/></linearGradient>
-    <linearGradient id="crowno" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4dd77"/><stop offset="100%" stop-color="#c79a2e"/></linearGradient>
-    <linearGradient id="capo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cfb170"/><stop offset="100%" stop-color="#b07d12"/></linearGradient>
-    <linearGradient id="horseo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#efe9dc"/><stop offset="100%" stop-color="#c9c1b0"/></linearGradient></defs>
-    <rect x="3" y="3" width="244" height="344" rx="16" fill="url(#parcho)" stroke="#cdbb8e" stroke-width="2"/>
-    <rect x="12" y="12" width="226" height="326" rx="11" fill="none" stroke="#b07d12" stroke-width="2.4" opacity="0.9"/>
-    <rect x="17" y="17" width="216" height="316" rx="8" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
-    <g fill="#b07d12">
-      <circle cx="12" cy="12" r="3.2"/><circle cx="238" cy="12" r="3.2"/>
-      <circle cx="12" cy="338" r="3.2"/><circle cx="238" cy="338" r="3.2"/>
-    </g>
-    <g transform="translate(184 150) scale(0.5)"><g>
+    <linearGradient id="woodoh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b98a4e"/><stop offset="45%" stop-color="#9c6b2f"/><stop offset="100%" stop-color="#6e4720"/></linearGradient></defs>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parch)" stroke="#cbb98a" stroke-width="2"/>
+    <rect x="2.5" y="2.5" width="245" height="345" rx="17" fill="url(#parchGlow)"/>
+    <rect x="11" y="11" width="228" height="328" rx="12" fill="none" stroke="#b07d12" stroke-width="2.6"/>
+    <rect x="16" y="16" width="218" height="318" rx="8.5" fill="none" stroke="#b07d12" stroke-width="1" opacity="0.5"/>
+    
+    <path d="M62,150 Q62,96 125,92 Q188,96 188,150 L188,300 L62,300 Z" fill="#f3ead2" stroke="#a87f1e" stroke-width="2"/><path d="M70,150 Q70,104 125,100 Q180,104 180,150" fill="none" stroke="#e3b53a" stroke-width="2.5"/>
+    <path d="M86,300 L92,210 Q98,178 120,170 L130,170 Q152,178 158,210 L164,300 Z" fill="#b07d12" stroke="#2b2117" stroke-width="2"/>
+    <g stroke="#2b2117" stroke-width="1" opacity="0.4" fill="none"><path d="M112,184 Q108,242 104,298"/><path d="M138,184 Q142,242 146,298"/><path d="M125,180 L125,298"/></g>
+    <rect x="92" y="226" width="66" height="10" rx="3" fill="#e3b53a" stroke="#2b2117" stroke-width="1.3"/>
+    <circle cx="125" cy="231" r="4" fill="#bf9741" stroke="#2b2117" stroke-width="1"/>
+    <path d="M120,170 Q108,210 96,236 L108,242 Q118,212 130,184 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.6"/>
+    <ellipse cx="100" cy="240" rx="8.5" ry="9.5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.4"/>
+    <g transform="translate(96 196) scale(0.6) rotate(8)"><g>
       <circle r="47" fill="url(#oroGradoh)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
@@ -51,38 +51,19 @@
       <circle r="21" fill="url(#oroCoreoh)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
     </g></g>
-    <path d="M108,232 L104,288 L120,288 L122,238 Z" fill="#caa46a" stroke="#00000022" stroke-width="1"/>
-    <path d="M128,238 L130,288 L146,288 L142,232 Z" fill="#b9925a" stroke="#00000022" stroke-width="1"/>
-    <path d="M100,286 L124,286 L124,294 L96,294 Z" fill="#4a3526"/>
-    <path d="M126,286 L148,286 L150,294 L124,294 Z" fill="#3e2c1f"/>
-    <path d="M92,238 C88,210 92,182 100,170 L150,170 C158,182 162,210 158,238 Q125,250 92,238 Z" fill="url(#robeo)" stroke="#00000033" stroke-width="1.4"/>
-    <rect x="92" y="228" width="66" height="9" rx="3" fill="#7a5a2a"/>
-    <rect x="120" y="228" width="10" height="9" rx="2" fill="#e9c34e"/>
-    <path d="M125,176 L125,228" stroke="#b07d12" stroke-width="1.6" opacity="0.45"/>
-    <path d="M98,174 C84,188 82,210 90,232 L102,228 C96,208 100,188 110,180 Z" fill="url(#robeo)" stroke="#00000022" stroke-width="1"/>
-    <path d="M152,174 C168,184 176,204 174,150 L160,150 C160,178 150,184 140,180 Z" fill="url(#robeo)" stroke="#00000022" stroke-width="1"/>
-    <ellipse cx="94" cy="232" rx="7.5" ry="8.5" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <ellipse cx="172" cy="150" rx="8" ry="9" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <path d="M100,170 Q125,158 150,170 Q125,180 100,170 Z" fill="#fbf7ee" stroke="#cbb78a" stroke-width="1.1"/>
-    <rect x="118" y="152" width="14" height="13" fill="#f0c9a0"/>
-    <ellipse cx="125" cy="132" rx="18" ry="21" fill="#f0c9a0" stroke="#d9a878" stroke-width="1"/>
-    <path d="M107,128 Q106,150 117,156 Q112,142 112,130 Z" fill="#6e4a26"/>
-    <path d="M143,128 Q144,150 133,156 Q138,142 138,130 Z" fill="#6e4a26"/>
-    <g fill="#5a4631"><ellipse cx="119" cy="130" rx="2" ry="2.4"/><ellipse cx="131" cy="130" rx="2" ry="2.4"/></g>
-    <path d="M125,134 L125,141" stroke="#d9a878" stroke-width="1.4"/>
-    <path d="M120,147 Q125,150 130,147" fill="none" stroke="#a8694a" stroke-width="1.5"/>
-    <ellipse cx="113" cy="140" rx="3" ry="2" fill="#e7a07e" opacity="0.5"/>
-    <ellipse cx="137" cy="140" rx="3" ry="2" fill="#e7a07e" opacity="0.5"/>
-    <path d="M104,118 Q108,98 125,98 Q146,98 148,116 Q150,122 142,120 Q125,112 110,120 Q103,123 104,118 Z" fill="url(#capo)" stroke="#00000033" stroke-width="1.2"/>
-    <path d="M146,112 Q166,104 170,86 Q158,96 148,104 Z" fill="#e9c34e" stroke="#9a7415" stroke-width="1"/>
-    <rect x="106" y="114" width="40" height="6" rx="3" fill="#7a5a2a"/><g transform="translate(30 40)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">10</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    <path d="M150,176 Q166,188 168,232 Q160,228 150,216 Q150,196 138,184 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.6"/>
+    <ellipse cx="160" cy="230" rx="8" ry="9" fill="#e8b88a" stroke="#2b2117" stroke-width="1.4"/>
+    <path d="M104,176 Q125,166 146,176 Q125,184 104,176 Z" fill="#f4efe2" stroke="#2b2117" stroke-width="1.4"/>
+    <rect x="117" y="150" width="16" height="20" rx="3" fill="#e8b88a" stroke="#2b2117" stroke-width="1.4"/>
+    <path d="M99,122 Q95,148 110,160 Q103,142 104,122 Z" fill="#2b2117"/><path d="M151,122 Q155,148 140,160 Q147,142 146,122 Z" fill="#2b2117"/><ellipse cx="125" cy="126" rx="22" ry="25" fill="#e8b88a" stroke="#2b2117" stroke-width="1.7"/><ellipse cx="104" cy="128" rx="3.4" ry="5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.1"/><ellipse cx="146" cy="128" rx="3.4" ry="5" fill="#e8b88a" stroke="#2b2117" stroke-width="1.1"/><path d="M109,118 Q116,114 122,118" fill="none" stroke="#2b2117" stroke-width="1.6"/><path d="M128,118 Q134,114 141,118" fill="none" stroke="#2b2117" stroke-width="1.6"/><path d="M109,124 Q115,120 121,124 Q115,128 109,124 Z" fill="#fff" stroke="#2b2117" stroke-width="1.1"/><circle cx="115" cy="124" r="2.1" fill="#2b2117"/><path d="M129,124 Q135,120 141,124 Q135,128 129,124 Z" fill="#fff" stroke="#2b2117" stroke-width="1.1"/><circle cx="135" cy="124" r="2.1" fill="#2b2117"/><path d="M125,124 L122,136 Q125,139 128,136" fill="none" stroke="#2b2117" stroke-width="1.4"/><ellipse cx="111" cy="134" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/><ellipse cx="139" cy="134" rx="3.6" ry="2.4" fill="#b0271c" opacity="0.22"/><path d="M118,141 Q125,144 132,141" fill="none" stroke="#9a3b2a" stroke-width="1.6"/>
+    <path d="M99,130 Q97,100 125,98 Q153,100 151,130 Q125,118 99,130 Z" fill="#b07d12" stroke="#2b2117" stroke-width="1.7"/><rect x="98" y="126" width="54" height="9" rx="3" fill="#c39d4d" stroke="#2b2117" stroke-width="1.3"/><path d="M147,118 Q173,102 179,78 Q165,108 149,112 Z" fill="#e3b53a" stroke="#2b2117" stroke-width="1.2"/><g transform="translate(31 41)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">10</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
       <g fill="#9c6f17"><circle cx="42.00" cy="0.00" r="1.7"/><circle cx="36.37" cy="21.00" r="1.7"/><circle cx="21.00" cy="36.37" r="1.7"/><circle cx="0.00" cy="42.00" r="1.7"/><circle cx="-21.00" cy="36.37" r="1.7"/><circle cx="-36.37" cy="21.00" r="1.7"/><circle cx="-42.00" cy="0.00" r="1.7"/><circle cx="-36.37" cy="-21.00" r="1.7"/><circle cx="-21.00" cy="-36.37" r="1.7"/><circle cx="-0.00" cy="-42.00" r="1.7"/><circle cx="21.00" cy="-36.37" r="1.7"/><circle cx="36.37" cy="-21.00" r="1.7"/></g>
       <circle r="21" fill="url(#oroCoreoi)" stroke="#a9781a" stroke-width="1.5"/>
       <g stroke="#b9831a" stroke-width="2" stroke-linecap="round"><line x1="11.00" y1="0.00" x2="18.00" y2="0.00"/><line x1="7.78" y1="7.78" x2="12.73" y2="12.73"/><line x1="0.00" y1="11.00" x2="0.00" y2="18.00"/><line x1="-7.78" y1="7.78" x2="-12.73" y2="12.73"/><line x1="-11.00" y1="0.00" x2="-18.00" y2="0.00"/><line x1="-7.78" y1="-7.78" x2="-12.73" y2="-12.73"/><line x1="-0.00" y1="-11.00" x2="-0.00" y2="-18.00"/><line x1="7.78" y1="-7.78" x2="12.73" y2="-12.73"/></g>
-    </g></g></g></g><g transform="translate(220 310) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="30" fill="#b07d12" text-anchor="middle">10</text><g transform="translate(0 22)"><g transform="scale(0.22)"><g>
+    </g></g></g></g><g transform="translate(219 309) rotate(180)"><text x="0" y="0" font-family="Georgia,serif" font-weight="bold" font-size="31" fill="#b07d12" text-anchor="middle">10</text><g transform="translate(0 23)"><g transform="scale(0.21)"><g>
       <circle r="47" fill="url(#oroGradoi)" stroke="#8a6414" stroke-width="2.5"/>
       <circle r="47" fill="none" stroke="#fff3c4" stroke-width="1.4" opacity="0.6"/>
       <circle r="36" fill="none" stroke="#a9781a" stroke-width="2"/>
