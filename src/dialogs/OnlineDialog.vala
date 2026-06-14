@@ -4,23 +4,9 @@ using Truco.Network;
 
 namespace Truco {
 
-    /**
-     * Multiplayer entry flow. A root screen offers a variant picker plus three
-     * actions — Quick Match, Create Room, Join Room — each of which navigates
-     * to its own focused screen:
-     *
-     *   - Quick Match  → a searching screen (spinner + cancel)
-     *   - Create Room  → a screen that shows the shareable room code
-     *   - Join Room    → a screen to type a friend's code
-     *
-     * The relay is always our server, so there is no server or name field.
-     * When an opponent is matched the dialog emits `game_ready` and closes.
-     *
-     * Layout lives in online_dialog.blp; this class only wires behaviour.
-     */
     [GtkTemplate (ui = "/io/github/tobagin/Truco/online_dialog.ui")]
     public class OnlineDialog : Adw.Dialog {
-        // Our relay; the only server the client ever talks to.
+
         public const string DEFAULT_SERVER = "wss://truco.tobagin.eu";
 
         [GtkChild] private unowned Adw.ToastOverlay toasts;
@@ -49,11 +35,9 @@ namespace Truco {
         private NetworkSession session;
         private MultiplayerGameController controller;
 
-        // What sub-screen we are on, so a back/cancel cleans up server state.
         private enum Mode { NONE, SEARCHING, ROOM, JOIN }
         private Mode mode = Mode.NONE;
 
-        /** Emitted once an opponent is matched and the game can begin. */
         public signal void game_ready (MultiplayerGameController controller,
                                        string variant, int seat, int first_dealer, uint32 seed);
 
@@ -75,12 +59,8 @@ namespace Truco {
                 join_confirm_button.sensitive = join_code_row.text.strip () != "";
             });
 
-            // A back-navigation (header back button) out of a sub-screen must
-            // unwind whatever we started on the server.
             nav.popped.connect ((page) => leave_current_mode ());
         }
-
-        // --- Helpers ------------------------------------------------------
 
         private string selected_variant () {
             switch (variant_row.selected) {
@@ -107,7 +87,6 @@ namespace Truco {
             }
         }
 
-        // Unwind whatever the current sub-screen started on the server.
         private void leave_current_mode () {
             switch (mode) {
                 case Mode.SEARCHING:
@@ -117,8 +96,7 @@ namespace Truco {
                     search_spinner.stop ();
                     break;
                 case Mode.ROOM:
-                    // No "leave room" intent on the relay; drop the socket so
-                    // the server tears the empty room down. Reconnect lazily.
+
                     if (session.state != SessionState.IN_GAME) {
                         session.disconnect ();
                     }
@@ -133,8 +111,6 @@ namespace Truco {
             }
             mode = Mode.NONE;
         }
-
-        // --- Actions ------------------------------------------------------
 
         private void on_quick_match () {
             mode = Mode.SEARCHING;
@@ -192,8 +168,6 @@ namespace Truco {
             toast (_("Code copied"));
         }
 
-        // --- Session signals ---------------------------------------------
-
         private void wire_session () {
             session.room_created.connect ((code) => {
                 room_creating_label.visible = false;
@@ -205,7 +179,7 @@ namespace Truco {
                 room_wait_label.label = _("%s joined. Starting…").printf (name);
             });
             session.game_started.connect (() => {
-                mode = Mode.NONE; // leaving cleanly; don't unwind on close
+                mode = Mode.NONE;
                 game_ready (controller, session.variant, session.seat,
                             session.first_dealer, session.deal_seed);
                 this.close ();

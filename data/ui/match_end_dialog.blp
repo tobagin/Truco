@@ -16,7 +16,7 @@ template $TrucoMatchEndDialog : Adw.Window {
 
     content: Adw.StatusPage status_page {
       title: _("Match Over");
-      icon-name: "trophy-symbolic"; // Or a relevant icon
+      icon-name: "trophy-symbolic";
 
       child: Box {
         orientation: vertical;
@@ -29,7 +29,7 @@ template $TrucoMatchEndDialog : Adw.Window {
 
           Label result_label {
             styles ["title-2"]
-            label: _("You Won!"); 
+            label: _("You Won!");
             justify: center;
           }
 
@@ -57,7 +57,7 @@ template $TrucoMatchEndDialog : Adw.Window {
             styles ["pill"]
             action-name: "dialog.ok";
           }
-          
+
           Button btn_quit {
              label: _("Quit Game");
              styles ["destructive-action", "pill"]

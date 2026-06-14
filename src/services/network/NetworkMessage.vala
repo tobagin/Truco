@@ -2,19 +2,8 @@ using Gee;
 
 namespace Truco.Network {
 
-    /**
-     * Protocol version negotiated with the relay server. Must match the
-     * server's REQUIRED_VERSION (see server/README.md).
-     */
     public const string PROTOCOL_VERSION = "1.0.0";
 
-    /**
-     * A single JSON message exchanged with the relay server. Every message has
-     * a string "type" and a "timestamp"; everything else is type-specific and
-     * accessed through the typed getters below.
-     *
-     * This wraps Json-GLib so the rest of the client never touches raw JSON.
-     */
     public class NetworkMessage : Object {
         public string message_type { get; private set; }
         private Json.Object root;
@@ -32,7 +21,6 @@ namespace Truco.Network {
                 ? obj.get_string_member ("type") : "";
         }
 
-        /** Parse an incoming wire string. Returns null on malformed input. */
         public static NetworkMessage? parse (string raw) {
             try {
                 var parser = new Json.Parser ();
@@ -51,8 +39,6 @@ namespace Truco.Network {
                 return null;
             }
         }
-
-        // --- Builders (fluent) -------------------------------------------
 
         public NetworkMessage set_string (string key, string value) {
             root.set_string_member (key, value);
@@ -73,8 +59,6 @@ namespace Truco.Network {
             root.set_object_member (key, obj);
             return this;
         }
-
-        // --- Accessors ----------------------------------------------------
 
         public bool has (string key) {
             return root.has_member (key);
@@ -99,8 +83,6 @@ namespace Truco.Network {
             return root.has_member (key) && root.get_member (key).get_node_type () == Json.NodeType.OBJECT
                 ? root.get_object_member (key) : null;
         }
-
-        // --- Serialization ------------------------------------------------
 
         public string to_wire () {
             var gen = new Json.Generator ();

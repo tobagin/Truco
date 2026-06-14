@@ -3,13 +3,6 @@ using Adw;
 
 namespace Truco {
 
-    /**
-     * First-run profile setup: pick a username (pre-filled from the system
-     * account, editable) and an avatar before playing. The username is stored
-     * in GSettings and used as the player's handle online and on leaderboards.
-     *
-     * Layout lives in onboarding_dialog.blp; this class only wires behaviour.
-     */
     [GtkTemplate (ui = "/io/github/tobagin/Truco/onboarding_dialog.ui")]
     public class OnboardingDialog : Adw.Window {
 
@@ -21,7 +14,6 @@ namespace Truco {
         private GLib.Settings settings;
         private int avatar_index;
 
-        /** Emitted once the player saved their profile. */
         public signal void completed ();
 
         public OnboardingDialog (Gtk.Window? parent, string suggested_name) {

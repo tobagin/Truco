@@ -4,16 +4,16 @@ using Adw 1;
 template $TrucoNewGameDialog : Adw.AlertDialog {
   heading: _("New Game");
   body: _("Select the game variant.");
-  
+
   extra-child: Adw.PreferencesGroup {
     Adw.ComboRow variant_row {
       title: _("Variant");
       model: StringList {
         strings [
-          _("Truco Mineiro"), 
-          _("Truco Paulista"), 
-          _("Truco Uruguayo"), 
-          _("Truco Venezolano"), 
+          _("Truco Mineiro"),
+          _("Truco Paulista"),
+          _("Truco Uruguayo"),
+          _("Truco Venezolano"),
           _("Truco Argentino"),
           _("Truco de Reis")
         ]
@@ -29,7 +29,7 @@ template $TrucoNewGameDialog : Adw.AlertDialog {
           _("3v3 (Trio)")
         ]
       };
-      selected: 1; // Default 2v2
+      selected: 1;
     }
 
     Adw.SwitchRow hidden_vira_row {
@@ -37,7 +37,7 @@ template $TrucoNewGameDialog : Adw.AlertDialog {
       subtitle: _("Play without knowing the vira until the end");
     }
   };
-  
+
   default-response: "mineiro";
   close-response: "cancel";
 

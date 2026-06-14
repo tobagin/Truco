@@ -4,17 +4,11 @@ namespace Truco.Network {
         DISCONNECTED,
         CONNECTING,
         HANDSHAKING,
-        IDLE,           // connected, not in a room
-        WAITING,        // created a room / queued, awaiting opponent
+        IDLE,
+        WAITING,
         IN_GAME
     }
 
-    /**
-     * High-level multiplayer session: owns a NetworkClient, performs the
-     * handshake, drives room creation / joining / matchmaking, and tracks
-     * which seat we hold. Game actions are sent and received here and handed
-     * up to MultiplayerGameController via signals.
-     */
     public class NetworkSession : Object {
         private NetworkClient client;
         private string player_name;
@@ -27,20 +21,18 @@ namespace Truco.Network {
         public uint32 deal_seed { get; private set; default = 0; }
         public string opponent_name { get; private set; default = ""; }
 
-        // Lifecycle signals consumed by the UI / controller.
         public signal void state_changed (SessionState state);
         public signal void room_created (string code);
         public signal void opponent_joined (string name);
-        public signal void searching ();           // queued for quick match
-        public signal void match_found ();          // opponent found, game about to start
+        public signal void searching ();
+        public signal void match_found ();
         public signal void quick_match_cancelled ();
         public signal void game_started ();
         public signal void opponent_disconnected (int grace_ms);
         public signal void opponent_reconnected ();
-        public signal void opponent_left (string reason); // resign/forfeit/ended
+        public signal void opponent_left (string reason);
         public signal void session_error (string code, string message);
 
-        /** An in-game action arrived from the opponent (play_card, call_truco, ...). */
         public signal void action_received (NetworkMessage message);
 
         public NetworkSession (string player_name) {
@@ -82,8 +74,6 @@ namespace Truco.Network {
             transition_to (SessionState.DISCONNECTED);
         }
 
-        // --- Intent API (called by UI) ----------------------------------
-
         public void create_room (string variant) {
             this.variant = variant;
             var m = new NetworkMessage ("create_room");
@@ -120,17 +110,14 @@ namespace Truco.Network {
             client.send (m);
         }
 
-        /** Send an in-game action to the opponent (the server relays it). */
         public void send_action (NetworkMessage action) {
             client.send (action);
         }
 
-        // --- Server message routing --------------------------------------
-
         private void on_message (NetworkMessage m) {
             switch (m.message_type) {
                 case "connected":
-                    // handshake is sent on_opened; nothing to do here
+
                     break;
                 case "hello_ok":
                     transition_to (SessionState.IDLE);
@@ -190,7 +177,7 @@ namespace Truco.Network {
                     session_error (m.get_string ("code", "error"), m.get_string ("message"));
                     break;
                 default:
-                    // Everything else is an in-game action relayed from the opponent.
+
                     action_received (m);
                     break;
             }

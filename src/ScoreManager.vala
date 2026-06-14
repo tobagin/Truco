@@ -12,7 +12,7 @@ namespace Truco {
 
         public bool is_buenas(int score) {
             if (limit == 30) return score > 15;
-            return false; // For 12 points, there's no usually Buenas/Malas distinction in same way
+            return false;
         }
 
         public int get_relative_score(int score) {

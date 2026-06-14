@@ -36,11 +36,11 @@ template $TrucoWindow : Adw.ApplicationWindow {
       show-sidebar: false;
       max-sidebar-width: 250;
       min-sidebar-width: 200;
-      vexpand: true; // Expand to fill remaining vertical space
+      vexpand: true;
 
       sidebar: Box {
         orientation: vertical;
-        styles ["background"] 
+        styles ["background"]
 
         ScrolledWindow {
            vexpand: true;
@@ -54,15 +54,14 @@ template $TrucoWindow : Adw.ApplicationWindow {
       content: Overlay {
         vexpand: true;
         hexpand: true;
-        
+
         child: Grid game_grid {
             styles ["felt-green"]
             row-homogeneous: true;
             column-homogeneous: true;
             hexpand: true;
             vexpand: true;
-  
-            // Top: Partners (CPU 2 & CPU 4)
+
             Box player_top_box {
               layout {
                 column: 0;
@@ -73,7 +72,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
               halign: center;
               valign: center;
               spacing: 8;
-              
+
               Box part1_container {
                 orientation: vertical;
                 spacing: 4;
@@ -119,8 +118,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
                 }
               }
             }
-  
-            // Left: Opponent
+
             Box player_left_box {
               layout {
                 column: 0;
@@ -130,13 +128,13 @@ template $TrucoWindow : Adw.ApplicationWindow {
               halign: center;
               valign: center;
               spacing: 5;
-              
+
               Box {
                   orientation: vertical;
                   spacing: 4;
                   valign: center;
                   halign: center;
-                  
+
                   Adw.Avatar avatar_left {
                       size: 48;
                       text: "";
@@ -156,8 +154,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
                  valign: center;
               }
             }
-  
-            // Right: Opponent
+
             Box player_right_box {
               layout {
                 column: 2;
@@ -167,7 +164,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
               halign: center;
               valign: center;
               spacing: 8;
-              
+
               Box opp1_container {
                 orientation: horizontal;
                 spacing: 5;
@@ -222,8 +219,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
                 }
               }
             }
-  
-            // Center: Table
+
             Box table_box {
               layout {
                 column: 1;
@@ -232,15 +228,14 @@ template $TrucoWindow : Adw.ApplicationWindow {
               orientation: vertical;
               halign: center;
               valign: center;
-              
+
               Box table_cards_box {
                 orientation: vertical;
                 spacing: 5;
                 halign: center;
               }
             }
-  
-            // Bottom: Controls
+
             Box bottom_box {
               layout {
                  column: 0;
@@ -250,7 +245,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
               orientation: vertical;
               valign: end;
               spacing: 2;
-  
+
               Box user_container {
                 orientation: horizontal;
                 spacing: 8;
@@ -303,15 +298,13 @@ template $TrucoWindow : Adw.ApplicationWindow {
                   }
                 }
               }
-  
-              
-  
+
               Box actions_box {
                 orientation: horizontal;
                 halign: center;
                 spacing: 10;
                 margin-bottom: 10;
-  
+
                 MenuButton btn_envido {
                   label: "Envido";
                   visible: false;
@@ -320,7 +313,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
                           orientation: vertical;
                           spacing: 6;
                           margin-top: 6; margin-bottom: 6; margin-start: 6; margin-end: 6;
-                          
+
                           Button btn_call_envido { label: "Envido"; }
                           Button btn_call_real_envido { label: "Real Envido"; }
                           Button btn_call_falta_envido { label: "Falta Envido"; }
@@ -341,15 +334,15 @@ template $TrucoWindow : Adw.ApplicationWindow {
 
                 Button btn_truco {
                   label: "TRUCO!";
-                  
+
                 }
-                
+
                 Button btn_accept {
                   label: "Accept";
                   styles ["suggested-action"]
                   visible: false;
                 }
-                
+
                 Button btn_refuse {
                   label: _("Run");
                   styles ["destructive-action"]
@@ -358,8 +351,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
               }
             }
         };
-        
-        // Scoring Overlay (Top Left)
+
         [overlay]
         Box score_box {
            halign: start;
@@ -369,8 +361,8 @@ template $TrucoWindow : Adw.ApplicationWindow {
            orientation: vertical;
            spacing: 1;
            width-request: 220;
-           
-           styles ["card-frame", "scoreboard"] // Reusing card-frame basics, adding custom flair if needed
+
+           styles ["card-frame", "scoreboard"]
 
            Label {
               label: _("MATCH SCORE");
@@ -416,7 +408,7 @@ template $TrucoWindow : Adw.ApplicationWindow {
 
              Label game_score_us_label {
                label: "0";
-               styles ["title-1", "accent"] 
+               styles ["title-1", "accent"]
              }
              Label {
                 label: "-";
@@ -442,7 +434,6 @@ template $TrucoWindow : Adw.ApplicationWindow {
            }
         }
 
-        // Vira Overlay (Top Right)
         [overlay]
         Box vira_box {
            halign: end;
@@ -452,9 +443,9 @@ template $TrucoWindow : Adw.ApplicationWindow {
            orientation: vertical;
            spacing: 2;
            width-request: 110;
-           
+
            styles ["card-frame"]
-           
+
            Label {
               label: _("TURN CARD");
               styles ["caption", "vira-label"]

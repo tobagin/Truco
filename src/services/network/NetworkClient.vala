@@ -1,36 +1,23 @@
 namespace Truco.Network {
 
-    /**
-     * Low-level WebSocket transport to the Truco relay server.
-     *
-     * Responsibilities: open/close the connection, send/receive raw
-     * NetworkMessages, and emit lifecycle signals. It knows nothing about
-     * rooms or game rules — that lives in NetworkSession.
-     *
-     * Uses libsoup-3.0's WebSocket support.
-     */
     public class NetworkClient : Object {
         private Soup.Session session;
         private Soup.WebsocketConnection? connection = null;
 
         public bool connected { get; private set; default = false; }
 
-        /** A decoded message arrived from the server. */
         public signal void message_received (NetworkMessage message);
-        /** The transport opened successfully. */
+
         public signal void opened ();
-        /** The transport closed (cleanly or otherwise). */
+
         public signal void closed (string reason);
-        /** A transport-level error occurred. */
+
         public signal void transport_error (string message);
 
         public NetworkClient () {
             session = new Soup.Session ();
         }
 
-        /**
-         * Connect to a relay. Accepts ws:// or wss:// URLs.
-         */
         public async void connect_to (string url) {
             if (connected) {
                 return;
@@ -43,7 +30,7 @@ namespace Truco.Network {
             try {
                 connection = yield session.websocket_connect_async (
                     message, null, null, GLib.Priority.DEFAULT, null);
-                connection.max_incoming_payload_size = 1 << 20; // 1 MiB
+                connection.max_incoming_payload_size = 1 << 20;
                 connection.message.connect (on_message);
                 connection.closed.connect (() => {
                     connected = false;
@@ -63,8 +50,7 @@ namespace Truco.Network {
             if (type != Soup.WebsocketDataType.TEXT) {
                 return;
             }
-            // WebSocket text frames are not NUL-terminated, so build the string
-            // with an explicit length rather than casting the raw buffer.
+
             unowned uint8[] data = bytes.get_data ();
             var sb = new StringBuilder ();
             sb.append_len ((string) data, (ssize_t) bytes.get_size ());

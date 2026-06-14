@@ -1,31 +1,14 @@
 namespace Truco.Network {
 
-    /**
-     * Bridges a NetworkSession to the local game UI.
-     *
-     * Outbound: the UI calls the local_* methods when the human acts; the
-     * controller serializes the action and sends it through the session.
-     *
-     * Inbound: opponent actions arrive on the session's `action_received`
-     * signal; the controller decodes them and emits high-level signals that
-     * Window connects to the local GameState (applying the move as if a
-     * remote player had taken their turn).
-     *
-     * The Truco rules engine remains authoritative on each client; this layer
-     * only carries intent between the two peers, matching the relay model of
-     * the server.
-     */
     public class MultiplayerGameController : Object {
         public NetworkSession session { get; private set; }
 
-        /** Our seat (0 or 1); the opponent holds the other. */
         public int local_seat { get { return session.seat; } }
 
-        // High-level inbound signals (opponent's actions).
         public signal void opponent_played_card (Suit suit, int value);
-        public signal void opponent_called_truco (int level);     // 3/6/9/12
-        public signal void opponent_responded_truco (string response); // accept/raise/run
-        public signal void opponent_called_bet (string bet);      // envido/flor/...
+        public signal void opponent_called_truco (int level);
+        public signal void opponent_responded_truco (string response);
+        public signal void opponent_called_bet (string bet);
         public signal void opponent_responded_bet (string response);
         public signal void opponent_mao_de_11_decision (bool accepted);
         public signal void opponent_signalled (string signal_text);
@@ -35,8 +18,6 @@ namespace Truco.Network {
             this.session = session;
             session.action_received.connect (on_action);
         }
-
-        // --- Outbound (local player acted) -------------------------------
 
         public void local_play_card (Card card) {
             var m = new NetworkMessage ("play_card");
@@ -90,8 +71,6 @@ namespace Truco.Network {
             m.set_string ("text", text);
             session.send_action (m);
         }
-
-        // --- Inbound (decode opponent action) ----------------------------
 
         private void on_action (NetworkMessage m) {
             switch (m.message_type) {

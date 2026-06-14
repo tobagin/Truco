@@ -7,13 +7,13 @@ namespace Truco {
 
         public int get_power(Card c, string mode, Card? vira = null, bool manilha_fixed = false) {
             if (manilha_fixed) return get_fixed_power(c);
-            
+
             switch (mode) {
                 case "paulista":
                     int manilha_val = 0;
                     if (vira != null) {
                         manilha_val = vira.value + 1;
-                        if (manilha_val > 12) manilha_val = 1; 
+                        if (manilha_val > 12) manilha_val = 1;
                         if (manilha_val == 8) manilha_val = 10;
                     }
                     return get_paulista_power(c, manilha_val);
@@ -29,7 +29,7 @@ namespace Truco {
         }
 
         private int get_fixed_power(Card c) {
-            // Truco de Reis: Kings are manilhas
+
             if (c.value == 12) {
                  switch (c.suit) {
                      case Suit.CLUBS: return 34;
@@ -62,7 +62,7 @@ namespace Truco {
         }
 
         private int get_international_power(Card c, string mode, Card? vira) {
-            // Check Special Cards first
+
             if (mode == "uruguayo" && vira != null) {
                 if (c.suit == vira.suit) {
                     if (c.value == 2) return 24;
@@ -73,18 +73,16 @@ namespace Truco {
                 }
             } else if (mode == "venezolano" && vira != null) {
                 if (c.suit == vira.suit) {
-                    if (c.value == 11) return 21; // Perico
-                    if (c.value == 10) return 20; // Perica
+                    if (c.value == 11) return 21;
+                    if (c.value == 10) return 20;
                 }
             }
 
-            // Standard / Argentine Hierarchy (Cartas Bravas)
-            // 1S > 1C > 7S > 7D
             if (c.suit == Suit.SWORDS && c.value == 1) return 19;
             if (c.suit == Suit.CLUBS && c.value == 1) return 18;
             if (c.suit == Suit.SWORDS && c.value == 7) return 17;
             if (c.suit == Suit.GOLDS && c.value == 7) return 16;
-            
+
             return get_base_power(c);
         }
 
@@ -106,8 +104,7 @@ namespace Truco {
 
         public int get_envido_score(ArrayList<Card> hand) {
             int max_score = 0;
-            
-            // Check all pairs for 20 + sum
+
             for (int i = 0; i < hand.size; i++) {
                 for (int j = i + 1; j < hand.size; j++) {
                     if (hand[i].suit == hand[j].suit) {
@@ -118,15 +115,14 @@ namespace Truco {
                     }
                 }
             }
-            
-            // If < 20, it means no pair was found
+
             if (max_score < 20) {
                  for (int i = 0; i < hand.size; i++) {
                       int val = (hand[i].value >= 10) ? 0 : hand[i].value;
                       if (val > max_score) max_score = val;
                  }
             }
-            
+
             return max_score;
         }
 
@@ -155,7 +151,7 @@ namespace Truco {
                 int manilha_val = vira.value + 1;
                 if (manilha_val > 12) manilha_val = 1;
                 if (manilha_val == 8) manilha_val = 10;
-                
+
                 if (c.value == manilha_val) return _("Manilha");
             } else if (mode == "argentino" || mode == "uruguayo" || mode == "venezolano") {
                 if (c.suit == Suit.SWORDS && c.value == 1) return _("Espadilla");
@@ -163,7 +159,7 @@ namespace Truco {
                 if (c.suit == Suit.SWORDS && c.value == 7) return _("Siete de Espadas");
                 if (c.suit == Suit.GOLDS && c.value == 7) return _("Siete de Oro");
             }
-            
+
             return c.to_string();
         }
     }

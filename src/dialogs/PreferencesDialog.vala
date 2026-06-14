@@ -5,7 +5,7 @@ namespace Truco {
 
     [GtkTemplate (ui = "/io/github/tobagin/Truco/preferences_dialog.ui")]
     public class PreferencesDialog : Adw.PreferencesDialog {
-        
+
         [GtkChild]
         private unowned Adw.ComboRow default_variant_row;
         [GtkChild]
@@ -29,22 +29,20 @@ namespace Truco {
 
         public PreferencesDialog(Truco.Window parent) {
             this.main_window = parent;
-            
-            // Avatar Selector Handler
+
             avatar_row.activated.connect(() => {
                 var selector = new AvatarSelector(main_window);
                 selector.avatar_selected.connect((idx) => {
-                     // Update settings
+
                      var settings_tmp = new GLib.Settings (Config.SCHEMA_ID);
                      settings_tmp.set_int("avatar-index", idx);
-                     // The change listener below will handle visual update
+
                 });
                 selector.present();
             });
 
-            // GSettings Binding
             var settings = new GLib.Settings (Config.SCHEMA_ID);
-            
+
             settings.bind ("username", username_row, "text", SettingsBindFlags.DEFAULT);
             settings.bind ("default-game-variant", default_variant_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("felt-color-index", felt_color_row, "selected", SettingsBindFlags.DEFAULT);
@@ -52,9 +50,7 @@ namespace Truco {
             settings.bind ("card-back-design", card_design_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("card-back-color", card_color_row, "selected", SettingsBindFlags.DEFAULT);
             settings.bind ("sound-enabled", sound_row, "active", SettingsBindFlags.DEFAULT);
-            // Removed bind for avatar-index to combo row, handled manually via click
-            
-            // Sync Indices to String Keys
+
             settings.changed["felt-color-index"].connect (() => {
                 string color = "felt-green";
                 int idx = settings.get_int("felt-color-index");
@@ -65,29 +61,26 @@ namespace Truco {
                 }
                 settings.set_string("felt-color", color);
             });
-            
+
             settings.changed["card-back-design"].connect(() => update_card_settings(settings));
             settings.changed["card-back-color"].connect(() => update_card_settings(settings));
-            
+
             settings.changed["avatar-index"].connect(() => {
                 update_avatar_display(settings);
             });
-            
-            // Initial Display
+
             update_avatar_display(settings);
         }
-        
 
         private void update_avatar_display(GLib.Settings settings) {
             int idx = settings.get_int("avatar-index");
             string icon = "avatars/avatar%d.svg".printf(idx + 1);
             settings.set_string("avatar", icon);
-            
-            // Update UI image
+
             var paintable = Gdk.Texture.from_resource(Config.RESOURCE_PATH + "/" + icon);
             avatar_image.set_custom_image(paintable);
         }
-        
+
         private void update_card_settings(GLib.Settings settings) {
             int design = settings.get_int("card-back-design") + 1;
             int color_idx = settings.get_int("card-back-color");
@@ -102,6 +95,6 @@ namespace Truco {
             string path = "cards/backs/player_card_back_design_%d_%s.svg".printf(design, color);
             settings.set_string("card-back", path);
         }
-        
+
     }
 }

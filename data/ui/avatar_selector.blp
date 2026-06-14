@@ -6,12 +6,12 @@ template $TrucoAvatarSelector : Adw.Window {
   width-request: 600;
   height-request: 500;
   title: _("Choose an Avatar");
-  
+
   content: Adw.ToolbarView {
     [top]
     Adw.HeaderBar {
     }
-    
+
     content: ScrolledWindow {
         Box {
             orientation: vertical;
@@ -20,7 +20,7 @@ template $TrucoAvatarSelector : Adw.Window {
             margin-bottom: 20;
             margin-start: 20;
             margin-end: 20;
-            
+
             FlowBox flowbox {
                 selection-mode: none;
                 max-children-per-line: 5;

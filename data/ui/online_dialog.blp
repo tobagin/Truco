@@ -9,7 +9,6 @@ template $TrucoOnlineDialog : Adw.Dialog {
   child: Adw.ToastOverlay toasts {
     child: Adw.NavigationView nav {
 
-      // --- Root: variant + actions ---------------------------------
       Adw.NavigationPage {
         tag: "main";
         title: _("Play Online");
@@ -56,7 +55,6 @@ template $TrucoOnlineDialog : Adw.Dialog {
         };
       }
 
-      // --- Quick match: searching ----------------------------------
       Adw.NavigationPage {
         tag: "searching";
         title: _("Quick Match");
@@ -99,7 +97,6 @@ template $TrucoOnlineDialog : Adw.Dialog {
         };
       }
 
-      // --- Create room: share code ---------------------------------
       Adw.NavigationPage {
         tag: "room";
         title: _("Create Room");
@@ -168,7 +165,6 @@ template $TrucoOnlineDialog : Adw.Dialog {
         };
       }
 
-      // --- Join room: enter code -----------------------------------
       Adw.NavigationPage {
         tag: "join";
         title: _("Join Room");

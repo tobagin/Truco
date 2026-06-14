@@ -1,7 +1,6 @@
 using Gtk;
 using Adw;
 
-// Workaround for GtkUriLauncher not working with help:// URIs in Flatpak
 namespace Workaround {
     [CCode (cheader_filename = "gtk/gtk.h", cname = "gtk_show_uri")]
     extern static void gtk_show_uri (Gtk.Window? parent, string uri, uint32 timestamp);
@@ -20,8 +19,7 @@ namespace Truco {
 
         protected override void startup () {
             base.startup ();
-            
-            // CSS
+
             var css_provider = new Gtk.CssProvider();
             css_provider.load_from_resource(Config.RESOURCE_PATH + "/style.css");
             Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -33,7 +31,7 @@ namespace Truco {
             var quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (quit);
             add_action (quit_action);
-            
+
             var preferences_action = new SimpleAction ("preferences", null);
             preferences_action.activate.connect (show_preferences);
             add_action (preferences_action);
@@ -49,7 +47,7 @@ namespace Truco {
             var help_action = new SimpleAction ("help", null);
             help_action.activate.connect (show_help);
             add_action (help_action);
-            
+
             set_accels_for_action ("app.preferences", {"<Control>comma"});
             set_accels_for_action ("app.quit", {"<Control>q"});
             set_accels_for_action ("app.shortcuts", {"<Control>question"});
@@ -67,7 +65,6 @@ namespace Truco {
 
             window.present ();
 
-            // First run: prompt for a username + avatar before playing.
             var settings = new GLib.Settings (Config.SCHEMA_ID);
             if (settings.get_string ("username").strip () == "") {
                 var onboarding = new OnboardingDialog (window, suggested_username ());
@@ -75,7 +72,6 @@ namespace Truco {
             }
         }
 
-        /** A sensible default handle from the system account. */
         private string suggested_username () {
             string? n = GLib.Environment.get_user_name ();
             if (n == null || n.strip () == "") {
@@ -86,40 +82,39 @@ namespace Truco {
             }
             return n;
         }
-        
+
         private void show_help () {
             var win = active_window as Truco.Window;
-            // Use workaround for help: URI
+
             Workaround.gtk_show_uri(win, "help:" + Config.APP_ID, Gdk.CURRENT_TIME);
         }
-        
+
         private void show_shortcuts () {
-            // Load and show dialog
+
             var builder = new Gtk.Builder.from_resource (Config.RESOURCE_PATH + "/shortcuts.ui");
             var dialog = builder.get_object ("shortcuts_window") as Adw.ShortcutsDialog;
             if (dialog != null) {
                 dialog.present (active_window);
             }
         }
-        
+
         private void show_about () {
             Truco.AboutDialog.show (active_window);
         }
-        
+
         private void show_preferences () {
             if (active_window is Truco.Window) {
                 var prefs = new PreferencesDialog (active_window as Truco.Window);
                 prefs.present (active_window);
             }
         }
-        
+
         private void show_play_online () {
             var win = active_window as Truco.Window;
             if (win == null) {
                 return;
             }
-            // A username is required online (it's the leaderboard handle); if
-            // onboarding was skipped, run it first, then open the lobby.
+
             var settings = new GLib.Settings (Config.SCHEMA_ID);
             if (settings.get_string ("username").strip () == "") {
                 var onboarding = new OnboardingDialog (win, suggested_username ());
