@@ -11,9 +11,9 @@ A native GNOME version of **Truco**, the popular South American trick-taking car
 
 </div>
 
-## 🎉 Version 0.1.0 — First Release
+## 🎉 Version 1.0.0 — First Release
 
-**Truco 0.1.0** is the first public release: play the classic South American card game on GNOME, against smart CPU opponents or friends online.
+**Truco 1.0.0** is the first public release: play the classic South American card game on GNOME, against smart CPU opponents or friends online.
 
 ### ✨ Key Features
 
