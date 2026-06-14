@@ -15,7 +15,7 @@ namespace Truco {
      */
     public class OnlineDialog : Adw.Dialog {
         // Default relay; override in the entry to point at a deployed server.
-        public const string DEFAULT_SERVER = "ws://localhost:8443";
+        public const string DEFAULT_SERVER = "wss://truco.tobagin.eu";
 
         private NetworkSession session;
         private MultiplayerGameController controller;
@@ -25,9 +25,11 @@ namespace Truco {
         private Adw.EntryRow code_row;
         private Adw.ComboRow variant_row;
         private Gtk.Label status_label;
+        private Gtk.Spinner spinner;
         private Gtk.Button create_btn;
         private Gtk.Button join_btn;
         private Gtk.Button quick_btn;
+        private Gtk.Button cancel_btn;
 
         /** Emitted once an opponent is matched and the game can begin. */
         public signal void game_ready (MultiplayerGameController controller,
@@ -101,14 +103,39 @@ namespace Truco {
             page.add (play_group);
 
             var status_group = new Adw.PreferencesGroup ();
+
+            var status_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 8);
+            status_box.halign = Gtk.Align.CENTER;
+            spinner = new Gtk.Spinner ();
+            spinner.visible = false;
+            status_box.append (spinner);
             status_label = new Gtk.Label (_("Not connected."));
             status_label.wrap = true;
             status_label.add_css_class ("dim-label");
-            status_group.add (status_label);
+            status_box.append (status_label);
+            status_group.add (status_box);
+
+            cancel_btn = new Gtk.Button.with_label (_("Cancel Search"));
+            cancel_btn.add_css_class ("pill");
+            cancel_btn.margin_top = 6;
+            cancel_btn.visible = false;
+            cancel_btn.clicked.connect (on_cancel_search);
+            status_group.add (cancel_btn);
+
             page.add (status_group);
 
             toolbar.content = page;
             this.child = toolbar;
+        }
+
+        private void set_searching (bool active) {
+            spinner.visible = active;
+            if (active) {
+                spinner.start ();
+            } else {
+                spinner.stop ();
+            }
+            cancel_btn.visible = active;
         }
 
         private string selected_variant () {
@@ -146,7 +173,15 @@ namespace Truco {
             ensure_connected.begin (() => {
                 session.quick_match (selected_variant ());
                 set_status (_("Looking for an opponent…"));
+                set_searching (true);
             });
+        }
+
+        private void on_cancel_search () {
+            session.cancel_quick_match ();
+            set_searching (false);
+            set_busy (false);
+            set_status (_("Search cancelled."));
         }
 
         private void on_create_room () {
@@ -177,13 +212,27 @@ namespace Truco {
             session.opponent_joined.connect ((name) => {
                 set_status (_("%s joined. Starting…").printf (name));
             });
+            session.searching.connect (() => {
+                set_searching (true);
+                set_status (_("Searching for an opponent…"));
+            });
+            session.match_found.connect (() => {
+                set_searching (false);
+                set_status (_("Opponent found! Starting game…"));
+            });
+            session.quick_match_cancelled.connect (() => {
+                set_searching (false);
+                set_busy (false);
+            });
             session.game_started.connect (() => {
+                set_searching (false);
                 set_status (_("Opponent found! Starting game…"));
                 game_ready (controller, session.variant, session.seat,
                             session.first_dealer, session.deal_seed);
                 this.close ();
             });
             session.session_error.connect ((code, message) => {
+                set_searching (false);
                 set_busy (false);
                 set_status (_("Error: %s").printf (message));
             });
