@@ -13,3 +13,6 @@ install_data(gschema_xml,
     install_dir: get_option('datadir') / 'glib-2.0' / 'schemas',
     rename: application_id + '.gschema.xml'
 )
+
+# Compile the installed schema (so it works in the Flatpak without a manifest hook)
+gnome.post_install(glib_compile_schemas: true)
