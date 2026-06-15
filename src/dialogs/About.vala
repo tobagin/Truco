@@ -37,9 +37,17 @@ public class Truco.AboutDialog : GLib.Object {
         };
         about.add_acknowledgement_section("Special Thanks", acknowledgements);
 
+        var card_art = new string[] {
+            "Spanish deck by Basquetteur (Wikimedia Commons) — CC BY-SA 3.0",
+            "French deck — English pattern (Wikimedia Commons) — CC0 / Public Domain",
+            null
+        };
+        about.add_acknowledgement_section("Card Artwork", card_art);
+
         about.set_translator_credits("Thiago Fernandes");
 
         about.add_link("Source", "https://github.com/tobagin/Truco");
+        about.add_link("Spanish Cards (CC BY-SA 3.0)", "https://commons.wikimedia.org/wiki/File:Baraja_espa%C3%B1ola_completa.png");
 
         if (parent != null && !parent.in_destruction()) {
             about.present(parent);

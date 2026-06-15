@@ -26,7 +26,7 @@
     <key name="deck-style" type="i">
         <default>0</default>
         <summary>Deck Style</summary>
-        <description>0=Modern Simple, 1=Modern Faces, 2=Spanish, 3=French</description>
+        <description>0=Spanish, 1=Normal (French)</description>
     </key>
     <key name="username" type="s">
       <default>''</default>

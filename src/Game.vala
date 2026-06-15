@@ -64,12 +64,10 @@ namespace Truco {
              if (value == 11) v = "jack";
              if (value == 12) v = "king";
 
-             string style_dir = "modern-simple";
-             if (style == 1) style_dir = "modern-faces";
-             if (style == 2) style_dir = "spanish";
-             if (style == 3) style_dir = "french";
+             string style_dir = "spanish";
+             if (style == 1) style_dir = "french";
 
-             return "cards/%s/%s_of_%s.svg".printf(style_dir, v, s);
+             return "cards/%s/%s_of_%s.png".printf(style_dir, v, s);
         }
     }
 
