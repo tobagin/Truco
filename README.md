@@ -7,7 +7,7 @@ A native GNOME version of **Truco**, the popular South American trick-taking car
 ![Truco Application](data/screenshots/gameplay.png)
 
 <a href="https://flathub.org/apps/io.github.tobagin.Truco"><img src="https://flathub.org/api/badge" height="110" alt="Get it on Flathub"></a>
-<a href="https://github.com/sponsors/tobagin"><img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-db61a2?logo=github" height="82" alt="Sponsor on GitHub"></a>
+<a href="https://ko-fi.com/tobagin"><img src="data/kofi_button.png" height="82" alt="Support me on Ko-Fi"></a>
 
 </div>
 
