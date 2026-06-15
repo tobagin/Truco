@@ -42,17 +42,17 @@ For detailed release notes and version history, see [CHANGELOG.md](CHANGELOG.md)
 
 ## Screenshots
 
-| Gameplay | Calling Truco |
-|----------|---------------|
-| ![Gameplay](data/screenshots/gameplay.png) | ![Calling Truco](data/screenshots/truco-call.png) |
+| Gameplay | Player Profile |
+|----------|----------------|
+| ![Gameplay](data/screenshots/gameplay.png) | ![Player Profile](data/screenshots/welcome.png) |
 
 | Online Lobby | Create Room |
 |--------------|-------------|
 | ![Online Lobby](data/screenshots/play-online.png) | ![Create Room](data/screenshots/create-room.png) |
 
-| Player Profile | Preferences |
-|----------------|-------------|
-| ![Player Profile](data/screenshots/welcome.png) | ![Preferences](data/screenshots/preferences.png) |
+| Calling Truco | Preferences |
+|---------------|-------------|
+| ![Calling Truco](data/screenshots/truco-call.png) | ![Preferences](data/screenshots/preferences.png) |
 
 ## Building from Source
 
