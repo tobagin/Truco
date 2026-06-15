@@ -140,8 +140,12 @@ if appstream_util.found()
 endif
 
 # Install icon with correct name based on application_id
-# Install icon with correct name based on application_id
-icon_source = 'data/icons/hicolor/scalable/apps/io.github.tobagin.Truco.svg'
+# Install icon with correct name based on application_id (Devel variant carries hazard tape)
+if get_option('profile') == 'development'
+    icon_source = 'data/icons/hicolor/scalable/apps/io.github.tobagin.Truco.Devel.svg'
+else
+    icon_source = 'data/icons/hicolor/scalable/apps/io.github.tobagin.Truco.svg'
+endif
 install_data(
     icon_source,
     rename: application_id + '.svg',

@@ -278,6 +278,11 @@ namespace Truco {
         public Window (Gtk.Application app) {
             Object (application: app);
 
+            if (Config.PROFILE == "Devel") {
+                add_css_class ("devel");
+                window_title.title = Config.NAME;
+            }
+
             var settings = new GLib.Settings (Config.SCHEMA_ID);
 
             int default_variant_idx = settings.get_int("default-game-variant");
