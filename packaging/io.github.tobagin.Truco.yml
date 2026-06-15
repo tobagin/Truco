@@ -39,4 +39,4 @@ modules:
       - type: git
         url: https://github.com/tobagin/Truco.git
         tag: v1.0.0
-        commit: 1559204fa12ea796d567f3eae15b166de8fbc45b
+        commit: 3b2db399ece3f97a14819c6694bcd5679c26ee45
