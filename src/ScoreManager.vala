@@ -1,5 +1,3 @@
-using Gee;
-
 namespace Truco {
     public class ScoreManager : Object {
         public int score_team_0 { get; set; default = 0; }

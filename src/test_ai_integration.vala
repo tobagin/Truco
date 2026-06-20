@@ -1,5 +1,4 @@
 using GLib;
-using Gee;
 using Truco;
 
 void main (string[] args) {

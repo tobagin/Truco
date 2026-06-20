@@ -1,10 +1,8 @@
 using Gst;
-using Gee;
 
 namespace Truco {
     public class SoundManager : GLib.Object {
         private static SoundManager? instance = null;
-        private Gee.LinkedList<Gst.Element> active_players;
         private bool initialized = false;
 
         public static SoundManager get_default() {
@@ -15,7 +13,6 @@ namespace Truco {
         }
 
         private SoundManager() {
-            active_players = new Gee.LinkedList<Gst.Element>();
             try {
 
                 string[] args = null;
@@ -46,15 +43,14 @@ namespace Truco {
 
             player.set("uri", uri);
 
-            active_players.add(player);
-
+            // The watch closure below holds the only reference that keeps `player`
+            // alive during playback; it drops when we return false at EOS/ERROR.
             var bus = player.get_bus();
             bus.add_watch(GLib.Priority.DEFAULT, (bus, msg) => {
                 switch (msg.type) {
                     case Gst.MessageType.EOS:
 
                         player.set_state(Gst.State.NULL);
-                        active_players.remove(player);
                         return false;
                     case Gst.MessageType.ERROR:
                         GLib.Error err;
@@ -62,7 +58,6 @@ namespace Truco {
                         msg.parse_error(out err, out debug_info);
                         warning("Error playing sound '%s': %s", sound_name, err.message);
                         player.set_state(Gst.State.NULL);
-                        active_players.remove(player);
                         return false;
                     default:
                         return true;

@@ -1,5 +1,3 @@
-using Gee;
-
 namespace Truco.Network {
 
     public const string PROTOCOL_VERSION = "1.0.0";

@@ -1,6 +1,5 @@
 using Gtk;
 using Adw;
-using Gee;
 
 namespace Truco {
 
